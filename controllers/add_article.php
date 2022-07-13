@@ -9,7 +9,7 @@ $familleModel = new FamilleModel();
 $familles = $familleModel ->getAllFamille();
 
 $uniteModel = new UniteModel();
-$unites = $uniteModel ->GetAllUnite();
+$unites = $uniteModel ->getAllUnite();
 
 $error=[];
 
@@ -49,7 +49,8 @@ if(!empty($_POST)){
 
     if(empty($error)){
         $articleModel = new ArticleModel();
-        $articleModel ->addArticle($label,$quantite,$unite,$prix,$origine,$famille,1);
+//        $articleModel ->addArticle($label,$quantite,$unite,$prix,$origine,$famille,1);
+        $articleModel ->addArticle("aaa",2,1,10.2,"france",1,1);
         header('location: articles');
         exit;
     }

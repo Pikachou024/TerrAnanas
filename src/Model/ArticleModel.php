@@ -15,7 +15,7 @@ class ArticleModel extends AbstractModel
 
     function getOneArticle($id){
         $sql = "SELECT      *
-                FROM        article
+                FROM        article art
                 INNER JOIN  famille fam ON fam.id_famille = art.id_famille
                 INNER JOIN  unite uni ON uni.id_unite = art.id_unite
                 INNER JOIN  statusArticle sart ON sart.id_statusArticle = art.id_statusArticle
@@ -25,18 +25,18 @@ class ArticleModel extends AbstractModel
     }
 
     function addArticle($label,$quantite,$unite,$prix,$origine,$famille,$status){
-        $sql ="INSERT INTO article(label_article,quantite,unite,prix,origine,id_famille,id_status)
-               VALUES (?,?,?,?,?)";
+        $sql ="INSERT INTO article(label_article,quantite,id_unite,prix,origine,id_famille,id_statusArticle)
+               VALUES (?,?,?,?,?,?,?)";
 
         return $this-> db ->executeQuerry($sql,[$label,$quantite,$unite,$prix,$origine,$famille,$status]);
     }
 
-    function editArticle($label,$quantite,$prix,$origine,$famille,$id){
+    function editArticle($label,$quantite,$unite,$prix,$origine,$famille,$id){
         $sql = "UPDATE      article
-                SET         label = ? , quantite = ? , prix = ? , origine = ? , famille = ? 
+                SET         label_article = ? , quantite = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? 
                 where       id_article = ?;";
 
-        return $this->db->executeQuerry($sql,[$label,$quantite,$prix,$origine,$famille,$id]);
+        return $this->db->executeQuerry($sql,[$label,$quantite,$unite,$prix,$origine,$famille,$id]);
     }
 
     function deleteArticle($id){
