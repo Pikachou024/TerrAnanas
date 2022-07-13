@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
+    <title>Inscription</title>
+</head>
+<body>
+<form method="POST" action="<?='inscription';?>">
+    <div class="form-group">
+        <label for="society">Nom de la société</label>
+        <input type="text" class="form-control" id="society" name="society" value="<?=$society;?>">
+        <?php if (isset($error['society'])): ?>
+            <p class="error"><?=htmlspecialchars($error['society']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="address">Adresse</label>
+        <input type="text" class="form-control" id="address" name="address" value="<?=$address;?>">
+        <?php if (isset($error['address'])): ?>
+            <p class="error"><?=htmlspecialchars($error['address']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="city">Ville</label>
+        <input type="text" class="form-control" id="city" name="city" value="<?=$city;?>">
+        <?php if (isset($error['city'])): ?>
+            <p class="error"><?=htmlspecialchars($error['city']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="postal">Code postal</label>
+        <input type="text" class="form-control" id="postal" name="postal" value="<?=$postal;?>">
+        <?php if (isset($error['postal'])): ?>
+            <p class="error"><?=htmlspecialchars($error['postal']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="contact">Personne à contacter</label>
+        <input type="text" class="form-control" id="quantité" name="contact" value="<?=$contact;?>">
+        <?php if (isset($error['contact'])): ?>
+            <p class="error"><?=htmlspecialchars($error['contact']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input type="text" class="form-control" id="phone" name="phone" value="<?=$phone;?>">
+        <?php if (isset($error['phone'])): ?>
+            <p class="error"><?=htmlspecialchars($error['phone']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email" value="<?=$email;?>">
+        <?php if (isset($error['email'])): ?>
+            <p class="error"><?=htmlspecialchars($error['email']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="password">
+        <?php if (isset($error['password'])): ?>
+            <p class="error"><?=htmlspecialchars($error['password']);?></p>
+        <?php endif; ?>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword">Mot de passe à confirmer</label>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+        <?php if (isset($error['confirmPassword'])): ?>
+            <p class="error"><?=htmlspecialchars($error['confirmPassword']);?></p>
+        <?php endif; ?>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" ></script>
+</body>
+
+</html>

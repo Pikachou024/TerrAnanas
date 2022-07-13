@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
+    <title>users</title>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2> Listes clients</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"> <p>Société</p> </div>
+                    <div class="col-2"> <p>Adresse</p> </div>
+                    <div class="col-1"> <p>Ville</p> </div>
+                    <div class="col-1"> <p>Code postal</p> </div>
+                    <div class="col-2"> <p>Personne à contacter</p> </div>
+                    <div class="col-1"> <p>Téléphone</p> </div>
+                    <div class="col-1"> <p>Email</p> </div>
+                    <!--                                <div class="col-2"> <p>Supprimer</p> </div>-->
+                    <!--                                <div class="col-2"> <p>Modifier</p> </div>-->
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+
+                    <?php foreach ($users as $user): ?>
+                        <div class="col-2"> <?= $user["society"];?> </div>
+                        <div class="col-2"> <?= $user["address"];?> </div>
+                        <div class="col-1"> <?= $user["city"];?> </div>
+                        <div class="col-1"> <?= $user["postal"];?> </div>
+                        <div class="col-2"> <?= $user["contact"];?> </div>
+                        <div class="col-1"> <?= $user["phone"];?> </div>
+                        <div class="col-1"> <?= $user["email"];?> </div>
+                        <div class="col-1"> <a href="<?='edit_user?id='.$user["id_user"];?>">Modifier</a> </div>
+                        <div class="col-1"> <a href="<?='delete_user?id='.$user["id_user"];?>">Supprimer</a> </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" ></script>
+</body>
+
+</html>
