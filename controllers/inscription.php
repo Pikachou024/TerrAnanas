@@ -57,11 +57,11 @@ if(!empty($_POST)){
         $error['confirmPassword']="Veuillez rentrer le même mot de pass";
     }
     if(empty($error)){
-
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        $userModel->addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash);
-
+        $userModel->addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash,1);
+        header('location: inscription');
+        exit;
     }
 
 }

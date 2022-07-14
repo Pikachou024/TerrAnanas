@@ -17,13 +17,16 @@
             <h2> Listes clients</h2>
             <div class="container">
                 <div class="row">
+                    <div class="col-1"> <p>Statut</p> </div>
                     <div class="col-2"> <p>Société</p> </div>
                     <div class="col-2"> <p>Adresse</p> </div>
                     <div class="col-1"> <p>Ville</p> </div>
                     <div class="col-1"> <p>Code postal</p> </div>
-                    <div class="col-2"> <p>Personne à contacter</p> </div>
+                    <div class="col-1"> <p>Personne à contacter</p> </div>
                     <div class="col-1"> <p>Téléphone</p> </div>
                     <div class="col-1"> <p>Email</p> </div>
+                    <div class="col-1"> <p> </p> </div>
+                    <div class="col-1"> <p> </p> </div>
                     <!--                                <div class="col-2"> <p>Supprimer</p> </div>-->
                     <!--                                <div class="col-2"> <p>Modifier</p> </div>-->
                 </div>
@@ -32,11 +35,12 @@
                 <div class="row">
 
                     <?php foreach ($users as $user): ?>
+                        <div class="col-1"><?= $user['label_statusUser'] ;?></div>
                         <div class="col-2"> <?= $user["society"];?> </div>
                         <div class="col-2"> <?= $user["address"];?> </div>
                         <div class="col-1"> <?= $user["city"];?> </div>
                         <div class="col-1"> <?= $user["postal"];?> </div>
-                        <div class="col-2"> <?= $user["contact"];?> </div>
+                        <div class="col-1"> <?= $user["contact"];?> </div>
                         <div class="col-1"> <?= $user["phone"];?> </div>
                         <div class="col-1"> <?= $user["email"];?> </div>
                         <div class="col-1"> <a href="<?='edit_user?id='.$user["id_user"];?>">Modifier</a> </div>

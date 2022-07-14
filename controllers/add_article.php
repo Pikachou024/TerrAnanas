@@ -49,8 +49,8 @@ if(!empty($_POST)){
 
     if(empty($error)){
         $articleModel = new ArticleModel();
-//        $articleModel ->addArticle($label,$quantite,$unite,$prix,$origine,$famille,1);
-        $articleModel ->addArticle("aaa",2,1,10.2,"france",1,1);
+        $articleModel ->addArticle($label,$quantite,$unite,$prix,$origine,$famille,1);
+
         header('location: articles');
         exit;
     }

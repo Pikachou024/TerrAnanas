@@ -10,7 +10,8 @@ $routes=[
     "inscription"=>"inscription.php",
     "users" => "users.php",
     "edit_user" => "edit_user.php",
-    "delete_user" =>"delete_user.php"
+    "delete_user" =>"delete_user.php",
+    "login" => "login.php"
 
 ];
 return $routes ;
