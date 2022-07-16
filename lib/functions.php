@@ -49,3 +49,71 @@ function registerUser(string $id,string $society, string $email)
 //        'role' => $role
     ];
 }
+
+function creationPanier(){
+    if (!isset($_SESSION['panier'])){
+        $_SESSION['panier']=array();
+        $_SESSION['panier']['idArticle']=array();
+        $_SESSION['panier']['label'] = array();
+        $_SESSION['panier']['quantite'] = array();
+        $_SESSION['panier']['prix'] = array();
+        $_SESSION['panier']['colis'] = array();
+
+    }
+    return true;
+}
+function addArticle($label,$quantite,$prix,$idArticle,$colis){
+
+    //Si le panier existe
+    if (creationPanier())
+    {
+        //Si le produit existe déjà on ajoute seulement la quantité
+        $positionProduit = array_search($label,  $_SESSION['panier']['label']);
+
+        if ($positionProduit !== false)
+        {
+            $_SESSION['panier']['colis'][$positionProduit] += $colis ;
+        }
+        else
+        {
+            //Sinon on ajoute le produit
+            array_push( $_SESSION['panier']['idArticle'],$idArticle);
+            array_push( $_SESSION['panier']['label'],$label);
+            array_push( $_SESSION['panier']['quantie'],$quantite);
+            array_push( $_SESSION['panier']['prix'],$prix);
+            array_push( $_SESSION['panier']['colis'],$colis);
+        }
+    }
+    else
+        echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+}
+
+function deleteArticle($label){
+    //Si le panier existe
+    if (creationPanier())
+    {
+        //Nous allons passer par un panier temporaire
+        $tmp=array();
+        $tmp['libelleProduit'] = array();
+        $tmp['qteProduit'] = array();
+        $tmp['prixProduit'] = array();
+        $tmp['verrou'] = $_SESSION['panier']['verrou'];
+
+        for($i = 0; $i < count($_SESSION['panier']['libelleProduit']); $i++)
+        {
+            if ($_SESSION['panier']['libelleProduit'][$i] !== $libelleProduit)
+            {
+                array_push( $tmp['libelleProduit'],$_SESSION['panier']['libelleProduit'][$i]);
+                array_push( $tmp['qteProduit'],$_SESSION['panier']['qteProduit'][$i]);
+                array_push( $tmp['prixProduit'],$_SESSION['panier']['prixProduit'][$i]);
+            }
+
+        }
+        //On remplace le panier en session par notre panier temporaire à jour
+        $_SESSION['panier'] =  $tmp;
+        //On efface notre panier temporaire
+        unset($tmp);
+    }
+    else
+        echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+}

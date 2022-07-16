@@ -19,7 +19,7 @@ if(!empty($_POST)){
 //        }
 //        elseif ($user['role']== 'admin'){
 
-            header('location: articles');
+            header('location: inscription');
             exit;
 //        }
     }
