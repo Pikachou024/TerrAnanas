@@ -1,4 +1,6 @@
 <?php
+require '../vendor/autoload.php';
+
 include "../app/config.php";
 include "../src/Core/AbstractModel.php";
 include "../src/Core/Database.php";
@@ -10,7 +12,7 @@ include "../src/Model/UniteModel.php";
 include '../lib/functions.php';
 
 session_start();
-
+//session_destroy();
 $routes = include '../app/routes.php';
 $page = getURL($_SERVER["REDIRECT_URL"]);
 
