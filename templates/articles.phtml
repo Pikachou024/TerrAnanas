@@ -63,7 +63,7 @@
                                     <div class="col-2"> <?= $article["label_article"];?> </div>
                                     <div class="col-2"> <?= $article["origine"];?> </div>
                                     <div class="col-2"> <?= $article["prix"];?> € </div>
-                                    <div class="col-2"> <?= $article["quantite"] ." " .$article['label_unite'];?> </div>
+                                    <div class="col-2"> <?= $article["poids"] ." " .$article['label_unite'];?> </div>
                                     <div class="col-2"> <a href="<?='edit_article?id='.$article["id_article"];?>">Modifier</a> </div>
                                     <div class="col-2"> <a href="<?='delete_article?id='.$article["id_article"];?>">Supprimer</a> </div>
                                 <?php endif ;?>
@@ -81,7 +81,7 @@
                                     <div class="col-2"> <?= $article["label_article"];?> </div>
                                     <div class="col-2"> <?= $article["origine"];?> </div>
                                     <div class="col-2"> <?= $article["prix"];?> € </div>
-                                    <div class="col-2"> <?= $article["quantite"].' ' .$article['label_unite'];?></div>
+                                    <div class="col-2"> <?= $article["poids"].' ' .$article['label_unite'];?></div>
                                     <div class="col-2"> <a href="<?='edit_article?id='.$article["id_article"];?>">Modifier</a> </div>
                                     <div class="col-2"> <a href="<?='delete_article?id='.$article["id_article"];?>">Supprimer</a> </div>
                                 <?php endif ;?>

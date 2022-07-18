@@ -58,10 +58,10 @@ function creationPanier(){
     return true;
 }
 
-function checkArticle($idArticle,$array,$colis){
+function checkArticle($idArticle,$array,$quantite){
 
-//    Si le colis est à 0, on ne fait rien
-    if($colis == 0){
+//    Si le quantite est à 0, on ne fait rien
+    if($quantite == 0){
         return true;
     }
 
@@ -72,7 +72,7 @@ function checkArticle($idArticle,$array,$colis){
     else{
         for ($i = 0; $i < count($array); $i++) {
             if (in_array($idArticle, $array[$i])) {
-                $_SESSION['panier'][$i]['colis'] += $colis;
+                $_SESSION['panier'][$i]['quantite'] += $quantite;
                 return true;
             }
         }
@@ -80,24 +80,27 @@ function checkArticle($idArticle,$array,$colis){
     return false;
 }
 
-function addArticle($idArticle,$label,$quantite,$prix,$colis){
+function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$unite){
 
 //    //Si le panier existe
     if (creationPanier()) {
 
       /* On vérifie si l'article est présent dans le panier
-       si oui, je rajoute le nombre de colis */
-        $articleOnPanier = checkArticle($idArticle,$_SESSION['panier'],$colis);
+       si oui, je rajoute le nombre de quantite */
+        $articleOnPanier = checkArticle($idArticle,$_SESSION['panier'],$quantite);
 
 //      si non, je le rajoute dans le panier
         if($articleOnPanier === false){
 
             //Sinon on ajoute le produit
-            $_SESSION['article'] = ['idArticle' => $idArticle,
-                'label' => $label,
-                'quantite' => $quantite,
+            $_SESSION['article'] = ['id_article' => $idArticle,
+                'label_article' => $label,
+                'origine'=>$origine,
+                'poids' => $poids,
+                'label_unite'=>$unite,
                 'prix' => $prix,
-                'colis' => $colis];
+                'label_famille'=>$famille,
+                'quantite' => $quantite];
 
             $_SESSION['panier'][] = $_SESSION['article'];
         }
@@ -117,21 +120,21 @@ function deleteArticle($label){
         //Nous allons passer par un panier temporaire
         $tmp=array();
         $tmp = array();
-        $tmp['label'] = array();
-        $tmp['quantite'] = array();
+        $tmp['label_article'] = array();
+        $tmp['poids'] = array();
         $tmp['prix'] = array();
-        $tmp['colis'] = array();
+        $tmp['quantite'] = array();
 //        $tmp['verrou'] = $_SESSION['panier']['verrou'];
 
-        for($i = 0; $i < count($_SESSION['panier']['label']); $i++)
+        for($i = 0; $i < count($_SESSION['panier']['label_article']); $i++)
         {
-            if ($_SESSION['panier']['label'][$i] !== $label)
+            if ($_SESSION['panier']['label_article'][$i] !== $label)
             {
                 array_push( $tmp,$_SESSION['panier'][$i]);
-                array_push( $tmp['label'],$_SESSION['panier']['label'][$i]);
-                array_push( $tmp['quantite'],$_SESSION['panier']['quantite'][$i]);
+                array_push( $tmp['label_article'],$_SESSION['panier']['label_article'][$i]);
+                array_push( $tmp['poids'],$_SESSION['panier']['poids'][$i]);
                 array_push( $tmp['prix'],$_SESSION['panier']['prix'][$i]);
-                array_push( $tmp['colis'],$_SESSION['panier']['colis'][$i]);
+                array_push( $tmp['quantite'],$_SESSION['panier']['quantite'][$i]);
             }
 
         }
@@ -145,19 +148,19 @@ function deleteArticle($label){
 }
 
 //TODO Modifier la quantitée d'un article dans le panier '
-function modifierQTeArticle($label,$colis){
+function modifierQTeArticle($label,$quantite){
     //Si le panier existe
     if (creationPanier())
     {
         //Si la quantité est positive on modifie sinon on supprime l'article
-        if ($colis> 0)
+        if ($quantite> 0)
         {
             //Recherche du produit dans le panier
-            $positionProduit = array_search($label,  $_SESSION['panier']['label']);
+            $positionProduit = array_search($label,  $_SESSION['panier']['label_article']);
 
             if ($positionProduit !== false)
             {
-                $_SESSION['panier']['colis'][$positionProduit] = $colis ;
+                $_SESSION['panier']['quantite'][$positionProduit] = $quantite ;
             }
         }
         else

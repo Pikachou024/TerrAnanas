@@ -3,7 +3,7 @@
 $label='';
 $origine='';
 $prix='';
-$quantite='';
+$poids='';
 
 $familleModel = new FamilleModel();
 $familles = $familleModel ->getAllFamille();
@@ -17,16 +17,9 @@ if(!empty($_POST)){
     $label = strip_tags(trim($_POST['label']));
     $origine = strip_tags(trim($_POST['origine']));
     $prix = (double) strip_tags(trim($_POST['prix']));
-    $quantite = (int) strip_tags(trim($_POST['quantite']));
+    $poids = (int) strip_tags(trim($_POST['poids']));
     $famille = (int) strip_tags(trim($_POST['famille']));
     $unite = (int) strip_tags(trim($_POST['unite']));
-
-    var_dump($label);
-    var_dump($origine);
-    var_dump($prix);
-    var_dump($quantite);
-    var_dump($unite);
-    var_dump($famille);
 
     if(!$label){
         $error['label']="Le champ est vide";
@@ -37,8 +30,8 @@ if(!empty($_POST)){
     if(!$prix){
         $error['prix']="Le champ est vide";
     }
-    if(!$quantite){
-        $error['quantite']="Le champ est vide";
+    if(!$poids){
+        $error['poids']="Le champ est vide";
     }
     if($famille == 0){
         $error['famille']="Veuillez sélectionner un champ";
@@ -49,7 +42,7 @@ if(!empty($_POST)){
 
     if(empty($error)){
         $articleModel = new ArticleModel();
-        $articleModel ->addArticle($label,$quantite,$unite,$prix,$origine,$famille,1);
+        $articleModel ->addArticle($label,$poids,$unite,$prix,$origine,$famille,1);
 
         header('location: articles');
         exit;

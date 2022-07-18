@@ -12,7 +12,8 @@ $routes=[
     "edit_user" => "edit_user.php",
     "delete_user" =>"delete_user.php",
     "login" => "login.php",
-    "commande"=> "commande.php"
+    "commande"=> "commande.php",
+    "panier" => "panier.php"
 
 ];
 return $routes ;

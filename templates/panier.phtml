@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
+    <title>Paniers</title>
+</head>
+
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2> Votre panier</h2>
+
+
+            <?php if(isset($articles)): ?>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3"> <p>Label</p> </div>
+                        <div class="col-2"> <p>Origine</p> </div>
+                        <div class="col-2"> <p>Prix</p> </div>
+                        <div class="col-3"> <p>Poids</p> </div>
+
+                    </div>
+                </div>
+            <?php foreach ($articles as $article): ?>
+                    <form method="post" action="<?='panier';?>">
+                        <div class="container">
+                            <div class="row">
+                                <input type="hidden" name="id_article" value="<?=$article['id_article'];?>">
+                                <input type="hidden" name="label_unite" value="<?=$article['label_unite'];?>">
+                                <input type="hidden" name="label_famille" value="<?=$article['label_famille'];?>">
+                                <div class="col-3"><input type="hidden" name="label_article<?=$article['id_article'];?>" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                                <div class="col-2"><input type="hidden" name="origine<?=$article['id_article'];?>" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
+                                <div class="col-2"><input type="hidden" name="prix<?=$article['id_article'];?>" value="<?= $article["prix"];?>"><?= $article["prix"];?> € </div>
+                                <div class="col-3"><input type="hidden" name="poids<?=$article['id_article'];?>" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                <div class="col-1"><input type="number" id="quantite" name="quantite<?=$article['id_article'];?>" min="0" value="<?=$article['quantite'];?>"></div>
+                                <div class="col-1"><button type="submit" class="btn btn-primary">Modifier</button></div>
+
+                            </div>
+                        </div>
+                    </form>
+            <?php endforeach; ?>
+
+            <?php elseif(isset($message)):?>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-10"> <?=$message;?></div>
+                    </div>
+                </div>
+            <?php endif ;?>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" ></script>
+</body>
+
+</html>

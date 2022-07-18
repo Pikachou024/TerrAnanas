@@ -11,16 +11,15 @@
 
 <body>
 
-<!--<form method="post" action="--><?//='commande';?><!--">-->
-<!--    <head>-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col-2">-->
-<!--                <button type="submit" class="btn btn-primary">Ajouter au panier</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </head>-->
+    <head>
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <a href="panier">Voir le panier</a>
+                </div>
+            </div>
+        </div>
+    </head>
 
     <div class="container">
         <div class="row">
@@ -46,12 +45,14 @@
                         <form method="post" action="<?='commande';?>">
                             <div class="container">
                                 <div class="row">
-                                    <input type="hidden" name="idArticle" value="<?=$article['id_article'];?>">
-                                    <div class="col-3"><input type="hidden" name="label<?=$article['id_article'];?>" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                                    <input type="hidden" name="id_article" value="<?=$article['id_article'];?>">
+                                    <input type="hidden" name="label_unite" value="<?=$article['label_unite'];?>">
+                                    <input type="hidden" name="label_famille" value="<?=$article['label_famille'];?>">
+                                    <div class="col-3"><input type="hidden" name="label_article<?=$article['id_article'];?>" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
                                     <div class="col-2"><input type="hidden" name="origine<?=$article['id_article'];?>" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
                                     <div class="col-2"><input type="hidden" name="prix<?=$article['id_article'];?>" value="<?= $article["prix"];?>"><?= $article["prix"];?> € </div>
-                                    <div class="col-3"><input type="hidden" name="quantite<?=$article['id_article'];?>" value="<?= $article["quantite"];?>"><?= $article["quantite"] ." " .$article['label_unite'];?> </div>
-                                    <div class="col-1"><input type="number" id="colis" name="colis<?=$article['id_article'];?>" min="0" value="0"></div>
+                                    <div class="col-3"><input type="hidden" name="poids<?=$article['id_article'];?>" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                    <div class="col-1"><input type="number" id="quantite" name="quantite<?=$article['id_article'];?>" min="0" value="0"></div>
                                     <div class="col-1"><button type="submit" class="btn btn-primary">Ajouter</button></div>
 
                                 </div>
@@ -67,12 +68,14 @@
                             <form method="post" action="<?='commande';?>">
                                 <div class="container">
                                     <div class="row">
-                                        <input type="hidden" name="idArticle" value="<?=$article['id_article'];?>">
-                                        <div class="col-3"><input type="hidden" name="label<?=$article['id_article'];?>" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                                        <input type="hidden" name="id_article" value="<?=$article['id_article'];?>">
+                                        <input type="hidden" name="label_unite" value="<?=$article['label_unite'];?>">
+                                        <input type="hidden" name="label_famille" value="<?=$article['label_famille'];?>">
+                                        <div class="col-3"><input type="hidden" name="label_article<?=$article['id_article'];?>" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
                                         <div class="col-2"><input type="hidden" name="origine<?=$article['id_article'];?>" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
                                         <div class="col-2"><input type="hidden" name="prix<?=$article['id_article'];?>" value="<?= $article["prix"];?>"><?= $article["prix"];?> € </div>
-                                        <div class="col-3"><input type="hidden" name="quantite<?=$article['id_article'];?>" value="<?= $article["quantite"];?>"><?= $article["quantite"] ." " .$article['label_unite'];?> </div>
-                                        <div class="col-1"><input type="number" id="colis" name="colis<?=$article['id_article'];?>" min="0" value="0"></div>
+                                        <div class="col-3"><input type="hidden" name="poids<?=$article['id_article'];?>" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                        <div class="col-1"><input type="number" id="quantite" name="quantite<?=$article['id_article'];?>" min="0" value="0"></div>
                                         <div class="col-1"><button type="submit" class="btn btn-primary">Ajouter</button></div>
 
                                     </div>
@@ -84,16 +87,16 @@
             </div>
         </div>
     </div>
-<!--    <bottom>-->
-<!--        <div class="container">-->
-<!--            <div class="row">-->
-<!--                <div class="col-2">-->
-<!--                    <button type="submit" class="btn btn-primary">Ajouter au panier</button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </bottom>-->
-<!--</form>-->
+    <bottom>
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <a href="panier">Voir le panier</a>
+                </div>
+            </div>
+        </div>
+    </bottom>
+</form>
 
 <script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" ></script>
 <script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" ></script>
