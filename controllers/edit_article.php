@@ -1,5 +1,13 @@
 <?php
 
+$roleUser=getUserRole();
+
+if($roleUser != "admin") {
+    http_response_code(403);
+    echo("Désolé la page n'existe pas");
+    exit;
+}
+
 $idArticle = $_GET['id'];
 $errors=[];
 
@@ -37,4 +45,6 @@ if(!empty($_POST)){
 
 }
 
-include'../templates/edit_article.phtml';
+$title ='Modfier un article';
+$template='edit_article';
+include'../templates/base_admin.phtml';

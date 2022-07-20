@@ -1,5 +1,13 @@
 <?php
 
+$roleUser=getUserRole();
+
+if($roleUser != "admin") {
+    http_response_code(403);
+    echo("Désolé la page n'existe pas");
+    exit;
+}
+
 $idUser=$_GET['id'];
 $error=[];
 
@@ -52,4 +60,6 @@ if(!empty($_POST)){
 
 }
 
-include '../templates/edit_user.phtml';
+$title='Modification client';
+$template = 'edit_user';
+include '../templates/base_admin.phtml';

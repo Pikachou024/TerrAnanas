@@ -49,4 +49,6 @@ if(!empty($_POST)){
     }
 }
 
-include "../templates/add_article.phtml";
+$title="Ajouter un article";
+$template = 'add_article';
+include "../templates/base_admin.phtml";

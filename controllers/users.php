@@ -3,4 +3,7 @@
 $userModel = new userModel();
 $users = $userModel ->getAllUsers();
 
-include "../templates/users.phtml";
+$title="Liste clients";
+$template="users";
+
+include "../templates/base_admin.phtml";

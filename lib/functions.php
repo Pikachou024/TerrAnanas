@@ -13,6 +13,7 @@ function checkEmail($email,$users){
     return false;
 }
 
+
 function checkUser(string $email, string $password)
 {
     // On récupère l'utilisateur à partir de son email
@@ -32,22 +33,6 @@ function checkUser(string $email, string $password)
     return false;
 }
 
-function registerUser(string $id,string $society, string $email, $role)
-{
-    // On commence par vérifier qu'une session est bien démarrée
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    // Puis on enregistre les données de l'utilisateur en session
-    $_SESSION['user'] = [
-        'id' => $id,
-        'society' => $society,
-//        'contact' => $contact,
-        'email' => $email,
-        'role' => $role
-    ];
-}
 
 function creationPanier(){
     if (!isset($_SESSION['panier'])){
@@ -173,4 +158,76 @@ function modifierQTeArticle($idArticle,$quantite)
         }
 
 
+}
+
+
+//Gestion connexion session
+
+/**
+ * Détermine si l'utilisateur est connecté ou non
+ * @return bool - true si l'utilisateur est connecté, false sinon
+ */
+function isConnected(): bool
+{
+    // On commence par vérifier qu'une session est bien démarrée
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    return array_key_exists('user', $_SESSION) && isset($_SESSION['user']);
+}
+
+function registerUser(string $id,string $society, string $email, $role)
+{
+    // On commence par vérifier qu'une session est bien démarrée
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    // Puis on enregistre les données de l'utilisateur en session
+    $_SESSION['user'] = [
+        'id' => $id,
+        'society' => $society,
+//        'contact' => $contact,
+        'email' => $email,
+        'role' => $role
+    ];
+}
+
+function logout()
+{
+    // Si l'utilisateur est connecté...
+    if (isConnected()) {
+
+        // On efface nos données en session
+        $_SESSION['user'] = null;
+
+        // On ferme la session
+        session_destroy();
+    }
+}
+
+/**
+ * Retourne le rôle de l'utilisateur connecté
+ */
+function getUserRole()
+{
+    // Si l'utilisateur est connecté...
+    if (!isConnected()) {
+        return null;
+    }
+
+    return $_SESSION['user']['role'];
+}
+
+/**
+ * Vérifie si l'utilisateur possède un rôle particulier
+ */
+function hasRole(string $role)
+{
+    if (!isConnected()) {
+        return false;
+    }
+
+    return getUserRole() == $role;
 }
