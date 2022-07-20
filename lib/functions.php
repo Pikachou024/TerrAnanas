@@ -20,7 +20,6 @@ function checkUser(string $email, string $password)
     $user = $userModel->getUserByEmail($email);
     // Si on trouve bien un utilisateur...
     if ($user) {
-        var_dump($user);
         // On vérifie son mot de passe
         if (password_verify($password, $user['hash'])) {
 
@@ -33,7 +32,7 @@ function checkUser(string $email, string $password)
     return false;
 }
 
-function registerUser(string $id,string $society, string $email)
+function registerUser(string $id,string $society, string $email, $role)
 {
     // On commence par vérifier qu'une session est bien démarrée
     if (session_status() == PHP_SESSION_NONE) {
@@ -46,7 +45,7 @@ function registerUser(string $id,string $society, string $email)
         'society' => $society,
 //        'contact' => $contact,
         'email' => $email,
-//        'role' => $role
+        'role' => $role
     ];
 }
 
@@ -58,7 +57,7 @@ function creationPanier(){
     return true;
 }
 
-function checkArticle($idArticle,$array,$quantite){
+function checkArticle($idArticle,$quantite){
 
 //    Si le quantite est à 0, on ne fait rien
     if($quantite == 0){
@@ -70,8 +69,8 @@ function checkArticle($idArticle,$array,$quantite){
         return false;
     }
     else{
-        for ($i = 0; $i < count($array); $i++) {
-            if (in_array($idArticle, $array[$i])) {
+        for ($i = 0; $i < count($_SESSION['panier']); $i++) {
+            if (in_array($idArticle, $_SESSION['panier'][$i])) {
                 $_SESSION['panier'][$i]['quantite'] += $quantite;
                 return true;
             }
@@ -87,7 +86,7 @@ function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$
 
       /* On vérifie si l'article est présent dans le panier
        si oui, je rajoute le nombre de quantite */
-        $articleOnPanier = checkArticle($idArticle,$_SESSION['panier'],$quantite);
+        $articleOnPanier = checkArticle($idArticle,$quantite);
 
 //      si non, je le rajoute dans le panier
         if($articleOnPanier === false){
@@ -147,25 +146,31 @@ function deleteArticle($label){
         echo "Un problème est survenu veuillez contacter l'administrateur du site.";
 }
 
-//TODO Modifier la quantitée d'un article dans le panier '
-function modifierQTeArticle($label,$quantite){
+function modifierQTeArticle($idArticle,$quantite)
+{
     //Si le panier existe
-    if (creationPanier())
-    {
+    if (creationPanier()) {
         //Si la quantité est positive on modifie sinon on supprime l'article
-        if ($quantite> 0)
-        {
+        if ($quantite > 0) {
             //Recherche du produit dans le panier
-            $positionProduit = array_search($label,  $_SESSION['panier']['label_article']);
-
-            if ($positionProduit !== false)
-            {
-                $_SESSION['panier']['quantite'][$positionProduit] = $quantite ;
+            for ($i = 0; $i < count($_SESSION['panier']); $i++) {
+                if (in_array($idArticle, $_SESSION['panier'][$i])) {
+                    $_SESSION['panier'][$i]['quantite'] = $quantite;
+//            $array[$idArticle]['quantite'] = $quantite;
+//                    return true;
+//                }
+                }
             }
         }
-        else
-            deleteArticle($label);
-    }
-    else
-        echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+
+        else{
+                deleteArticle($idArticle);
+            }
+        }
+    else {
+
+            echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+        }
+
+
 }

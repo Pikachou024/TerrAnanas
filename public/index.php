@@ -8,6 +8,8 @@ include "../src/Model/ArticleModel.php";
 include "../src/Model/UserModel.php";
 include "../src/Model/FamilleModel.php";
 include "../src/Model/UniteModel.php";
+include "../src/Model/StatusUserModel.php";
+
 
 include '../lib/functions.php';
 
@@ -15,7 +17,6 @@ session_start();
 //session_destroy();
 $routes = include '../app/routes.php';
 $page = getURL($_SERVER["REDIRECT_URL"]);
-
 if(!$page){
     $page='articles';
 }

@@ -6,6 +6,9 @@ $error=[];
 $userModel = new UserModel();
 $user = $userModel ->getOneUser($idUser);
 
+$statusUserModel = new StatusUserModel();
+$statusUsers = $statusUserModel->getAllStatusUser();
+
 $society = $user['society'];
 $address = $user['address'];
 $postal = $user['postal'];
@@ -23,6 +26,7 @@ if(!empty($_POST)){
     $contact = strip_tags(trim($_POST['contact']));
     $phone = strip_tags(trim($_POST['phone']));
     $email = strip_tags(trim($_POST['email']));
+    $status = strip_tags(trim($_POST['status']));
 
     if(!$society){
         $error['society']="Veuillez remplir le champ";
@@ -41,7 +45,7 @@ if(!empty($_POST)){
     }
 
     if(empty($error)){
-        $userModel ->editUser($society,$address,$city,$postal,$contact,$phone,$email,$idUser);
+        $userModel ->editUser($society,$address,$city,$postal,$contact,$phone,$email,$status,$idUser);
         header('location: users');
         exit;
     }

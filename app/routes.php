@@ -13,7 +13,8 @@ $routes=[
     "delete_user" =>"delete_user.php",
     "login" => "login.php",
     "commande"=> "commande.php",
-    "panier" => "panier.php"
+    "panier" => "panier.php",
+    "article_client"=>"article_client.php"
 
 ];
 return $routes ;

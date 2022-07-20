@@ -7,21 +7,28 @@ if(!empty($_POST)){
     $password = strip_tags(trim($_POST['password']));
 
     $user = checkUser($email,$password);
-    var_dump($user);
 
     if($user){
 
-        registerUser($user['id_user'],$user['society'],$user['email']);
+        registerUser($user['id_user'],$user['society'],$user['email'],$user['label_role']);
 
-//        if($user['role'] == 'client'){
-//            header('location: home');
-//            exit;
-//        }
-//        elseif ($user['role']== 'admin'){
+        if($user['label_role'] == 'client'){
+            if($user['label_statusUser']=="active"){
+                header('location:article_client');
+                exit;
+            }
+            elseif($user['label_statusUser']=="attente"){
+                echo"Votre demande d'inscription est en cours de traitement";
+            }
+            else{
+                echo("Votre demande a été refusé");
+            }
+        }
+        elseif ($user['label_role']== 'admin'){
 
-            header('location: inscription');
+            header('location:articles');
             exit;
-//        }
+        }
     }
 
 

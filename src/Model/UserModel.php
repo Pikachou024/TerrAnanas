@@ -7,6 +7,7 @@ class UserModel extends AbstractModel
         $sql="SELECT *
               FROM      user usr
               INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser
+              INNER JOIN role rol on rol.id_role = usr.id_role
               ORDER BY  society";
 
         return $this-> db -> getAllResults($sql);
@@ -16,24 +17,25 @@ class UserModel extends AbstractModel
     function getOneUser($id){
         $sql = "SELECT * 
                 FROM    user usr
-                INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser;
+                INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser
+                INNER JOIN role rol on rol.id_role = usr.id_role
                 WHERE id_user = ?";
 
         return $this -> db ->getOneResult($sql,[$id]);
     }
 
 //    Ajouter un client
-    function addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash,$status){
-        $sql ="INSERT INTO user(society,address,city,postal,contact,phone,email,hash,id_statusUser)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    function addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash,$status,$role){
+        $sql ="INSERT INTO user(society,address,city,postal,contact,phone,email,hash,id_statusUser,id_role)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $this -> db ->executeQuerry($sql,[$society,$address,$city,$postal,$contact,$phone,$email,$hash,$status]);
+        $this -> db ->executeQuerry($sql,[$society,$address,$city,$postal,$contact,$phone,$email,$hash,$status,$role]);
 
     }
 
     function editUser($society,$address,$city,$postal,$contact,$phone,$email,$status,$id){
         $sql= " UPDATE      user
-                SET         society=? , address=? , city=? , postal=? , contact=? , phone=? , email=? , id_status= ?
+                SET         society=? , address=? , city=? , postal=? , contact=? , phone=? , email=? , id_statusUser= ?
                 WHERE       id_user=?";
 
         return $this -> db ->executeQuerry($sql,[$society,$address,$city,$postal,$contact,$phone,$email,$status,$id]);
@@ -43,15 +45,17 @@ class UserModel extends AbstractModel
         $sql="DELETE FROM user
               WHERE id_user=?";
 
-        return $this->db->executeQuerry($sql,[$id]);
+        return $this-> db->executeQuerry($sql,[$id]);
     }
 
     function getUserByEmail($email){
         $sql = "SELECT * 
-                FROM user 
+                FROM user usr
+                INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser
+                INNER JOIN role rol on rol.id_role = usr.id_role
                 WHERE email=?";
 
-        return $this->db -> getOneResult($sql,[$email]);
+        return $this-> db -> getOneResult($sql,[$email]);
     }
 
 }

@@ -59,8 +59,8 @@ if(!empty($_POST)){
     if(empty($error)){
         $hash = password_hash($password, PASSWORD_DEFAULT);
 
-        $userModel->addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash,1);
-        header('location: inscription');
+        $userModel->addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash,1,2);
+        header('location:inscription');
         exit;
     }
 

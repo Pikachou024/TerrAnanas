@@ -59,6 +59,18 @@
             <p class="error"><?=htmlspecialchars($error['email']);?></p>
         <?php endif; ?>
     </div>
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" name="status" id="unite">
+            <option value="<?=$user['id_statusUser'];?>"><?=$user['label_statusUser'];?></option>
+            <?php foreach ($statusUsers as $statusUser): ?>
+                <?php if($user['id_statusUser']!=$statusUser['id_statusUser']): ?>
+                    <option value="<?=$statusUser['id_statusUser'];?>"><?=$statusUser['label_statusUser'];?></option>
+                <?php endif ;?>
+            <?php endforeach; ?>
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
