@@ -21,9 +21,9 @@
                             <span class="input-group-btn">
                     <button type="submit" class="btn btn-default" >
                         Ok
-<!--                    <span class="glyphicon glyphicon-search"></span>-->
+                    <span class="glyphicon glyphicon-search"></span>
                     </button>
-<!--                    </span>-->
+                    </span>
                         </div>
                     </form>
                 </div>
@@ -31,8 +31,8 @@
                     <a href="add_article"> Ajouter un article </a>
                 </div>
                 <div class="col-4">
-                    <form method="post" action="franco" id="submit-franco">
-                        <input type="text" name="franco" placeholder="">
+                    <form method="post" action="articles" id="submit-franco">
+                        <input type="text" name="franco" placeholder="<?=$franco['franco'];?>">
                         <button type="submit" class="button-franco">ok</button>
                     </form>
                 </div>
@@ -96,7 +96,7 @@
     </div>
 
     <?php if(isset($_SESSION['franco'])):  ?>
-        <?php if($_SESSION['franco'] >= 100):  ?>
+        <?php if($_SESSION['franco'] >= $franco):  ?>
 
         <p> ok franco atteint</p>
         <?php endif ?>

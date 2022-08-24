@@ -39,7 +39,7 @@
                 <h3>Légumes</h3>
                 <?php foreach ($articles as $article): ?>
                     <?php if($article['label_famille']=="Légume"):;?>
-                        <form method="post" action="<?='commande';?>">
+                        <form method="post" action="<?='article_client';?>">
                             <div class="container">
                                 <div class="row">
                                     <input type="hidden" name="id_article" value="<?=$article['id_article'];?>">
@@ -62,7 +62,7 @@
                     <h3>Fruits</h3>
                     <?php foreach ($articles as $article): ?>
                         <?php if($article['label_famille']=="Fruit"):;?>
-                            <form method="post" action="<?='commande';?>">
+                            <form method="post" action="<?='article_client';?>">
                                 <div class="container">
                                     <div class="row">
                                         <input type="hidden" name="id_article" value="<?=$article['id_article'];?>">

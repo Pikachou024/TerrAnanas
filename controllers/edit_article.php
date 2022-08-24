@@ -11,8 +11,15 @@ if($roleUser != "admin") {
 $idArticle = $_GET['id'];
 $errors=[];
 
+
 $articleModel = new ArticleModel();
 $article = $articleModel ->getOneArticle($idArticle);
+
+if($article == false){
+    http_response_code(404);
+    echo("Article introuvable");
+    exit;
+}
 
 $familleModel = new FamilleModel();
 $familles = $familleModel ->getAllFamille();
@@ -24,8 +31,8 @@ $label = $article['label_article'];
 $origine = $article['origine'];
 $prix = $article['prix'];
 $poids = $article['poids'];
-//$unite = $article['id_unite'];
-//$famille = $article['id_famille'];
+
+
 
 if(!empty($_POST)){
     $label = $_POST['label'];
