@@ -63,10 +63,10 @@
     <div class="form-group">
         <label for="status">Status</label>
         <select class="form-control" name="status" id="unite">
-            <option value="<?=$user['id_statusUser'];?>"><?=$user['label_statusUser'];?></option>
-            <?php foreach ($statusUsers as $statusUser): ?>
-                <?php if($user['id_statusUser']!=$statusUser['id_statusUser']): ?>
-                    <option value="<?=$statusUser['id_statusUser'];?>"><?=$statusUser['label_statusUser'];?></option>
+            <option value="<?=$user['id_status'];?>"><?=$user['label_status'];?></option>
+            <?php foreach ($status as $statusUser): ?>
+                <?php if($user['id_status']!=$statusUser['id_status']): ?>
+                    <option value="<?=$statusUser['id_status'];?>"><?=$statusUser['label_status'];?></option>
                 <?php endif ;?>
             <?php endforeach; ?>
         </select>

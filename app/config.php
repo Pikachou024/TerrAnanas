@@ -3,8 +3,10 @@
 // Connexion à la base de donnée
 const DB_HOST='localhost';
 const DB_NAME='projetcommande';
-const DB_USER='admin';
-const DB_PASS='mdpadmin';
+//const DB_USER='admin';
+//const DB_PASS='mdpadmin';
+const DB_USER='root';
+const DB_PASS='';
 //
 
 // Chemin URL

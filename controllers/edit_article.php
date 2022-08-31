@@ -15,7 +15,7 @@ $errors=[];
 $articleModel = new ArticleModel();
 $article = $articleModel ->getOneArticle($idArticle);
 
-if($article == false){
+if(!$article){
     http_response_code(404);
     echo("Article introuvable");
     exit;

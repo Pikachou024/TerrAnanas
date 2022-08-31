@@ -6,7 +6,7 @@ class UserModel extends AbstractModel
     function getAllUsers(){
         $sql="SELECT *
               FROM      user usr
-              INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser
+              INNER JOIN status sta on sta.id_status = usr.id_status
               INNER JOIN role rol on rol.id_role = usr.id_role
               ORDER BY  society";
 
@@ -17,7 +17,7 @@ class UserModel extends AbstractModel
     function getOneUser($id){
         $sql = "SELECT * 
                 FROM    user usr
-                INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser
+                INNER JOIN status sta on sta.id_status = usr.id_status
                 INNER JOIN role rol on rol.id_role = usr.id_role
                 WHERE id_user = ?";
 
@@ -26,7 +26,7 @@ class UserModel extends AbstractModel
 
 //    Ajouter un client
     function addUser($society,$address,$city,$postal,$contact,$phone,$email,$hash,$status,$role){
-        $sql ="INSERT INTO user(society,address,city,postal,contact,phone,email,hash,id_statusUser,id_role)
+        $sql ="INSERT INTO user(society,address,city,postal,contact,phone,email,hash,id_status,id_role)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $this -> db ->executeQuerry($sql,[$society,$address,$city,$postal,$contact,$phone,$email,$hash,$status,$role]);
@@ -35,7 +35,7 @@ class UserModel extends AbstractModel
 
     function editUser($society,$address,$city,$postal,$contact,$phone,$email,$status,$id){
         $sql= " UPDATE      user
-                SET         society=? , address=? , city=? , postal=? , contact=? , phone=? , email=? , id_statusUser= ?
+                SET         society=? , address=? , city=? , postal=? , contact=? , phone=? , email=? , id_status= ?
                 WHERE       id_user=?";
 
         return $this -> db ->executeQuerry($sql,[$society,$address,$city,$postal,$contact,$phone,$email,$status,$id]);
@@ -51,7 +51,7 @@ class UserModel extends AbstractModel
     function getUserByEmail($email){
         $sql = "SELECT * 
                 FROM user usr
-                INNER JOIN statusUser susr on susr.id_statusUser = usr.id_statusUser
+                INNER JOIN status sta on sta.id_status = usr.id_status
                 INNER JOIN role rol on rol.id_role = usr.id_role
                 WHERE email=?";
 

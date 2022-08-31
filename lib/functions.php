@@ -139,6 +139,19 @@ function modifierQTeArticle($idArticle,$quantite){
         }
 }
 
+// GESTION PANIER
+
+function montantPanier(){
+    $totalPanier = 0;
+
+    for($i=0 ; $i < count($_SESSION['panier']) ; $i++){
+        $totalArticle = ($_SESSION['panier'][$i]["prix"] * $_SESSION['panier'][$i]["poids"])*$_SESSION['panier'][$i]["quantite"];
+        $totalPanier += $totalArticle;
+    }
+    return $totalPanier;
+}
+
+
 //Gestion connexion session
 
 /**
@@ -163,7 +176,6 @@ function registerUser(string $id,string $society, string $email, $role)
     $_SESSION['user'] = [
         'id' => $id,
         'society' => $society,
-//        'contact' => $contact,
         'email' => $email,
         'role' => $role
     ];
@@ -191,6 +203,36 @@ function getUserRole(){
 }
 
 /**
+ * Retourne l'id de l'utilisateur connecté
+ */
+function getUserId(){
+    if(!isConnected()){
+        return null;
+    }
+    return $_SESSION['user']['id'];
+}
+
+/**
+ * Retourne le nom de l'utilisateur connecté
+ */
+function getUserName(){
+    if(!isConnected()){
+        return null;
+    }
+    return $_SESSION['user']['society'];
+}
+
+/**
+ * Retourne l'email de l'utilisateur connecté
+ */
+function getUserEmail(){
+    if(!isConnected()){
+        return null;
+    }
+    return $_SESSION['user']['email'];
+}
+
+/**
  * Vérifie si l'utilisateur possède un rôle particulier
  */
 function hasRole(string $role):bool{
@@ -199,3 +241,5 @@ function hasRole(string $role):bool{
     }
     return getUserRole() == $role;
 }
+
+

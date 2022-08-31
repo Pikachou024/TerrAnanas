@@ -2,11 +2,11 @@
 
 $roleUser=getUserRole();
 
-if($roleUser != "admin") {
-    http_response_code(403);
-    echo("Désolé la page n'existe pas");
-    exit;
-}
+//if($roleUser != "admin") {
+//    http_response_code(403);
+//    echo("Désolé la page n'existe pas");
+//    exit;
+//}
 
 $idUser=$_GET['id'];
 $error=[];
@@ -14,8 +14,8 @@ $error=[];
 $userModel = new UserModel();
 $user = $userModel ->getOneUser($idUser);
 
-$statusUserModel = new StatusUserModel();
-$statusUsers = $statusUserModel->getAllStatusUser();
+$statusModel = new StatusModel();
+$status = $statusModel->getAllStatus();
 
 $society = $user['society'];
 $address = $user['address'];

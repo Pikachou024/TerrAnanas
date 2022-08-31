@@ -13,11 +13,11 @@ if(!empty($_POST)){
         registerUser($user['id_user'],$user['society'],$user['email'],$user['label_role']);
 
         if($user['label_role'] == 'client'){
-            if($user['label_statusUser']=="active"){
+            if($user['label_status']=="Validé"){
                 header('location:article_client');
                 exit;
             }
-            elseif($user['label_statusUser']=="attente"){
+            elseif($user['label_status']=="En attente"){
                 echo"Votre demande d'inscription est en cours de traitement";
             }
             else{

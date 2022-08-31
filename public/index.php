@@ -13,8 +13,9 @@ include "../src/Model/ArticleModel.php";
 include "../src/Model/UserModel.php";
 include "../src/Model/FamilleModel.php";
 include "../src/Model/UniteModel.php";
-include "../src/Model/StatusUserModel.php";
+include "../src/Model/StatusModel.php";
 include "../src/Model/FrancoModel.php";
+include "../src/Model/CommandeModel.php";
 
 
 include '../lib/functions.php';
