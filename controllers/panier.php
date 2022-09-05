@@ -18,4 +18,6 @@ if(!empty($_POST)) {
 }
 dump($_SESSION['panier']);
 
-include ('../templates/panier.phtml');
+$title = "Votre panier";
+$template = "panier";
+include '../templates/base.phtml';

@@ -26,5 +26,6 @@ if(isset($_SESSION['panier'])){
     dump($_SESSION['panier']);
 }
 
-
-include '../templates/article_client.phtml';
+$title = " Nos articles";
+$template = "article_client";
+include '../templates/base.phtml';

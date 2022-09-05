@@ -13,7 +13,9 @@ $routes=[
     "login" => "login.php",
     "commande"=> "commande.php",
     "panier" => "panier.php",
-    "article_client"=>"article_client.php"
+    "article_client"=>"article_client.php",
+    "commande_admin"=>"commande_admin.php",
+    "commande_details"=>"commande_details.php"
 
 ];
 return $routes ;

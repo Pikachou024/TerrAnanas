@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Détails commande</h2>
+
+            <p>Commande n°<?=$idCommande;?></p>
+            <p>Client : <?=$client['society'];?></p>
+            <p>Adresse de livraison : <?=$client['address'] .", ".$client['city'] ." ".$client['postal'];?>.</p>
+            <?php if( !$client['contact']): ?>
+            <p>Personne à contacter : <?=$client['contact'];?></p>
+            <?php endif; ?>
+            <?php if( !$client['phone']): ?>
+                <p>Téléphone : <?=$client['phone'];?></p>
+            <?php endif; ?>
+            <p>Email : <?=$client['email'] ;?></p>
+
+            <p>Date de commande : <?=$dateCommande ;?></p>
+            <p>Date de livraison : <?=$dateLivraison ;?></p>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-2"> <p>Article</p> </div>
+                    <div class="col-2"> <p>Origine</p> </div>
+                    <div class="col-2"> <p>Tarif</p> </div>
+                    <div class="col-2"> <p>Poids</p> </div>
+                </div>
+            </div>
+
+            <?php foreach ($articlesCommande as $articleCommande) : ?>
+
+                <div class="container">
+                <div class="row">
+                    <div class="col-2"> <?= $articleCommande["label_article"];?> </div>
+                    <div class="col-2"> <?= $articleCommande["origine"];?> </div>
+                    <div class="col-2"> <?= $articleCommande["prix"];?> € </div>
+                    <div class="col-2"> <?= $articleCommande["poids"] ." " .$articleCommande['label_unite'];?> </div>
+                </div>
+
+            </div>
+        <?php endforeach;?>
+
+        </div>
+    </div>
+</div>

@@ -15,10 +15,8 @@ $idStatus = 1;
 $commandeModel -> addCommande($idUser,$montant,$dateLivraison,$idStatus);
 $idCommande = $commandeModel->lastCommandeId($idUser);
 
-var_dump($idCommande["max(id_commande)"]);
-
 for($i=0 ; $i < count($_SESSION['panier'])  ; $i++ ){
-    $commandeModel->addDetailCommande($idCommande["max(id_commande)"],$_SESSION['panier'][$i]['id_article'],$_SESSION['panier'][$i]['quantite']);
+    $commandeModel->addDetailsCommande($idCommande["max(id_commande)"],$_SESSION['panier'][$i]['id_article'],$_SESSION['panier'][$i]['prix'],$_SESSION['panier'][$i]['quantite']);
 }
 
 //header('location: article_client');
