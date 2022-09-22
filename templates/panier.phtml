@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
-    <title>Paniers</title>
-</head>
-
-<body>
-
 
 <div class="container">
     <div class="row">
         <div class="col-12">
             <h2> Votre panier</h2>
+            <form method="POST" action="<?='commande';?>">
 
+                <label for="unite">Date de livraison</label>
+                <select class="form-control" name="dateLivraison" id="dateLivraison">
+                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')). ' + 1 days'))  ?>"><?= $dateLivraison1 ;?></option>
+                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')) . ' + 2 days')) ?>"><?= $dateLivraison2 ;?></option>
+                </select>
+
+                <button type="submit" class="btn btn-primary">Valider la commande</button>
+
+            </form>
 
             <?php if(isset($articles)): ?>
                 <div class="container">
@@ -61,19 +58,9 @@
                 </div>
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-10"> <a href="commande">Valider</a> </div>
-                </div>
-            </div>
+
 
         </div>
     </div>
 </div>
 
-
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" ></script>
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" ></script>
-</body>
-
-</html>

@@ -53,31 +53,32 @@ class CommandeModel extends AbstractModel
         return $this->db->getAllResults($sql,[$idCommande]);
     }
 
-    function getAllCommandeByDate(){
-//        TODO
-    }
+    function addDiscount($remise,$montantRemise,$idCommande){
+        $sql="UPDATE commande
+                SET remise = ? , montant_remise = ?
+                WHERE id_commande=?";
 
-    function getAllCommandeByClient(){
-//        TODO
-    }
-
-    function getOneCommandeByDate(){
-//        TODO
-    }
-
-    function getOneCommandeByClient(){
-        //TODO
+        return $this->db->executeQuerry($sql,[$remise,$montantRemise,$idCommande]);
     }
 
     function getClientByIdCommande($idCommande){
         $sql = "SELECT society,address,city,postal,contact,phone,email
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user
-                WHERE cmd.id_user = ?";
+                WHERE cmd.id_commande = ?";
 
         return $this->db->getOneResult($sql,[$idCommande]);
     }
 
+    function getCommandeByDate($date){
+    $sql="SELECT * 
+          FROM commande cmd
+          INNER JOIN user us ON us.id_user = cmd.id_user 
+          INNER JOIN status sta ON sta.id_status = cmd.id_status
+          WHERE date_commande = ?
+          ORDER BY date_livraison ASC";
 
+    return $this->db->getAllResults($sql,[$date]);
+    }
 
 }

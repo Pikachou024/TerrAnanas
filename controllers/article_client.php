@@ -1,11 +1,19 @@
 <?php
 
 
-$articleModel=new ArticleModel();
-$articles=$articleModel->getAllArticles();
+$articleModel = new ArticleModel();
+$articles = $articleModel->getAllArticles();
+
+if(!empty($_GET['articleSearch'])){
+    $articleSearch = $_GET['articleSearch'];
+    $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+}
+else {
+    unset($_SESSION['articleSearch']);
+}
 
 if(!empty($_POST)){
-//    $idArticle = $_GET['id'];
+
     $idArticle=intval($_POST['id_article']);
     $article=$articleModel->getOneArticle($idArticle);
     $famille =strip_tags(trim($_POST['label_famille']));
@@ -17,10 +25,9 @@ if(!empty($_POST)){
     $quantite = intval(strip_tags(trim($_POST['quantite'.$article['id_article']])));
 
     addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$unite);
-
-//    var_dump($_POST['idArticle']);
-//    unset($_SESSION['panier']);
 }
+
+
 //session_destroy();
 if(isset($_SESSION['panier'])){
     dump($_SESSION['panier']);

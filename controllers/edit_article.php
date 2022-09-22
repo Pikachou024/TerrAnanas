@@ -2,11 +2,11 @@
 
 $roleUser=getUserRole();
 
-if($roleUser != "admin") {
-    http_response_code(403);
-    echo("Désolé la page n'existe pas");
-    exit;
-}
+//if($roleUser != "admin") {
+//    http_response_code(403);
+//    echo("Désolé la page n'existe pas");
+//    exit;
+//}
 
 $idArticle = $_GET['id'];
 $errors=[];
@@ -27,6 +27,9 @@ $familles = $familleModel ->getAllFamille();
 $uniteModel = new UniteModel();
 $unites = $uniteModel ->getAllUnite();
 
+$statusModel = new StatusModel();
+$status = $statusModel ->getAllStatusArticle();
+
 $label = $article['label_article'];
 $origine = $article['origine'];
 $prix = $article['prix'];
@@ -41,10 +44,11 @@ if(!empty($_POST)){
     $poids = $_POST['poids'];
     $unite = $_POST['unite'];
     $famille = $_POST['famille'];
+    $status = $_POST['status'];
 
     if(empty($errors)){
 
-        $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$idArticle);
+        $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$status,$idArticle);
 
         header('location: articles');
         exit;

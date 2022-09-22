@@ -17,12 +17,16 @@
             <p>Date de commande : <?=$dateCommande ;?></p>
             <p>Date de livraison : <?=$dateLivraison ;?></p>
 
+
+
             <div class="container">
                 <div class="row">
                     <div class="col-2"> <p>Article</p> </div>
                     <div class="col-2"> <p>Origine</p> </div>
-                    <div class="col-2"> <p>Tarif</p> </div>
+                    <div class="col-2"> <p>Prix unitaire</p> </div>
+                    <div class="col-2"> <p>Quantité</p> </div>
                     <div class="col-2"> <p>Poids</p> </div>
+                    <div class="col-2"> <p>Montant</p> </div>
                 </div>
             </div>
 
@@ -33,11 +37,31 @@
                     <div class="col-2"> <?= $articleCommande["label_article"];?> </div>
                     <div class="col-2"> <?= $articleCommande["origine"];?> </div>
                     <div class="col-2"> <?= $articleCommande["prix"];?> € </div>
+                    <div class="col-2"><?= $articleCommande["quantite"];?></div>
                     <div class="col-2"> <?= $articleCommande["poids"] ." " .$articleCommande['label_unite'];?> </div>
+                    <div class="col-2"><?= floatval($articleCommande["prix"]*$articleCommande["quantite"])." €";?></div>
                 </div>
 
             </div>
         <?php endforeach;?>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form method="post" action="<?='commande_details?id='.$idCommande;?>">
+
+                            <label for="label">Appliquer une remise</label>  <input type="text" class="" id="remise" name="remise" placeholder="%"> <button type="submit" class="btn btn-primary"> Appliquer </button>
+                            <p>Montant de la commande : <?= $montantCommande;?> €</p>
+
+                            <?php if ($articlesCommande[0]['remise'] != null || $articlesCommande[0]['remise'] != 0): ?>
+                                <p>Remise de : <?= $articlesCommande[0]['remise'] ;?> %  <a href="<?='delete_discount?id='.$idCommande;?>"><i class="fa-solid fa-trash-can"></i></a> </p>
+                                <p>Montant après remise : <?= $articlesCommande[0]['montant_remise'];?> € </p>
+                            <?php endif;?>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

@@ -17,11 +17,12 @@ include "../src/Model/StatusModel.php";
 include "../src/Model/FrancoModel.php";
 include "../src/Model/CommandeModel.php";
 
-
 include '../lib/functions.php';
+
 
 //session_destroy();
 $routes = include '../app/routes.php';
+
 $page = getURL($_SERVER["REDIRECT_URL"]);
 if(!$page){
     $page='login';

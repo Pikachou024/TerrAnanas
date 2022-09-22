@@ -31,6 +31,29 @@ function checkUser(string $email, string $password)
     return false;
 }
 
+/**
+ * Recherche
+ *
+ * Article, client, commande
+ */
+
+function searchArticle(string $article, array $listeArticle): array
+{
+    $articles=[];
+    for($i=0 ; $i<count($listeArticle) ; $i++){
+        if(!substr_compare(strtolower($listeArticle[$i]['label_article']),strtolower($article),0,strlen($article))){
+            $articles[] = $listeArticle[$i];
+        }
+    }
+    return $articles;
+}
+
+/**
+ * Gestion panier
+ *
+ * Ajout, modification ou suppression d'article
+ */
+
 function creationPanier() : bool
 {
     if (!isset($_SESSION['panier'])){
@@ -85,7 +108,6 @@ function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$
     }
 }
 
-//TODO fonction suppression d'un article dans le panier
 function deleteArticle($idArticle){
     //Si le panier existe
     if (creationPanier())
@@ -139,8 +161,6 @@ function modifierQTeArticle($idArticle,$quantite){
         }
 }
 
-// GESTION PANIER
-
 function montantPanier(){
     $totalPanier = 0;
 
@@ -151,13 +171,71 @@ function montantPanier(){
     return $totalPanier;
 }
 
+function remiseCommande($montantCommande,$remise) : float{
+    return $montantCommande - $montantCommande*($remise/100);
 
-//Gestion connexion session
+}
 
 /**
+ * Gestion date
+ *
+ * Changement du format date en français
+ */
+function dateFr(string $date){
+
+    $days =["Sun"=>"dimanche",
+        "Mon"=>"lundi",
+        "Tue"=>"mardi",
+        "Wed"=>"mercredi",
+        "Thu"=>"jeudi",
+        "Fri"=>"vendredi",
+        "Sat"=>"samedi"];
+
+    $months = ["Jan"=>"janvier",
+        "Feb"=>"février",
+        "Mar"=>"mars",
+        "Apr"=>"avril",
+        "May"=>"mai",
+        "Jun"=>"juin",
+        "Jul"=>"juillet",
+        "Aug"=>"août",
+        "Sep"=>"septembre",
+        "Oct"=>"octobre",
+        "Nov"=>"novembre",
+        "Dec"=>"décembre"];
+
+    $date = replaceDate($days,$date);
+    return replaceDate($months,$date);
+}
+
+function replaceDate(Array $tableDates, string $date){
+    foreach($tableDates as $tableDate => $tableDateReplace){
+        if(strpos($date,$tableDate) !== false){
+            return str_replace($tableDate,$tableDateReplace,$date);
+        }
+    }
+}
+
+function addDayDate(int $addDay){
+    $date = date('D d M Y', strtotime('+'.$addDay.'days'));
+    return dateFr($date);
+}
+
+function changeFormatDate(string $date){
+    if(strpos($date,'/')){
+       return str_replace('/','-',$date);
+    }
+    elseif (strpos($date,'-')){
+        return str_replace('-','/',$date);
+    }
+}
+/**
+ * Gestion connexion session
+ *
  * Détermine si l'utilisateur est connecté ou non
  * @return bool - true si l'utilisateur est connecté, false sinon
  */
+
 function isConnected(): bool {
     // On commence par vérifier qu'une session est bien démarrée
     if (session_status() == PHP_SESSION_NONE) {

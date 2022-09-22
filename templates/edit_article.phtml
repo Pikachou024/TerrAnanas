@@ -1,14 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="fr">-->
-<!---->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">-->
-<!--    <title>Articles</title>-->
-<!--</head>-->
-<body>
+
 <form method="POST" action="<?='edit_article?id='.$article['id_article'];?>">
     <div class="form-group">
         <label for="label">Article</label>
@@ -42,7 +32,7 @@
     </div>
     <div class="form-group">
         <label for="famille">Famille</label>
-        <select class="form-control" name="famille" id="unite">
+        <select class="form-control" name="famille" id="famille">
             <option value="<?=$article['id_famille'];?>"><?=$article['label_famille'];?></option>
             <?php foreach ($familles as $famille): ?>
                 <?php if($famille['id_famille']!=$article['id_famille']): ?>
@@ -51,13 +41,16 @@
             <?php endforeach; ?>
         </select>
     </div>
+    <div class="form-group">
+        <label for="famille">Disponibilité</label>
+        <select class="form-control" name="status" id="status">
+            <option value="<?=$article['id_statusArticle'];?>"><?=$article['label_statusArticle'];?></option>
+            <?php foreach ($status as $oneStatus): ?>
+                <?php if($oneStatus['id_statusArticle']!=$article['id_statusArticle']): ?>
+                    <option value="<?=$oneStatus['id_statusArticle'];?>"><?=$oneStatus['label_statusArticle'];?></option>
+                <?php endif ;?>
+            <?php endforeach; ?>
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-
-
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" ></script>
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" ></script>
-</body>
-
-<!--</html>-->

@@ -7,8 +7,8 @@ class ArticleModel extends AbstractModel
                 FROM        article art
                 INNER JOIN  famille fam ON fam.id_famille = art.id_famille
                 INNER JOIN  unite uni ON uni.id_unite = art.id_unite
-                INNER JOIN  statusArticle sart ON sart.id_statusArticle = art.id_statusArticle; 
-                ORDER BY    label";
+                INNER JOIN  statusArticle sart ON sart.id_statusArticle = art.id_statusArticle 
+                ORDER BY    label_article";
 
         return $this-> db -> getAllResults($sql);
     }
@@ -31,12 +31,12 @@ class ArticleModel extends AbstractModel
         return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$status]);
     }
 
-    function editArticle($label,$poids,$unite,$prix,$origine,$famille,$id){
+    function editArticle($label,$poids,$unite,$prix,$origine,$famille,$status,$id){
         $sql = "UPDATE      article
-                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? 
-                where       id_article = ?;";
+                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , id_statusArticle = ?
+                where       id_article = ?";
 
-        return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$id]);
+        return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$status,$id]);
     }
 
     function deleteArticle($id){

@@ -2,11 +2,11 @@
 
 $roleUser=getUserRole();
 
-if($roleUser != "admin") {
-    http_response_code(403);
-    echo("Désolé la page n'existe pas");
-    exit;
-}
+//if($roleUser != "admin") {
+//    http_response_code(403);
+//    echo("Désolé la page n'existe pas");
+//    exit;
+//}
 
 $idArticle = $_GET['id'];
 
