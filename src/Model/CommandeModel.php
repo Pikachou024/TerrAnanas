@@ -48,13 +48,14 @@ class CommandeModel extends AbstractModel
               INNER JOIN commande cmd ON cmd.id_commande = dcmd.id_commande
               INNER JOIN article art ON art.id_article = dcmd.id_article
               INNER JOIN unite unt ON unt.id_unite = art.id_unite
-              WHERE dcmd.id_commande = ?";
+              WHERE dcmd.id_commande = ?
+              ORDER BY  label_article";
 
         return $this->db->getAllResults($sql,[$idCommande]);
     }
 
     function addDiscount($remise,$montantRemise,$idCommande){
-        $sql="UPDATE commande
+        $sql="  UPDATE commande
                 SET remise = ? , montant_remise = ?
                 WHERE id_commande=?";
 
@@ -65,20 +66,29 @@ class CommandeModel extends AbstractModel
         $sql = "SELECT society,address,city,postal,contact,phone,email
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user
-                WHERE cmd.id_commande = ?";
+                WHERE cmd.id_commande = ?
+                ORDER BY society ASC";
 
         return $this->db->getOneResult($sql,[$idCommande]);
     }
 
     function getCommandeByDate($date){
-    $sql="SELECT * 
-          FROM commande cmd
-          INNER JOIN user us ON us.id_user = cmd.id_user 
-          INNER JOIN status sta ON sta.id_status = cmd.id_status
-          WHERE date_commande = ?
-          ORDER BY date_livraison ASC";
+        $sql="SELECT * 
+              FROM commande cmd
+              INNER JOIN user us ON us.id_user = cmd.id_user 
+              INNER JOIN status sta ON sta.id_status = cmd.id_status
+              WHERE date_commande = ?
+              ORDER BY date_livraison ASC";
 
-    return $this->db->getAllResults($sql,[$date]);
+        return $this->db->getAllResults($sql,[$date]);
+    }
+
+    function editCommandeDetail($idArticle,$prix,$quantite){
+        $sql = "UPDATE detailscommande 
+                SET prix = ? , quantite = ?
+                WHERE id_article = ?";
+
+        return $this->db->executeQuerry($sql,[$prix,$quantite,$idArticle]);
     }
 
 }

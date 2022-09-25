@@ -1,5 +1,8 @@
 <?php
 
+$title = "Connexion";
+$template = 'login';
+
 $email = '';
 
 if(!empty($_POST)){
@@ -34,4 +37,4 @@ if(!empty($_POST)){
 
 }
 
-include "../templates/login.phtml";
+include "../templates/base.phtml";

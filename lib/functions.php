@@ -48,6 +48,17 @@ function searchArticle(string $article, array $listeArticle): array
     return $articles;
 }
 
+function searchUser(string $user, array $listeUser): array
+{
+    $users = [];
+    for($i=0 ; $i<count($listeUser) ; $i++){
+        if(!substr_compare(strtolower($listeUser[$i]['society']),strtolower($user),0,strlen($user))){
+            $users[] = $listeUser[$i];
+        }
+    }
+    return $users;
+}
+
 /**
  * Gestion panier
  *
@@ -74,7 +85,7 @@ function checkArticle($idArticle,$quantite) :bool {
     }
     else{
         for ($i = 0; $i < count($_SESSION['panier']); $i++) {
-            if ($idArticle==$_SESSION['panier'][$i]){
+            if ($idArticle==$_SESSION['panier'][$i]['id_article']){
                 $_SESSION['panier'][$i]['quantite'] += $quantite;
                 return true;
             }

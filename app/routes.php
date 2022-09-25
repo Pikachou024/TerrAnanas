@@ -16,7 +16,8 @@ $routes=[
     "article_client"=>"article_client.php",
     "commande_admin"=>"commande_admin.php",
     "commande_details"=>"commande_details.php",
-    "delete_discount"=>"delete_discount.php"
-
+    "delete_discount"=>"delete_discount.php",
+    "edit_commande"=>"edit_commande.php",
+    "add_remise"=>"add_remise.php"
 ];
 return $routes ;

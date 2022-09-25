@@ -58,4 +58,14 @@ class UserModel extends AbstractModel
         return $this-> db -> getOneResult($sql,[$email]);
     }
 
+    function searchUser($user){
+        $sql = "SELECT * 
+                FROM    user usr
+                INNER JOIN status sta on sta.id_status = usr.id_status
+                INNER JOIN role rol on rol.id_role = usr.id_role
+                WHERE society = ?";
+
+        return $this->db-> getAllResults($sql,[$user]);
+    }
+
 }

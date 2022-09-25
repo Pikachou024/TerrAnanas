@@ -25,30 +25,32 @@
                     <div class="col-2"> <p>Origine</p> </div>
                     <div class="col-2"> <p>Prix unitaire</p> </div>
                     <div class="col-2"> <p>Quantité</p> </div>
-                    <div class="col-2"> <p>Poids</p> </div>
-                    <div class="col-2"> <p>Montant</p> </div>
+                    <div class="col-1"> <p>Poids</p> </div>
+                    <div class="col-1"> <p>Montant</p> </div>
                 </div>
             </div>
+                <?php foreach ($articlesCommande as $articleCommande) : ?>
+                    <form method="POST" action="<?='edit_commande?id='.$idCommande;?>"
+                        <div class="container">
+                            <div class="row">
+                                <input type="hidden" name="id_article" value="<?=$articleCommande['id_article'];?>">
+                                <div class="col-2"> <?= $articleCommande["label_article"];?> </div>
+                                <div class="col-2"> <?= $articleCommande["origine"];?> </div>
+                                <div class="col-2"> <input type="text" class="form-control" name="prix" value="<?= $articleCommande["prix"];?>" >€ </div>
+                                <div class="col-2"> <input type="text" class="form-control" name="quantite" value="<?= $articleCommande["quantite"];?>"></div>
+                                <div class="col-1"> <?= $articleCommande["poids"] ." " .$articleCommande['label_unite'];?> </div>
+                                <div class="col-1"><?= floatval($articleCommande["prix"]*$articleCommande["quantite"])." €";?></div>
+                                <div class="col-2"> <button type="submit" class="btn btn-primary"> Modifier </button></div>
+                            </div>
+                        </div>
+                    </form>
+                <?php endforeach;?>
 
-            <?php foreach ($articlesCommande as $articleCommande) : ?>
-
-                <div class="container">
-                <div class="row">
-                    <div class="col-2"> <?= $articleCommande["label_article"];?> </div>
-                    <div class="col-2"> <?= $articleCommande["origine"];?> </div>
-                    <div class="col-2"> <?= $articleCommande["prix"];?> € </div>
-                    <div class="col-2"><?= $articleCommande["quantite"];?></div>
-                    <div class="col-2"> <?= $articleCommande["poids"] ." " .$articleCommande['label_unite'];?> </div>
-                    <div class="col-2"><?= floatval($articleCommande["prix"]*$articleCommande["quantite"])." €";?></div>
-                </div>
-
-            </div>
-        <?php endforeach;?>
 
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <form method="post" action="<?='commande_details?id='.$idCommande;?>">
+                        <form method="post" action="<?='add_remise?id='.$idCommande;?>">
 
                             <label for="label">Appliquer une remise</label>  <input type="text" class="" id="remise" name="remise" placeholder="%"> <button type="submit" class="btn btn-primary"> Appliquer </button>
                             <p>Montant de la commande : <?= $montantCommande;?> €</p>
