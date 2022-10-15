@@ -65,5 +65,5 @@ if(!empty($_POST)){
     }
 
 }
-
-include "../templates/inscription.phtml";
+$template="inscription";
+include "../templates/base.phtml";

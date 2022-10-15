@@ -35,4 +35,4 @@ if(isset($_SESSION['panier'])){
 
 $title = " Nos articles";
 $template = "article_client";
-include '../templates/base.phtml';
+include '../templates/base_user.phtml';

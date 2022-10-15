@@ -1,6 +1,7 @@
 <?php
 
 $routes=[
+    "home"=>"home.php",
     "articles" => "articles.php",
     "admin"=>"admin.php",
     "add_article" => "add_article.php",

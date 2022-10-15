@@ -24,4 +24,4 @@ dump($_SESSION['panier']);
 
 $title = "Votre panier";
 $template = "panier";
-include '../templates/base.phtml';
+include '../templates/base_user.phtml';

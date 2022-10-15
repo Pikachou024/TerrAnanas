@@ -25,7 +25,7 @@ $routes = include '../app/routes.php';
 
 $page = getURL($_SERVER["REDIRECT_URL"]);
 if(!$page){
-    $page='login';
+    $page='home';
 }
 if(!array_key_exists($page,$routes)){
     http_response_code(404);

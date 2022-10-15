@@ -7,7 +7,7 @@ $articlesCommande = $commandeModel -> getOneCommandeDetails($idCommande);
 
 $dateCommande = dateFr(date('D d M Y', strtotime($articlesCommande[0]['date_commande'])));
 $dateLivraison = dateFr(date('D d M Y', strtotime($articlesCommande[0]['date_livraison'])));
-
+//dump($articlesCommande[0]['date_commande']);
 $montantCommande = $articlesCommande[0]['montant'];
 $client = $commandeModel->getClientByIdCommande($idCommande);
 
