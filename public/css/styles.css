@@ -1,3 +1,41 @@
-.toast{
-    background: green;
+body{
+ background-color: #5a6268;
+}
+header{
+    background-color: #f8f9fa ;
+}
+.template{
+    font-family: 'Vollkorn', serif;
+}
+/*.container{*/
+/*    padding: 0;*/
+/*    !*box-sizing: content-box;*!*/
+/*}*/
+/*.article{*/
+/*    margin-top: 50px;*/
+/*}*/
+/*.article img{*/
+/*    margin-bottom: 50px;*/
+/*}*/
+/*.article-head{*/
+/*    margin-top: 50px;*/
+/*    position: relative;*/
+/*    box-sizing: border-box;*/
+
+/*}*/
+/*.text-contenant{*/
+/*    color: whitesmoke;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 40%;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+
+.commande:nth-child(even){
+    background-color: #ffd78b;
+}
+div.col{
+    margin-right: auto;
+    padding-right: 0;
+    padding-left: 0;
 }

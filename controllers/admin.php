@@ -1,4 +1,6 @@
 <?php
+$dateDuJour = dateFr(date('D d M Y'));
 
-
-include'../templates/admin.phtml';
+$title = "Admin - TerrAnanas";
+$template='admin';
+include'../templates/base_admin.phtml';
