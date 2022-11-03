@@ -6275,6 +6275,15 @@ button.bg-dark:focus {
 .rounded-0 {
   border-radius: 0 !important;
 }
+.rounded-1 {
+  border-radius: 10px !important;
+}
+.rounded-2 {
+  border-radius: 20px !important;
+}
+.rounded-3 {
+  border-radius: 30px !important;
+}
 
 .clearfix::after {
   display: block;
@@ -8892,6 +8901,7 @@ a.text-light:hover, a.text-light:focus {
 a.text-dark:hover, a.text-dark:focus {
   color: #1d2124 !important;
 }
+
 
 .text-muted {
   color: #6c757d !important;

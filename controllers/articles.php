@@ -23,12 +23,11 @@ if(!empty($_POST['articleSearch'])){
 }
 
 if(!empty($_POST['franco'])){
-
     $francoModel->editFranco($_POST['franco'],1);
-
     header('location: articles');
     exit;
 }
+
 $title = "Liste articles";
 $template='articles';
 include'../templates/base_admin.phtml';

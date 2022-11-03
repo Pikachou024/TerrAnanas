@@ -194,13 +194,13 @@ function remiseCommande($montantCommande,$remise) : float{
  */
 function dateFr(string $date){
 
-    $days =["Sun"=>"dimanche",
-        "Mon"=>"lundi",
-        "Tue"=>"mardi",
-        "Wed"=>"mercredi",
-        "Thu"=>"jeudi",
-        "Fri"=>"vendredi",
-        "Sat"=>"samedi"];
+    $days =["Sun"=>"Dimanche",
+        "Mon"=>"Lundi",
+        "Tue"=>"Mardi",
+        "Wed"=>"Mercredi",
+        "Thu"=>"Jeudi",
+        "Fri"=>"Vendredi",
+        "Sat"=>"Samedi"];
 
     $months = ["Jan"=>"janvier",
         "Feb"=>"février",

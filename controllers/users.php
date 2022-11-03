@@ -2,6 +2,7 @@
 
 $userModel = new userModel();
 $users = $userModel ->getAllUsers();
+dump($users);
 
 if(!empty($_POST['userSearch'])){
     $userSearch = $_POST['userSearch'];

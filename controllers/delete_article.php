@@ -1,6 +1,6 @@
 <?php
 
-$roleUser=getUserRole();
+$roleUser = getUserRole();
 
 //if($roleUser != "admin") {
 //    http_response_code(403);
