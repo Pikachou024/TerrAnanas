@@ -1,9 +1,11 @@
-<head>
-    <div class="container">
+<main>
+
+
+    <div class="container mt-3 mb-3">
         <div class="row">
-            <div class="col-4">
+            <div class="col-10 col-md-8">
                 <form method="POST" action ="users" class="navbar-form navbar-right" role="search">
-                    <div class="input-group">
+                    <div class="input-group w-75">
                         <?php if(empty($_SESSION['userSearch'])) :?>
                             <input type="search" class="form-control" name="userSearch" placeholder="Rechercher un client">
 
@@ -12,74 +14,89 @@
                         <?php endif;?>
 
                         <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default" >
-                            Ok
+                        <button type="submit" class="btn btn-default bg-customred" >
+                            Valider
                         <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
                     </div>
                 </form>
             </div>
+            <div class="col-2 col-md-4 text-center">
+                <a href="inscription" > <img src="http://localhost/ProjetCommande/public/images/add_icon.png" class="img-responsive mw-100" > <span class="d-none d-md-block">Ajouter un client</span></a>
+            </div>
 
         </div>
     </div>
-</head>
 
-<div class="container">
+
+<div class="container p-0">
     <div class="row">
-        <div class="col-12">
-            <h2> Listes clients</h2>
-            <div class="container">
-                <div class="row">
-                    <div class="col-1"> <p>Statut</p> </div>
-                    <div class="col-2"> <p>Société</p> </div>
-                    <div class="col-2"> <p>Adresse</p> </div>
-                    <div class="col-1"> <p>Ville</p> </div>
-                    <div class="col-1"> <p>Code postal</p> </div>
-                    <div class="col-1"> <p>Personne à contacter</p> </div>
-                    <div class="col-1"> <p>Téléphone</p> </div>
-                    <div class="col-1"> <p>Email</p> </div>
+        <div class="col-12 border rounded-2 tableColor-green pt-2 pb-3 pl-0 pr-0">
+            <h2 class="text-center "> Listes clients</h2>
+            <div class="container-fluid bg-light">
+                <div class="row pt-2 pb-2 m-0">
+                    <div class="col-1 text-center"> <p>Statut</p> </div>
+                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"> <p>Société</p> </div>
+                    <div class="col-2 d-none d-lg-block text-center"> <p>Adresse</p> </div>
+                    <div class="col-2 d-none d-md-block col-lg-2 text-center"> <p>Contact</p> </div>
+                    <div class="col-2 d-none d-sm-block col-md-2 col-lg-2 text-center"> <p>Téléphone</p> </div>
+                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"> <p>Email</p> </div>
                     <div class="col-1"> <p> </p> </div>
-                    <div class="col-1"> <p> </p> </div>
+<!--                    <div class="col-1"> <p> </p> </div>-->
                 </div>
             </div>
 
             <?php if(empty($_SESSION['userSearch'])) :?>
-            <div class="container">
-                <div class="row">
-                    <?php foreach ($users as $user): ?>
-                        <div class="col-1"><?= $user['label_status'] ;?></div>
-                        <div class="col-2"> <?= $user["society"];?> </div>
-                        <div class="col-2"> <?= $user["address"];?> </div>
-                        <div class="col-1"> <?= $user["city"];?> </div>
-                        <div class="col-1"> <?= $user["postal"];?> </div>
-                        <div class="col-1"> <?= $user["contact"];?> </div>
-                        <div class="col-1"> <?= $user["phone"];?> </div>
-                        <div class="col-1"> <?= $user["email"];?> </div>
-                        <div class="col-1"> <a href="<?='edit_user?id='.$user["id_user"];?>">Modifier</a> </div>
-                        <div class="col-1"> <a href="<?='delete_user?id='.$user["id_user"];?>">Supprimer</a> </div>
-                    <?php endforeach; ?>
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    --><?php //foreach ($users as $user): ?>
+<!--                        <div class="col-1">--><?//= $user['label_status'] ;?><!--</div>-->
+<!--                        <div class="col-2"> --><?//= $user["society"];?><!-- </div>-->
+<!--                        <div class="col-2"> --><?//= $user["address"];?><!-- </div>-->
+<!--                        <div class="col-1"> --><?//= $user["city"];?><!-- </div>-->
+<!--                        <div class="col-1"> --><?//= $user["postal"];?><!-- </div>-->
+<!--                        <div class="col-1"> --><?//= $user["contact"];?><!-- </div>-->
+<!--                        <div class="col-1"> --><?//= $user["phone"];?><!-- </div>-->
+<!--                        <div class="col-1"> --><?//= $user["email"];?><!-- </div>-->
+<!--                        <div class="col-1"> <a href="--><?//='edit_user?id='.$user["id_user"];?><!--">Modifier</a> </div>-->
+<!--                        <div class="col-1"> <a href="--><?//='delete_user?id='.$user["id_user"];?><!--">Supprimer</a> </div>-->
+<!--                    --><?php //endforeach; ?>
 
-                </div>
-            </div>
+                    <div class="container-fluide bg-light ">
+                        <?php foreach ($users as $user): ?>
+                                <div class="row pt-2 pb-2 commande m-0">
+                                    <div class="col-1 text-center"><?= $user['label_status'];?> </div>
+                                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["society"];?>  </div>
+                                    <div class="col-2 d-none d-lg-block text-center"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
+                                    <div class="col-2 d-none d-md-block col-lg-2 text-center"><?= $user["contact"];?> </div>
+                                    <div class="col-2 d-none d-sm-block col-md-2 col-lg-2 text-center"><?= $user["phone"];?> </div>
+                                    <div class="col-4 col-md-3 col-lg-2 text-center"><?= $user["email"];?> </div>
+                                    <div class="col-1 d-none d-lg-block text-center"> <a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-pen-to-square"></i></a> <a href="<?='delete_user?id='.$user["id_user"];?>"><i class="fa-solid fa-trash-can"></i></a></div>
+<!--                                    <div class="col-1 d-none d-md-block text-center"> <a href="--><?//='delete_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-trash-can"></i></a> </div>-->
+                                    <div class="col-2 col-sm-1 d-lg-none text-center pl-1 pr-1"> <i class="fa-solid fa-eye"></i> </div>
+                                </div>
+                        <?php endforeach; ?>
+                    </div>
+
+<!--                </div>-->
+<!--            </div>-->
 
             <?php else : ?>
-            <div class="container">
-                <div class="row">
-
-                    <?php foreach ($_SESSION['userSearch'] as $user): ?>
-                        <div class="col-1"><?= $user['label_status'] ;?></div>
-                        <div class="col-2"> <?= $user["society"];?> </div>
-                        <div class="col-2"> <?= $user["address"];?> </div>
-                        <div class="col-1"> <?= $user["city"];?> </div>
-                        <div class="col-1"> <?= $user["postal"];?> </div>
-                        <div class="col-1"> <?= $user["contact"];?> </div>
-                        <div class="col-1"> <?= $user["phone"];?> </div>
-                        <div class="col-1"> <?= $user["email"];?> </div>
-                        <div class="col-1"> <a href="<?='edit_user?id='.$user["id_user"];?>">Modifier</a> </div>
-                        <div class="col-1"> <a href="<?='delete_user?id='.$user["id_user"];?>">Supprimer</a> </div>
+            <div class="container-fluide bg-light ">
+                <?php foreach ($_SESSION['userSearch'] as $user): ?>
+                    <div class="row pt-2 pb-2 commande m-0">
+                        <div class="col-1 text-center"><?= $user['label_status'];?> </div>
+                        <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["society"];?>  </div>
+                        <div class="col-2 d-none d-lg-block text-center"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
+                        <div class="col-2 d-none d-md-block col-lg-2 text-center"><?= $user["contact"];?> </div>
+                        <div class="col-2 d-none d-sm-block col-md-2 col-lg-2 text-center"><?= $user["phone"];?> </div>
+                        <div class="col-4 col-md-3 col-lg-2 text-center"><?= $user["email"];?> </div>
+                        <div class="col-1 d-none d-lg-block text-center"> <a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-pen-to-square"></i></a> <a href="<?='delete_user?id='.$user["id_user"];?>"><i class="fa-solid fa-trash-can"></i></a></div>
+                        <!--                                    <div class="col-1 d-none d-md-block text-center"> <a href="--><?//='delete_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-trash-can"></i></a> </div>-->
+                        <div class="col-2 col-sm-1 d-lg-none text-center pl-1 pr-1"> <i class="fa-solid fa-eye"></i> </div>
+                    </div>
                     <?php endforeach; ?>
-                </div>
             </div>
             <?php endif;?>
             
@@ -87,3 +104,4 @@
     </div>
 </div>
 
+</main>

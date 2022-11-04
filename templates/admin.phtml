@@ -1,7 +1,7 @@
 <main>
 
 
-<h3 class="text-center p-0 m-0 date-color"><?=$dateDuJour?></h3>
+<h3 class="text-center p-0 m-0 "><?=$dateDuJour?></h3>
 
 
 <div class="container-fluid">
@@ -10,7 +10,7 @@
 <div class="col-12 col-lg-8 ml-lg-auto mr-lg-3 p-0 mt-5">
 
     <div class="col-12 pb-3 pt-2 mb-3 border rounded-2 bg-white">
-    <h4 class="text-center text-primary ">Infos</h4>
+    <h4 class="text-center  ">Infos</h4>
     <span class="">Info à communiquer : Sit enim idem caecus, debilis. Sint ista Graecorum; Quae cum dixisset, finem ille. Cave putes quicquam esse verius. Nam Pyrrho, Aristo, Erillus iam diu abiecti. </span>
     </div>
 
@@ -25,7 +25,7 @@
             </div>
         <?php endforeach; ?>
         <div class="text-center pt-2 pb-2 ">
-            <a class="w-100  badge badge-success d-inline" href="commande_admin">Voir toutes les commandes</a>
+            <a class="w-100  badge badge-success d-inline" href="commande_admin">Liste des commandes</a>
         </div>
     </div>
 
@@ -39,13 +39,13 @@
                 <div class="col-4"><p><?= $user["society"];?></p> </div>
                 <div class="col-4"><p><?= $user["email"];?></p> </div>
                 <div class="col-3"><p><?= $user["postal"];?></p> </div>
-                <div class="col-1 p-1"><a href="<?='edit_user?id='.$user["id_user"];?>">Voir</a> </div>
+                <div class="col-1 p-1"><a href="<?='edit_user?id='.$user["id_user"];?>">Liste des clients </a> </div>
             </div>
             <?php endif; ?>
         <?php endforeach; ?>
 
         <div class="text-center justify-content-end pt-2 pb-2">
-            <a class="w-25  badge badge-success d-inline" href="users">Voir tous les clients</a>
+            <a class="w-25  badge badge-success d-inline" href="users">Clients</a>
         </div>
     </div>
 
