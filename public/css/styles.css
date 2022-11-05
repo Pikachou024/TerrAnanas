@@ -45,13 +45,7 @@ nav.navbar{
     box-sizing: border-box;
 }
 
-form.form-franco{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.fa-circle-plus{
-    width: 30px;
-    height: 30px;
+sizing-page-height{
+    height: 1000px;
 
 }
