@@ -9,12 +9,12 @@
 
 <div class="col-12 col-lg-8 ml-lg-auto mr-lg-3 p-0 mt-5">
 
-    <div class="col-12 pb-3 pt-2 mb-3 border rounded-2 bg-white">
+    <div class="col-12 pb-3 pt-2 mb-3 bg-light">
     <h4 class="text-center  ">Infos</h4>
     <span class="">Info à communiquer : Sit enim idem caecus, debilis. Sint ista Graecorum; Quae cum dixisset, finem ille. Cave putes quicquam esse verius. Nam Pyrrho, Aristo, Erillus iam diu abiecti. </span>
     </div>
 
-    <div class="col-12 mb-3 pb-3 pt-2 border rounded-2 bg-light ">
+    <div class="col-12 mb-3 pb-3 pt-2  bg-light ">
         <h4 class=" text-center p-2 mb-4 ">Commande du jour</h4>
         <?php foreach ($commandeDuJour as $commande): ?>
             <div class="row commande">
@@ -29,23 +29,23 @@
         </div>
     </div>
 
-    <div class="col-12 mb-3 pb-3 pt-2 border rounded-2 bg-light">
+    <div class="col-12 mb-3 pb-3 pt-2  bg-light">
         <h4 class="text-center mb-4 ">Inscription en attente</h4>
 
         <?php foreach ($users as $user): ?>
             <?php if($user['label_status']=='En attente') : ?>
 
-            <div class="row commande">
-                <div class="col-4"><p><?= $user["society"];?></p> </div>
-                <div class="col-4"><p><?= $user["email"];?></p> </div>
+            <div class="row ">
+                <div class="col-3"><p><?= $user["society"];?></p> </div>
+                <div class="col-5"><p><?= $user["email"];?></p> </div>
                 <div class="col-3"><p><?= $user["postal"];?></p> </div>
-                <div class="col-1 p-1"><a href="<?='edit_user?id='.$user["id_user"];?>">Liste des clients </a> </div>
+                <div class="col-1 p-1"><a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-eye"></i> </a> </div>
             </div>
             <?php endif; ?>
         <?php endforeach; ?>
 
         <div class="text-center justify-content-end pt-2 pb-2">
-            <a class="w-25  badge badge-success d-inline" href="users">Clients</a>
+            <a class="w-25  badge badge-success d-inline" href="users">Liste des clients</a>
         </div>
     </div>
 
@@ -53,18 +53,18 @@
 
 <div class="col-12 col-lg-3  mt-lg-5 ml-lg-2 mr-lg-3 p-0">
     <div class="row d-flex justify-content-around mr-0 ml-0">
-        <div class="col-5 col-lg-10  mb-3 bg-success border rounded-2">
+        <div class="col-5 col-lg-10  mb-3 bg-success ">
             <h4 class="text-center">Franco</h4>
             <form method="post" action="admin" id="submit-franco" class="d-flex flex-column align-items-center">
                 <input class="w-75 m-1" type="text" name="franco" placeholder="<?=$franco['franco'];?>">
                 <button class="w-50 m-1" type="submit" class="button-franco">Modifier</button>
             </form>
         </div>
-        <div class="col-5 col-lg-10  mb-3 bg-danger border rounded-2">
+        <div class="col-5 col-lg-10  mb-3 bg-danger ">
             <h4 class="text-center">Messagerie</h4>
             <p class="text-center">(3) Message(s) en attente <a class="text-dark" href="#">Voir</a></p>
         </div>
-        <div class="col-5 col-lg-10  mb-3 bg-primary border rounded-2">
+        <div class="col-5 col-lg-10  mb-3 bg-primary ">
             <h4 class="text-center">CA du jour</h4>
             <p class="text-center mt-2 mb-2">250,67 €</p>
         </div>

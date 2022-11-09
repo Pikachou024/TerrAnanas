@@ -22,7 +22,7 @@ if(empty($_SESSION['panier'])){
 
 if(!empty($_POST)){
     $dateLivraison = strip_tags(trim($_POST['dateLivraison']));
-    $idStatus = 1;
+    $idStatus = 3;
     $commandeModel -> addCommande($idUser,$montant,$dateLivraison,$idStatus);
     $idCommande = $commandeModel->lastCommandeId($idUser);
 

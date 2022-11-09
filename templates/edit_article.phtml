@@ -1,7 +1,9 @@
 <main class="p-0 pt-md-4 pb-md-4">
+
     <div class="container border rounded-2 tableColor-green ">
         <div class="row">
             <div class="col-12 p-0">
+                <h3 class="text-center text-custom-color-red mt-2 mb-3"> Modification : <?=$label;?> </h3>
                 <form method="POST" action="<?='edit_article?id='.$article['id_article'];?>">
                     <div class="container">
                         <div class="row mt-2">
@@ -50,17 +52,17 @@
                                 <label class="mb-1" for="famille">Disponibilité</label>
                                 <select class="form-control" name="status" id="status">
                                     <option value="<?=$article['id_statusArticle'];?>"><?=$article['label_statusArticle'];?></option>
-                                    <?php foreach ($status as $oneStatus): ?>
-                                        <?php if($oneStatus['id_statusArticle']!=$article['id_statusArticle']): ?>
-                                            <option value="<?=$oneStatus['id_statusArticle'];?>"><?=$oneStatus['label_statusArticle'];?></option>
+                                    <?php foreach ($status as $statu): ?>
+                                        <?php if($statu['id_statusArticle']!=$article['id_statusArticle']): ?>
+                                            <option value="<?=$statu['id_statusArticle'];?>"><?=$statu['label_statusArticle'];?></option>
                                         <?php endif ;?>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="text-center justify-content-end">
-                        <button type="submit" class="btn btn-primary mb-2  ">Valider</button>
+                    <div class="text-center justify-content-end ">
+                        <button type="submit" class="btn mb-2 bg-custom-red ">Valider</button>
                     </div>
                 </form>
             </div>

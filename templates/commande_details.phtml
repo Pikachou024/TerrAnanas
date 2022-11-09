@@ -1,3 +1,5 @@
+<main>
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -50,7 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <form method="post" action="<?='add_remise?id='.$idCommande;?>">
+                        <form method="post" action="">
 
                             <label for="label">Appliquer une remise</label>  <input type="text" class="" id="remise" name="remise" placeholder="%"> <button type="submit" class="btn btn-primary"> Appliquer </button>
                             <p>Montant de la commande : <?= $montantCommande;?> €</p>
@@ -65,6 +67,19 @@
                 </div>
             </div>
 
+            <form method="post" action="<?='validation_commande?id='.$idCommande;?>" id="form-commande" class="d-flex flex-row">
+                <select class="form-control " name="status" id="status">
+                    <?php foreach ($status as $statu): ?>
+                        <option value="<?=$statu['id_status'];?>"><?=$statu['label_status'];?></option>
+                    <?php endforeach; ?>
+                </select>
+                <div class="text-center justify-content-end">
+                    <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
+
+</main>

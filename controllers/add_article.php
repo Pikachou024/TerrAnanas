@@ -11,6 +11,9 @@ $familles = $familleModel ->getAllFamille();
 $uniteModel = new UniteModel();
 $unites = $uniteModel ->getAllUnite();
 
+$statusModel = new StatusModel();
+$status = $statusModel ->getAllStatusArticle();
+
 $error=[];
 
 if(!empty($_POST)){
@@ -20,6 +23,7 @@ if(!empty($_POST)){
     $poids = (int) strip_tags(trim($_POST['poids']));
     $famille = (int) strip_tags(trim($_POST['famille']));
     $unite = (int) strip_tags(trim($_POST['unite']));
+    $statu = (int) strip_tags(trim($_POST['status']));
 
     if(!$label){
         $error['label']="Le champ est vide";
@@ -39,10 +43,13 @@ if(!empty($_POST)){
     if($unite == 0){
         $error['unite']="Veuillez sélectionner un champ";
     }
+    if($statu == 0){
+        $error['unite']="Veuillez sélectionner un champ";
+    }
 
     if(empty($error)){
         $articleModel = new ArticleModel();
-        $articleModel ->addArticle($label,$poids,$unite,$prix,$origine,$famille,1);
+        $articleModel ->addArticle($label,$poids,$unite,$prix,$origine,$famille,$statu);
 
         header('location: articles');
         exit;

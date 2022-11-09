@@ -32,14 +32,15 @@ class CommandeModel extends AbstractModel
         return $this -> db -> getOneResult($sql,[$idUser]);
     }
 
-    function getAllCommandes(){
+    function getAllCommandes($status){
         $sql = "SELECT * 
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user 
                 INNER JOIN status sta ON sta.id_status = cmd.id_status
-                ORDER BY date_commande DESC ";
+                WHERE cmd.id_status = ? 
+                ORDER BY date_commande ASC ";
 
-        return $this -> db -> getAllResults($sql);
+        return $this -> db -> getAllResults($sql,[$status]);
     }
 
     function getOneCommandeDetails($idCommande){
@@ -89,6 +90,14 @@ class CommandeModel extends AbstractModel
                 WHERE id_article = ?";
 
         return $this->db->executeQuerry($sql,[$prix,$quantite,$idArticle]);
+    }
+
+    function validCommande($status,$idCommande){
+        $sql = "UPDATE commande 
+                SET id_status=?
+                WHERE id_commande = ?";
+
+        return $this->db->executeQuerry($sql,[$status,$idCommande]);
     }
 
 }
