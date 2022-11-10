@@ -26,16 +26,17 @@
             <div class="col-12 col-sm-5  justify-content-center">
                 <form method="post" action="commande_admin" id="form-commande" class="d-flex flex-row">
                     <select class="form-control " name="status" id="status">
+                        <option value="<?= $commandes[0]['id_status'] ?>"><?= $commandes[0]['label_status'] ?></option>
                         <?php foreach ($status as $statu): ?>
-                            <option value="<?=$statu['id_status'];?>"><?=$statu['label_status'];?></option>
+                            <?php if($statu['id_status'] != $commandes[0]['id_status']): ?>
+                                <option value="<?=$statu['id_status'];?>"><?=$statu['label_status'];?></option>
+                            <?php endif ;?>
                         <?php endforeach; ?>
                     </select>
                     <div class="text-center justify-content-end">
                         <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
                     </div>
                 </form>
-
-
             </div>
 
         </div>
@@ -44,7 +45,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 border rounded-2 tableColor-green pt-2 pb-3 pl-0 pr-0">
-                <h3 class="text-center "> Liste des commandes : <?= $commandes[0]['label_status'] ?></h3>
+                <h3 class="text-center "> Liste des commandes </h3>
                 <div class="container ">
                     <div class="row pt-2 pb-2">
                         <div class="col-2  text-center"> <p>Commande</p> </div>

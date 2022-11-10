@@ -23,15 +23,15 @@ if(empty($_SESSION['panier'])){
 if(!empty($_POST)){
     $dateLivraison = strip_tags(trim($_POST['dateLivraison']));
     $idStatus = 3;
-    $commandeModel -> addCommande($idUser,$montant,$dateLivraison,$idStatus);
+//    $commandeModel -> addCommande($idUser,$montant,$dateLivraison,$idStatus);
     $idCommande = $commandeModel->lastCommandeId($idUser);
 
-    for($i=0 ; $i < count($_SESSION['panier'])  ; $i++ ){
-        $commandeModel->addDetailsCommande($idCommande["max(id_commande)"],$_SESSION['panier'][$i]['id_article'],$_SESSION['panier'][$i]['prix'],$_SESSION['panier'][$i]['quantite']);
-    }
+//    for($i=0 ; $i < count($_SESSION['panier'])  ; $i++ ){
+//        $commandeModel->addDetailsCommande($idCommande["max(id_commande)"],$_SESSION['panier'][$i]['id_article'],$_SESSION['panier'][$i]['prix'],$_SESSION['panier'][$i]['quantite']);
+//    }
 
 //    TODO s'il n'y a pas d'érreur, on vide le panier'
-    unset($_SESSION['panier']);
+//    unset($_SESSION['panier']);
 
 }
 

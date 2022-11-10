@@ -2,12 +2,12 @@
 
 $statusModel = new StatusModel();
 $status = $statusModel->getAllStatus();
-$statusCommande = 1;
-
-if(!empty($_POST['status'])){
-    $statusCommande = strip_tags(trim($_POST['status']));
-}
-
+//$statusCommande = 1;
+//
+//if(!empty($_POST['status'])){
+//    $statusCommande = strip_tags(trim($_POST['status']));
+//}
+$statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
 $commandeModel = new CommandeModel();
 $commandes = $commandeModel -> getAllCommandes($statusCommande);
 
@@ -27,5 +27,5 @@ else{
     include "../templates/base_admin.phtml";
 //}
 //else{
-//    echo json_encode($commandes);
+//    echo json_encode($statusCommande);
 //}

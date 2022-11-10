@@ -32,7 +32,8 @@ class CommandeModel extends AbstractModel
         return $this -> db -> getOneResult($sql,[$idUser]);
     }
 
-    function getAllCommandes($status){
+    function getAllCommandes($status): bool|array
+    {
         $sql = "SELECT * 
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user 
@@ -71,6 +72,33 @@ class CommandeModel extends AbstractModel
                 ORDER BY society ASC";
 
         return $this->db->getOneResult($sql,[$idCommande]);
+    }
+
+    function getCommandeByClient($idUser,$idStatus): bool|array
+    {
+        $sql = "SELECT * 
+                FROM commande cmd
+                INNER JOIN user us ON us.id_user = cmd.id_user 
+                INNER JOIN status sta ON sta.id_status = cmd.id_status
+                WHERE cmd.id_user = ? 
+                AND sta.id_status = ?
+                ORDER BY date_commande ASC ";
+
+        return $this->db->getAllResults($sql,[$idUser,$idStatus]);
+    }
+
+    function getCommandeByLivraison($idUser,$idStatus,$livraisonDuJour): bool|array
+    {
+        $sql = "SELECT *
+                FROM commande cmd
+                INNER JOIN user us ON us.id_user = cmd.id_user
+                INNER JOIN status sta ON sta.id_status = cmd.id_status
+                WHERE cmd.id_user = ?
+                AND sta.id_status = ?
+                AND date_livraison = ?
+                ORDER BY date_commande ASC ;";
+
+        return $this->db->getAllResults($sql,[$idUser,$idStatus,$livraisonDuJour]);
     }
 
     function getCommandeByDate($date){

@@ -153,6 +153,7 @@ function deleteArticle($idArticle){
 
 function modifierQTeArticle($idArticle,$quantite){
     //Si le panier existe
+
     if (creationPanier()) {
         //Si la quantité est positive on modifie sinon on supprime l'article
         if ($quantite > 0) {
@@ -255,7 +256,7 @@ function isConnected(): bool {
     return array_key_exists('user', $_SESSION) && isset($_SESSION['user']);
 }
 
-function registerUser(string $id,string $society, string $email, $role)
+function registerUser(string $id,string $society, string $email, $role): void
 {
     // On commence par vérifier qu'une session est bien démarrée
     if (session_status() == PHP_SESSION_NONE) {

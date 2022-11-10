@@ -1,66 +1,99 @@
-
+<main>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2> Votre panier</h2>
-            <form method="POST" action="<?='commande';?>">
-
-                <label for="unite">Date de livraison</label>
-                <select class="form-control" name="dateLivraison" id="dateLivraison">
-                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')). ' + 1 days'))  ?>"><?= $dateLivraison1 ;?></option>
-                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')) . ' + 2 days')) ?>"><?= $dateLivraison2 ;?></option>
-                </select>
-
-                <button type="submit" class="btn btn-primary">Valider la commande</button>
-
-            </form>
-
-            <?php if(isset($articles)): ?>
+            <h2 class="text-center mt-2 text-custom-color-red"> Votre panier</h2>
+            <?php if(!empty($_SESSION['panier'])) :?>
                 <div class="container">
                     <div class="row">
-                        <div class="col-3"> <p>Label</p> </div>
-                        <div class="col-2"> <p>Origine</p> </div>
-                        <div class="col-2"> <p>Prix</p> </div>
-                        <div class="col-3"> <p>Poids</p> </div>
+                        <div class="col-12  justify-content-center">
+                            <h4 class="text-center">Sélectionner une date de livraison</h4>
+                            <form method="post" action="<?='commande';?>" id="form-commande" class="d-flex flex-row justify-content-center">
 
+                                <select class="form-control w-75" name="dateLivraison" id="dateLivraison">
+                                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')). ' + 1 days'))  ?>"><?= $dateLivraison1 ;?></option>
+                                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')) . ' + 2 days')) ?>"><?= $dateLivraison2 ;?></option>
+                                </select>
+                                <div class="text-center justify-content-end">
+                                    <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            <?php foreach ($articles as $article): ?>
-                    <form method="post" action="<?='panier';?>">
+            <?php endif;?>
+
+            <?php if(isset($articles)): ?>
+            <div class="container p-0">
+                <div class="row">
+                    <div class="col-12 tableColor-green pt-2 pb-3">
+
                         <div class="container">
                             <div class="row">
-                                <input type="hidden" name="id_article" value="<?=$article['id_article'];?>">
-                                <input type="hidden" name="label_unite" value="<?=$article['label_unite'];?>">
-                                <input type="hidden" name="label_famille" value="<?=$article['label_famille'];?>">
-                                <div class="col-3"><input type="hidden" name="label_article<?=$article['id_article'];?>" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
-                                <div class="col-2"><input type="hidden" name="origine<?=$article['id_article'];?>" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                <div class="col-2"><input type="hidden" name="prix<?=$article['id_article'];?>" value="<?= $article["prix"];?>"><?= $article["prix"];?> € </div>
-                                <div class="col-3"><input type="hidden" name="poids<?=$article['id_article'];?>" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
-                                <div class="col-1"><input type="number" id="quantite" name="quantite<?=$article['id_article'];?>" min="0" value="<?=$article['quantite'];?>"></div>
-                                <div class="col-1"><button type="submit" class="btn btn-primary">Modifier</button></div>
+                                <div class="col-3 text-center"> <p>Label</p> </div>
+                                <div class="col-2 text-center"> <p>Origine</p> </div>
+                                <div class="col-3 text-center"> <p>Prix</p> </div>
+                                <div class="col-2 text-center"> <p>Poids</p> </div>
+                                <div class="col-2 text-center"> </div>
 
                             </div>
                         </div>
-                    </form>
+
+                <form method="post" action="<?='panier';?>">
+                <div class="container p-0">
+            <?php foreach ($articles as $article): ?>
+
+<!--                            <div class="row">-->
+<!--                                <input type="hidden" name="id_article" value="--><?//=$article['id_article'];?><!--">-->
+<!--                                <input type="hidden" name="label_unite" value="--><?//=$article['label_unite'];?><!--">-->
+<!--                                <input type="hidden" name="label_famille" value="--><?//=$article['label_famille'];?><!--">-->
+<!--                                <div class="col-3"><input type="hidden" name="label_article--><?//=$article['id_article'];?><!--" value="--><?//= $article["label_article"];?><!--">--><?//= $article["label_article"];?><!-- </div>-->
+<!--                                <div class="col-2"><input type="hidden" name="origine--><?//=$article['id_article'];?><!--" value=" --><?//= $article["origine"];?><!--"> --><?//= $article["origine"];?><!--</div>-->
+<!--                                <div class="col-2"><input type="hidden" name="prix--><?//=$article['id_article'];?><!--" value="--><?//= $article["prix"];?><!--">--><?//= $article["prix"];?><!-- € </div>-->
+<!--                                <div class="col-3"><input type="hidden" name="poids--><?//=$article['id_article'];?><!--" value="--><?//= $article["poids"];?><!--">--><?//= $article["poids"] ." " .$article['label_unite'];?><!-- </div>-->
+<!--                                <div class="col-1"><input type="number" id="quantite" name="quantite--><?//=$article['id_article'];?><!--" min="0" value="--><?//=$article['quantite'];?><!--"></div>-->
+<!--                                <div class="col-1"><button type="submit" class="btn btn-primary">Modifier</button></div>-->
+<!--                            </div>-->
+                        <div class="row commande">
+                            <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                            <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
+                            <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
+                            <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                            <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
+                            <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
+                            <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                            <div class="col-2 p-0 text-center"><input class="w-50 text-center" type="number" id="quantite" name="quantite[]" min="0" value="<?=$article['quantite'];?>"></div>
+                        </div>
+
+
             <?php endforeach; ?>
+                </div>
+                    <div class="text-center justify-content-end">
+                        <button type="submit" class="btn bg-custom-red mb-2 ">Modifier</button>
+                    </div>
+                </form>
+
+
 
             <?php elseif(isset($message)):?>
-                <div class="container">
+                <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-10"> <?=$message;?></div>
+                        <div class="col-12 text-center"><h4><?=$message;?></h4> </div>
                     </div>
+                </div>
+
+                </div>
+                </div>
                 </div>
             <?php endif ;?>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-10"> <a href="article_client">Retour</a> </div>
-                </div>
+            <div class="text-center justify-content-end mt-3 ">
+                <a href="article_client"> <button class="btn bg-custom-red mb-2 ">Retourner sur la liste des articles </button></a>
             </div>
-
 
 
         </div>
     </div>
 </div>
 
+</main>
