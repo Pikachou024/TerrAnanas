@@ -36,8 +36,6 @@ if(!empty($_POST)){
     $prix = $_POST["prix"];
     $quantite = $_POST['quantite'];
 
-//    dump($idArticle,$unite,$label,$origine,$poids,$prix,$quantite);
-
     for($i=0 ; $i<(count($articles)-1) ; $i++){
         addArticle($idArticle[$i],$label[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
     }

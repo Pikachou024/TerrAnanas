@@ -1,8 +1,51 @@
 <main>
+<!--    <div class="container mt-3 mb-3">-->
+<!--        <div class="row">-->
+<!--            <div class="col-12 col-sm-7 ">-->
+<!--                <form method="post" action="commande_admin">-->
+<!--                    <div class="form-group">-->
+<!--                        <div class="form-group">-->
+<!--                            <div class="datepicker date input-group">-->
+<!--                                --><?php //if(empty($_SESSION['commandeByDate'])) :?>
+<!--                                    <input type="search" name="searchDate" placeholder="Choisir une date" class="form-control" id="reservationDate">-->
+<!--                                --><?php //else : ?>
+<!--                                    <input type="search" name="searchDate" value="--><?//= $date;?><!--" class="form-control" id="reservationDate">-->
+<!--                                --><?php //endif;?>
+<!---->
+<!--                                <div class="input-group-append"><span class="input-group-text px-"><i class="fa fa-calendar"></i></span></div>-->
+<!--                                <span class="input-group-btn">-->
+<!--                                <button type="submit" class="btn btn-default bg-custom-red" >-->
+<!--                                    Recherche-->
+<!--                                <span class="glyphicon glyphicon-search"></span>-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--            <div class="col-12 col-sm-5  justify-content-center">-->
+<!--                <form method="post" action="commande_admin" id="form-commande" class="d-flex flex-row">-->
+<!--                    <select class="form-control " name="status" id="status">-->
+<!--                        <option value="--><?//= $commandes[0]['id_status'] ?><!--">--><?//= $commandes[0]['label_status'] ?><!--</option>-->
+<!--                        --><?php //foreach ($status as $statu): ?>
+<!--                            --><?php //if($statu['id_status'] != $commandes[0]['id_status']): ?>
+<!--                                <option value="--><?//=$statu['id_status'];?><!--">--><?//=$statu['label_status'];?><!--</option>-->
+<!--                            --><?php //endif ;?>
+<!--                        --><?php //endforeach; ?>
+<!--                    </select>-->
+<!--                    <div class="text-center justify-content-end">-->
+<!--                        <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!---->
+<!--        </div>-->
+<!--    </div>-->
+
     <div class="container mt-3 mb-3">
-        <div class="row">
-            <div class="col-12 col-sm-7 ">
-                <form method="post" action="commande_admin">
+        <form method="post" action="commande_admin" id="form-commande">
+            <div class="row">
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         <div class="form-group">
                             <div class="datepicker date input-group">
@@ -13,18 +56,16 @@
                                 <?php endif;?>
 
                                 <div class="input-group-append"><span class="input-group-text px-"><i class="fa fa-calendar"></i></span></div>
-                                <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default bg-custom-red" >
-                                    Recherche
-                                <span class="glyphicon glyphicon-search"></span>
-                                </button>
+                                <!--                                <span class="input-group-btn">-->
+                                <!--                                <button type="submit" class="btn btn-default bg-custom-red" >-->
+                                <!--                                    Recherche-->
+                                <!--                                <span class="glyphicon glyphicon-search"></span>-->
+                                <!--                                </button>-->
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-12 col-sm-5  justify-content-center">
-                <form method="post" action="commande_admin" id="form-commande" class="d-flex flex-row">
+                </div>
+                <div class="col-12 col-md-6">
                     <select class="form-control " name="status" id="status">
                         <option value="<?= $commandes[0]['id_status'] ?>"><?= $commandes[0]['label_status'] ?></option>
                         <?php foreach ($status as $statu): ?>
@@ -33,13 +74,12 @@
                             <?php endif ;?>
                         <?php endforeach; ?>
                     </select>
-                    <div class="text-center justify-content-end">
-                        <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
-                    </div>
-                </form>
+                </div>
             </div>
-
-        </div>
+            <div class="mt-2 text-center justify-content-end">
+                <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
+            </div>
+        </form>
     </div>
 
     <div class="container">
@@ -60,10 +100,8 @@
 
                 <?php if(empty($_SESSION['commandeByDate'])) :?>
                 <div class="container">
-
                     <?php foreach ($commandes as $commande): ?>
-<!--                        --><?php //if($commande['label_status'] == "En attente"):?>
-                            <div class="row pt-2 pb-2 commande toast" >
+                            <div class="row pt-2 pb-2 commande" >
                                 <div class="col-2 text-center" ><?=$commande['id_commande'];?></div>
                                 <div class="col-4 col-sm-3 col-md-2 text-center" ><?=$commande['society'];?> </div>
                                 <div class="col-4 col-sm-3 col-md-2 text-center" ><?=$commande['montant'] ." €" ;?> </div>
@@ -73,13 +111,11 @@
                                 <div class="col-1 d-none d-md-block text-center"> <a href="#"><i class="fa-solid fa-trash-can"></i></a> </div>
                                 <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>
                             </div>
-<!--                        --><?php //endif ;?>
                     <?php endforeach; ?>
                 </div>
                 <?php else :?>
                     <div class="container">
                         <?php foreach ($_SESSION['commandeByDate'] as $commande): ?>
-                            <?php if($commande['label_status'] == "En attente"):?>
                                 <div class="row pt-2 pb-2 commande">
                                     <!--                            <div class="col-2">--><?//=$commande['label_status'];?><!-- </div>-->
                                     <div class="col-2 text-center"><?=$commande['id_commande'];?> </div>
@@ -91,7 +127,6 @@
                                     <div class="col-1 d-none d-md-block text-center"> <a href="#"><i class="fa-solid fa-trash-can"></i></a> </div>
                                     <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>
                                 </div>
-                            <?php endif ;?>
                         <?php endforeach; ?>
                     </div>
                 <?php endif;?>

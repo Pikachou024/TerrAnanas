@@ -101,15 +101,16 @@ class CommandeModel extends AbstractModel
         return $this->db->getAllResults($sql,[$idUser,$idStatus,$livraisonDuJour]);
     }
 
-    function getCommandeByDate($date){
+    function getCommandeByDate($date,$status){
         $sql="SELECT * 
               FROM commande cmd
               INNER JOIN user us ON us.id_user = cmd.id_user 
               INNER JOIN status sta ON sta.id_status = cmd.id_status
               WHERE date_commande = ?
+              AND cmd.id_status = ?
               ORDER BY date_livraison ASC";
 
-        return $this->db->getAllResults($sql,[$date]);
+        return $this->db->getAllResults($sql,[$date,$status]);
     }
 
     function editCommandeDetail($idArticle,$prix,$quantite){

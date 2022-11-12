@@ -22,6 +22,7 @@ $routes=[
     "add_remise"=>"add_remise.php",
     "nos_fruits"=>"nos_fruits.php",
     "validation_commande"=>"validation_commande.php",
-    "client"=>"client.php"
+    "client"=>"client.php",
+    "commande_client"=>"commande_client.php"
 ];
 return $routes ;
