@@ -2,11 +2,7 @@
 
 $statusModel = new StatusModel();
 $status = $statusModel->getAllStatus();
-//$statusCommande = 1;
-//
-//if(!empty($_POST['status'])){
-//    $statusCommande = strip_tags(trim($_POST['status']));
-//}
+
 $statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
 $commandeModel = new CommandeModel();
 $commandes = $commandeModel -> getAllCommandes($statusCommande);
@@ -15,7 +11,7 @@ if(!empty($_POST['searchDate'])){
     $date = strip_tags(trim($_POST['searchDate']));
     $dateTime = DateTime::createFromFormat('d/m/Y', $date);
     $newFormatDate = $dateTime->format('Y-m-d');
-    $_SESSION['commandeByDate']=  $commandeModel->getCommandeByDate($newFormatDate,$statusCommande);
+    $_SESSION['commandeByDate']=$commandeModel->getCommandeByDate($newFormatDate,$statusCommande);
 }
 else{
     unset($_SESSION['commandeByDate']);

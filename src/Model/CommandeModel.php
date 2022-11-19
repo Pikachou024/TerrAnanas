@@ -44,6 +44,18 @@ class CommandeModel extends AbstractModel
         return $this -> db -> getAllResults($sql,[$status]);
     }
 
+    function getOneCommande($id): bool|array
+    {
+        $sql = "SELECT * 
+                FROM commande cmd
+                INNER JOIN user us ON us.id_user = cmd.id_user 
+                INNER JOIN status sta ON sta.id_status = cmd.id_status
+                WHERE cmd.id_commande = ? 
+                ORDER BY date_commande ASC ";
+
+        return $this -> db -> getOneResult($sql,[$id]);
+    }
+
     function getOneCommandeDetails($idCommande){
         $sql="SELECT dcmd.*,cmd.*,art.id_article,art.label_article,art.poids,art.origine,unt.label_unite 
               FROM detailscommande dcmd
@@ -101,7 +113,8 @@ class CommandeModel extends AbstractModel
         return $this->db->getAllResults($sql,[$idUser,$idStatus,$livraisonDuJour]);
     }
 
-    function getCommandeByDate($date,$status){
+    function getCommandeByDate($date,$status): bool|array
+    {
         $sql="SELECT * 
               FROM commande cmd
               INNER JOIN user us ON us.id_user = cmd.id_user 
@@ -127,6 +140,14 @@ class CommandeModel extends AbstractModel
                 WHERE id_commande = ?";
 
         return $this->db->executeQuerry($sql,[$status,$idCommande]);
+    }
+
+    function editMontantCommande(float $montantCommande, int $idCommande){
+        $sql = "UPDATE commande 
+                SET montant=?
+                WHERE id_commande = ?";
+
+        return $this->db->executeQuerry($sql,[$montantCommande,$idCommande]);
     }
 
 }

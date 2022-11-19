@@ -43,7 +43,7 @@ if(!empty($_POST)){
     for($i=0 ; $i<(count($_SESSION['panier'])) ; $i++) {
         modifierQTeArticle($idArticle[$i], $quantite[$i]);
     }
-    $montant = montantPanier();
+    $montant = montantTotal($_SESSION['panier']);
 
     /**
      * Parametre status :

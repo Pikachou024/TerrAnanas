@@ -3,14 +3,15 @@
 class UserModel extends AbstractModel
 {
 //    Afficher tous les clients
-    function getAllUsers(){
+    function getAllUsers($idStatus){
         $sql="SELECT *
               FROM      user usr
               INNER JOIN status sta on sta.id_status = usr.id_status
               INNER JOIN role rol on rol.id_role = usr.id_role
+              WHERE sta.id_status = ?
               ORDER BY  society";
 
-        return $this-> db -> getAllResults($sql);
+        return $this-> db -> getAllResults($sql,[$idStatus]);
     }
 
 //    Afficher un client

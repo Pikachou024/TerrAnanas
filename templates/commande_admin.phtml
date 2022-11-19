@@ -56,11 +56,6 @@
                                 <?php endif;?>
 
                                 <div class="input-group-append"><span class="input-group-text px-"><i class="fa fa-calendar"></i></span></div>
-                                <!--                                <span class="input-group-btn">-->
-                                <!--                                <button type="submit" class="btn btn-default bg-custom-red" >-->
-                                <!--                                    Recherche-->
-                                <!--                                <span class="glyphicon glyphicon-search"></span>-->
-                                <!--                                </button>-->
                             </div>
                         </div>
                     </div>
@@ -102,14 +97,14 @@
                 <div class="container">
                     <?php foreach ($commandes as $commande): ?>
                             <div class="row pt-2 pb-2 commande" >
-                                <div class="col-2 text-center" ><?=$commande['id_commande'];?></div>
-                                <div class="col-4 col-sm-3 col-md-2 text-center" ><?=$commande['society'];?> </div>
-                                <div class="col-4 col-sm-3 col-md-2 text-center" ><?=$commande['montant'] ." €" ;?> </div>
-                                <div class="col-2 d-none d-sm-block text-center" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
-                                <div class="col-2 d-none d-md-block text-center" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
-                                <div class="col-1 d-none d-md-block text-center" > <a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></i></a> </div>
-                                <div class="col-1 d-none d-md-block text-center"> <a href="#"><i class="fa-solid fa-trash-can"></i></a> </div>
-                                <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>
+                                <div class="col-2 text-center" data-value="Id"><?=$commande['id_commande'];?></div>
+                                <div class="col-4 col-sm-3 col-md-2 text-center" data-value="Societé"><?=$commande['society'];?></div>
+                                <div class="col-4 col-sm-3 col-md-2 text-center" data-value="Montant"><?=$commande['montant'] ." €" ;?></div>
+                                <div class="col-2 d-none d-sm-block text-center" data-value="Date de lacommande"><?= date('d/m/y', strtotime($commande['date_commande'])) ;?></div>
+                                <div class="col-2 d-none d-md-block text-center" data-value="Date de la livraison"><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?></div>
+                                <div class="col-1 d-none d-md-block text-center" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></i></a></div>
+                                <div class="col-1 d-none d-md-block text-center"><a href="#"><i class="fa-solid fa-trash-can"></i></a></div>
+                                <div class="col-2 d-md-none text-center  show-detail"><i class="fa-solid fa-eye"></i></div>
                             </div>
                     <?php endforeach; ?>
                 </div>
@@ -136,4 +131,4 @@
 
 </main>
 
-<!--<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/admin/commande_admin.js" defer></script>-->
+<!--<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/admin/detail.js" defer></script>-->

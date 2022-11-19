@@ -6,7 +6,7 @@ $dateDuJour = dateFr(date('D d M Y'));
  * affiche maximum 5 commandes du jour
  */
 $commandeModel = new CommandeModel();
-$commandeDuJour = $commandeModel->getCommandeByDate(date('Y-m-d'));
+$commandeDuJour = $commandeModel->getCommandeByDate(date('Y-m-d'),1);
 if(count($commandeDuJour)>5){
     $commandeDuJour = array_chunk($commandeDuJour,5);
 }

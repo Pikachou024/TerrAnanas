@@ -173,11 +173,12 @@ function modifierQTeArticle($idArticle,$quantite){
         }
 }
 
-function montantPanier(){
+function montantTotal(array $listeArticle): float|int
+{
     $totalPanier = 0;
 
-    for($i=0 ; $i < count($_SESSION['panier']) ; $i++){
-        $totalArticle = ($_SESSION['panier'][$i]["prix"] * $_SESSION['panier'][$i]["poids"])*$_SESSION['panier'][$i]["quantite"];
+    for($i=0 ; $i < count($listeArticle) ; $i++){
+        $totalArticle = ($listeArticle[$i]["prix"] * $listeArticle[$i]["poids"])*$listeArticle[$i]["quantite"];
         $totalPanier += $totalArticle;
     }
     return $totalPanier;
