@@ -1,6 +1,7 @@
 <?php
 
 $idUser = getUserId();
+
 $statusModel = new StatusModel();
 $status = $statusModel->getAllStatus();
 $statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
@@ -16,7 +17,6 @@ if(!empty($_POST['searchDate'])){
 else{
     unset($_SESSION['commandeByDate']);
 }
-
 
 $title = "Mes comnmandes";
 $template="commande_client";

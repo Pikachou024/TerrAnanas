@@ -16,7 +16,7 @@ if(count($commandeDuJour)>5){
  * affiche les utilisateurs en attentent de validation
  */
 $userModel = new userModel();
-$users = $userModel ->getAllUsers();
+$users = $userModel ->getAllUsers(1);
 
 
 /*

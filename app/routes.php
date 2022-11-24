@@ -2,6 +2,9 @@
 
 $routes=[
     "home"=>"home.php",
+    "qui_sommes_nous"=>"qui_sommes_nous.php",
+    "nos_valeurs"=>"nos_valeurs.php",
+    "contact"=>"contact.php",
     "articles" => "articles.php",
     "admin"=>"admin.php",
     "add_article" => "add_article.php",

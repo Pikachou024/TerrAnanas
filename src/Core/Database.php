@@ -5,7 +5,6 @@ class Database{
     static private ?PDO $pdo = null;
 
     function __construct(){
-
         if(self::$pdo == null){
             self::$pdo = $this -> getPdoConnection();
         }

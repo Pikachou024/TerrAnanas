@@ -1,0 +1,41 @@
+<main>
+    <section class="bannière-contact">
+        <div class="bannière-contact-text">
+            <h4 class="bannière-contact-text-titre">
+                Nous contacter
+            </h4>
+            <span class="bannière-contact-text-contenu">
+                Vous n’avez pas trouvé de réponses à vos questions et souhaitez-nous contacter, vous pouvez le faire via le formulaire ci-dessous qui sera directement transmis à la personne concernée pour un rappel plus rapide.
+            </span>
+        </div>
+        <div class="bannière-contact-img">
+            <img src="http://localhost/ProjetCommande/public/images/enveloppe.png" alt="logo enveloppe">
+        </div>
+
+    </section>
+
+    <section class="section-formulaire">
+        <form action="contact" method="POST" class="">
+            <div class="form-group">
+                <label for="">Votre email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="">Sujet</label><br>
+                <select class="" name="sujet">
+                    <option value="">Votre demande concerne</option>
+                    <option value="">Mon inscription</option>
+                    <option value="">Une question sur nos produits</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Votre message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+
+            <input type="submit" value="ENVOYER" class="button-submit">
+        </form>
+
+    </section>
+
+</main>

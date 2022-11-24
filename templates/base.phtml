@@ -7,144 +7,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/nav_bar.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/base_styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Satisfy&display=swap" rel="stylesheet">
     <title><?=$title;?></title>
 
 </head>
 
 <body>
 <header>
-
-<div class="container">
-    <div class="row align-self-center">
-        <div class="col-12">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-success fixed-top">
-        <div class="container">
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <a class="navbar-brand" href="home">LOGO</a>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="nos_fruits">Nos fruits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Nos produits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Nos valeurs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" > Contact </a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav mr-2 mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Espace pro<span class="sr-only">(current)</span> </a>
-                    </li>
-                </ul>
-
-            </div>
-
+    <nav class="haut-navigation">
+        <div>
+            <i class="fa-solid fa-bars menu-burger"></i>
+            <a class="" href="#">Acceuil</a>
+        </div>
+        <ul class="haut-navigation-liste hide">
+            <li class="accueil"><a href="home">Acceuil</a></li>
+            <li><a href="qui_sommes_nous">Qui sommes-nous ?</a></li>
+            <li><a href="nos_valeurs">Nos valeurs</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="#">Espace pro</a></li>
+        </ul>
     </nav>
 
-        </div>
-    </div>
-
-</div>
-
-
-<!--                <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">-->
-<!--                    <div class="container">-->
-<!--                        <div class="row align-self-center">-->
-<!--                            <div class="col-12">-->
-<!--                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                        <span class="navbar-toggler-icon"></span>-->
-<!--                    </button>-->
-<!---->
-<!--                    <a class="navbar-brand" href="#">LOGO</a>-->
-<!---->
-<!--                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">-->
-<!--                        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--                            <li class="nav-item ">-->
-<!--                                <a class="nav-link" href="#">Qui sommes-nous?</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" href="#">Nos produits</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" href="#">Nos valeurs</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link" href="#" > Contact </a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!---->
-<!--                        <ul class="navbar-nav mr-2 mt-2 mt-lg-0">-->
-<!--                            <li class="nav-item active">-->
-<!--                                <a class="nav-link" href="#">Espace pro<span class="sr-only">(current)</span> </a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!---->
-<!--                    </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </nav>-->
+<!--    <section class="top-nav">-->
+<!--        <div>-->
+<!--            Logo Here-->
+<!--        </div>-->
+<!--        <input id="menu-toggle" type="checkbox" />-->
+<!--        <label class='menu-button-container' for="menu-toggle">-->
+<!--            <div class='menu-button'></div>-->
+<!--        </label>-->
+<!--        <ul class="menu">-->
+<!--            <li>One</li>-->
+<!--            <li>Two</li>-->
+<!--            <li>Three</li>-->
+<!--            <li>Four</li>-->
+<!--            <li>Five</li>-->
+<!--        </ul>-->
+<!--    </section>-->
 
 </header>
 
-<div class="template container">
-    <div class="row">
-        <div class="col">
-
-            <?php include '../templates/' . $template . '.phtml'; ?>
-
-        </div>
-    </div>
-</div>
-
-
-
-
+<?php include '../templates/' . $template . '.phtml'; ?>
 
 <footer>
-    <div class="container-fluid bg-success">
-        <div class="row">
-            <div class="col">
-                <div class="container">
-                    <div class="row justify-content-around">
-                        <div class="col-3">
-                            <ul>
-                                <li>Qui sommes-nous?</li>
-                                <li>Nos produits</li>
-                                <li>Nos valeurs</li>
-                                <li>Contact</li>
-                            </ul>
-                        </div>
-                        <div class="col-3">
-                            <p>Retrouvez-nous sur</p>
-                        </div>
-
-
-                        <div class="col-3">
-                            <p>Mention légale</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="contenu-adresse">
+        <h3>Adresse : </h3>
+        <p>60 Bd Carnot</p>
+        <p>13100, Aix-en-Provence</p>
     </div>
+    <div class="contenu-navigation">
+        <h3>Liens utiles</h3>
+        <ul class="navigation-liste">
+            <li><a href="#">Acceuil</a></li>
+            <li><a href="#">Qui sommes-nous ?</a></li>
+            <li><a href="#">Nos valeurs</a></li>
+            <li><a href="#">Espace pro</a></li>
+        </ul>
+    </div>
+    <div class="contenu-reseau">
+        <h3>Retrouvez-nous sur</h3>
+        <div class="contenu-reseau-lien"
+        <a><i class="fa-brands fa-facebook"></i></a>
+        <a><i class="fa-brands fa-instagram"></i></a>
+    </div>
+
 </footer>
 
 
@@ -153,6 +84,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>
 <!-- Script pour activation du datepicker -->
 <script src="http://localhost/ProjetCommande/public/js/script.js" defer></script>
+<script src="http://localhost/ProjetCommande/public/js/side_nav.js" defer></script>
+
+<script src="http://localhost/ProjetCommande/public/js/client/script.js" defer></script>
+
+
 </body>
 
 </html>
