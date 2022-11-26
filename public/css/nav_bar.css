@@ -14,7 +14,7 @@ body{
 
 }
 .haut-navigation-liste{
-    /*background-color: #9BECA7;*/
+    /*display: none;*/
     text-align: center;
     padding: 10px 0 10px 0;
     margin: 0;
@@ -26,7 +26,6 @@ body{
     text-align: center;
     margin-right: 5px;
     margin-left: 5px;
-
 }
 
 @media screen AND (min-width:450px){

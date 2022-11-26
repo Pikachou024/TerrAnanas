@@ -1,20 +1,38 @@
 body{
     font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
-footer{
-    background-color: #9BECA7;
-}
+
 h1,h2{
     font-family: 'Satisfy', cursive;
     text-align: center;
     color:#F29F05;
-    margin-top:2em;
+    margin-top: 10px;
 }
 main{
-    margin:160px 10% 0 10%;
+    margin:0 10%;
 }
 article{
     margin-top:5em;
+}
+
+a{
+    text-decoration: none;
+}
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #F29F05;
 }
 
 .haut-contenu-image{
@@ -28,37 +46,45 @@ article{
 .navigation-liste, .contenu-navigation, .haut-navigation-liste{
     list-style-type: none;
 }
-.contenu-client-lien{
-    border: 2px solid black;
+.contenu-client-lien,.section-insciption-lien{
+    text-align: center;
+}
+.contenu-client-lien a, .section-insciption-lien a{
+    border: 1px solid black;
     border-radius: 20px;
+    background-color: #F29F05;
     padding: 5px;
-}
-a{
-    text-decoration: none;
-}
-a:link {
-    color: black;
-}
 
-a:visited {
-    color: black;
 }
-
-a:hover {
+.contenu-client-lien a:link , .section-insciption-lien a:link{
+    color: #F2F2F2;
+}
+.contenu-client-lien a:hover , .section-insciption-lien a:hover{
+    background-color: #F2F2F2;
     color: #F29F05;
+}
+.contenu-client-lien a:visited , .section-insciption-lien a:visited{
+    color: initial;
 }
 
 footer{
+    background-color: #9BECA7;
+    margin-top: 10%;
+}
+footer div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .contenu-adresse, .contenu-navigation, .contenu-reseau{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 .contenu-adresse p {
@@ -77,11 +103,11 @@ footer{
     background-color: #F2F2F2;
     color: #F29F05;
 }
-
-.hide{
-    display: none;
-}
                 /* page qui sommes nous*/
+.contenu-presentation, .section-insciption{
+    margin-top: 10%;
+}
+
 .contenu-presentation-liste{
 
     flex: 1 0 100%;
@@ -133,7 +159,7 @@ contennu-presentation-liste-image-lien{
     max-width: 100%;
 }
 
-.section-formulaire{
+.section-formulaire, .section-insciption{
 
     margin-right: auto;
     margin-left: auto;
@@ -142,17 +168,17 @@ contennu-presentation-liste-image-lien{
 
 
 @media screen AND (min-width:650px){
-    header{
-        margin-bottom: 50px;
-    }
+    /*header{*/
+    /*    margin-bottom: 50px;*/
+    /*}*/
     main{
-        margin:50px 20% 0 20%;
+        margin:0 20% 0 20%;
     }
-    footer{
+    footer div{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        margin-top: 30px;
+
     }
     .contenu-adresse, .contenu-navigation, .contenu-reseau{
         display: flex;

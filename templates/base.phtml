@@ -20,16 +20,16 @@
 <body>
 <header>
     <nav class="haut-navigation">
-        <div>
-            <i class="fa-solid fa-bars menu-burger"></i>
-            <a class="" href="#">Acceuil</a>
-        </div>
-        <ul class="haut-navigation-liste hide">
+<!--        <div>-->
+<!--            <i class="fa-solid fa-bars menu-burger"></i>-->
+<!--            <a class="" href="#">Acceuil</a>-->
+<!--        </div>-->
+        <ul class="haut-navigation-liste">
             <li class="accueil"><a href="home">Acceuil</a></li>
             <li><a href="qui_sommes_nous">Qui sommes-nous ?</a></li>
             <li><a href="nos_valeurs">Nos valeurs</a></li>
             <li><a href="contact">Contact</a></li>
-            <li><a href="#">Espace pro</a></li>
+            <li><a href="login">Espace pro</a></li>
         </ul>
     </nav>
 
@@ -55,27 +55,28 @@
 <?php include '../templates/' . $template . '.phtml'; ?>
 
 <footer>
-    <div class="contenu-adresse">
-        <h3>Adresse : </h3>
-        <p>60 Bd Carnot</p>
-        <p>13100, Aix-en-Provence</p>
+    <div>
+        <div class="contenu-adresse">
+            <h2>Adresse : </h2>
+            <p>60 Bd Carnot</p>
+            <p>13100, Aix-en-Provence</p>
+        </div>
+        <div class="contenu-navigation">
+            <h2>Liens utiles</h2>
+            <ul class="navigation-liste">
+                <li><a href="#">Acceuil</a></li>
+                <li><a href="#">Qui sommes-nous ?</a></li>
+                <li><a href="#">Nos valeurs</a></li>
+                <li><a href="#">Espace pro</a></li>
+            </ul>
+        </div>
+        <div class="contenu-reseau">
+            <h2>Retrouvez-nous sur</h2>
+            <div class="contenu-reseau-lien"
+            <a><i class="fa-brands fa-facebook"></i></a>
+            <a><i class="fa-brands fa-instagram"></i></a>
+        </div>
     </div>
-    <div class="contenu-navigation">
-        <h3>Liens utiles</h3>
-        <ul class="navigation-liste">
-            <li><a href="#">Acceuil</a></li>
-            <li><a href="#">Qui sommes-nous ?</a></li>
-            <li><a href="#">Nos valeurs</a></li>
-            <li><a href="#">Espace pro</a></li>
-        </ul>
-    </div>
-    <div class="contenu-reseau">
-        <h3>Retrouvez-nous sur</h3>
-        <div class="contenu-reseau-lien"
-        <a><i class="fa-brands fa-facebook"></i></a>
-        <a><i class="fa-brands fa-instagram"></i></a>
-    </div>
-
 </footer>
 
 
