@@ -20,18 +20,30 @@ include "../src/Model/CommandeModel.php";
 include '../lib/functions.php';
 
 
-//session_destroy();
 $routes = include '../app/routes.php';
+$router=[];
 
 $page = getURL($_SERVER["REDIRECT_URL"]);
 if(!$page){
     $page='home';
 }
-if(!array_key_exists($page,$routes)){
+foreach ($routes as $route){
+    if(array_key_exists($page,$route)){
+        $router = $route;
+    }
+}
+
+if(empty($router)){
     http_response_code(404);
     echo("Page introuvable");
     exit;
 }
-//unset($_SESSION['panier']);
-$controllerFile=$routes[$page];
-include '../controllers/'.$controllerFile;
+
+//if(!array_key_exists($page,$routes)){
+//    http_response_code(404);
+//    echo("Page introuvable");
+//    exit;
+//}
+$path = $router['path'];
+$controllerFile = $router[$page];
+include '../controllers/'.$path.'/'.$controllerFile;

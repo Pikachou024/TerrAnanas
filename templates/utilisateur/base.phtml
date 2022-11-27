@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/nav.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/nav_bar.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/base_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Satisfy&display=swap" rel="stylesheet">
+    <title><?=$title;?></title>
+
+</head>
+
+<body>
+<header>
+    <nav class="haut-navigation">
+<!--        <div>-->
+<!--            <i class="fa-solid fa-bars menu-burger"></i>-->
+<!--            <a class="" href="#">Acceuil</a>-->
+<!--        </div>-->
+        <ul class="haut-navigation-liste">
+            <li class="accueil"><a href="home">Acceuil</a></li>
+            <li><a href="qui_sommes_nous">Qui sommes-nous ?</a></li>
+            <li><a href="nos_valeurs">Nos valeurs</a></li>
+            <li><a href="contact">Contact</a></li>
+            <li><a href="login">Espace pro</a></li>
+        </ul>
+    </nav>
+
+<!--    <section class="top-nav">-->
+<!--        <div>-->
+<!--            Logo Here-->
+<!--        </div>-->
+<!--        <input id="menu-toggle" type="checkbox" />-->
+<!--        <label class='menu-button-container' for="menu-toggle">-->
+<!--            <div class='menu-button'></div>-->
+<!--        </label>-->
+<!--        <ul class="menu">-->
+<!--            <li>One</li>-->
+<!--            <li>Two</li>-->
+<!--            <li>Three</li>-->
+<!--            <li>Four</li>-->
+<!--            <li>Five</li>-->
+<!--        </ul>-->
+<!--    </section>-->
+
+</header>
+
+<?php include '../templates/utilisateur/' . $template . '.phtml'; ?>
+
+<footer>
+    <div>
+        <div class="contenu-adresse">
+            <h2>Adresse : </h2>
+            <p>60 Bd Carnot</p>
+            <p>13100, Aix-en-Provence</p>
+        </div>
+        <div class="contenu-navigation">
+            <h2>Liens utiles</h2>
+            <ul class="navigation-liste">
+                <li><a href="#">Acceuil</a></li>
+                <li><a href="#">Qui sommes-nous ?</a></li>
+                <li><a href="#">Nos valeurs</a></li>
+                <li><a href="#">Espace pro</a></li>
+            </ul>
+        </div>
+        <div class="contenu-reseau">
+            <h2>Retrouvez-nous sur</h2>
+            <div class="contenu-reseau-lien"
+            <a><i class="fa-brands fa-facebook"></i></a>
+            <a><i class="fa-brands fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" defer></script>
+<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>
+<!-- Script pour activation du datepicker -->
+<script src="http://localhost/ProjetCommande/public/js/script.js" defer></script>
+<script src="http://localhost/ProjetCommande/public/js/side_nav.js" defer></script>
+
+<script src="http://localhost/ProjetCommande/public/js/client/script.js" defer></script>
+
+
+</body>
+
+</html>

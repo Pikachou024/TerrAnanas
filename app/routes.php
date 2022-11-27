@@ -1,31 +1,44 @@
 <?php
 
 $routes=[
-    "home"=>"home.php",
-    "qui_sommes_nous"=>"qui_sommes_nous.php",
-    "nos_valeurs"=>"nos_valeurs.php",
-    "contact"=>"contact.php",
-    "articles" => "articles.php",
-    "admin"=>"admin.php",
-    "add_article" => "add_article.php",
-    "edit_article"=>"edit_article.php",
-    "delete_article"=>"delete_article.php",
-    "inscription"=>"inscription.php",
-    "users" => "users.php",
-    "edit_user" => "edit_user.php",
-    "delete_user" =>"delete_user.php",
-    "login" => "login.php",
-    "commande"=> "commande.php",
-    "panier" => "panier.php",
-    "article_client"=>"article_client.php",
-    "commande_admin"=>"commande_admin.php",
-    "commande_details"=>"commande_details.php",
-    "delete_discount"=>"delete_discount.php",
-    "edit_commande"=>"edit_commande.php",
-    "add_remise"=>"add_remise.php",
-    "nos_fruits"=>"nos_fruits.php",
-    "validation_commande"=>"validation_commande.php",
-    "client"=>"client.php",
-    "commande_client"=>"commande_client.php"
+    /*
+     * Utilisateur sans être inscrit ( l'admin et les utilisateurs inscrits pourront parcourir ses pages)
+     */
+    ["home"=>"home.php",'path'=>"utilisateur"],
+    ["qui_sommes_nous"=>"qui_sommes_nous.php","path"=>"utilisateur"],
+    ["nos_valeurs"=>"nos_valeurs.php","path"=>"utilisateur"],
+    ["contact"=>"contact.php","path"=>"utilisateur"],
+    ["login" => "login.php","path"=>"utilisateur"],
+    ["inscription"=>"inscription.php","path"=>"utilisateur"],
+
+    /*
+     * Clients (utilisateur inscrits et validés par l'admin)
+     */
+
+    ["article_client"=>"article_client.php","path"=>"client"],
+    ["commande_client"=>"commande_client.php","path"=>"client"],
+    ["client"=>"client.php","path"=>"client"],
+    ["commande"=> "commande.php","path"=>"client"],
+    ["panier" => "panier.php","path"=>"client"],
+
+
+    /*
+     * Admin
+     */
+    ["articles_admin" => "articles_admin.php","path"=>"admin"],
+    ["users_admin" => "users_admin.php","path"=>"admin"],
+    ["admin"=>"admin.php","path"=>"admin"],
+    ["add_article" => "add_article.php","path"=>"admin"],
+    ["edit_article"=>"edit_article.php","path"=>"admin"],
+    ["delete_article"=>"delete_article.php","path"=>"admin"],
+    ["edit_user" => "edit_user.php","path"=>"admin"],
+    ["delete_user" =>"delete_user.php","path"=>"admin"],
+    ["commande_admin"=>"commande_admin.php","path"=>"admin"],
+    ["commande_details"=>"commande_details.php","path"=>"admin"],
+    ["delete_discount"=>"delete_discount.php","path"=>"admin"],
+    ["edit_commande"=>"edit_commande.php","path"=>"admin"],
+    ["add_remise"=>"add_remise.php","path"=>"admin"],
+    ["nos_fruits"=>"nos_fruits.php","path"=>"admin"],
+    ["validation_commande"=>"validation_commande.php","path"=>"admin"]
 ];
 return $routes ;
