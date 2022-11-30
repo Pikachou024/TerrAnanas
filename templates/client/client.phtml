@@ -13,8 +13,8 @@
                     <h4 class=" text-center p-2 mb-4 ">Livraison du jour</h4>
                     <?php foreach ($livraisonDuJour as $livraison): ?>
                         <div class="row commande">
-                            <div class="col-4"><p class=""><?=$livraison['date_commande'];?></p> </div>
-                            <div class="col-4"><p><?=$livraison['date_livraison'] ;?></p> </div>
+                            <div class="col-4"><p class=""><?=date('d/m/y', strtotime($livraison['date_commande']));?></p> </div>
+                            <div class="col-4"><p><?=date('d/m/y', strtotime($livraison['date_livraison'])) ;?></p> </div>
                             <div class="col-3"><p><?=$livraison['montant'] ." €" ;?></p> </div>
                             <div class="col-1 p-1"><a href="#">Voir</a> </div>
                         </div>
@@ -31,8 +31,8 @@
                     </div>
                     <?php foreach ($commandeEnAttente as $commande): ?>
                         <div class="row commande">
-                            <div class="col-4"><p class=""><?=$commande['date_commande'];?></p> </div>
-                            <div class="col-4"><p><?=$commande['date_livraison'] ;?></p> </div>
+                            <div class="col-4"><p class=""><?=date('d/m/y', strtotime($commande['date_commande']));?></p> </div>
+                            <div class="col-4"><p><?=date('d/m/y', strtotime($commande['date_livraison'])) ;?></p> </div>
                             <div class="col-3"><p><?=$commande['montant'] ." €" ;?></p> </div>
                             <div class="col-1 p-1"><a href="#">Voir</a> </div>
                         </div>

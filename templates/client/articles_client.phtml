@@ -5,7 +5,7 @@
                 <div class="container mt-3 mb-3">
                     <div class="row">
                         <div class="col-9">
-                            <form method="GET" action ="article_client" class="navbar-form navbar-right" role="search">
+                            <form method="GET" action ="articles_client" class="navbar-form navbar-right" role="search">
                                 <div class="input-group">
                                     <?php if(empty($_SESSION['articleSearch'])) :?>
                                         <input type="search" class="form-control" name="articleSearch" placeholder="Rechercher un article">
@@ -131,7 +131,7 @@
                 <?php if(empty($_SESSION['articleSearch'])) :?>
 
 
-                    <form method="post" action="<?='article_client';?>">
+                    <form method="post" action="<?='articles_client';?>">
                         <div class="container p-0">
                             <h3 class="text-center">Légumes</h3>
                     <?php foreach ($articles as $article): ?>
@@ -179,7 +179,7 @@
                     </form>
                 <?php else : ?>
                     <?php foreach ($_SESSION['articleSearch'] as $article): ?>
-                        <form method="post" action="<?='article_client';?>">
+                        <form method="post" action="<?='articles_client';?>">
                             <div class="container">
                                 <div class="row">
                                     <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">

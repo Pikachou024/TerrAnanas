@@ -10,17 +10,17 @@ $routes=[
     ["contact"=>"contact.php","path"=>"utilisateur"],
     ["login" => "login.php","path"=>"utilisateur"],
     ["inscription"=>"inscription.php","path"=>"utilisateur"],
+    ["logout"=>"logout.php","path"=>"utilisateur"],
 
     /*
      * Clients (utilisateur inscrits et validés par l'admin)
      */
-
-    ["article_client"=>"article_client.php","path"=>"client"],
+    ["articles_client"=>"articles_client.php","path"=>"client"],
     ["commande_client"=>"commande_client.php","path"=>"client"],
     ["client"=>"client.php","path"=>"client"],
     ["commande"=> "commande.php","path"=>"client"],
     ["panier" => "panier.php","path"=>"client"],
-
+    ["parametre_client"=>"parametre_client.php","path"=>"client"],
 
     /*
      * Admin
@@ -39,6 +39,7 @@ $routes=[
     ["edit_commande"=>"edit_commande.php","path"=>"admin"],
     ["add_remise"=>"add_remise.php","path"=>"admin"],
     ["nos_fruits"=>"nos_fruits.php","path"=>"admin"],
-    ["validation_commande"=>"validation_commande.php","path"=>"admin"]
+    ["validation_commande"=>"validation_commande.php","path"=>"admin"],
+    ["parametre_admin"=>"parametre_admin.php","path"=>"admin"]
 ];
 return $routes ;

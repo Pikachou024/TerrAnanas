@@ -2,7 +2,9 @@
 
 $commandeModel = new CommandeModel();
 $francoModel = new FrancoModel();
+$franco = $francoModel->getFranco(1);
 
+$errors=[];
 /**
  * On vérifie qu'un utilisateur est bien connecté pour valider le panier
  * sinon on le redirige vers login
@@ -26,10 +28,10 @@ if(empty($_SESSION['panier'])){
  * On redirige sur la page "panier" si le montant du panier n'atteint pas le franco
  * TODO afficher un message pour prevenir que le montant n'atteint pas le franco
  */
-//if($montant<$francoModel->getFranco(1)){
-//    header('location:panier');
-//    exit;
-//}
+if(montantTotal($_SESSION['panier']) > $franco){
+    header('location:panier');
+    exit;
+}
 
 /**
  * Validation de la commande
@@ -66,9 +68,9 @@ if(!empty($_POST)){
 
 
 //    TODO s'il n'y a pas d'érreur, on vide le panier'
-//    unset($_SESSION['panier']);
+    unset($_SESSION['panier']);
 
 }
 
-header('location: article_client');
+header('location: articles_client');
 exit;

@@ -108,7 +108,7 @@ class CommandeModel extends AbstractModel
                 WHERE cmd.id_user = ?
                 AND sta.id_status = ?
                 AND date_livraison = ?
-                ORDER BY date_commande ASC ;";
+                ORDER BY date_commande ASC ";
 
         return $this->db->getAllResults($sql,[$idUser,$idStatus,$livraisonDuJour]);
     }

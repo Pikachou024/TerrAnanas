@@ -160,30 +160,30 @@ contennu-presentation-liste-image-lien{
 }
 
 .section-formulaire, .section-insciption{
-
     margin-right: auto;
     margin-left: auto;
     max-width: 600px;
 }
 
-
 @media screen AND (min-width:650px){
-    /*header{*/
-    /*    margin-bottom: 50px;*/
-    /*}*/
     main{
         margin:0 20% 0 20%;
     }
     footer div{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
 
     }
     .contenu-adresse, .contenu-navigation, .contenu-reseau{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-bottom: auto;
+        padding-top: 20px;
     }
     .contenu-presentation-liste-image{
         width: 150px;

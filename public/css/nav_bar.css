@@ -15,11 +15,16 @@ body{
 }
 .haut-navigation-liste{
     /*display: none;*/
-    text-align: center;
+    display:flex;
+    /*text-align: center;*/
     padding: 10px 0 10px 0;
     margin: 0;
     font-size: 18px;
 
+}
+.haut-navigation-liste  .iconli {
+    display:none;
+    text-align: start;
 }
 .haut-navigation-liste li{
     padding: 5px 0 5px 0;
@@ -28,6 +33,23 @@ body{
     margin-left: 5px;
 }
 
+
+@media screen and (max-width: 650px) {
+    .haut-navigation-liste li{
+        display:none;
+    }
+    .haut-navigation-liste .iconli{
+        display:block;
+    }
+    .responsively.haut-navigation-liste{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .responsively.haut-navigation-liste li{
+        display:block;
+    }
+
+}
 @media screen AND (min-width:450px){
 
 }

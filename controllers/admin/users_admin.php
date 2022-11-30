@@ -6,6 +6,7 @@ $status = $statusModel->getAllStatus();
 
 $userStatus = (!empty($_POST['userStatus'])) ? strip_tags(trim($_POST['userStatus'])) : 1;
 $users = $userModel ->getAllUsers($userStatus);
+
 //if(!empty($_POST['userStatus'])){
 //    $userStatus = $_POST['userStatus'];
 //}

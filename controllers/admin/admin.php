@@ -8,9 +8,9 @@ $dateDuJour = dateFr(date('D d M Y'));
 $commandeModel = new CommandeModel();
 $commandeDuJour = $commandeModel->getCommandeByDate(date('Y-m-d'),1);
 if(count($commandeDuJour)>5){
-    $commandeDuJour = array_chunk($commandeDuJour,5);
+    $commandeDuJour = array_slice($commandeDuJour,0,5);
 }
-
+dump($commandeDuJour);
 /*
  * Partie Inscription
  * affiche les utilisateurs en attentent de validation

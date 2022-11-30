@@ -1,6 +1,5 @@
 <?php
 
-//unset($_SESSION['panier']);
 $articleModel = new ArticleModel();
 $articles = $articleModel->getAllArticles();
 
@@ -28,12 +27,10 @@ if(!empty($_POST)){
     }
 }
 
-
-//session_destroy();
 if(isset($_SESSION['panier'])){
     dump($_SESSION['panier']);
 }
 
 $title = " Nos articles";
-$template = "article_client";
+$template = "articles_client";
 include '../templates/client/base_client.phtml';
