@@ -25,10 +25,10 @@
             </div>
             <div class="col-12 col-md-6">
                     <select class="form-control " name="status" id="status">
-                        <option value="<?= $commandes[0]['id_status'] ?>"><?= $commandes[0]['label_status'] ?></option>
-                        <?php foreach ($status as $statu): ?>
-                            <?php if($statu['id_status'] != $commandes[0]['id_status']): ?>
-                                <option value="<?=$statu['id_status'];?>"><?=$statu['label_status'];?></option>
+                        <option value="<?= $params['commandes'][0]['id_status'] ?>"><?= $params['commandes'][0]['label_status'] ?></option>
+                        <?php foreach ($params['status'] as $status): ?>
+                            <?php if($status['id_status'] != $params['commandes'][0]['id_status']): ?>
+                                <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
                             <?php endif ;?>
                         <?php endforeach; ?>
                     </select>
@@ -59,7 +59,7 @@
                 <?php if(empty($_SESSION['commandeByDate'])) :?>
                     <div class="container">
 
-                        <?php foreach ($commandes as $commande): ?>
+                        <?php foreach ($params['commandes'] as $commande): ?>
                             <div class="row pt-2 pb-2 commande" >
                                 <div class="col-2 text-center" ><?=$commande['id_commande'];?></div>
                                 <div class="col-4 col-sm-2 col-md-2 text-center" ><?=$commande['montant'] ." €" ;?> </div>
