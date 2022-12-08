@@ -11,31 +11,56 @@
         <div class="bannière-contact-img">
             <img src="http://localhost/ProjetCommande/public/images/enveloppe.png" alt="logo enveloppe">
         </div>
-
     </section>
 
+<?php if(!isset($params['idUser'])): ?>
     <section class="section-formulaire">
         <form action="contact" method="POST" class="">
             <div class="form-group">
                 <label for="">Votre email</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <input type="email" class="form-control" placeholder="name@example.com" name="email">
             </div>
             <div class="form-group">
                 <label for="">Sujet</label><br>
-                <select class="" name="sujet">
-                    <option value="">Votre demande concerne</option>
-                    <option value="">Mon inscription</option>
-                    <option value="">Une question sur nos produits</option>
+                <select class="" name="subject">
+                    <option value="null">Votre demande concerne</option>
+                    <option value="Mon inscription">Mon inscription</option>
+                    <option value="Une question sur nos produits">Une question sur nos produits</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Votre message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
             </div>
 
             <input type="submit" value="ENVOYER" class="button-submit">
         </form>
-
     </section>
+<?php else: ?>
+    <section class="section-formulaire">
+        <form action="contact" method="POST" class="">
+            <div class="form-group">
+                <label for="">Votre email</label>
+                <input type="email" class="form-control" value="<?=$params['email'];?>" name="email">
+            </div>
+            <div class="form-group">
+                <label for="">Sujet</label><br>
+                <select class="" name="subject">
+                    <option value="null">Votre demande concerne</option>
+                    <option value="Une commande">Une commande</option>
+                    <option value="Une livraison reçu">Une livraison reçu</option>
+                    <option value="une erreur de prix">une erreur de prix</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Votre message</label>
+                <textarea class="form-control"  rows="3" name="text"></textarea>
+            </div>
+
+            <input type="submit" value="ENVOYER" class="button-submit">
+        </form>
+    </section>
+
+<?php endif;?>
 
 </main>

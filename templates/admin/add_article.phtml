@@ -1,59 +1,3 @@
-<!---->
-<!--<form method="POST" action="--><?//='add_article';?><!--">-->
-<!--    <div class="form-group">-->
-<!--        <label for="label">Article</label>-->
-<!--        <input type="text" class="form-control" id="label" name="label" value="--><?//=$label;?><!--">-->
-<!--        --><?php //if (isset($error['label'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['label']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="origine">Origine</label>-->
-<!--        <input type="text" class="form-control" id="origine" name="origine" value="--><?//=$origine;?><!--">-->
-<!--        --><?php //if (isset($error['origine'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['origine']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="prix">Prix</label>-->
-<!--        <input type="text" class="form-control" id="prix" name="prix" value="--><?//=$prix;?><!--">-->
-<!--        --><?php //if (isset($error['prix'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['prix']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="poids">Quantité</label>-->
-<!--        <input type="text" class="form-control" id="quantité" name="poids" value="--><?//=$poids;?><!--">-->
-<!--        --><?php //if (isset($error['poids'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['poids']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="unite">Unite</label>-->
-<!--        <select class="form-control" name="unite" id="unite">-->
-<!--            <option value="0">Sélectionner une famille</option>-->
-<!--            --><?php //foreach ($unites as $unite): ?>
-<!--                <option value="--><?//=$unite['id_unite'];?><!--">--><?//=$unite['label_unite'];?><!--</option>-->
-<!--            --><?php //endforeach; ?>
-<!--        </select>-->
-<!--        --><?php //if (isset($error['unite'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['unite']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="famille">Famille</label>-->
-<!--        <select class="form-control" name="famille" id="famille">-->
-<!--            <option value="0">Sélectionner une famille</option>-->
-<!--            --><?php //foreach ($familles as $famille): ?>
-<!--                <option value="--><?//=$famille['id_famille'];?><!--">--><?//=$famille['label_famille'];?><!--</option>-->
-<!--            --><?php //endforeach; ?>
-<!--        </select>-->
-<!--        --><?php //if (isset($error['famille'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['famille']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--</form>-->
 
 
 <main class="p-0 pt-md-4 pb-md-4">
@@ -66,48 +10,61 @@
                         <div class="row mt-2">
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5 ">
                                 <label class="mb-1" for="label" > Article </label>
-                                <input type="text" class="form-control" id="label" name="label" value="<?=$label;?>">
+                                <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
+                                <?php if (isset($params['error']['label'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['label']);?></p>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="origine">Origine</label>
-                                <input type="text" class="form-control" id="origine" name="origine" value="<?=$origine;?>">
+                                <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
+                                <?php if (isset($params['error']['origine'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['origine']);?></p>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="prix">Prix</label>
-                                <input type="text" class="form-control" id="prix" name="prix" value="<?=$prix;?>">
+                                <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix'];?>">
+                                <?php if (isset($params['error']['prix'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['prix']);?></p>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="poids">Poids</label>
-                                <input type="text" class="form-control" id="quantité" name="poids" value="<?=$poids;?>">
+                                <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
+                                <?php if (isset($params['error']['poids'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['poids']);?></p>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="unite">Unite</label>
                                 <select class="form-control" name="unite" id="unite">
-                                    <option value="0">Sélectionner une famille</option>
-                                    <?php foreach ($unites as $unite): ?>
+                                    <option value="0">Sélectionner une unitée</option>
+                                    <?php foreach ($params['unites'] as $unite): ?>
                                         <option value="<?=$unite['id_unite'];?>"><?=$unite['label_unite'];?></option>
                                     <?php endforeach; ?>
                                 </select>
-                                <?php if (isset($error['unite'])): ?>
-                                    <p class="error"><?=htmlspecialchars($error['unite']);?></p>
+                                <?php if (isset($params['error']['unite'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['unite']);?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="famille">Famille</label>
                                 <select class="form-control" name="famille" id="famille">
                                     <option value="0">Sélectionner une famille</option>
-                                    <?php foreach ($familles as $famille): ?>
+                                    <?php foreach ($params['familles'] as $famille): ?>
                                         <option value="<?=$famille['id_famille'];?>"><?=$famille['label_famille'];?></option>
                                     <?php endforeach; ?>
                                 </select>
+                                <?php if (isset($params['error']['famille'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['famille']);?></p>
+                                <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6 offset-md-3 text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="famille">Disponibilité</label>
                                 <select class="form-control" name="status" id="status">
-                                    <option value="0">Sélectionner une disponibilité</option>
-                                    <?php foreach ($status as $statu): ?>
-                                        <option value="<?=$statu['id_statusArticle'];?>"><?=$statu['label_statusArticle'];?></option>
-                                    <?php endforeach; ?>
+                                    <option value="1"><?= translateStatusArticle(1) ?></option>
+                                    <option value="0"><?= translateStatusArticle(0) ?></option>
                                 </select>
                             </div>
                         </div>

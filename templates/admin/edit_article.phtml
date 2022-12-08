@@ -3,32 +3,32 @@
     <div class="container border rounded-2 tableColor-green ">
         <div class="row">
             <div class="col-12 p-0">
-                <h3 class="text-center text-custom-color-red mt-2 mb-3"> Modification : <?=$label;?> </h3>
-                <form method="POST" action="<?='edit_article?id='.$article['id_article'];?>">
+                <h3 class="text-center text-custom-color-red mt-2 mb-3"> Modification : <?=$params['label'];?> </h3>
+                <form method="POST" action="<?='edit_article?id='.$params['article']['id_article'];?>">
                     <div class="container">
                         <div class="row mt-2">
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5 ">
                                 <label class="mb-1" for="label" > Article </label>
-                                <input type="text" class="form-control" id="label" name="label" value="<?=$label;?>">
+                                <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
                             </div>
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="origine">Origine</label>
-                                <input type="text" class="form-control" id="origine" name="origine" value="<?=$origine;?>">
+                                <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="prix">Prix</label>
-                                <input type="text" class="form-control" id="prix" name="prix" value="<?=$prix;?>">
+                                <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix']/100;?>">
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="poids">Poids</label>
-                                <input type="text" class="form-control" id="quantité" name="poids" value="<?=$poids;?>">
+                                <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="unite">Unite</label>
                                 <select class="form-control" name="unite" id="unite">
-                                    <option value="<?=$article['id_unite'];?>"><?=$article['label_unite'];?></option>
-                                    <?php foreach ($unites as $unite): ?>
-                                        <?php if($unite['id_unite']!=$article['id_unite']): ?>
+                                    <option value="<?=$params['article']['id_unite'];?>"><?=$params['article']['label_unite'];?></option>
+                                    <?php foreach ($params['unites'] as $unite): ?>
+                                        <?php if($unite['id_unite']!=$params['article']['id_unite']): ?>
                                             <option value="<?=$unite['id_unite'];?>"><?=$unite['label_unite'];?></option>
                                         <?php endif ;?>
                                     <?php endforeach; ?>
@@ -40,9 +40,9 @@
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="famille">Famille</label>
                                 <select class="form-control" name="famille" id="famille">
-                                    <option value="<?=$article['id_famille'];?>"><?=$article['label_famille'];?></option>
-                                    <?php foreach ($familles as $famille): ?>
-                                        <?php if($famille['id_famille']!=$article['id_famille']): ?>
+                                    <option value="<?=$params['article']['id_famille'];?>"><?=$params['article']['label_famille'];?></option>
+                                    <?php foreach ($params['familles'] as $famille): ?>
+                                        <?php if($famille['id_famille']!=$params['article']['id_famille']): ?>
                                             <option value="<?=$famille['id_famille'];?>"><?=$famille['label_famille'];?></option>
                                         <?php endif ;?>
                                     <?php endforeach; ?>
@@ -51,12 +51,14 @@
                             <div class="col-12 col-md-6 offset-md-3 text-center mb-3 mb-md-5">
                                 <label class="mb-1" for="famille">Disponibilité</label>
                                 <select class="form-control" name="status" id="status">
-                                    <option value="<?=$article['id_statusArticle'];?>"><?=$article['label_statusArticle'];?></option>
-                                    <?php foreach ($status as $statu): ?>
-                                        <?php if($statu['id_statusArticle']!=$article['id_statusArticle']): ?>
-                                            <option value="<?=$statu['id_statusArticle'];?>"><?=$statu['label_statusArticle'];?></option>
+                                    <option value="<?=$params['status'];?>"><?=translateStatusArticle($params['status']);?></option>
+<!--                                    --><?php //foreach ($status as $statu): ?>
+                                        <?php if($params['status']== 0 ): ?>
+                                            <option value="1"><?=translateStatusArticle(1);?></option>
+                                        <?php else : ?>
+                                            <option value="0"><?=translateStatusArticle(0);?></option>
                                         <?php endif ;?>
-                                    <?php endforeach; ?>
+<!--                                    --><?php //endforeach; ?>
                                 </select>
                             </div>
                         </div>

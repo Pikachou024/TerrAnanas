@@ -1,5 +1,10 @@
 <?php
 
-$title ="TerrAnanas - Qui-sommes nous ?";
-$template = "qui_sommes_nous";
-include '../templates/utilisateur/base.phtml';
+class Saisons extends AbstractController
+{
+    function saisons(){
+        $this->params=['title'=>"Calendrier des fruits et légumes"];
+        $this->render($this->file,$this->page,$this->base,$this->params);
+    }
+
+}

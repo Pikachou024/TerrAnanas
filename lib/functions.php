@@ -3,6 +3,13 @@
 function getURL($url){
     return str_replace(PATH_ROOT2,'',$url);
 }
+/*
+ * inclusion des Classe
+ */
+function autoloadController($class_name,$path): void
+{
+    include '../controllers/'.$path.'/'.ucfirst($class_name) . '.php';
+}
 
 function checkEmail($email,$users):bool{
     foreach ($users as $user){
@@ -18,6 +25,7 @@ function checkUser(string $email, string $password)
     // On récupère l'utilisateur à partir de son email
     $userModel = new UserModel();
     $user = $userModel->getUserByEmail($email);
+
     // Si on trouve bien un utilisateur...
     if ($user) {
         // On vérifie son mot de passe
@@ -30,6 +38,8 @@ function checkUser(string $email, string $password)
     // Si l'email ou le mot de passe est incorrect...
     return false;
 }
+
+
 
 /**
  * Recherche
@@ -64,6 +74,15 @@ function searchUser(string $user, array $listeUser): array
  *
  * Ajout, modification ou suppression d'article
  */
+function translateStatusArticle(int $status): string
+{
+    if($status == 1){
+        return "Stock";
+    }
+    else{
+        return "Rupture";
+    }
+}
 
 function creationPanier() : bool
 {
@@ -94,7 +113,8 @@ function checkArticle($idArticle,$quantite) :bool {
     return false;
 }
 
-function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$unite){
+function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$unite): void
+{
 //    //Si le panier existe
     if (creationPanier()) {
       /* On vérifie si l'article est présent dans le panier
@@ -178,7 +198,7 @@ function montantTotal(array $listeArticle): float|int
     $totalPanier = 0;
 
     for($i=0 ; $i < count($listeArticle) ; $i++){
-        $totalArticle = ($listeArticle[$i]["prix"] * $listeArticle[$i]["poids"])*$listeArticle[$i]["quantite"];
+        $totalArticle = ((float)$listeArticle[$i]["prix"] * $listeArticle[$i]["poids"])*$listeArticle[$i]["quantite"];
         $totalPanier += $totalArticle;
     }
     return $totalPanier;
@@ -272,7 +292,7 @@ function registerUser(string $id,string $society, string $email, $role): void
     ];
 }
 
-function logout(){
+function disconnect(){
     // Si l'utilisateur est connecté...
     if (isConnected()) {
         // On efface nos données en session

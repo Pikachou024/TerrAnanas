@@ -8,11 +8,11 @@
                     <div class="row">
                         <div class="col-12  justify-content-center">
                             <h4 class="text-center">Sélectionner une date de livraison</h4>
-                            <form method="post" action="<?='commande';?>" id="form-commande" class="d-flex flex-row justify-content-center">
+                            <form method="post" action="<?='validation_commande';?>" id="form-commande" class="d-flex flex-row justify-content-center">
 
                                 <select class="form-control w-75" name="dateLivraison" id="dateLivraison">
-                                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')). ' + 1 days'))  ?>"><?= $dateLivraison1 ;?></option>
-                                    <option value="<?= date('y-m-d', strtotime(($date->format('y-m-d')) . ' + 2 days')) ?>"><?= $dateLivraison2 ;?></option>
+                                    <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')). ' + 1 days'))  ?>"><?= $params['dateLivraison1'] ;?></option>
+                                    <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>"><?= $params['dateLivraison2'] ;?></option>
                                 </select>
                                 <div class="text-center justify-content-end">
                                     <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
@@ -22,7 +22,7 @@
                 </div>
             <?php endif;?>
 
-            <?php if(isset($articles)): ?>
+            <?php if(isset($params['articles'])): ?>
             <div class="container p-0">
                 <div class="row">
                     <div class="col-12 tableColor-green pt-2 pb-3">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                 <div class="container p-0">
-            <?php foreach ($articles as $article): ?>
+            <?php foreach ($params['articles'] as $article): ?>
                         <div class="row commande">
                             <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
                             <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
@@ -54,10 +54,10 @@
 
                 </form>
 
-            <?php elseif(isset($message)):?>
+            <?php elseif(isset($params['message'])):?>
                 <div class="container mt-5 mb-5">
                     <div class="row">
-                        <div class="col-12 text-center"><h4><?=$message;?></h4> </div>
+                        <div class="col-12 text-center"><h4><?=$params['message'];?></h4> </div>
                     </div>
                 </div>
 

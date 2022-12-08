@@ -26,12 +26,7 @@
             <div class="col-2 col-md-4 text-center">
                 <a href="add_article" > <img src="http://localhost/ProjetCommande/public/images/add_icon.png" class="img-responsive mw-100" > <span class="d-none d-md-block">Ajouter un article</span></a>
             </div>
-<!--            <div class="col-4">-->
-<!--                <form method="post" action="articles" id="submit-franco">-->
-<!--                    <input type="text" name="franco" placeholder="--><?//=$franco['franco'];?><!--">-->
-<!--                    <button type="submit" class="button-franco">ok</button>-->
-<!--                </form>-->
-<!--            </div>-->
+
         </div>
     </div>
 
@@ -55,14 +50,14 @@
             <?php if(empty($_SESSION['articleSearch'])) :?>
                 <div class="container-fluide bg-light ">
                     <h3 class="text-center m-0 p-2">Légumes</h3>
-                        <?php foreach ($articles as $article): ?>
+                        <?php foreach ($params['articles'] as $article): ?>
                             <?php if($article['label_famille']=="Légume"):?>
                                 <div class="row commande pt-2 pb-2 m-0">
                                     <div class="col-2 text-center"><?= $article["label_article"];?> </div>
                                     <div class="col-4 col-sm-3 col-md-2 text-center"><?= $article["origine"];?> </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
+                                    <div class="col-4 col-sm-3 col-md-2 text-center"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
                                     <div class="col-2 d-none d-sm-block text-center"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
-                                    <div class="col-2 d-none d-md-block text-center"><?= $article["label_statusArticle"];?> </div>
+                                    <div class="col-2 d-none d-md-block text-center"><?= translateStatusArticle($article["status"]);?> </div>
                                     <div class="col-1 d-none d-md-block text-center"> <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
                                     <div class="col-1 d-none d-md-block text-center"> <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
                                     <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>
@@ -73,14 +68,14 @@
 
                 <div class="container-fluide bg-light">
                     <h3 class="text-center m-0 p-2 " >Fruits</h3>
-                        <?php foreach ($articles as $article): ?>
+                        <?php foreach ($params['articles'] as $article): ?>
                             <?php if($article['label_famille']=="Fruit"):?>
                                 <div class="row commande pt-2 pb-2 m-0">
                                     <div class="col-2 text-center"><?= $article["label_article"];?> </div>
                                     <div class="col-4 col-sm-3 col-md-2 text-center"><?= $article["origine"];?> </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
+                                    <div class="col-4 col-sm-3 col-md-2 text-center"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
                                     <div class="col-2 d-none d-sm-block text-center"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
-                                    <div class="col-2 d-none d-md-block text-center"><?= $article["label_statusArticle"];?> </div>
+                                    <div class="col-2 d-none d-md-block text-center"><?= translateStatusArticle($article["status"]);?> </div>
                                     <div class="col-1 d-none d-md-block text-center"> <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
                                     <div class="col-1 d-none d-md-block text-center"> <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
                                     <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>
@@ -95,9 +90,9 @@
                         <div class="row commande pt-2 pb-2 m-0">
                             <div class="col-2 text-center"><?= $article["label_article"];?> </div>
                             <div class="col-4 col-sm-3 col-md-2 text-center"><?= $article["origine"];?> </div>
-                            <div class="col-4 col-sm-3 col-md-2 text-center"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
+                            <div class="col-4 col-sm-3 col-md-2 text-center"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
                             <div class="col-2 d-none d-sm-block text-center"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
-                            <div class="col-2 d-none d-md-block text-center"><?= $article["label_statusArticle"];?> </div>
+                            <div class="col-2 d-none d-md-block text-center"><?= translateStatusArticle($article["status"]);?> </div>
                             <div class="col-1 d-none d-md-block text-center"> <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
                             <div class="col-1 d-none d-md-block text-center"> <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
                             <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>

@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 
-    <title><?=$title;?></title>
+    <title><?=$params['title'];?></title>
 </head>
 
 <body>
@@ -64,7 +64,7 @@
 </header>
 
 
-<?php include '../templates/admin/' . $template . '.phtml'; ?>
+<?php include $template; ?>
 
 
 <!--Chargement des scripts pour Bootstrap-->

@@ -1,26 +1,7 @@
 <?php
 
-class Client extends AbstractController
+class ParametreClient extends AbstractController
 {
-    function accueil(){
-        $dateDuJour = dateFr(date('D d M Y'));
-        $idUser = intval(getUserId());
-        $commandeModel = new CommandeModel();
-        $commandeEnAttente = $commandeModel->getCommandeByClient($idUser,1);
-        if(count($commandeEnAttente)>5){
-            $commandeEnAttente = array_slice($commandeEnAttente,0,5);
-        }
-        $livraisonDuJour = $commandeModel->getCommandeByLivraison($idUser,1,date('Y-m-d'));
-        $params=[
-            'dateDuJour'=>$dateDuJour,
-            'idUser'=>$idUser,
-            'commandeEnAttente'=>$commandeEnAttente,
-            'livraisonDuJour'=>$livraisonDuJour,
-            'title' => "TerrAnanas - Gérer vos commandes en quelques click"
-            ];
-        $this->render($this->file, $this->page, $this->base, $params);
-    }
-
     function parametre(){
         $params=[];
         $roleUser = getUserRole();
@@ -84,8 +65,7 @@ class Client extends AbstractController
             'contact' => $contact,
             'phone' => $phone,
             'email' => $email,
-            'error'=>$error,
-            'title'=>"Paramètre"
+            'error'=>$error
         ];
         $this->render($this->file, $this->page, $this->base, $params);
     }

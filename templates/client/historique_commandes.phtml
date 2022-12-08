@@ -1,7 +1,7 @@
 <main>
 
     <div class="container mt-3 mb-3">
-        <form method="post" action="commande_client" id="form-commande">
+        <form method="post" action="historique_commandes" id="form-commande">
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="form-group">
@@ -25,7 +25,10 @@
             </div>
             <div class="col-12 col-md-6">
                     <select class="form-control " name="status" id="status">
-                        <option value="<?= $params['commandes'][0]['id_status'] ?>"><?= $params['commandes'][0]['label_status'] ?></option>
+                        <?php if(!empty($params['commandes'])):?>
+                            <option value="<?=$params['commandes'][0]['id_status'] ?>"><?= $params['commandes'][0]['label_status']?></option>
+                        <?php endif ;?>
+
                         <?php foreach ($params['status'] as $status): ?>
                             <?php if($status['id_status'] != $params['commandes'][0]['id_status']): ?>
                                 <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
@@ -48,9 +51,8 @@
                     <div class="row pt-2 pb-2">
                         <div class="col-2 text-center"> <p>Commande</p> </div>
                         <div class="col-4 col-sm-2 col-md-2 text-center"> <p>Montant</p> </div>
-                        <div class="col-2 d-none col-md-2 d-md-block text-center"> <p>Remise</p> </div>
-                        <div class="col-3 d-none d-sm-block col-md-2 text-center"> <p>Date commande</p> </div>
-                        <div class="col-4 col-sm-3 col-md-2 text-center"> <p>Date livraison</p> </div>
+                        <div class="col-4 d-none d-sm-block col-md-3 text-center"> <p>Date commande</p> </div>
+                        <div class="col-5 col-sm-4 col-md-3 text-center"> <p>Date livraison</p> </div>
                         <div class="col-2  text-center"> <p>Détails</p> </div>
 
                     </div>
@@ -62,10 +64,10 @@
                         <?php foreach ($params['commandes'] as $commande): ?>
                             <div class="row pt-2 pb-2 commande" >
                                 <div class="col-2 text-center" ><?=$commande['id_commande'];?></div>
-                                <div class="col-4 col-sm-2 col-md-2 text-center" ><?=$commande['montant'] ." €" ;?> </div>
-                                <div class="col-2 d-none col-md-2 d-md-block text-center"><?=$commande['montant_remise'];?> </div>
-                                <div class="col-3 d-none d-sm-block col-md-2 text-center" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
-                                <div class="col-4 col-sm-3 col-md-2 text-center" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
+                                <div class="col-4 col-sm-2 col-md-2 text-center" ><?=($commande['montant']/100) ." €" ;?> </div>
+<!--                                <div class="col-2 d-none d-md-block text-center">--><?//=$commande['montant_remise'];?><!-- </div>-->
+                                <div class="col-4 d-none d-sm-block col-md-3 text-center" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
+                                <div class="col-5 col-sm-4 col-md-3 text-center" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
                                 <div class="col-2  text-center"> <i class="fa-solid fa-eye"></i> </div>
                             </div>
                         <?php endforeach; ?>
@@ -76,9 +78,9 @@
                                 <div class="row pt-2 pb-2 commande" >
                                     <div class="col-2 text-center" ><?=$commande['id_commande'];?></div>
                                     <div class="col-4 col-sm-2 col-md-2 text-center" ><?=$commande['montant'] ." €" ;?> </div>
-                                    <div class="col-2 d-none col-md-2 d-md-block text-center"><?=$commande['montant_remise'];?> </div>
-                                    <div class="col-3 d-none d-sm-block col-md-2 text-center" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
-                                    <div class="col-4 col-sm-3 col-md-2 text-center" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
+<!--                                    <div class="col-2 d-none col-md-2 d-md-block text-center">--><?//=$commande['montant_remise'];?><!-- </div>-->
+                                    <div class="col-4 d-none d-sm-block col-md-3 text-center" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
+                                    <div class="col-5 col-sm-4 col-md-3 text-center" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
                                     <div class="col-2  text-center"> <i class="fa-solid fa-eye"></i> </div>
                                 </div>
                         <?php endforeach; ?>

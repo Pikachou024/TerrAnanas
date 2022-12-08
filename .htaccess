@@ -1,6 +1,6 @@
 RewriteEngine on
 
-RewriteBase /ProjetCommande/
+RewriteBase /TerrAnanas/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ public/index.php [L,QSA]

@@ -7,7 +7,6 @@ class ArticleModel extends AbstractModel
                 FROM        article art
                 INNER JOIN  famille fam ON fam.id_famille = art.id_famille
                 INNER JOIN  unite uni ON uni.id_unite = art.id_unite
-                INNER JOIN  statusArticle sart ON sart.id_statusArticle = art.id_statusArticle 
                 ORDER BY    label_article";
 
         return $this-> db -> getAllResults($sql);
@@ -18,14 +17,13 @@ class ArticleModel extends AbstractModel
                 FROM        article art
                 INNER JOIN  famille fam ON fam.id_famille = art.id_famille
                 INNER JOIN  unite uni ON uni.id_unite = art.id_unite
-                INNER JOIN  statusArticle sart ON sart.id_statusArticle = art.id_statusArticle
                 WHERE   id_article = ?";
 
         return $this-> db -> getOneResult($sql,[$id]);
     }
 
     function addArticle($label,$poids,$unite,$prix,$origine,$famille,$status){
-        $sql ="INSERT INTO article(label_article,poids,id_unite,prix,origine,id_famille,id_statusArticle)
+        $sql ="INSERT INTO article(label_article,poids,id_unite,prix,origine,id_famille,status)
                VALUES (?,?,?,?,?,?,?)";
 
         return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$status]);
@@ -33,7 +31,7 @@ class ArticleModel extends AbstractModel
 
     function editArticle($label,$poids,$unite,$prix,$origine,$famille,$status,$id){
         $sql = "UPDATE      article
-                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , id_statusArticle = ?
+                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , status = ?
                 where       id_article = ?";
 
         return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$status,$id]);

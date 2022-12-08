@@ -1,26 +1,19 @@
 <main>
-
-
-    <h3 class="text-center p-0 m-0 text-custom-color-red"><?=$dateDuJour?></h3>
-
-
+    <h3 class="text-center p-0 m-0 text-custom-color-red"><?=$params['dateDuJour']?></h3>
     <div class="container">
         <div class="row">
-
             <div class="col-12  ml-lg-auto mr-lg-3 p-0 mt-5">
-
                 <div class="col-12 mb-3 pb-3 pt-2  bg-light ">
                     <h4 class=" text-center p-2 mb-4 ">Livraison du jour</h4>
-                    <?php foreach ($livraisonDuJour as $livraison): ?>
+                    <?php foreach ($params['livraisonDuJour'] as $livraison): ?>
                         <div class="row commande">
                             <div class="col-4"><p class=""><?=date('d/m/y', strtotime($livraison['date_commande']));?></p> </div>
                             <div class="col-4"><p><?=date('d/m/y', strtotime($livraison['date_livraison'])) ;?></p> </div>
-                            <div class="col-3"><p><?=$livraison['montant'] ." €" ;?></p> </div>
+                            <div class="col-3"><p><?=($livraison['montant']/100) ." €" ;?></p> </div>
                             <div class="col-1 p-1"><a href="#">Voir</a> </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
-
                 <div class="col-12 mb-3 pb-3 pt-2  bg-light ">
                     <h4 class=" text-center p-2 mb-4 ">Commande en attente</h4>
                     <div class="row ">
@@ -29,18 +22,16 @@
                         <div class="col-3"><p>Montant</p> </div>
                         <div class="col-1 p-1"> </div>
                     </div>
-                    <?php foreach ($commandeEnAttente as $commande): ?>
+                    <?php foreach ($params['commandeEnAttente'] as $commande): ?>
                         <div class="row commande">
                             <div class="col-4"><p class=""><?=date('d/m/y', strtotime($commande['date_commande']));?></p> </div>
                             <div class="col-4"><p><?=date('d/m/y', strtotime($commande['date_livraison'])) ;?></p> </div>
-                            <div class="col-3"><p><?=$commande['montant'] ." €" ;?></p> </div>
+                            <div class="col-3"><p><?=($commande['montant']/100) ." €" ;?></p> </div>
                             <div class="col-1 p-1"><a href="#">Voir</a> </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
-
             </div>
-
 <!--            <div class="col-12 col-lg-3  mt-lg-5 ml-lg-2 mr-lg-3 p-0">-->
 <!--                <div class="row d-flex justify-content-around mr-0 ml-0">-->
 <!--                    <div class="col-5 col-lg-10  mb-3 bg-success ">-->
@@ -63,7 +54,6 @@
 <!--                </div>-->
 <!---->
 <!--            </div>-->
-
         </div>
     </div>
 </main>

@@ -11,7 +11,7 @@
                                         <input type="search" class="form-control" name="articleSearch" placeholder="Rechercher un article">
 
                                     <?php else : ?>
-                                        <input type="search" class="form-control" name="articleSearch" value="<?= $articleSearch;?>">
+                                        <input type="search" class="form-control" name="articleSearch" value="<?= $params['articleSearch'];?>">
                                     <?php endif;?>
 
                                     <span class="input-group-btn">
@@ -134,9 +134,9 @@
                     <form method="post" action="<?='articles_client';?>">
                         <div class="container p-0">
                             <h3 class="text-center">Légumes</h3>
-                    <?php foreach ($articles as $article): ?>
-                        <?php if($article['label_famille']=="Légume"):?>
-                            <?php if($article['label_statusArticle']=="stock"):?>
+                    <?php foreach ($params['articles'] as $article): ?>
+                        <?php if($article['id_famille']==2):?>
+                            <?php if($article['status']==1):?>
 
                                 <div class="row commande">
                                     <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
@@ -144,7 +144,7 @@
                                     <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
                                     <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
                                     <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
+                                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= ($article["prix"])/100;?>"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
                                     <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
                                     <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
                                 </div>
@@ -155,9 +155,9 @@
                         </div>
                         <div class="container p-0">
                         <h3 class="text-center">Fruits</h3>
-                        <?php foreach ($articles as $article): ?>
-                            <?php if($article['label_famille']=="Fruit"):?>
-                                <?php if($article['label_statusArticle']=="stock"):?>
+                        <?php foreach ($params['articles'] as $article): ?>
+                            <?php if($article['id_famille']==1):?>
+                                <?php if($article['status']==1):?>
 
                                     <div class="row commande">
                                         <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
@@ -165,7 +165,7 @@
                                         <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
                                         <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
                                         <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                        <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
+                                        <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
                                         <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
                                         <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
                                     </div>
