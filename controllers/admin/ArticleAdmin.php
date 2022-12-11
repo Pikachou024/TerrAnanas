@@ -17,6 +17,7 @@ class ArticleAdmin extends AbstractController
         if(!empty($_POST['articleSearch'])){
             $articleSearch = $_POST['articleSearch'];
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+            $params['articleSearch']=$articleSearch;
 
         }else{
             unset( $_SESSION['articleSearch']);
@@ -92,8 +93,8 @@ class ArticleAdmin extends AbstractController
     }
 
     function editArticle(){
-        $role = getUserRole();
-
+//        $role = getUserRole();
+//
 //        if($role != "admin") {
 //            http_response_code(403);
 //            echo("Désolé la page n'existe pas");
@@ -153,5 +154,18 @@ class ArticleAdmin extends AbstractController
         $this->render($this->file, $this->page, $this->base, $params);
     }
 
+    function deleteArticle(){
+        $role = getUserRole();
+        if($role != "admin") {
+            http_response_code(403);
+            echo("Désolé la page n'existe pas");
+            exit;
+        }
+        $idArticle = $_GET['id'];
+        $articleModel = new ArticleModel();
+        $articleModel->deleteArticle($idArticle);
 
+        header('location: articles_admin');
+        exit;
+    }
 }

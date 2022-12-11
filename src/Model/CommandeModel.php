@@ -16,12 +16,11 @@ class CommandeModel extends AbstractModel
         return $this -> db-> executeQuerry($sql,[$idCommande,$idArticle,$prix,$quantite]);
     }
 
-    function modifCommande($dateLivraison,$idClient,$idArticle,$quantité,$montant,$statutCommande){
-//        TODO
-    }
+    function deleteCommande($idCommande){
+        $sql = " DELETE FROM commande
+                 WHERE id_commande = ?";
 
-    function deleteCommande($dateCommande,$idClient){
-//        TODO
+        return $this->db->executeQuerry($sql,[$idCommande]);
     }
 
     function lastCommandeId($idUser){
@@ -126,12 +125,13 @@ class CommandeModel extends AbstractModel
         return $this->db->getAllResults($sql,[$date,$status]);
     }
 
-    function editCommandeDetail($idArticle,$prix,$quantite){
+    function editCommandeDetail($idCommande,$idArticle,$prix,$quantite){
         $sql = "UPDATE detailscommande 
                 SET prix = ? , quantite = ?
-                WHERE id_article = ?";
+                WHERE id_article = ?
+                AND id_commande = ?";
 
-        return $this->db->executeQuerry($sql,[$prix,$quantite,$idArticle]);
+        return $this->db->executeQuerry($sql,[$prix,$quantite,$idArticle,$idCommande]);
     }
 
     function validCommande($status,$idCommande){
@@ -142,7 +142,7 @@ class CommandeModel extends AbstractModel
         return $this->db->executeQuerry($sql,[$status,$idCommande]);
     }
 
-    function editMontantCommande(float $montantCommande, int $idCommande){
+    function editMontantCommande(int $montantCommande, int $idCommande){
         $sql = "UPDATE commande 
                 SET montant=?
                 WHERE id_commande = ?";

@@ -2,40 +2,45 @@
     <div class="container mt-3 mb-3">
 <!--        <div class="row">-->
 <!--            <div class="col-10 col-md-12">-->
-                <form method="POST" action ="users_admin" class="navbar-form navbar-right" role="search">
-                    <div class="row">
-                        <div class="col-12 col-md-5">
-                            <div class="input-group w-75">
-                                <?php if(empty($_SESSION['userSearch'])) :?>
-                                    <input type="search" class="form-control" name="userSearch" placeholder="Rechercher un client">
-
-                                <?php else : ?>
-                                    <input type="search" class="form-control" name="userSearch" value="<?= $userSearch;?>">
-                                <?php endif;?>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-5">
-                            <select class="form-control w-75" name="userStatus" id="status">
-                                <option value="<?= $users[0]['id_status'] ?>"><?= $users[0]['label_status'] ?></option>
-                                <?php foreach ($status as $statu): ?>
-                                    <?php if($statu['id_status'] != $users[0]['id_status']): ?>
-                                        <option value="<?=$statu['id_status'];?>"><?=$statu['label_status'];?></option>
-                                    <?php endif ;?>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="col-12 col-md-2">
-                            <span class="input-group-btn">
-                            <button type="submit" class="btn btn-default bg-custom-red" >
-                                Valider
-                            <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                            </span>
-                        </div>
-
-                    </div>
-                </form>
+        <?php if(isset($params['flash'])) : ?>
+            <div class="alert alert-danger" role="alert">
+                <?= $params['flash'] ;?>
             </div>
+        <?php endif;?>
+        <form method="POST" action ="users_admin" class="navbar-form navbar-right" role="search">
+            <div class="row">
+                <div class="col-12 col-md-5">
+                    <div class="input-group w-75">
+                        <?php if(empty($_SESSION['userSearch'])) :?>
+                            <input type="search" class="form-control" name="userSearch" placeholder="Rechercher un client">
+
+                        <?php else : ?>
+                            <input type="search" class="form-control" name="userSearch" value="<?= $params['userSearch'];?>">
+                        <?php endif;?>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5">
+                    <select class="form-control w-75" name="userStatus" id="status">
+                        <option value="<?= $params['users'][0]['id_status'] ?>"><?= $params['users'][0]['label_status'] ?></option>
+                        <?php foreach ($params['status'] as $status): ?>
+                            <?php if($status['id_status'] != $params['users'][0]['id_status']): ?>
+                                <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
+                            <?php endif ;?>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="col-12 col-md-2">
+                    <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default bg-custom-red" >
+                        Valider
+                    <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+
+            </div>
+        </form>
+    </div>
 <!--            <div class="col-2  text-center">-->
 <!--                <a href="inscription" > <img src="http://localhost/ProjetCommande/public/images/add_icon.png" class="img-responsive mw-100" > <span class="d-none d-md-block">Ajouter un client</span></a>-->
 <!--            </div>-->
@@ -92,7 +97,7 @@
 <!--                    --><?php //endforeach; ?>
 
                     <div class="container-fluide bg-light ">
-                        <?php foreach ($users as $user): ?>
+                        <?php foreach ($params['users'] as $user): ?>
                                 <div class="row pt-2 pb-2 commande m-0">
                                     <div class="col-1 text-center"><?= $user['label_status'];?> </div>
                                     <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["society"];?>  </div>

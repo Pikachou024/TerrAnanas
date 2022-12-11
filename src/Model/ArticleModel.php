@@ -42,5 +42,5 @@ class ArticleModel extends AbstractModel
                 WHERE id_article = ?";
 
         return $this->db->executeQuerry($sql,[$id]);
-}
+    }
 }

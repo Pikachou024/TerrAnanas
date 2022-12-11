@@ -115,13 +115,13 @@ $routes=[
         "base_template"=>"base_admin"
     ],
     "users_admin" =>[
-        "controller"=>"UserAdmin",
+        "controller"=>"UsersAdmin",
         "action"=>"users",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
     "edit_user" =>[
-        "controller"=>"UserAdmin",
+        "controller"=>"UsersAdmin",
         "action"=>"editUser",
         'path'=>"admin",
         "base_template"=>"base_admin"
@@ -132,14 +132,14 @@ $routes=[
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
-    "commande_admin" =>[
-        "controller"=>"CommandeAdmin",
+    "commandes_admin" =>[
+        "controller"=>"CommandesAdmin",
         "action"=>"commandes",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
     "commande_details" =>[
-        "controller"=>"CommandeAdmin",
+        "controller"=>"CommandesAdmin",
         "action"=>"commandeDetails",
         'path'=>"admin",
         "base_template"=>"base_admin"
@@ -147,6 +147,12 @@ $routes=[
     "edit_commande" =>[
         "controller"=>"CommandeAdmin",
         "action"=>"editCommande",
+        'path'=>"admin",
+        "base_template"=>"base_admin"
+    ],
+    "delete_commande" =>[
+        "controller"=>"CommandesAdmin",
+        "action"=>"deleteCommande",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],

@@ -198,7 +198,7 @@ function montantTotal(array $listeArticle): float|int
     $totalPanier = 0;
 
     for($i=0 ; $i < count($listeArticle) ; $i++){
-        $totalArticle = ((float)$listeArticle[$i]["prix"] * $listeArticle[$i]["poids"])*$listeArticle[$i]["quantite"];
+        $totalArticle = ($listeArticle[$i]["prix"] * $listeArticle[$i]["poids"])*$listeArticle[$i]["quantite"];
         $totalPanier += $totalArticle;
     }
     return $totalPanier;
