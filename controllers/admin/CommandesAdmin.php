@@ -79,7 +79,7 @@ class CommandesAdmin extends AbstractController
             "dateLivraison"=>$dateLivraison,
             "montantCommande"=>$montantCommande,
             "client"=>$client,
-            "title"=>"ADmin commande"
+            "title"=>"Admin - commande"
         ];
         $this->render($this->file, $this->page, $this->base, $params);
     }
@@ -93,7 +93,6 @@ class CommandesAdmin extends AbstractController
 //        }
 
         $idCommande = intval($_GET['id']);
-        var_dump($idCommande);
         $commandeModel = new CommandeModel();
         $commandeModel->deleteCommande($idCommande);
 

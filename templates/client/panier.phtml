@@ -1,8 +1,7 @@
-<main>
+<main class="mt-5">
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <h2 class="text-center mt-2 text-custom-color-red"> Votre panier</h2>
+        <div class="col-12 p-0">
             <?php if(!empty($_SESSION['panier'])) :?>
                 <div class="container">
                     <div class="row">
@@ -15,7 +14,7 @@
                                     <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>"><?= $params['dateLivraison2'] ;?></option>
                                 </select>
                                 <div class="text-center justify-content-end">
-                                    <button type="submit" class="btn bg-custom-red mb-2 ">Valider</button>
+                                    <button type="submit" class="btn bg-red text-light mb-2 ">Valider</button>
                                 </div>
                         </div>
                     </div>
@@ -23,23 +22,23 @@
             <?php endif;?>
 
             <?php if(isset($params['articles'])): ?>
-            <div class="container p-0">
+                <div class="container p-1">
+
                 <div class="row">
-                    <div class="col-12 tableColor-green pt-2 pb-3">
-
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-3 text-center"> <p>Label</p> </div>
-                                <div class="col-2 text-center"> <p>Origine</p> </div>
-                                <div class="col-3 text-center"> <p>Prix</p> </div>
-                                <div class="col-2 text-center"> <p>Poids</p> </div>
+                <div class="col-12 p-0 border-custom bg-second-background-color">
+                    <h3 class="text-center mt-2 text-red">VOTRE PANIER</h3>
+                        <div class="container ">
+                            <div class="row bg-first-lightbackground-color">
+                                <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>
+                                <div class="col-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>
+                                <div class="col-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>
+                                <div class="col-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>
                                 <div class="col-2 text-center"> </div>
-
                             </div>
                         </div>
-                <div class="container p-0">
+                <div class="container">
             <?php foreach ($params['articles'] as $article): ?>
-                        <div class="row commande">
+                        <div class="row line-out">
                             <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
                             <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
                             <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
@@ -67,7 +66,7 @@
             <?php endif ;?>
 
             <div class="text-center justify-content-end mt-3 ">
-                <a href="articles_client"> <button class="btn bg-custom-red mb-2 ">Retourner sur la liste des articles </button></a>
+                <a href="articles_client"> <button class="btn bg-red text-light mb-2 ">Retourner sur la liste des articles </button></a>
             </div>
 
 

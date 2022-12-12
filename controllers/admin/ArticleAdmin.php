@@ -14,8 +14,8 @@ class ArticleAdmin extends AbstractController
         $articleModel = new ArticleModel();
         $articles = $articleModel ->getAllArticles();
 
-        if(!empty($_POST['articleSearch'])){
-            $articleSearch = $_POST['articleSearch'];
+        if(!empty($_GET['articleSearch'])){
+            $articleSearch = $_GET['articleSearch'];
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
             $params['articleSearch']=$articleSearch;
 

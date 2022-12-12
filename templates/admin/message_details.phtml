@@ -1,0 +1,32 @@
+<main>
+    <div class="container">
+        <table class="table border border-dark">
+            <h3 class="text-center" >Détails commande</h3>
+            <tr>
+                <th scope="row">Client</th>
+                <td><?=$params['message']['society'];?></td>
+            </tr>
+            <tr>
+                <th scope="col">Email</th>
+                <th scope="col"><?=$params['message']['email'];?></th>
+            </tr>
+            <tr>
+                <th scope="row">Date de l'envoi</th>
+                <td><?=$params['message']['date'];?></td>
+            </tr>
+            <tr>
+                <th scope="row">Sujet</th>
+                <td><?=$params['message']['subject'];?></td>
+            </tr>
+
+            <tr>
+<!--                <td class="text-center"></td>-->
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <table class="table border border-dark">
+            <?=$params['message']['text'];?>
+        </table>
+    </div>
+</main>

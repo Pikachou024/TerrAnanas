@@ -3,45 +3,6 @@
 <div class="container">
     <div class="row">
         <div class="col-12 p-0">
-<!--            <table class="table border border-dark">-->
-<!--                <h4 class="text-center">Info commande</h4>-->
-<!--                <tbody>-->
-<!--                <tr>-->
-<!--                    <th scope="row" class="bg-secondary">ID</th>-->
-<!--                    <td>--><?//=$idCommande;?><!--</td>-->
-<!--                    <th scope="row" class="bg-secondary">Société</th>-->
-<!--                    <td>--><?//=$client['society'];?><!--</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row" class="bg-secondary">Date commande</th>-->
-<!--                    <td>--><?//=$dateCommande ;?><!--</td>-->
-<!--                    <th scope="row" class="bg-secondary">Date livraison</th>-->
-<!--                    <td>--><?//=$dateLivraison;?><!--</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row" class="bg-secondary">Adresse</th>-->
-<!--                    <td>--><?//=$client['address'] .", ".$client['city'] ." ".$client['postal'];?><!--</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row" class="bg-secondary">Email</th>-->
-<!--                    <td>--><?//=$client['email'];?><!--</td>-->
-<!--                    <th scope="row" class="bg-secondary">Téléphone</th>-->
-<!--                    <td>-->
-<!--                        --><?php //if( !$client['phone']): ?>
-<!--                            --><?//=$client['phone'];?>
-<!--                        --><?php //endif; ?>
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <th scope="row" class="bg-secondary">Personne à contacter</th>-->
-<!--                    <td>-->
-<!--                        --><?php //if( !$client['contact']): ?>
-<!--                            --><?//=$client['contact'];?>
-<!--                        --><?php //endif; ?>
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
 
             <table class="table border border-dark">
                 <h3 class="text-center" >Détails commande</h3>
@@ -105,7 +66,6 @@
                                 <div class="row commande">
                                     <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
                                     <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
-<!--                                    <input type="hidden" name="label_famille[]" value="--><?//=$article['label_famille'];?><!--">-->
                                     <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
                                     <div class="col-3 col-sm-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
                                     <div class="col-4 col-sm-3"><input class="w-50 text-center" type="text" name="prix[]" value="<?= ($article["prix"]/100);?>"><?='€/'.$article['label_unite'];?>  </div>
@@ -127,23 +87,6 @@
             </form>
 
             </div>
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col">-->
-<!--                        <form method="POST" action="--><?//='add_remise?id='.$idCommande;?><!--">-->
-<!--                            <label for="label">Appliquer une remise</label>  <input type="text" class="" id="remise" name="remise" placeholder="%"> <button type="submit" class="btn btn-primary"> Appliquer </button>-->
-<!--                            <p>Montant de la commande : --><?//= $montantCommande;?><!-- €</p>-->
-<!---->
-<!--                            --><?php //if ($articlesCommande[0]['remise'] != null || $articlesCommande[0]['remise'] != 0): ?>
-<!--                                <p>Remise de : --><?//= $articlesCommande[0]['remise'] ;?><!-- %  <a href="--><?//='delete_discount?id='.$idCommande;?><!--"><i class="fa-solid fa-trash-can"></i></a> </p>-->
-<!--                                <p>Montant après remise : --><?//= $articlesCommande[0]['montant_remise'];?><!-- € </p>-->
-<!--                            --><?php //endif;?>
-<!---->
-<!--                        </form>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
 
         </div>
     </div>

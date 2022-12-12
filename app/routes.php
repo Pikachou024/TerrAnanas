@@ -74,6 +74,12 @@ $routes=[
         'path'=>"client",
         "base_template"=>"base_client"
     ],
+    "one_commande"=>[
+        "controller"=>"Historique",
+        "action"=>"getOneCommande",
+        'path'=>"client",
+        "base_template"=>"base_client"
+    ],
     "parametre_client"=>[
         "controller"=>"Client",
         "action"=>"parametre",
@@ -87,6 +93,12 @@ $routes=[
     "admin"=>[
         "controller"=>"Admin",
         "action"=>"accueil",
+        'path'=>"admin",
+        "base_template"=>"base_admin"
+    ],
+    "parametre_admin" =>[
+        "controller"=>"Admin",
+        "action"=>"parametre",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
@@ -156,18 +168,25 @@ $routes=[
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
-    "confirm_commande" =>[
-        "controller"=>"CommandeAdmin",
-        "action"=>"confirmCommande",
+    "messages"=>[
+        "controller"=>"MessageAdmin",
+        "action"=>"messages",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
-    "parametre_admin" =>[
-        "controller"=>"Admin",
-        "action"=>"parametre",
+    "message_details"=>[
+        "controller"=>"MessageAdmin",
+        "action"=>"messageDetails",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
+    "delete_message"=>[
+        "controller"=>"MessageAdmin",
+        "action"=>"deleteMessage",
+        'path'=>"admin",
+        "base_template"=>"base_admin"
+    ]
+
 
 
 ];

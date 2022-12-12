@@ -9,8 +9,8 @@ class Commande extends AbstractController
 
         if(!empty($_GET['articleSearch'])){
             $articleSearch = $_GET['articleSearch'];
+            $params["articleSearch"]=$articleSearch;
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
-            $params["articleSearch"]=$_SESSION['articleSearch'];
         }
         else {
             unset($_SESSION['articleSearch']);

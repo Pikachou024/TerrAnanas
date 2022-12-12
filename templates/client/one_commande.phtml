@@ -1,0 +1,44 @@
+<main class="mt-5">
+
+    <div class="container mt-5">
+        <div class="row justify-content-between">
+
+            <div class="col-12 col-sm-5 p-0 text-center border-custom mb-3">
+                <h4 class="text-red bg-second-background-color"> COMMANDE</h4>
+                <p><?=$params['dateCommande']?></p>
+            </div>
+            <div class="col-12 col-sm-5 p-0 text-center border-custom mb-3">
+                <h4 class="text-red bg-second-background-color "> LIVRAISON </h4>
+                <p><?=$params['dateLivraison']?></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-2 pb-2 border-custom bg-second-background-color">
+                    <div class="container ">
+                        <div class="row bg-first-lightbackground-color">
+                            <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>
+                            <div class="col-3 col-sm-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>
+                            <div class="col-4 col-sm-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>
+                            <div class="col-2 d-none d-sm-block text-center"> <p class="font-weight-bold">POIDS</p> </div>
+                            <div class="col-2 d-md-none text-center"> <p class="font-weight-bold">QTE</p></div>
+                            <div class="col-2 d-none d-md-block text-center"> <p class="font-weight-bold">QUANTITEE</p></div>
+                        </div>
+                    </div>
+                        <div class="container">
+                            <?php foreach ($params['articlesCommande'] as $article): ?>
+                                <div class="row line-out">
+                                    <div class="col-3 text-center"><?= $article["label_article"];?> </div>
+                                    <div class="col-3 col-sm-2 text-center"><?= $article["origine"];?></div>
+                                    <div class="col-4 col-sm-3 text-center"><?= ($article["prix"] / 100).'€/'.$article['label_unite'];?>  </div>
+                                    <div class="col-2 d-none d-sm-block text-center"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                    <div class="col-2  text-center"><?=$article['quantite'];?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                </div>
+        </div>
+    </div>
+</main>

@@ -3858,6 +3858,7 @@ tbody.collapse.show {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  color: #F0FFF2;
 }
 
 .nav-link:hover, .nav-link:focus {

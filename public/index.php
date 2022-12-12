@@ -3,9 +3,13 @@
 session_start();
 
 include "../app/config.php";
+
+include '../vendor/autoload.php';
+
 include "../src/Core/AbstractController.php";
 include "../src/Core/AbstractModel.php";
 include "../src/Core/Database.php";
+
 include "../src/Model/ArticleModel.php";
 include "../src/Model/UserModel.php";
 include "../src/Model/FamilleModel.php";
@@ -17,6 +21,7 @@ include "../src/Model/MessageModel.php";
 
 include '../lib/functions.php';
 include '../lib/environnement.php';
+include '../lib/sendMail.php';
 
 $routes = include '../app/routes.php';
 
@@ -36,4 +41,5 @@ $path = $routes[$page]["path"];
 autoloadController($controllerFile,$path);
 $classe = new $controllerFile($path,$page,$routes[$page]['base_template']);
 $classe->$action();
+
 

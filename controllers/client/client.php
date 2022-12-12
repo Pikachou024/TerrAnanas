@@ -7,6 +7,7 @@ class Client extends AbstractController
         $idUser = intval(getUserId());
         $commandeModel = new CommandeModel();
         $commandeEnAttente = $commandeModel->getCommandeByClient($idUser,1);
+        $commandeValidee = $commandeModel->getCommandeByClient($idUser,2);
         if(count($commandeEnAttente)>5){
             $commandeEnAttente = array_slice($commandeEnAttente,0,5);
         }
@@ -15,6 +16,7 @@ class Client extends AbstractController
             'dateDuJour'=>$dateDuJour,
             'idUser'=>$idUser,
             'commandeEnAttente'=>$commandeEnAttente,
+            'commandeValidee'=>$commandeValidee,
             'livraisonDuJour'=>$livraisonDuJour,
             'title' => "TerrAnanas - Gérer vos commandes en quelques click"
             ];

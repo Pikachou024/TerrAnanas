@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 border rounded-2 tableColor-green pt-2 pb-3 pl-0 pr-0">
+            <h2 class="text-center"> Listes des messages</h2>
+            <div class="container p-0 bg-light">
+                <div class="row pt-2 pb-2 m-0">
+
+                    <div class="col-2  text-center"> <p>Client</p> </div>
+                    <div class="col-4 col-sm-3 col-md-3 text-center"> <p>Email</p> </div>
+                    <div class="col-4 col-sm-3 col-md-2 text-center"> <p>Sujet</p> </div>
+                    <div class="col-2 d-none d-sm-block col-md-3 text-center"> <p>Message</p> </div>
+<!--                    <div class="col-2 d-none d-md-block text-center"> <p>Message</p> </div>-->
+                    <div class="col-2  text-center"> <p class="d-md-none">Détails</p> </div>
+                </div>
+            </div>
+
+                <div class="container-fluide bg-light ">
+                    <?php foreach ($params['messages'] as $message): ?>
+
+                        <div class="row commande pt-2 pb-2 m-0">
+                            <div class="col-2 text-center"><?= $message["society"];?> </div>
+                            <div class="col-4 col-sm-3 col-md-3 text-center"><?= $message["email"];?> </div>
+                            <div class="col-4 col-sm-3 col-md-2 text-center"><?= $message["subject"];?>  </div>
+                            <div class="col-2 d-none d-sm-block col-md-3 text-center"><?= substr($message["text"], 0, 20).' ...';?> </div>
+<!--                            <div class="col-2 d-none d-md-block text-center">--><?//= $message["status"];?><!-- </div>-->
+                            <div class="col-1 d-none d-md-block text-center"> <a href="<?='message_details?id='.$message["id_message"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                            <div class="col-1 d-none d-md-block text-center"> <a href="<?='delete_message?id='.$message["id_message"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
+                            <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>
+                        </div>
+
+                    <?php endforeach; ?>
+                </div>
+
+
+
+        </div>
+    </div>
+</div>

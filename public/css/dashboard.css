@@ -1,0 +1,67 @@
+.navbar{
+    background-color: #004E0B;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+.accueil{
+    position: relative;
+    color: #00BAF0;
+}
+
+.bg-first-background-color{
+    background-color: #F29F05;
+}
+.bg-first-lightbackground-color{
+    background-color: #FFE5B5;
+}
+.bg-second-background-color{
+    background-color: #FFCE39;
+}
+.bg-second-lightbackground-color{
+    background-color: #FFF2CA;
+}
+.bg-alt-background-color{
+    background-color:#9BECA7;
+}
+.bg-alt-lightbackground-color{
+    background-color:#E5FFE9
+}
+.text-first-color{
+    color: #F29F05;
+}
+.text-first-lightcolor{
+    color: #FFE5B5;
+}
+.text-second-color{
+    color: #FFCE39;
+}
+.text-second-lightcolor{
+    color: #FFF2CA;
+}
+.text-alt-color{
+    color:#9BECA7;
+}
+.text-alt-lightcolor{
+    color:#E5FFE9
+}
+.text-red{
+    color:#A62103;
+}
+.bg-red{
+    background-color: #A62103;
+}
+
+.border-custom{
+    border: 9px solid #FFCE39;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+
+.line-out:nth-child(2n){
+    background: #FFFFFF;
+    /*box-sizing: border-box;*/
+}
+.line-out:nth-child(2n+1){
+    background: #FFF2CA;
+    /*box-sizing: border-box;*/
+}
