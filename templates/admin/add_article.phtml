@@ -1,43 +1,43 @@
 
 
 <main class="p-0 pt-md-4 pb-md-4">
-    <div class="container border rounded-2 tableColor-green ">
+    <div class="container border-custom bg-second-background-color ">
         <div class="row">
             <div class="col-12 p-0">
-                <h3 class="text-center text-custom-color-red mt-2 mb-3"> Ajouter un article </h3>
+                <h3 class="text-center text-red mt-2 mb-3"> AJOUTER UN ARTICLE </h3>
                 <form method="POST" action="<?='add_article';?>">
                     <div class="container">
                         <div class="row mt-2">
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5 ">
-                                <label class="mb-1" for="label" > Article </label>
+                                <label class="mb-1 font-weight-bold" for="label" > Article </label>
                                 <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
                                 <?php if (isset($params['error']['label'])): ?>
                                     <p class="error"><?=htmlspecialchars($params['error']['label']);?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5">
-                                <label class="mb-1" for="origine">Origine</label>
+                                <label class="mb-1 font-weight-bold" for="origine">Origine</label>
                                 <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
                                 <?php if (isset($params['error']['origine'])): ?>
                                     <p class="error"><?=htmlspecialchars($params['error']['origine']);?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1" for="prix">Prix</label>
+                                <label class="mb-1 font-weight-bold" for="prix">Prix</label>
                                 <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix'];?>">
                                 <?php if (isset($params['error']['prix'])): ?>
                                     <p class="error"><?=htmlspecialchars($params['error']['prix']);?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1" for="poids">Poids</label>
+                                <label class="mb-1 font-weight-bold" for="poids">Poids</label>
                                 <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
                                 <?php if (isset($params['error']['poids'])): ?>
                                     <p class="error"><?=htmlspecialchars($params['error']['poids']);?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1" for="unite">Unite</label>
+                                <label class="mb-1 font-weight-bold" for="unite">Unite</label>
                                 <select class="form-control" name="unite" id="unite">
                                     <option value="0">Sélectionner une unitée</option>
                                     <?php foreach ($params['unites'] as $unite): ?>
@@ -49,7 +49,7 @@
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1" for="famille">Famille</label>
+                                <label class="mb-1 font-weight-bold" for="famille">Famille</label>
                                 <select class="form-control" name="famille" id="famille">
                                     <option value="0">Sélectionner une famille</option>
                                     <?php foreach ($params['familles'] as $famille): ?>
@@ -61,7 +61,7 @@
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6 offset-md-3 text-center mb-3 mb-md-5">
-                                <label class="mb-1" for="famille">Disponibilité</label>
+                                <label class="mb-1 font-weight-bold" for="famille">Disponibilité</label>
                                 <select class="form-control" name="status" id="status">
                                     <option value="1"><?= translateStatusArticle(1) ?></option>
                                     <option value="0"><?= translateStatusArticle(0) ?></option>
@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div class="text-center justify-content-end">
-                        <button type="submit" class="btn bg-custom-red mb-2  ">Ajouter</button>
+                        <button type="submit" class="btn mb-2 bg-alt-background-color text-darkgreen ">Ajouter</button>
                     </div>
                 </form>
             </div>

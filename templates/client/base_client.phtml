@@ -23,21 +23,20 @@
 <body>
 <header>
 
-    <div class="container-fluid bg-light">
+    <div class="container-fluid ">
         <div class="row ">
             <div class="col-12 p-0">
 
-                <nav class="navbar navbar-expand-md pl-3 pr-3 w-100">
-<!--                    <div class="w-25 text-center">-->
-<!--                        <img src="http://localhost/TerrAnanas/public/images/TerrAnanas_logo.png" class="w-25">-->
-<!--                    </div>-->
+                <nav class="navbar navbar-expand-md pl-3 pr-3 ">
                     <button class="navbar-toggler mr-2 mr-lg-0 border-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <img src="http://localhost/TerrAnanas/public/images/icon/hamburger-button.png" class="img-responsive mw-100" >
                     </button>
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-<!--                        <ul class="navbar-nav">-->
+                    <div class="collapse navbar-collapse " id="navbarNavDropdown">
                         <div class="navbar-nav d-flex flex-row ">
                             <ul class="navbar-nav ">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="client">Accueil</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="articles_client">Passer une commande</a>
                                 </li>
@@ -46,38 +45,32 @@
                                 </li>
                             </ul>
                         </div>
-
-                        <div class="navbar-nav d-flex flex-row">
-                            <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        TerrAnanas
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="home">Accueil TerrAnans</a>
-                                        <a class="dropdown-item" href="parametre_client">Paramètre</a>
-                                        <a class="dropdown-item" href="logout">Se déconnecter</a>
-                                    </div>
-                                </li>
-                            </ul>
-                            </ul>
-                                <li>
-
-                                </li>
-                            </ul>
-                        </div>
                     </div>
 
-                    <a class="nav-link" href="panier" >
-                        <img src="http://localhost/TerrAnanas/public/images/icon/panier.png" class="img-responsive mw-100" >
-                    </a>
-                    <div class="">
-                        <ul class="navbar-nav ">
+                    <div class="navbar-nav  position-absolute " style="right:0;top:5px; z-index:1">
+                        <ul class="navbar-nav d-flex flex-row align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="client">Acceuil</a>
+                                <a class="nav-link " href="panier" >
+                                    <img src="http://localhost/TerrAnanas/public/images/icon/panier.png" class="img-responsive mw-100 d-block mb-auto mt-auto" >
+                                </a>
                             </li>
+                            <li class="nav-item dropdown mr-3">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    TerrAnanas
+                                </a>
+                                <div class="dropdown-menu position-absolute p-0"  aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="home">Accueil TerrAnans</a>
+                                    <a class="dropdown-item" href="parametre_client">Paramètre</a>
+                                    <a class="dropdown-item bg-danger text-light" href="logout">Se déconnecter</a>
+                                </div>
+                            </li>
+
                         </ul>
                     </div>
+
+<!--                    <a class="nav-link" href="panier" >-->
+<!--                        <img src="http://localhost/TerrAnanas/public/images/icon/panier.png" class="img-responsive mw-100" >-->
+<!--                    </a>-->
                 </nav>
             </div>
         </div>

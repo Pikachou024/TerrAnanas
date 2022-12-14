@@ -1,11 +1,11 @@
-<main class="p-0 pt-md-4 pb-md-4">
-    <div class="container border rounded-2 tableColor-green ">
+<main class="mt-5">
+    <div class="container border-custom bg-second-background-color">
         <div class="row">
             <div class="col-12 p-0">
-                <h3 class="text-center text-custom-color-red mt-2 mb-3"> Modification : <?=$params['society'];?> </h3>
+                <h3 class="text-center text-red mt-2 mb-3"> Modification : <?=$params['society'];?> </h3>
                 <form method="POST" action="<?='edit_user?id='.$params['user']['id_user'];?>">
                     <div class="container">
-                        <div class="row mt-2">
+                        <div class="row mt-2 font-weight-bold">
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
                                 <label for="society">Nom de la société</label>
                                 <input type="text" class="form-control" id="society" name="society" value="<?=$params['society'];?>">

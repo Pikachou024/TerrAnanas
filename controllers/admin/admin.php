@@ -13,16 +13,22 @@ class Admin extends AbstractController
         if(count($commandeDuJour)>5){
             $commandeDuJour = array_slice($commandeDuJour,0,5);
         }
-        /*
-         * Partie Inscription
-         * affiche les utilisateurs en attentent de validation
-         */
-        $userModel = new userModel();
-        $users = $userModel ->getAllUsers(1);
+
+        $commandeValidee = $commandeModel->getCommandeByDate(date('Y-m-d'),2);
+        if(count($commandeDuJour)>5){
+            $commandeValidee = array_slice($commandeDuJour,0,5);
+        }
+
+//        /*
+//         * Partie Inscription
+//         * affiche les utilisateurs en attentent de validation
+//         */
+//        $userModel = new userModel();
+//        $users = $userModel ->getAllUsers(1);
         $params=[
             'dateDuJour'=>$dateDuJour,
-            'users'=>$users,
             'commandeDuJour'=>$commandeDuJour,
+            'commandeValidee'=>$commandeValidee,
             'title' => "TerrAnanas - Gérer vos commandes en quelques click"
         ];
         $this->render($this->file, $this->page, $this->base, $params);

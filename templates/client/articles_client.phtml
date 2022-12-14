@@ -16,7 +16,7 @@
                                     <?php endif;?>
 
                                     <span class="input-group-btn">
-                                <button type="submit" class="btn bg-red text-light" >
+                                <button type="submit" class="btn bg-alt-background-color text-darkgreen" >
                                     Recherche
                                 <span class="glyphicon glyphicon-search"></span>
                                 </button>
@@ -47,7 +47,7 @@
                                         </div>
                                 <?php foreach ($params['articles'] as $article): ?>
                                     <?php if($article['id_famille']==2):?>
-                                        <?php if($article['status']==1):?>
+                                        <?php if($article['etat']==1):?>
 
                                             <div class="row line-out">
                                                 <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
@@ -75,7 +75,7 @@
                                         </div>
                                     <?php foreach ($params['articles'] as $article): ?>
                                         <?php if($article['id_famille']==1):?>
-                                            <?php if($article['status']==1):?>
+                                            <?php if($article['etat']==1):?>
 
                                                 <div class="row line-out">
                                                     <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
@@ -92,7 +92,7 @@
                                         <?php endif ;?>
                                     <?php endforeach; ?>
                                     </div>
-                                <div class="col-12 text-center pt-3 pb-2"><button type="submit" class="btn bg-red text-light">Valider la commande</button></div>
+                                <div class="col-12 text-center pt-3 pb-2"><button type="submit" class="btn bg-alt-background-color text-darkgreen">Valider la commande</button></div>
 
                                 </form>
                             <?php else : ?>

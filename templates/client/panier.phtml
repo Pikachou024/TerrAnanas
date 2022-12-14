@@ -3,6 +3,9 @@
     <div class="row">
         <div class="col-12 p-0">
             <?php if(!empty($_SESSION['panier'])) :?>
+                <?php if(!empty($_SESSION['franco'])) :?>
+                    <h4 class="text-center">Le montant de votre panier n'a pas atteint le franco <?=$params['franco'];?></h4>
+                <?php endif;?>
                 <div class="container">
                     <div class="row">
                         <div class="col-12  justify-content-center">
@@ -14,7 +17,7 @@
                                     <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>"><?= $params['dateLivraison2'] ;?></option>
                                 </select>
                                 <div class="text-center justify-content-end">
-                                    <button type="submit" class="btn bg-red text-light mb-2 ">Valider</button>
+                                    <button type="submit" class="btn bg-alt-background-color text-darkgreen mb-2 ">Valider</button>
                                 </div>
                         </div>
                     </div>

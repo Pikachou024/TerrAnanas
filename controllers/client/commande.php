@@ -39,8 +39,11 @@ class Commande extends AbstractController
 
     function panier(){
 //        unset($_SESSION['panier']);
-
         $params=[];
+        $francoModel = new FrancoModel();
+        $franco = $francoModel->getFranco(1);
+        $params['franco'] = $franco;
+
         if(empty($_SESSION['panier'])){
             $params['message'] = "Votre panier ne contient actuellement aucun article.";
         }
@@ -92,6 +95,9 @@ class Commande extends AbstractController
             $_SESSION['franco']="Le montant du panier doit être supérieur à ".$franco;
             header('location:panier');
             exit;
+        }
+        elseif (isset($_SESSION['franco'])){
+            unset($_SESSION['franco']);
         }
 
         /**

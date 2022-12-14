@@ -14,8 +14,8 @@ class ArticleAdmin extends AbstractController
         $articleModel = new ArticleModel();
         $articles = $articleModel ->getAllArticles();
 
-        if(!empty($_GET['articleSearch'])){
-            $articleSearch = $_GET['articleSearch'];
+        if(!empty($_POST['articleSearch'])){
+            $articleSearch = $_POST['articleSearch'];
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
             $params['articleSearch']=$articleSearch;
 
@@ -118,7 +118,7 @@ class ArticleAdmin extends AbstractController
         $uniteModel = new UniteModel();
         $unites = $uniteModel ->getAllUnite();
 
-        $status = $article['status'];
+        $etat = $article['etat'];
 
         $label = $article['label_article'];
         $origine = $article['origine'];
@@ -132,10 +132,10 @@ class ArticleAdmin extends AbstractController
             $poids = $_POST['poids'];
             $unite = $_POST['unite'];
             $famille = $_POST['famille'];
-            $status = $_POST['status'];
+            $etat = $_POST['etat'];
 
             if(empty($errors)){
-                $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$status,$idArticle);
+                $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$etat,$idArticle);
                 header('location: articles_admin');
                 exit;
             }
@@ -146,7 +146,7 @@ class ArticleAdmin extends AbstractController
             'origine'=>$origine,
             'prix'=>$prix,
             'poids'=>$poids,
-            'status'=>$status,
+            'etat'=>$etat,
             'unites'=>$unites,
             'familles'=>$familles,
             'title'=>"Modification d'un article"

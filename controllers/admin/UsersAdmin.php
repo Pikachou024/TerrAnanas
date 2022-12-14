@@ -13,6 +13,8 @@ class UsersAdmin extends AbstractController
         $status = $statusModel->getAllStatus();
 
         $userStatus = (!empty($_POST['userStatus'])) ? strip_tags(trim($_POST['userStatus'])) : 1;
+        $params['statusUser']=intval($userStatus);
+        $params['nameStatus']= $statusModel->getNameStatus($userStatus);
         $users = $userModel ->getAllUsers($userStatus);
 
 //if(!empty($_POST['userStatus'])){

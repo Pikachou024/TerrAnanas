@@ -14,6 +14,8 @@ class CommandesAdmin extends AbstractController
         $status = $statusModel->getAllStatus();
 
         $statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
+        $params['statusCommande']=intval($statusCommande);
+        $params['nameStatus']= $statusModel->getNameStatus($statusCommande);
         $commandeModel = new CommandeModel();
         $commandes = $commandeModel -> getAllCommandes($statusCommande);
 

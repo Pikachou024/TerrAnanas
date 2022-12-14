@@ -9,4 +9,12 @@ class StatusModel extends AbstractModel
         return $this->db->getAllResults($sql);
     }
 
+    function getNameStatus($idStatus){
+        $sql ="SELECT *
+               FROM status
+               WHERE id_status = ?";
+
+        return $this->db->getOneResult($sql,[$idStatus]);
+    }
+
 }

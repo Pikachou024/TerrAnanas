@@ -10,6 +10,9 @@ class Historique extends AbstractController
         $statusModel = new StatusModel();
         $status = $statusModel->getAllStatus();
         $statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
+        $params['statusCommande']=intval($statusCommande);
+        $params['nameStatus']= $statusModel->getNameStatus($statusCommande);
+
         $commandeModel = new CommandeModel();
         $commandes = $commandeModel -> getCommandeByClient($idUser,$statusCommande);
 

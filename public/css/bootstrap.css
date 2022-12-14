@@ -3157,10 +3157,30 @@ tbody.collapse.show {
   margin-left: 0;
 }
 
+/*.dropdown-menu {*/
+/*  position: absolute;*/
+/*  top: 100%;*/
+/*  left: 0;*/
+/*  z-index: 1000;*/
+/*  display: none;*/
+/*  float: left;*/
+/*  min-width: 10rem;*/
+/*  padding: 0.5rem 0;*/
+/*  margin: 0.125rem 0 0;*/
+/*  font-size: 1rem;*/
+/*  color: #212529;*/
+/*  text-align: left;*/
+/*  list-style: none;*/
+/*  background-color: #fff;*/
+/*  background-clip: padding-box;*/
+/*  border: 1px solid rgba(0, 0, 0, 0.15);*/
+/*  border-radius: 0.25rem;*/
+/*}*/
+
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -50%;
   z-index: 1000;
   display: none;
   float: left;
@@ -3168,14 +3188,16 @@ tbody.collapse.show {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #212529;
+  color: #F0FFF2;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: #004E0B;;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
 }
+
+
 
 .dropup .dropdown-menu {
   margin-top: 0;
@@ -3275,17 +3297,22 @@ tbody.collapse.show {
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #212529;
+  color: #F0FFF2;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
   border: 0;
 }
 
+/*.dropdown-item:hover, .dropdown-item:focus {*/
+/*  color: #16181b;*/
+/*  text-decoration: none;*/
+/*  background-color: #f8f9fa;*/
+/*}*/
 .dropdown-item:hover, .dropdown-item:focus {
-  color: #16181b;
+  color: #FFCE39;
   text-decoration: none;
-  background-color: #f8f9fa;
+  /*background-color: #f8f9fa;*/
 }
 
 .dropdown-item.active, .dropdown-item:active {
@@ -3858,11 +3885,18 @@ tbody.collapse.show {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  /*
+  ajout d'une propriété
+   */
   color: #F0FFF2;
 }
 
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
+  /*
+ajout d'une propriété
+ */
+  color: #F0FFF2;
 }
 
 .nav-link.disabled {
@@ -4000,7 +4034,7 @@ tbody.collapse.show {
 
 .navbar-nav .nav-link {
   padding-right: 0;
-  padding-left: 0;
+  padding-left: 10px;
 }
 
 .navbar-nav .dropdown-menu {

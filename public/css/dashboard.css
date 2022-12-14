@@ -2,10 +2,6 @@
     background-color: #004E0B;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
 }
-.accueil{
-    position: relative;
-    color: #00BAF0;
-}
 
 .bg-first-background-color{
     background-color: #F29F05;
@@ -42,6 +38,13 @@
 }
 .text-alt-lightcolor{
     color:#E5FFE9
+}
+
+.text-darkgreen{
+    color: #004E0B;
+}
+.bg-darkgreen{
+    background-color: #004E0B;
 }
 .text-red{
     color:#A62103;

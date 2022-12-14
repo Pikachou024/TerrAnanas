@@ -27,11 +27,11 @@ class Client extends AbstractController
         $params=[];
         $roleUser = getUserRole();
 
-        if($roleUser != "client") {
-            http_response_code(403);
-            echo("Désolé la page n'existe pas");
-            exit;
-        }
+//        if($roleUser != "client") {
+//            http_response_code(403);
+//            echo("Désolé la page n'existe pas");
+//            exit;
+//        }
 
         $error=[];
         $id=getUserId();

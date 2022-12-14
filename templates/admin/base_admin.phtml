@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="http://localhost/ProjetCommande/public/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/styles_calendar.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/TerrAnanas/public/css/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/TerrAnanas/public/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost/TerrAnanas/public/css/styles_calendar.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,39 +21,45 @@
 <body>
 <header>
 
-    <div class="container-fluid bg-light">
+    <div class="container-fluid">
         <div class="row ">
             <div class="col-12 p-0">
-                <nav class="navbar navbar-expand-md pl-3 pr-3 w-100 navbar-light">
-<!--                    <a class="navbar-brand ml-2 ml-lg-0" href=""><img src="http://localhost/ProjetCommande/public/images/icon/pineapple-logo2.png" class="img-responsive mw-100"> </a>-->
+                <nav class="navbar navbar-expand-md pl-3 pr-3 ">
                     <button class="navbar-toggler mr-2 mr-lg-0 border-0" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <img src="http://localhost/ProjetCommande/public/images/icon/hamburger-button.png" class="img-responsive mw-100" >
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="admin">Acceuil</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="articles_admin">Articles<span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="users_admin">Clients</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="commandes_admin">Commandes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="messages">Messages</a>
-                            </li>
-                            <li class="nav-item dropdown">
+                        <div class="navbar-nav d-flex flex-row ">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="admin">Accueil</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="articles_admin">Articles<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="users_admin">Clients</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="commandes_admin">Commandes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="messages">Messages</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="navbar-nav  position-absolute" style="right:0;top:5px; z-index:1">
+                        <ul class="navbar-nav d-flex flex-row align-items-center">
+                            <li class="nav-item dropdown mr-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     TerrAnanas
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <div class="dropdown-menu position-absolute p-0"  aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="home">Accueil TerrAnans</a>
                                     <a class="dropdown-item" href="parametre_admin">Paramètre</a>
-                                    <a class="dropdown-item" href="logout">Se déconnecter</a>
+                                    <a class="dropdown-item bg-danger text-light" href="logout">Se déconnecter</a>
                                 </div>
                             </li>
                         </ul>
@@ -71,13 +77,13 @@
 
 
 <!--Chargement des scripts pour Bootstrap-->
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" defer></script>
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" defer></script>
+<script type="text/javascript" src="http://localhost/TerrAnanas/public/js/jquery-3.3.1.min.js" defer></script>
+<script type="text/javascript" src="http://localhost/TerrAnanas/public/js/bootstrap.js" defer></script>
 
 <!-- Script pour activation du datepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" defer></script>
-<script src="http://localhost/ProjetCommande/public/js/script.js" defer></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" defer></script>-->
+<!--<script src="http://localhost/TerrAnanas/public/js/script.js" defer></script>-->
 </body>
 
 </html>

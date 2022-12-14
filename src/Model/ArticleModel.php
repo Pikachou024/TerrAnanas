@@ -22,19 +22,19 @@ class ArticleModel extends AbstractModel
         return $this-> db -> getOneResult($sql,[$id]);
     }
 
-    function addArticle($label,$poids,$unite,$prix,$origine,$famille,$status){
-        $sql ="INSERT INTO article(label_article,poids,id_unite,prix,origine,id_famille,status)
+    function addArticle($label,$poids,$unite,$prix,$origine,$famille,$etat){
+        $sql ="INSERT INTO article(label_article,poids,id_unite,prix,origine,id_famille,etat)
                VALUES (?,?,?,?,?,?,?)";
 
-        return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$status]);
+        return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$etat]);
     }
 
-    function editArticle($label,$poids,$unite,$prix,$origine,$famille,$status,$id){
+    function editArticle($label,$poids,$unite,$prix,$origine,$famille,$etat,$id){
         $sql = "UPDATE      article
-                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , status = ?
+                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , etat = ?
                 where       id_article = ?";
 
-        return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$status,$id]);
+        return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$etat,$id]);
     }
 
     function deleteArticle($id){
