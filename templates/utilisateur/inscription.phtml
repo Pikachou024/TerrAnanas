@@ -16,10 +16,10 @@
     <section class="section-formulaire">
         <form method="POST" action="<?='inscription';?>">
             <div class="form-group">
-                <label for="society">Nom de la société</label>
-                <input type="text" class="form-control" id="society" name="society" value="<?=$params['society'];?>">
-                <?php if (isset($params['error']['society'])): ?>
-                    <p class="error"><?=htmlspecialchars($params['error']['society']);?></p>
+                <label for="client">Nom de la société</label>
+                <input type="text" class="form-control" id="client" name="client" value="<?=$params['client'];?>">
+                <?php if (isset($params['error']['client'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['client']);?></p>
                 <?php endif; ?>
             </div>
             <div class="form-group">

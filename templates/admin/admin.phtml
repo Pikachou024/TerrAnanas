@@ -28,7 +28,7 @@
                     </div>
                     <?php foreach ($params['commandeDuJour'] as $commande): ?>
                         <div class="row line-out text-center">
-                            <div class="col-4"><p class=""><?=$commande['society'];?></p> </div>
+                            <div class="col-4"><p class=""><?=$commande['client'];?></p> </div>
                             <div class="col-4"><p><?=$commande['date_livraison'] ;?></p> </div>
                             <div class="col-3"><p><?=($commande['montant']/100) ." €" ;?></p> </div>
                             <div class="col-1 p-1"><a href="<?='commande_details?id='.$commande['id_commande'] ;?>">Voir</a> </div>
@@ -50,7 +50,7 @@
                 </div>
                 <?php foreach ($params['commandeValidee'] as $commande): ?>
                     <div class="row line-out text-center">
-                        <div class="col-4"><p class=""><?=$commande['society'];?></p> </div>
+                        <div class="col-4"><p class=""><?=$commande['client'];?></p> </div>
                         <div class="col-4"><p><?=$commande['date_livraison'] ;?></p> </div>
                         <div class="col-3"><p><?=($commande['montant']/100) ." €" ;?></p> </div>
                         <div class="col-1 p-1"><a href="<?='commande_details?id='.$commande['id_commande'] ;?>">Voir</a> </div>

@@ -8,20 +8,20 @@ class UsersAdmin extends AbstractController
             unset($_SESSION['flash']);
         }
 
-        $userModel = new userModel();
-        $statusModel = new StatusModel();
-        $status = $statusModel->getAllStatus();
+        $userModel = new UserModel();
+        $status = new StatusModel();
+        $statut = $status->getAllstatus();
 
-        $userStatus = (!empty($_POST['userStatus'])) ? strip_tags(trim($_POST['userStatus'])) : 1;
-        $params['statusUser']=intval($userStatus);
-        $params['nameStatus']= $statusModel->getNameStatus($userStatus);
-        $users = $userModel ->getAllUsers($userStatus);
+        $userstatut = (!empty($_POST['userstatut'])) ? strip_tags(trim($_POST['userstatut'])) : 1;
+        $params['statutUser']=intval($userstatut);
+        $params['namestatut']= $status->getNamestatus($userstatut);
+        $users = $userModel ->getAllUsers($userstatut);
 
-//if(!empty($_POST['userStatus'])){
-//    $userStatus = $_POST['userStatus'];
+//if(!empty($_POST['userstatut'])){
+//    $userstatut = $_POST['userstatut'];
 //}
 //else{
-//    $userStatus = 1;
+//    $userstatut = 1;
 //}
 
 //$userSearch = (!empty($_POST['userSearch'])) ? strip_tags(trim($_POST['userSearch'])) : 1;
@@ -34,7 +34,7 @@ class UsersAdmin extends AbstractController
             unset($_SESSION['userSearch']);
         }
 
-        $params['status']=$status;
+        $params['statut']=$statut;
         $params['users']=$users;
         $params['title']="Listes des clients";
         $this->render($this->file, $this->page, $this->base, $params);
@@ -57,9 +57,9 @@ class UsersAdmin extends AbstractController
         $user = $userModel ->getOneUser($idUser);
 
         $statusModel = new StatusModel();
-        $status = $statusModel->getAllStatus();
+        $statut = $statusModel->getAllStatus();
 
-        $society = $user['society'];
+        $client = $user['client'];
         $address = $user['address'];
         $postal = $user['postal'];
         $city = $user['city'];
@@ -69,17 +69,17 @@ class UsersAdmin extends AbstractController
 
         if(!empty($_POST)) {
 
-            $society = strip_tags(trim($_POST['society']));
+            $client = strip_tags(trim($_POST['client']));
             $address = strip_tags(trim($_POST['address']));
             $postal = strip_tags(trim($_POST['postal']));
             $city = strip_tags(trim($_POST['city']));
             $contact = strip_tags(trim($_POST['contact']));
             $phone = strip_tags(trim($_POST['phone']));
             $email = strip_tags(trim($_POST['email']));
-            $status = strip_tags(trim($_POST['status']));
+            $statut = strip_tags(trim($_POST['statut']));
 
-            if (!$society) {
-                $error['society'] = "Veuillez remplir le champ";
+            if (!$client) {
+                $error['client'] = "Veuillez remplir le champ";
             }
             if (!$address) {
                 $error['address'] = "Veuillez remplir le champ";
@@ -95,20 +95,20 @@ class UsersAdmin extends AbstractController
             }
 
             if(empty($error)) {
-                $userModel->editUser($society, $address, $city, $postal, $contact, $phone, $email, $status, $idUser);
+                $userModel->editUser($client, $address, $city, $postal, $contact, $phone, $email, $statut, $idUser);
                 header('location: users_admin');
                 exit;
             }
         }
         $params=[
-            'society'=>$society,
+            'client'=>$client,
             'address'=>$address,
             'postal'=>$postal,
             'city'=>$city,
             'contact'=>$contact,
             'phone'=>$phone,
             'email'=>$email,
-            'status'=>$status,
+            'statut'=>$statut,
             'user'=>$user,
             'error'=>$error,
             'title'=>"Modification - client"

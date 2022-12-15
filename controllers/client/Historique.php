@@ -8,26 +8,26 @@ class Historique extends AbstractController
         $idUser = getUserId();
 
         $statusModel = new StatusModel();
-        $status = $statusModel->getAllStatus();
-        $statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
-        $params['statusCommande']=intval($statusCommande);
-        $params['nameStatus']= $statusModel->getNameStatus($statusCommande);
+        $statut = $statusModel->getAllStatus();
+        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
+        $params['statutCommande']=intval($statutCommande);
+        $params['nameStatut']= $statusModel->getNameStatus($statutCommande);
 
         $commandeModel = new CommandeModel();
-        $commandes = $commandeModel -> getCommandeByClient($idUser,$statusCommande);
+        $commandes = $commandeModel -> getCommandeByClient($idUser,$statutCommande);
 
         if(!empty($_POST['searchDate'])){
             $date = strip_tags(trim($_POST['searchDate']));
             $params['date']=$date;
             $dateTime = DateTime::createFromFormat('d/m/Y', $date);
             $newFormatDate = $dateTime->format('Y-m-d');
-            $_SESSION['commandeByDate']= $commandeModel->getCommandeByDate($newFormatDate,$statusCommande);
+            $_SESSION['commandeByDate']= $commandeModel->getCommandeByDate($newFormatDate,$statutCommande);
         }
         else{
             unset($_SESSION['commandeByDate']);
         }
 
-        $params['status']=$status;
+        $params['statut']=$statut;
         $params['commandes']=$commandes;
         $params['title']="TerrAnanas - Mes commandes";
         $this->render($this->file,$this->page,$this->base,$params);

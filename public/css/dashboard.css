@@ -59,7 +59,6 @@
     border-radius: 20px;
 }
 
-
 .line-out:nth-child(2n){
     background: #FFFFFF;
     /*box-sizing: border-box;*/
@@ -67,4 +66,30 @@
 .line-out:nth-child(2n+1){
     background: #FFF2CA;
     /*box-sizing: border-box;*/
+}
+
+.form-details{
+
+}
+.form-details div{
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: center;*/
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+
+}
+.form-details div label{
+    font-weight: bold;
+    align-self: start;
+    grid-area: 1 / 1 / 2 / 2;
+}
+.form-details div p{
+    border: 1px solid black;
+    background-color:#FFFFFF ;
+    width: 250px;
+    grid-area: 1 / 2 / 2 / 3;
 }

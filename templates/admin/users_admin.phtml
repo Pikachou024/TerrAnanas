@@ -20,20 +20,20 @@
                 </div>
                 <div class="col-12 col-md-5">
                     <?php if($params['users']):?>
-                        <select class="form-control " name="userStatus" id="userStatus">
-                            <option value="<?= $params['users'][0]['id_status'] ?>"><?= $params['users'][0]['label_status'] ?></option>
-                            <?php foreach ($params['status'] as $status): ?>
-                                <?php if($status['id_status'] != $params['users'][0]['id_status']): ?>
-                                    <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
+                        <select class="form-control " name="userstatut" id="userstatut">
+                            <option value="<?= $params['users'][0]['id_statut'] ?>"><?= $params['users'][0]['statut'] ?></option>
+                            <?php foreach ($params['statut'] as $statut): ?>
+                                <?php if($statut['id_statut'] != $params['users'][0]['id_statut']): ?>
+                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
                                 <?php endif ;?>
                             <?php endforeach; ?>
                         </select>
                     <?php else : ?>
-                        <select class="form-control " name="userStatus" id="userStatus">
-                            <option value="<?= $params['statusUser'] ?>"><?= $params['nameStatus']['label_status'] ?></option>
-                            <?php foreach ($params['status'] as $status): ?>
-                                <?php if($status['id_status'] != $params['statusUser']): ?>
-                                    <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
+                        <select class="form-control " name="userstatut" id="userstatut">
+                            <option value="<?= $params['statutUser'] ?>"><?= $params['namestatut']['statut'] ?></option>
+                            <?php foreach ($params['statut'] as $statut): ?>
+                                <?php if($statut['id_statut'] != $params['statutUser']): ?>
+                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
                                 <?php endif ;?>
                             <?php endforeach; ?>
                         </select>
@@ -76,7 +76,7 @@
                     <div class="container">
                         <?php foreach ($params['users'] as $user): ?>
                                 <div class="row pt-2 pb-2 line-out d-flex align-items-center">
-                                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["society"];?>  </div>
+                                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["client"];?>  </div>
                                     <div class="col-2 d-none d-lg-block text-center"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
                                     <div class="col-2 d-none d-sm-block col-lg-2 text-center"><?= $user["contact"];?> </div>
                                     <div class="col-5 col-md-2 col-lg-2 text-center"><?= $user["phone"];?> </div>
@@ -92,7 +92,7 @@
             <div class="container-fluide bg-light ">
                 <?php foreach ($_SESSION['userSearch'] as $user): ?>
                     <div class="row pt-2 pb-2 line-out m-0 d-flex align-items-center">
-                        <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["society"];?>  </div>
+                        <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["client"];?>  </div>
                         <div class="col-2 d-none d-lg-block text-center"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
                         <div class="col-2 d-none d-md-block col-lg-2 text-center"><?= $user["contact"];?> </div>
                         <div class="col-2 d-none d-sm-block col-md-2 col-lg-2 text-center"><?= $user["phone"];?> </div>

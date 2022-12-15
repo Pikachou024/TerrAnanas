@@ -10,27 +10,27 @@ class CommandesAdmin extends AbstractController
 //            exit;
 //        }
 
-        $statusModel = new StatusModel();
-        $status = $statusModel->getAllStatus();
+        $statusModel = new statusModel();
+        $statut = $statusModel->getAllstatut();
 
-        $statusCommande = (!empty($_POST['status'])) ? strip_tags(trim($_POST['status'])) : 1;
-        $params['statusCommande']=intval($statusCommande);
-        $params['nameStatus']= $statusModel->getNameStatus($statusCommande);
+        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
+        $params['statutCommande']=intval($statutCommande);
+        $params['namestatut']= $statusModel->getNamestatut($statutCommande);
         $commandeModel = new CommandeModel();
-        $commandes = $commandeModel -> getAllCommandes($statusCommande);
+        $commandes = $commandeModel -> getAllCommandes($statutCommande);
 
         if(!empty($_POST['searchDate'])){
             $date = strip_tags(trim($_POST['searchDate']));
             $dateTime = DateTime::createFromFormat('d/m/Y', $date);
             $newFormatDate = $dateTime->format('Y-m-d');
-            $_SESSION['commandeByDate']=$commandeModel->getCommandeByDate($newFormatDate,$statusCommande);
+            $_SESSION['commandeByDate']=$commandeModel->getCommandeByDate($newFormatDate,$statutCommande);
             $params['date']=$date;
         }
         else{
             unset($_SESSION['commandeByDate']);
         }
 
-        $params['status']=$status;
+        $params['statut']=$statut;
         $params['commandes']=$commandes;
         $params['title']="Listes des commandes";
         $this->render($this->file, $this->page, $this->base, $params);
@@ -46,8 +46,8 @@ class CommandesAdmin extends AbstractController
 
         $idCommande = intval($_GET['id']);
 
-        $statusModel = new StatusModel();
-        $status = $statusModel->getAllStatus();
+        $statutModel = new statutModel();
+        $statut = $statutModel->getAllstatut();
 
         $commandeModel = new CommandeModel();
         $commande = $commandeModel->getOneCommande($idCommande);
@@ -63,19 +63,19 @@ class CommandesAdmin extends AbstractController
             $idArticle =$_POST['id_article'];
             $prix = $_POST["prix"];
             $quantite = $_POST['quantite'];
-            $statusCommande = strip_tags(trim($_POST['status']));
+            $statutCommande = strip_tags(trim($_POST['statut']));
             for($i=0 ; $i<(count($idArticle)) ; $i++){
                 $commandeModel->editCommandeDetail($idCommande,$idArticle[$i],($prix[$i]*100),$quantite[$i]);
             }
             $newPriceArticles = $commandeModel -> getOneCommandeDetails($idCommande);
             $commandeModel->editMontantCommande(montantTotal($newPriceArticles),$idCommande);
-            $commandeModel->validCommande($statusCommande,$idCommande);
+            $commandeModel->validCommande($statutCommande,$idCommande);
             header('location:commandes_admin');
         }
         $params=[
             "idCommande"=>$idCommande,
             "commande"=>$commande,
-            "status"=>$status,
+            "statut"=>$statut,
             "articlesCommande"=>$articlesCommande,
             "dateCommande"=>$dateCommande,
             "dateLivraison"=>$dateLivraison,
@@ -83,6 +83,7 @@ class CommandesAdmin extends AbstractController
             "client"=>$client,
             "title"=>"Admin - commande"
         ];
+
         $this->render($this->file, $this->page, $this->base, $params);
     }
 

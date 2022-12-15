@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-12  justify-content-center">
                             <h4 class="text-center">Sélectionner une date de livraison</h4>
-                            <form method="post" action="<?='validation_commande';?>" id="form-commande" class="d-flex flex-row justify-content-center">
+                            <form method="POST" action="<?='validation_commande';?>" id="form-commande" class="d-flex flex-row justify-content-center">
 
                                 <select class="form-control w-75" name="dateLivraison" id="dateLivraison">
                                     <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')). ' + 1 days'))  ?>"><?= $params['dateLivraison1'] ;?></option>
@@ -43,12 +43,12 @@
             <?php foreach ($params['articles'] as $article): ?>
                         <div class="row line-out">
                             <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-                            <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
-                            <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
-                            <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                            <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                            <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                            <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                             <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                            <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>"><?= $article["prix"]." €/".$article['label_unite'];?>  </div>
-                            <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                            <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>"><?= $article["prix"]." €/".$article['unite'];?>  </div>
+                            <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
                             <div class="col-2 p-0 text-center"><input class="w-50 text-center" type="number" id="quantite" name="quantite[]" min="0" value="<?=$article['quantite'];?>"></div>
                         </div>
             <?php endforeach; ?>

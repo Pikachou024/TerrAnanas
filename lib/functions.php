@@ -12,6 +12,9 @@ function autoloadController($class_name,$path): void
 }
 
 function checkEmail($email,$users):bool{
+    if(empty($users)){
+        return false;
+    }
     foreach ($users as $user){
         if($email == $user['email']){
             return true;
@@ -51,7 +54,7 @@ function searchArticle(string $article, array $listeArticle): array
 {
     $articles=[];
     for($i=0 ; $i<count($listeArticle) ; $i++){
-        if(!substr_compare(strtolower($listeArticle[$i]['label_article']),strtolower($article),0,strlen($article))){
+        if(!substr_compare(strtolower($listeArticle[$i]['article']),strtolower($article),0,strlen($article))){
             $articles[] = $listeArticle[$i];
         }
     }
@@ -62,7 +65,7 @@ function searchUser(string $user, array $listeUser): array
 {
     $users = [];
     for($i=0 ; $i<count($listeUser) ; $i++){
-        if(!substr_compare(strtolower($listeUser[$i]['society']),strtolower($user),0,strlen($user))){
+        if(!substr_compare(strtolower($listeUser[$i]['client']),strtolower($user),0,strlen($user))){
             $users[] = $listeUser[$i];
         }
     }
@@ -113,7 +116,7 @@ function checkArticle($idArticle,$quantite) :bool {
     return false;
 }
 
-function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$unite): void
+function addArticle($idArticle,$article,$origine,$poids,$prix,$quantite,$famille,$unite): void
 {
 //    //Si le panier existe
     if (creationPanier()) {
@@ -123,15 +126,15 @@ function addArticle($idArticle,$label,$origine,$poids,$prix,$quantite,$famille,$
 //      si non, je le rajoute dans le panier
         if($articleOnPanier === false){
             //Sinon on ajoute le produit
-            $_SESSION['article'] = ['id_article' => $idArticle,
-                'label_article' => $label,
+            $_SESSION['produit'] = ['id_article' => $idArticle,
+                'article' => $article,
                 'origine'=>$origine,
                 'poids' => $poids,
-                'label_unite'=>$unite,
+                'unite'=>$unite,
                 'prix' => $prix,
-                'label_famille'=>$famille,
+                'famille'=>$famille,
                 'quantite' => $quantite];
-            $_SESSION['panier'][] = $_SESSION['article'];
+            $_SESSION['panier'][] = $_SESSION['produit'];
         }
     }
     else{
@@ -148,12 +151,12 @@ function deleteArticle($idArticle){
         for($i = 0; $i < count($_SESSION['panier']); $i++) {
             if ($_SESSION['panier'][$i]['id_article'] !== $idArticle){
                 $tmp[] = ['id_article' => $_SESSION['panier'][$i]['id_article'],
-                    'label_article' => $_SESSION['panier'][$i]['label_article'],
+                    'article' => $_SESSION['panier'][$i]['article'],
                     'origine' => $_SESSION['panier'][$i]['origine'],
                     'poids' => $_SESSION['panier'][$i]['poids'],
-                    'label_unite' => $_SESSION['panier'][$i]['label_unite'],
+                    'unite' => $_SESSION['panier'][$i]['unite'],
                     'prix' => $_SESSION['panier'][$i]['prix'],
-                    'label_famille' => $_SESSION['panier'][$i]['label_famille'],
+                    'famille' => $_SESSION['panier'][$i]['famille'],
                     'quantite' => $_SESSION['panier'][$i]['quantite']];
             }
 
@@ -164,7 +167,6 @@ function deleteArticle($idArticle){
             $_SESSION['panier']= $tmp;
             //On efface notre panier temporaire
             unset($tmp);
-
         }
     }
     else

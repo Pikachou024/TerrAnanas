@@ -7,7 +7,8 @@ class ArticleModel extends AbstractModel
                 FROM        article art
                 INNER JOIN  famille fam ON fam.id_famille = art.id_famille
                 INNER JOIN  unite uni ON uni.id_unite = art.id_unite
-                ORDER BY    label_article";
+                INNER JOIN  statutArticle sta ON sta.id_statutArticle = art.id_statutArticle
+                ORDER BY    article";
 
         return $this-> db -> getAllResults($sql);
     }
@@ -17,29 +18,31 @@ class ArticleModel extends AbstractModel
                 FROM        article art
                 INNER JOIN  famille fam ON fam.id_famille = art.id_famille
                 INNER JOIN  unite uni ON uni.id_unite = art.id_unite
+                INNER JOIN  statutArticle sta ON sta.id_statutArticle = art.id_statutArticle
                 WHERE   id_article = ?";
 
         return $this-> db -> getOneResult($sql,[$id]);
     }
 
-    function addArticle($label,$poids,$unite,$prix,$origine,$famille,$etat){
-        $sql ="INSERT INTO article(label_article,poids,id_unite,prix,origine,id_famille,etat)
+    function addArticle($label,$poids,$unite,$prix,$origine,$famille,$statusArticle){
+        $sql ="INSERT INTO article(article,poids,id_unite,prix,origine,id_famille,id_statutArticle)
                VALUES (?,?,?,?,?,?,?)";
 
-        return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$etat]);
+        return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$statusArticle]);
     }
 
-    function editArticle($label,$poids,$unite,$prix,$origine,$famille,$etat,$id){
+    function editArticle($label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$id){
         $sql = "UPDATE      article
-                SET         label_article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , etat = ?
+                SET         article = ? , poids = ? ,id_unite = ?, prix = ? , origine = ? , id_famille = ? , id_statutArticle = ?
                 where       id_article = ?";
 
-        return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$etat,$id]);
+        return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$id]);
     }
 
-    function deleteArticle($id){
-        $sql = "DELETE FROM article
-                WHERE id_article = ?";
+    function archiveArticle($id,$statusArticle){
+        $sql = "UPDATE      article
+                SET         id_statutArticle = ?
+                where       id_article = ?";
 
         return $this->db->executeQuerry($sql,[$id]);
     }

@@ -46,21 +46,19 @@
                                             <div class="col-2 text-center"> </div>
                                         </div>
                                 <?php foreach ($params['articles'] as $article): ?>
-                                    <?php if($article['id_famille']==2):?>
-                                        <?php if($article['etat']==1):?>
+                                    <?php if($article['id_famille']==2 && $article['id_statutArticle']!=3):?>
 
                                             <div class="row line-out">
                                                 <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-                                                <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
-                                                <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
-                                                <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                                                <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                                                <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                                                <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                                                 <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                                <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= ($article["prix"])/100;?>"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
-                                                <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                                <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= ($article["prix"])/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
+                                                <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
                                                 <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
                                             </div>
 
-                                        <?php endif ;?>
                                     <?php endif ;?>
                                 <?php endforeach; ?>
                                     </div>
@@ -74,21 +72,19 @@
                                             <div class="col-2 text-center"> </div>
                                         </div>
                                     <?php foreach ($params['articles'] as $article): ?>
-                                        <?php if($article['id_famille']==1):?>
-                                            <?php if($article['etat']==1):?>
+                                        <?php if($article['id_famille']==1 && $article['id_statutArticle']!=3):?>
 
                                                 <div class="row line-out">
                                                     <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-                                                    <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
-                                                    <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
-                                                    <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                                                    <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                                                    <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                                                    <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                                                     <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
-                                                    <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
+                                                    <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
                                                     <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
                                                 </div>
 
-                                            <?php endif ;?>
                                         <?php endif ;?>
                                     <?php endforeach; ?>
                                     </div>
@@ -96,22 +92,32 @@
 
                                 </form>
                             <?php else : ?>
-                                <?php foreach ($_SESSION['articleSearch'] as $article): ?>
+
                                     <form method="post" action="<?='articles_client';?>">
                                         <div class="container">
+                                            <div class="row bg-first-lightbackground-color">
+                                                <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>
+                                                <div class="col-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>
+                                                <div class="col-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>
+                                                <div class="col-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>
+                                                <div class="col-2 text-center"> </div>
+                                            </div>
+                                <?php foreach ($_SESSION['articleSearch'] as $article): ?>
                                             <div class="row line-out">
                                                 <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-                                                <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
-                                                <input type="hidden" name="label_famille[]" value="<?=$article['label_famille'];?>">
-                                                <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
+                                                <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                                                <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                                                <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                                                 <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                                <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['label_unite'];?>  </div>
-                                                <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                                <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
+                                                <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
                                                 <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
                                             </div>
-                                        </div>
-                                    </form>
                                 <?php endforeach;?>
+                                        </div>
+                                        <div class="col-12 text-center pt-3 pb-2"><button type="submit" class="btn bg-alt-background-color text-darkgreen">Valider la commande</button></div>
+
+                                    </form>
                             <?php endif ;?>
                         </div>
                     </div>

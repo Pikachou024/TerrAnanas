@@ -3,7 +3,7 @@
 class CommandeModel extends AbstractModel
 {
     function addCommande($idUser,$montant,$dateLivraison,$statutCommande){
-        $sql = " INSERT INTO commande(id_user,montant,date_commande,date_livraison,id_status)
+        $sql = " INSERT INTO commande(id_user,montant,date_commande,date_livraison,id_statut)
                 VALUES (?,?,NOW(),?,?)";
 
         return $this ->db->executeQuerry($sql,[$idUser,$montant,$dateLivraison,$statutCommande]);
@@ -16,9 +16,10 @@ class CommandeModel extends AbstractModel
         return $this -> db-> executeQuerry($sql,[$idCommande,$idArticle,$prix,$quantite]);
     }
 
-    function deleteCommande($idCommande){
-        $sql = " DELETE FROM commande
-                 WHERE id_commande = ?";
+    function archiveCommande($idCommande,$statutCommande){
+        $sql = "UPDATE      commande
+                SET         id_statut = ?
+                where       id_commande = ?";
 
         return $this->db->executeQuerry($sql,[$idCommande]);
     }
@@ -31,16 +32,16 @@ class CommandeModel extends AbstractModel
         return $this -> db -> getOneResult($sql,[$idUser]);
     }
 
-    function getAllCommandes($status): bool|array
+    function getAllCommandes($statut): bool|array
     {
         $sql = "SELECT * 
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user 
-                INNER JOIN status sta ON sta.id_status = cmd.id_status
-                WHERE cmd.id_status = ? 
+                INNER JOIN statut sta ON sta.id_statut = cmd.id_statut
+                WHERE cmd.id_statut = ? 
                 ORDER BY date_commande ASC ";
 
-        return $this -> db -> getAllResults($sql,[$status]);
+        return $this -> db -> getAllResults($sql,[$statut]);
     }
 
     function getOneCommande($id): bool|array
@@ -48,7 +49,7 @@ class CommandeModel extends AbstractModel
         $sql = "SELECT * 
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user 
-                INNER JOIN status sta ON sta.id_status = cmd.id_status
+                INNER JOIN statut sta ON sta.id_statut = cmd.id_statut
                 WHERE cmd.id_commande = ? 
                 ORDER BY date_commande ASC ";
 
@@ -56,23 +57,15 @@ class CommandeModel extends AbstractModel
     }
 
     function getOneCommandeDetails($idCommande){
-        $sql="SELECT dcmd.*,cmd.*,art.id_article,art.label_article,art.poids,art.origine,unt.label_unite 
+        $sql="SELECT dcmd.*,cmd.*,art.id_article,art.article,art.poids,art.origine,unt.unite 
               FROM detailscommande dcmd
               INNER JOIN commande cmd ON cmd.id_commande = dcmd.id_commande
               INNER JOIN article art ON art.id_article = dcmd.id_article
               INNER JOIN unite unt ON unt.id_unite = art.id_unite
               WHERE dcmd.id_commande = ?
-              ORDER BY  label_article";
+              ORDER BY  article";
 
         return $this->db->getAllResults($sql,[$idCommande]);
-    }
-
-    function addDiscount($remise,$montantRemise,$idCommande){
-        $sql="  UPDATE commande
-                SET remise = ? , montant_remise = ?
-                WHERE id_commande=?";
-
-        return $this->db->executeQuerry($sql,[$remise,$montantRemise,$idCommande]);
     }
 
     function getClientByIdCommande($idCommande){
@@ -85,44 +78,44 @@ class CommandeModel extends AbstractModel
         return $this->db->getOneResult($sql,[$idCommande]);
     }
 
-    function getCommandeByClient($idUser,$idStatus): bool|array
+    function getCommandeByClient($idUser,$idstatut): bool|array
     {
         $sql = "SELECT * 
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user 
-                INNER JOIN status sta ON sta.id_status = cmd.id_status
+                INNER JOIN statut sta ON sta.id_statut = cmd.id_statut
                 WHERE cmd.id_user = ? 
-                AND sta.id_status = ?
+                AND sta.id_statut = ?
                 ORDER BY date_commande ASC ";
 
-        return $this->db->getAllResults($sql,[$idUser,$idStatus]);
+        return $this->db->getAllResults($sql,[$idUser,$idstatut]);
     }
 
-    function getCommandeByLivraison($idUser,$idStatus,$livraisonDuJour): bool|array
+    function getCommandeByLivraison($idUser,$idstatut,$livraisonDuJour): bool|array
     {
         $sql = "SELECT *
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user
-                INNER JOIN status sta ON sta.id_status = cmd.id_status
+                INNER JOIN statut sta ON sta.id_statut = cmd.id_statut
                 WHERE cmd.id_user = ?
-                AND sta.id_status = ?
+                AND sta.id_statut = ?
                 AND date_livraison = ?
                 ORDER BY date_commande ASC ";
 
-        return $this->db->getAllResults($sql,[$idUser,$idStatus,$livraisonDuJour]);
+        return $this->db->getAllResults($sql,[$idUser,$idstatut,$livraisonDuJour]);
     }
 
-    function getCommandeByDate($date,$status): bool|array
+    function getCommandeByDate($date,$statut): bool|array
     {
         $sql="SELECT * 
               FROM commande cmd
               INNER JOIN user us ON us.id_user = cmd.id_user 
-              INNER JOIN status sta ON sta.id_status = cmd.id_status
+              INNER JOIN statut sta ON sta.id_statut = cmd.id_statut
               WHERE date_commande = ?
-              AND cmd.id_status = ?
+              AND cmd.id_statut = ?
               ORDER BY date_livraison ASC";
 
-        return $this->db->getAllResults($sql,[$date,$status]);
+        return $this->db->getAllResults($sql,[$date,$statut]);
     }
 
     function editCommandeDetail($idCommande,$idArticle,$prix,$quantite){
@@ -134,12 +127,12 @@ class CommandeModel extends AbstractModel
         return $this->db->executeQuerry($sql,[$prix,$quantite,$idArticle,$idCommande]);
     }
 
-    function validCommande($status,$idCommande){
+    function validCommande($statut,$idCommande){
         $sql = "UPDATE commande 
-                SET id_status=?
+                SET id_statut=?
                 WHERE id_commande = ?";
 
-        return $this->db->executeQuerry($sql,[$status,$idCommande]);
+        return $this->db->executeQuerry($sql,[$statut,$idCommande]);
     }
 
     function editMontantCommande(int $montantCommande, int $idCommande){

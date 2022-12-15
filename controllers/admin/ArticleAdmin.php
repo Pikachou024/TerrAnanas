@@ -13,6 +13,8 @@ class ArticleAdmin extends AbstractController
 
         $articleModel = new ArticleModel();
         $articles = $articleModel ->getAllArticles();
+        $statutModel = new StatusModel();
+        $statut = $statutModel->getAllstatusArticle();
 
         if(!empty($_POST['articleSearch'])){
             $articleSearch = $_POST['articleSearch'];
@@ -23,8 +25,8 @@ class ArticleAdmin extends AbstractController
             unset( $_SESSION['articleSearch']);
         }
         $params['articles']=$articles;
+        $params['statutArticle']=$statut;
         $params['title']="Admin - Liste des articles";
-
         $this->render($this->file, $this->page, $this->base, $params);
     }
 
@@ -39,6 +41,8 @@ class ArticleAdmin extends AbstractController
         $familles = $familleModel ->getAllFamille();
         $uniteModel = new UniteModel();
         $unites = $uniteModel ->getAllUnite();
+        $statutModel = new StatusModel();
+        $statut = $statutModel->getAllstatusArticle();
 
         if(!empty($_POST)){
             $label = strip_tags(trim($_POST['label']));
@@ -47,7 +51,7 @@ class ArticleAdmin extends AbstractController
             $poids =  strip_tags(trim($_POST['poids']));
             $famille = strip_tags(trim($_POST['famille']));
             $unite =  strip_tags(trim($_POST['unite']));
-            $status = strip_tags(trim($_POST['status']));
+            $statut = strip_tags(trim($_POST['statut']));
 
             if(!$label){
                 $error['label']="Le champ est vide";
@@ -67,13 +71,13 @@ class ArticleAdmin extends AbstractController
             if($unite == 0){
                 $error['unite']="Veuillez sélectionner un champ";
             }
-            if($status == 0){
+            if($statut == 0){
                 $error['unite']="Veuillez sélectionner un champ";
             }
 
             if(empty($error)){
                 $articleModel = new ArticleModel();
-                $articleModel ->addArticle($label,$poids,$unite,($prix*100),$origine,$famille,$status);
+                $articleModel ->addArticle($label,$poids,$unite,($prix*100),$origine,$famille,$statut);
 
                 header('location: articles_admin');
                 exit;
@@ -86,6 +90,7 @@ class ArticleAdmin extends AbstractController
             'poids'=>$poids,
             'unites'=>$unites,
             'familles'=>$familles,
+            'statut'=>$statut,
             'error'=>$error,
             'title'=>"Ajouter un article"
         ];
@@ -105,6 +110,8 @@ class ArticleAdmin extends AbstractController
 
         $articleModel = new ArticleModel();
         $article = $articleModel ->getOneArticle($idArticle);
+        $statutModel = new StatusModel();
+        $statut = $statutModel->getAllstatusArticle();
 
         if(!$article){
             http_response_code(404);
@@ -118,9 +125,8 @@ class ArticleAdmin extends AbstractController
         $uniteModel = new UniteModel();
         $unites = $uniteModel ->getAllUnite();
 
-        $etat = $article['etat'];
-
-        $label = $article['label_article'];
+        $statutArticle = $article['statutArticle'];
+        $label = $article['article'];
         $origine = $article['origine'];
         $prix = $article['prix'];
         $poids = $article['poids'];
@@ -132,10 +138,10 @@ class ArticleAdmin extends AbstractController
             $poids = $_POST['poids'];
             $unite = $_POST['unite'];
             $famille = $_POST['famille'];
-            $etat = $_POST['etat'];
+            $statutArticle = $_POST['statutArticle'];
 
             if(empty($errors)){
-                $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$etat,$idArticle);
+                $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$idArticle);
                 header('location: articles_admin');
                 exit;
             }
@@ -146,9 +152,10 @@ class ArticleAdmin extends AbstractController
             'origine'=>$origine,
             'prix'=>$prix,
             'poids'=>$poids,
-            'etat'=>$etat,
+            'statut'=>$statut,
             'unites'=>$unites,
             'familles'=>$familles,
+            'statutArticle'=>$statutArticle,
             'title'=>"Modification d'un article"
         ];
         $this->render($this->file, $this->page, $this->base, $params);

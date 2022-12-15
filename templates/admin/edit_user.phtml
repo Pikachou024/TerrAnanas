@@ -2,15 +2,15 @@
     <div class="container border-custom bg-second-background-color">
         <div class="row">
             <div class="col-12 p-0">
-                <h3 class="text-center text-red mt-2 mb-3"> Modification : <?=$params['society'];?> </h3>
+                <h3 class="text-center text-red mt-2 mb-3"> Modification : <?=$params['client'];?> </h3>
                 <form method="POST" action="<?='edit_user?id='.$params['user']['id_user'];?>">
                     <div class="container">
                         <div class="row mt-2 font-weight-bold">
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="society">Nom de la société</label>
-                                <input type="text" class="form-control" id="society" name="society" value="<?=$params['society'];?>">
-                                <?php if (isset($params['error']['society'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['society']);?></p>
+                                <label for="client">Nom de la société</label>
+                                <input type="text" class="form-control" id="client" name="client" value="<?=$params['client'];?>">
+                                <?php if (isset($params['error']['client'])): ?>
+                                    <p class="error"><?=htmlspecialchars($params['error']['client']);?></p>
                                 <?php endif; ?>
                             </div>
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
@@ -65,11 +65,11 @@
 
                             <div class="col-12 col-md-6 offset-md-3 text-center mb-3 mb-md-4 ">
                                 <label for="status">Status</label>
-                                <select class="form-control" name="status" id="unite">
-                                    <option value="<?=$params['user']['id_status'];?>"><?=$params['user']['label_status'];?></option>
-                                    <?php foreach ($params['status'] as $statusUser): ?>
-                                        <?php if($params['user']['id_status']!=$statusUser['id_status']): ?>
-                                            <option value="<?=$statusUser['id_status'];?>"><?=$statusUser['label_status'];?></option>
+                                <select class="form-control" name="statut" id="statut">
+                                    <option value="<?=$params['user']['id_statut'];?>"><?=$params['user']['statut'];?></option>
+                                    <?php foreach ($params['statut'] as $statutUser): ?>
+                                        <?php if($params['user']['id_statut']!=$statutUser['id_statut']): ?>
+                                            <option value="<?=$statutUser['id_statut'];?>"><?=$statutUser['statut'];?></option>
                                         <?php endif ;?>
                                     <?php endforeach; ?>
                                 </select>
@@ -84,72 +84,4 @@
             </div>
         </div>
     </div>
-</main>
-
-
-<!--<form method="POST" action="--><?//='edit_user?id='.$user['id_user'];?><!--">-->
-<!--    <div class="form-group">-->
-<!--        <label for="society">Nom de la société</label>-->
-<!--        <input type="text" class="form-control" id="society" name="society" value="--><?//=$society;?><!--">-->
-<!--        --><?php //if (isset($error['society'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['society']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="address">Adresse</label>-->
-<!--        <input type="text" class="form-control" id="address" name="address" value="--><?//=$address;?><!--">-->
-<!--        --><?php //if (isset($error['address'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['address']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="city">Ville</label>-->
-<!--        <input type="text" class="form-control" id="city" name="city" value="--><?//=$city;?><!--">-->
-<!--        --><?php //if (isset($error['city'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['city']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="postal">Code postal</label>-->
-<!--        <input type="text" class="form-control" id="postal" name="postal" value="--><?//=$postal;?><!--">-->
-<!--        --><?php //if (isset($error['postal'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['postal']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="contact">Personne à contacter</label>-->
-<!--        <input type="text" class="form-control" id="quantité" name="contact" value="--><?//=$contact;?><!--">-->
-<!--        --><?php //if (isset($error['contact'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['contact']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="phone">Téléphone</label>-->
-<!--        <input type="text" class="form-control" id="phone" name="phone" value="--><?//=$phone;?><!--">-->
-<!--        --><?php //if (isset($error['phone'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['phone']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="email">Email</label>-->
-<!--        <input type="text" class="form-control" id="email" name="email" value="--><?//=$email;?><!--">-->
-<!--        --><?php //if (isset($error['email'])): ?>
-<!--            <p class="error">--><?//=htmlspecialchars($error['email']);?><!--</p>-->
-<!--        --><?php //endif; ?>
-<!--    </div>-->
-
-<!--    <div class="form-group">-->
-<!--        <label for="status">Status</label>-->
-<!--        <select class="form-control" name="status" id="unite">-->
-<!--            <option value="--><?//=$user['id_status'];?><!--">--><?//=$user['label_status'];?><!--</option>-->
-<!--            --><?php //foreach ($status as $statusUser): ?>
-<!--                --><?php //if($user['id_status']!=$statusUser['id_status']): ?>
-<!--                    <option value="--><?//=$statusUser['id_status'];?><!--">--><?//=$statusUser['label_status'];?><!--</option>-->
-<!--                --><?php //endif ;?>
-<!--            --><?php //endforeach; ?>
-<!--        </select>-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--</form>-->
-
 </main>

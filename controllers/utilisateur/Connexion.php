@@ -15,7 +15,7 @@ class Connexion extends AbstractController
             $user = checkUser($email,$password);
 
             if($user){
-                registerUser($user['id_user'],$user['society'],$user['email'],$user['label_role']);
+                registerUser($user['id_user'],$user['client'],$user['email'],$user['role']);
                 if($user['id_role'] == 2){
                     if($user['id_status']==2){
                         header('location:client');
@@ -52,7 +52,7 @@ class Connexion extends AbstractController
 
     function signup()
     {
-        $society = '';
+        $client = '';
         $address = '';
         $city = '';
         $postal = '';
@@ -73,12 +73,15 @@ class Connexion extends AbstractController
                     $users[] = $user;
                 }
             }
+            else{
+                $users=[];
+            }
         }
 
         $error=[];
 
         if (!empty($_POST)) {
-            $society = strip_tags(trim($_POST['society']));
+            $client = strip_tags(trim($_POST['society']));
             $address = strip_tags(trim($_POST['address']));
             $city = strip_tags(trim($_POST['city']));
             $postal = strip_tags(trim($_POST['postal']));
@@ -88,8 +91,8 @@ class Connexion extends AbstractController
             $password = strip_tags(trim($_POST['password']));
             $confirmPassword = strip_tags(trim($_POST['confirmPassword']));
 
-            if (!$society) {
-                $error['society'] = "Veuillez remplir le champ";
+            if (!$client) {
+                $error['client'] = "Veuillez remplir le champ";
             }
             if (!$address) {
                 $error['address'] = "Veuillez remplir le champ";
@@ -117,7 +120,7 @@ class Connexion extends AbstractController
             }
             if (empty($error)) {
                 $hash = password_hash($password, PASSWORD_DEFAULT);
-                $userModel->addUser($society, $address, $city, $postal, $contact, $phone, $email, $hash, 1, 2);
+                $userModel->addUser($client, $address, $city, $postal, $contact, $phone, $email, $hash, 1, 2);
                 /*
                  * TODO message de confirmation à faire
                  */
@@ -127,7 +130,7 @@ class Connexion extends AbstractController
             }
         }
         $params = [
-            'society' => $society,
+            'client' => $client,
             'address' => $address,
             'city' => $city,
             'postal' => $postal,

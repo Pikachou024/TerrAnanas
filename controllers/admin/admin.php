@@ -48,7 +48,7 @@ class Admin extends AbstractController
         $userModel = new UserModel();
         $user = $userModel->getOneUser($id);
 
-        $society = $user['society'];
+        $client = $user['client'];
         $address = $user['address'];
         $postal = $user['postal'];
         $city = $user['city'];
@@ -58,17 +58,17 @@ class Admin extends AbstractController
 
         if(!empty($_POST)){
 
-            $society = strip_tags(trim($_POST['society']));
+            $client = strip_tags(trim($_POST['client']));
             $address = strip_tags(trim($_POST['address']));
             $postal = strip_tags(trim($_POST['postal']));
             $city = strip_tags(trim($_POST['city']));
             $contact = strip_tags(trim($_POST['contact']));
             $phone = strip_tags(trim($_POST['phone']));
             $email = strip_tags(trim($_POST['email']));
-            $status = $user['id_status'];
+            $statut = $user['id_statut'];
 
-            if(!$society){
-                $error['society']="Veuillez remplir le champ";
+            if(!$client){
+                $error['client']="Veuillez remplir le champ";
             }
             if(!$address){
                 $error['address']="Veuillez remplir le champ";
@@ -83,13 +83,13 @@ class Admin extends AbstractController
                 $error['email']="Veuillez remplir le champ";
             }
             if(empty($error)){
-                $userModel->editUser($society,$address,$city,$postal,$contact,$phone,$email,$status,$id);
+                $userModel->editUser($client,$address,$city,$postal,$contact,$phone,$email,$statut,$id);
                 header('location: parametre_admin');
 
             }
         }
         $params = [
-            'society' => $society,
+            'client' => $client,
             'address' => $address,
             'city' => $city,
             'postal' => $postal,

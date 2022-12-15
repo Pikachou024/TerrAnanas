@@ -6,6 +6,8 @@ class Commande extends AbstractController
         $params=[];
         $articleModel = new ArticleModel();
         $articles = $articleModel->getAllArticles();
+        $statusModel = new StatusModel();
+        $statutArticle = $statusModel->getAllStatusArticle();
 
         if(!empty($_GET['articleSearch'])){
             $articleSearch = $_GET['articleSearch'];
@@ -19,19 +21,20 @@ class Commande extends AbstractController
         if(!empty($_POST)){
 
             $idArticle =array_map('strip_tags',$_POST['id_article']);
-            $famille =$_POST['label_famille'];
-            $unite =$_POST['label_unite'];
-            $label =$_POST['label_article'];
+            $famille =$_POST['famille'];
+            $unite =$_POST['unite'];
+            $article =$_POST['article'];
             $origine =$_POST['origine'];
             $poids =$_POST['poids'];
             $prix = $_POST["prix"];
             $quantite = $_POST['quantite'];
 
             for($i=0 ; $i<(count($articles)) ; $i++){
-                addArticle($idArticle[$i],$label[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+                addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
             }
             header("location:articles_client");
         }
+
         $params["articles"]=$articles;
         $params['title']="TerrAnanas - Passer une commande";
         $this->render($this->file, $this->page, $this->base, $params);
@@ -59,7 +62,6 @@ class Commande extends AbstractController
         $params['dateLivraison1']=$dateLivraison1;
         $params['dateLivraison2']=$dateLivraison2;
         $params['title']="TerrAnanas - Votre panier";
-
         $this->render($this->file, $this->page, $this->base, $params);
     }
 
@@ -114,7 +116,7 @@ class Commande extends AbstractController
             $montant = montantTotal($_SESSION['panier'])*100;
 
             /**
-             * Parametre status :
+             * Parametre statut :
              * 1) En attente
              * 2) Validée
              * 3) Refusée

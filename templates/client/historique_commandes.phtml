@@ -19,33 +19,33 @@
                     </div>
             </div>
             <div class="col-12 col-md-6">
-<!--                    <select class="form-control " name="status" id="status">-->
+<!--                    <select class="form-control " name="statut" id="statut">-->
 <!--                        --><?php //if(!empty($params['commandes'])):?>
-<!--                            <option value="--><?//=$params['commandes'][0]['id_status'] ?><!--">--><?//= $params['commandes'][0]['label_status']?><!--</option>-->
+<!--                            <option value="--><?//=$params['commandes'][0]['id_statut'] ?><!--">--><?//= $params['commandes'][0]['statut']?><!--</option>-->
 <!--                        --><?php //endif ;?>
 <!---->
-<!--                        --><?php //foreach ($params['status'] as $status): ?>
-<!--                            --><?php //if($status['id_status'] != $params['commandes'][0]['id_status']): ?>
-<!--                                <option value="--><?//=$status['id_status'];?><!--">--><?//=$status['label_status'];?><!--</option>-->
+<!--                        --><?php //foreach ($params['statut'] as $statut): ?>
+<!--                            --><?php //if($statut['id_statut'] != $params['commandes'][0]['id_statut']): ?>
+<!--                                <option value="--><?//=$statut['id_statut'];?><!--">--><?//=$statut['statut'];?><!--</option>-->
 <!--                            --><?php //endif ;?>
 <!--                        --><?php //endforeach; ?>
 <!--                    </select>-->
 
                 <?php if($params['commandes']):?>
-                    <select class="form-control " name="status" id="status">
-                        <option value="<?= $params['commandes'][0]['id_status'] ?>"><?= $params['commandes'][0]['label_status'] ?></option>
-                        <?php foreach ($params['status'] as $status): ?>
-                            <?php if($status['id_status'] != $params['commandes'][0]['id_status']): ?>
-                                <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
+                    <select class="form-control " name="statut" id="statut">
+                        <option value="<?= $params['commandes'][0]['id_statut'] ?>"><?= $params['commandes'][0]['statut'] ?></option>
+                        <?php foreach ($params['statut'] as $statut): ?>
+                            <?php if($statut['id_statut'] != $params['commandes'][0]['id_statut']): ?>
+                                <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
                             <?php endif ;?>
                         <?php endforeach; ?>
                     </select>
                 <?php else : ?>
-                    <select class="form-control " name="status" id="status">
-                        <option value="<?= $params['statusCommande'] ?>"><?= $params['nameStatus']['label_status'] ?></option>
-                        <?php foreach ($params['status'] as $status): ?>
-                            <?php if($status['id_status'] != $params['statusCommande']): ?>
-                                <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
+                    <select class="form-control " name="statut" id="statut">
+                        <option value="<?= $params['statutCommande'] ?>"><?= $params['nameStatut']['statut'] ?></option>
+                        <?php foreach ($params['statut'] as $statut): ?>
+                            <?php if($statut['id_statut'] != $params['statutCommande']): ?>
+                                <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
                             <?php endif ;?>
                         <?php endforeach; ?>
                     </select>
