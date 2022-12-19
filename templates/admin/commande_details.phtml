@@ -2,12 +2,15 @@
     <div class="container border-custom bg-second-background-color">
         <div class="row">
             <div class="col-12 p-0">
-                <h3 class="text-center text-red mt-2 mb-3"> Commande numéro : <?=$params['idCommande'];?> </h3>
-                    <div class="container">
+                <h3 class="text-center text-red mt-2 mb-3"> Commande numéro : <?=$params['idCommande'];?>  </h3>
+                <div>
+                    <p class="text-center text-red"> Afficher ou masquer les informations client : <i class="fa-solid fa-eye button-client"></i></p>
+                </div>
+                    <div class="container client d-none">
                         <div class="row pt-3 bg-second-lightbackground-color text-center form-details">
                             <div class="col-12 col-md-6 mb-3 mb-md-4 ">
                                 <label>Client  : </label>
-                                <p><?=$params['client']['society'];?></p>
+                                <p><?=$params['client']['client'];?></p>
                             </div>
                             <div class="col-12 col-md-6 mb-3 mb-md-4 ">
                                 <label>Adresse : </label>
@@ -37,49 +40,57 @@
                     </div>
             </div>
         </div>
-    </div>
-     <div class="container mt-3 border-custom bg-second-background-color">
-         <div class="row">
-             <div class="col-12">
-                <div class="container bg-first-lightbackground-color">
-                    <div class="row">
-                        <div class="col-3 text-center"> <label>Article </div>
-                        <div class="col-3 col-sm-2 text-center"> <label>Origine</label> </div>
-                        <div class="col-4 col-md-3 text-center"> <label>Prix</label> </div>
-                        <div class="col-2 d-none d-sm-block text-center"> <label>Poids</label> </div>
-                        <div class="col-2 text-center"> </div>
+
+        <div class="container mt-3 p-0">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="container bg-first-lightbackground-color">
+                        <div class="row font-weight-bold">
+                            <div class="col-3 d-none d-md-block  text-center"> <label>Article </div>
+                            <div class="col-3 d-md-none text-center"> <label>Art </div>
+                            <div class="d-none d-md-block col-3 col-sm-2 text-center"> <label>Origine</label> </div>
+                            <div class="d-md-none col-3 col-sm-2 text-center"> <label>Ori</label> </div>
+                            <div class="col-4 col-md-3 text-center"> <label>Prix</label> </div>
+                            <div class="col-2 d-none d-sm-block text-center"> <label>Poids</label> </div>
+                            <div class="d-none d-md-block col-2 text-center">Quantitée</div>
+                            <div class="d-md-none col-2 text-center">Qte</div>
+                        </div>
                     </div>
-                </div>
-                <form method="post" action="<?='commande_details?id='.$params['idCommande'];?>">
-                    <div class="container ">
-                        <?php foreach ($params['articlesCommande'] as $article): ?>
-                                    <div class="row line-out">
-                                        <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-                                        <input type="hidden" name="label_unite[]" value="<?=$article['label_unite'];?>">
-                                        <div class="col-3 text-center"><input type="hidden" name="label_article[]" value="<?= $article["label_article"];?>"><?= $article["label_article"];?> </div>
-                                        <div class="col-3 col-sm-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
-                                        <div class="col-4 col-sm-3"><input class="w-50 text-center" type="text" name="prix[]" value="<?= ($article["prix"]/100);?>"><?='€/'.$article['label_unite'];?>  </div>
-                                        <div class="col-2 d-none d-sm-block text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
-                                        <div class="col-2 p-0 text-center"><input class="w-50 text-center" type="number" id="quantite" name="quantite[]" min="0" value="<?=$article['quantite'];?>"></div>                                </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="mt-3 d-flex flex-row justify-content-center">
-                        <select class="form-control w-50" name="status" id="status">
-                            <option value="<?= $params['commande']['id_status'] ?>"><?= $params['commande']['label_status'] ?></option>
-                            <?php foreach ($params['status'] as $status): ?>
-                                <?php if($status['id_status'] != $params['commande']['id_status']): ?>
-                                    <option value="<?=$status['id_status'];?>"><?=$status['label_status'];?></option>
-                                <?php endif ;?>
+                    <form method="post" action="<?='commande_details?id='.$params['idCommande'];?>">
+                        <div class="container ">
+                            <?php foreach ($params['articlesCommande'] as $article): ?>
+                                <div class="row line-out">
+                                    <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                                    <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                                    <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                                    <div class="col-3 col-sm-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
+                                    <div class="col-4 col-sm-3 text-center"><input class="w-50 text-center" type="text" name="prix[]" value="<?= ($article["prix"]/100);?>"><?='€/'.$article['unite'];?>  </div>
+                                    <div class="col-2 d-none d-sm-block text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
+                                    <div class="col-2 p-0 text-center"><input class="w-75 text-center" type="number" id="quantite" name="quantite[]" min="0" value="<?=$article['quantite'];?>"></div>
+                                </div>
                             <?php endforeach; ?>
-                        </select>
-                        <button type="submit" class="btn btn-primary"> Valider </button>
-                    </div>
-                </form>
-             </div>
-         </div>
-     </div>
+                        </div>
+                        <div class="mt-3 d-flex flex-row justify-content-center">
+                            <select class="form-control w-50" name="statut" id="statut">
+                                <option value="<?= $params['commande']['id_statut'] ?>"><?= $params['commande']['statut'] ?></option>
+                                <?php foreach ($params['statut'] as $statut): ?>
+                                    <?php if($statut['id_statut'] != $params['commande']['id_statut']): ?>
+                                        <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                                    <?php endif ;?>
+                                <?php endforeach; ?>
+                            </select>
+                            <button type="submit" class="btn bg-alt-background-color text-darkgreen"> Valider </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
         </div>
     </div>
 </div>
 
 </main>
+ <script src="http://localhost/TerrAnanas/public/js/commande_details.js" defer></script>

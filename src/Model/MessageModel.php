@@ -19,18 +19,19 @@ class MessageModel extends AbstractModel
         return $this->db->getOneResult($sql,[$idMessage]);
     }
 
-    function sendMessage($email,$subject,$text,$status,$idUser)
+    function sendMessage($email,$subject,$text,$statut,$idUser)
     {
-        $sql = " INSERT INTO message(email,subject,text,date,status,user)
+        $sql = " INSERT INTO message(email,subject,text,date,id_statut,user)
                  VALUES (?,?,?,now(),?,?)";
 
-        return $this->db->executeQuerry($sql,[$email,$subject,$text,$status,$idUser]);
+        return $this->db->executeQuerry($sql,[$email,$subject,$text,$statut,$idUser]);
     }
 
-    function deleteMessage($id){
-        $sql = "DELETE FROM message
+    function deleteMessage($idMessage,$statut){
+        $sql = "UPDATE message 
+                SET id_statut=?
                 WHERE id_message = ?";
 
-        return $this->db->executeQuerry($sql,[$id]);
+        return $this->db->executeQuerry($sql,[$statut,$idMessage]);
     }
 }

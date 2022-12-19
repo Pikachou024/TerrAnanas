@@ -1,10 +1,14 @@
 <?php
-
-// Connexion à la base de donnée
-const DB_HOST='localhost';
+/*
+ * Paramètre pour la connexion à la BDD
+ */
 const DB_NAME='terrananas';
+const DB_HOST='localhost';
 const DB_USER='root';
 const DB_PASS='';
+
+
+
 
 // Chemin URL
 const PATH_ROOT= "http://localhost/TerrAnanas/";

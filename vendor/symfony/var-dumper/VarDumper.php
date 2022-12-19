@@ -51,7 +51,7 @@ class VarDumper
         $prevHandler = self::$handler;
 
         // Prevent replacing the handler with expected format as soon as the env var was set:
-        if (isset($_SERVER['VAR_DUMPER_FORMAT'])) {
+        if (isset($_SERVER['controllersER_FORMAT'])) {
             return $prevHandler;
         }
 

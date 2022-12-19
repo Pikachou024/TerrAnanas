@@ -24,7 +24,7 @@ function getPathCSS($file,$filename): string
     return  getPathPublicAbsolute($file).'/'.$filename.'.css';
 }
 function getPathTemplate($file,$template){
-//    var_dump($template);
+
 //    return PATH_ROOT.PATH_TEMPLATES.'/'.$file.'/'.$base.".phtml";
     return $_SERVER['DOCUMENT_ROOT'].PATH_TEMPLATES.'/'.$file.'/'.$template.".phtml";
 }

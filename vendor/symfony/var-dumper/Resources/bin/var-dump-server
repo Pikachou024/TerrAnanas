@@ -47,7 +47,7 @@ if (!class_exists(Application::class)) {
 $input = new ArgvInput();
 $output = new ConsoleOutput();
 $defaultHost = '127.0.0.1:9912';
-$host = $input->getParameterOption(['--host'], $_SERVER['VAR_DUMPER_SERVER'] ?? $defaultHost, true);
+$host = $input->getParameterOption(['--host'], $_SERVER['ER_SERVER'] ?? $defaultHost, true);
 $logger = interface_exists(LoggerInterface::class) ? new ConsoleLogger($output->getErrorOutput()) : null;
 
 $app = new Application();

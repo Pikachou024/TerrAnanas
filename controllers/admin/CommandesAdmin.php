@@ -11,29 +11,35 @@ class CommandesAdmin extends AbstractController
 //        }
 
         $statusModel = new statusModel();
-        $statut = $statusModel->getAllstatut();
+        $statut = $statusModel->getAllstatus();
 
         $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
         $params['statutCommande']=intval($statutCommande);
-        $params['namestatut']= $statusModel->getNamestatut($statutCommande);
+        $params['namestatut']= $statusModel->getNamestatus($statutCommande);
+
         $commandeModel = new CommandeModel();
         $commandes = $commandeModel -> getAllCommandes($statutCommande);
 
         if(!empty($_POST['searchDate'])){
             $date = strip_tags(trim($_POST['searchDate']));
-            $dateTime = DateTime::createFromFormat('d/m/Y', $date);
-            $newFormatDate = $dateTime->format('Y-m-d');
-            $_SESSION['commandeByDate']=$commandeModel->getCommandeByDate($newFormatDate,$statutCommande);
+            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
             $params['date']=$date;
         }
         else{
             unset($_SESSION['commandeByDate']);
         }
 
+        $params['view']=viewCommandes($commandes);
         $params['statut']=$statut;
         $params['commandes']=$commandes;
         $params['title']="Listes des commandes";
-        $this->render($this->file, $this->page, $this->base, $params);
+
+        if(!empty($_GET['ajax'])){
+            echo json_encode($params['view']);
+        }
+        else{
+            $this->render($this->file, $this->page, $this->base, $params);
+        }
     }
 
     function commandeDetails(){
@@ -46,8 +52,8 @@ class CommandesAdmin extends AbstractController
 
         $idCommande = intval($_GET['id']);
 
-        $statutModel = new statutModel();
-        $statut = $statutModel->getAllstatut();
+        $statutModel = new statusModel();
+        $statut = $statutModel->getAllStatus();
 
         $commandeModel = new CommandeModel();
         $commande = $commandeModel->getOneCommande($idCommande);
@@ -97,7 +103,7 @@ class CommandesAdmin extends AbstractController
 
         $idCommande = intval($_GET['id']);
         $commandeModel = new CommandeModel();
-        $commandeModel->deleteCommande($idCommande);
+        $commandeModel->validCommande(4,$idCommande);
 
         header('location:commandes_admin');
     }

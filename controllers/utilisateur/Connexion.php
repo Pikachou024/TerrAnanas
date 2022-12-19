@@ -13,14 +13,13 @@ class Connexion extends AbstractController
              * Vérification du user et son mdp
              */
             $user = checkUser($email,$password);
-
             if($user){
                 registerUser($user['id_user'],$user['client'],$user['email'],$user['role']);
                 if($user['id_role'] == 2){
-                    if($user['id_status']==2){
+                    if($user['id_statut']==2){
                         header('location:client');
                     }
-                    elseif($user['id_status']==1){
+                    elseif($user['id_statut']==1){
                         /*
                          * TODO message a faire
                          */
@@ -81,7 +80,7 @@ class Connexion extends AbstractController
         $error=[];
 
         if (!empty($_POST)) {
-            $client = strip_tags(trim($_POST['society']));
+            $client = strip_tags(trim($_POST['client']));
             $address = strip_tags(trim($_POST['address']));
             $city = strip_tags(trim($_POST['city']));
             $postal = strip_tags(trim($_POST['postal']));

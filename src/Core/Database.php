@@ -10,7 +10,9 @@ class Database{
         }
     }
 
-//    Connexion PDO à la base de données
+    /*
+     * Connexion PDO à la base de données
+     */
     function getPdoConnection(){
 
         $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8';
@@ -22,24 +24,25 @@ class Database{
     }
 
 //    Préparation et éxécution d'une requête SQL
-    function executeQuerry(string $sql,array $values=[]){
+    function executeQuerry(string $sql,array $params=[]){
 
         $pdoStatement = self::$pdo->prepare($sql);
-        $pdoStatement->execute($values);
+        $pdoStatement->execute($params);
         return $pdoStatement;
     }
-
 //    Récupération de plusieurs résultats
-    function getAllResults(string $sql,array $values=[]){
+    function getAllResults(string $sql,array $params=[]){
 
-        $pdoStatement=$this -> executeQuerry($sql,$values);
+        $pdoStatement=$this -> executeQuerry($sql,$params);
         return $pdoStatement-> fetchAll();
     }
 //    Récupération d'un résultat
-    function getOneResult(string $sql,array $values=[]){
+    function getOneResult(string $sql,array $params=[]){
 
-        $pdoStatement=$this -> executeQuerry($sql,$values);
+        $pdoStatement=$this -> executeQuerry($sql,$params);
         return $pdoStatement->fetch();
     }
+
+
 
 };

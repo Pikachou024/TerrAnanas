@@ -69,11 +69,11 @@ class CommandeModel extends AbstractModel
     }
 
     function getClientByIdCommande($idCommande){
-        $sql = "SELECT society,address,city,postal,contact,phone,email
+        $sql = "SELECT client,address,city,postal,contact,phone,email
                 FROM commande cmd
                 INNER JOIN user us ON us.id_user = cmd.id_user
                 WHERE cmd.id_commande = ?
-                ORDER BY society ASC";
+                ORDER BY client ASC";
 
         return $this->db->getOneResult($sql,[$idCommande]);
     }

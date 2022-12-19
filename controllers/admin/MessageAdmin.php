@@ -32,9 +32,9 @@ class MessageAdmin extends AbstractController
         $idMessage = intval($_GET['id']);
         $messageModel = new MessageModel();
         $message = $messageModel->getOneMessage($idMessage);
-
         if(!empty($_POST)) {
-
+            $reponse=htmlspecialchars(trim($_POST['reponse']));
+            sendMail(getUserEmail(),$message['email'],"Réponse concernant votre message",$reponse,true);
         }
         $params["message"]=$message;
         $params["title"]="Admin - Message";

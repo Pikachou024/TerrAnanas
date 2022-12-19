@@ -30,10 +30,10 @@
                         <div class="container">
                             <?php foreach ($params['articlesCommande'] as $article): ?>
                                 <div class="row line-out">
-                                    <div class="col-3 text-center"><?= $article["label_article"];?> </div>
+                                    <div class="col-3 text-center"><?= $article["article"];?> </div>
                                     <div class="col-3 col-sm-2 text-center"><?= $article["origine"];?></div>
-                                    <div class="col-4 col-sm-3 text-center"><?= ($article["prix"] / 100).'€/'.$article['label_unite'];?>  </div>
-                                    <div class="col-2 d-none d-sm-block text-center"><?= $article["poids"] ." " .$article['label_unite'];?> </div>
+                                    <div class="col-4 col-sm-3 text-center"><?= ($article["prix"] / 100).'€/'.$article['unite'];?>  </div>
+                                    <div class="col-2 d-none d-sm-block text-center"><?= $article["poids"] ." " .$article['unite'];?> </div>
                                     <div class="col-2  text-center"><?=$article['quantite'];?></div>
                                 </div>
                             <?php endforeach; ?>
