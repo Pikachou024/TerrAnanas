@@ -50,7 +50,6 @@
                         <div class="col-2 d-none d-md-block text-center "> Commande </div>
                         <div class="col-2 d-md-none text-center "> Cde </div>
                         <div class="col-4 col-sm-3 col-md-2 text-center "> Client </div>
-<!--                        <div class="col-2 d-md-none text-center "> Cde </div>-->
                         <div class="col-4 col-sm-3 col-md-2 text-center "> Montant </div>
                         <div class="col-2 d-none d-sm-block text-center "> Date commande </div>
                         <div class="col-2 d-none d-md-block text-center "> Date livraison </div>
@@ -60,7 +59,7 @@
                 </div>
 
                 <div class="container view">
-                    <?= $params['view'] ;?>
+                    <?php include $params['view'];?>
                 </div>
 
 

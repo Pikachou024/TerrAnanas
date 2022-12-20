@@ -27,7 +27,10 @@ class ArticleAdmin extends AbstractController
         $params['articles']=$articles;
         $params['statutArticle']=$statut;
         $params['title']="Admin - Liste des articles";
+
+        $params['view']=getPathTemplate('admin','liste_articles_admin');
         $this->render($this->file, $this->page, $this->base, $params);
+
     }
 
     function addArticle(){
@@ -174,5 +177,25 @@ class ArticleAdmin extends AbstractController
 
         header('location: articles_admin');
         exit;
+    }
+
+    function listeArticles(){
+        $articleModel = new ArticleModel();
+        $articles = $articleModel ->getAllArticles();
+        $statutModel = new StatusModel();
+        $statut = $statutModel->getAllstatusArticle();
+
+        if(!empty($_POST['articleSearch'])){
+            $articleSearch = $_POST['articleSearch'];
+            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+            $params['articleSearch']=$articleSearch;
+
+        }else{
+            unset( $_SESSION['articleSearch']);
+        }
+        $params['articles']=$articles;
+        $params['statutArticle']=$statut;
+
+        include getPathTemplate('admin','liste_articles_admin');
     }
 }

@@ -206,38 +206,37 @@ function montantTotal(array $listeArticle): float|int
     return $totalPanier;
 }
 
-function viewCommandes(array $commandes): string{
+//function viewCommandes(array $commandes): string{
+//
+//    if($commandes){
+//        $row='';
+//        foreach ($commandes as $commande){
+//            $row .='<div class="row pt-2 pb-2 line-out" >';
+//            $col=
+//                '<div class="col-2 text-center">'.$commande["id_commande"].'</div>'
+//                .'<div class="col-4 col-sm-3 col-md-2 text-center" >'.$commande["client"].'</div>'
+//                .'<div class="col-4 col-sm-3 col-md-2 text-center" >'.($commande["montant"])/100 .'€'.'</div>'
+//                .'<div class="col-2 d-none d-sm-block text-center" >'.date('d/m/y', strtotime($commande['date_commande'])).'</div>'
+//                .'<div class="col-2 d-none d-md-block text-center" >'.date('d/m/y', strtotime($commande['date_livraison'])).'</div>'
+//                .'<div class="col-1 d-none d-md-block text-center" ><a href="commande_details?id='.$commande['id_commande'].'"><i class="fa-solid fa-pen-to-square"></i></a></div>'
+//                .'<div class="col-1 d-none d-md-block text-center"><a href="delete_commande?id='.$commande['id_commande'].'"><i class="fa-solid fa-trash-can"></i></a></div>'
+//                .'<div class="col-2 d-md-none text-center  show-detail"><a href="commande_details?id='.$commande['id_commande'].'"><i class="fa-solid fa-eye"></i></a></div>';
+////                .'<div class="col-2 d-md-none text-center  show-detail"><i class="fa-solid fa-eye"></i></div>';
+//            $row.=$col.'</div>';
+//        }
+//        return $row;
+//    }
+//    else{
+//        return '<div class="container mt-3">
+//                    <div class="row">
+//                        <div class="col text-center text-red">
+//                            <h4>Aucune commande</h4>
+//                        </div>
+//                    </div>
+//                </div>';
+//    }
+//}
 
-    if($commandes){
-//        $row='<div class="container transform-ajax">';
-        $row='';
-        foreach ($commandes as $commande){
-            $row .='<div class="row pt-2 pb-2 line-out" >';
-            $col=
-                '<div class="col-2 text-center">'.$commande["id_commande"].'</div>'
-                .'<div class="col-4 col-sm-3 col-md-2 text-center" >'.$commande["client"].'</div>'
-                .'<div class="col-4 col-sm-3 col-md-2 text-center" >'.($commande["montant"])/100 .'€'.'</div>'
-                .'<div class="col-2 d-none d-sm-block text-center" >'.date('d/m/y', strtotime($commande['date_commande'])).'</div>'
-                .'<div class="col-2 d-none d-md-block text-center" >'.date('d/m/y', strtotime($commande['date_livraison'])).'</div>'
-                .'<div class="col-1 d-none d-md-block text-center" ><a href="commande_details?id='.$commande['id_commande'].'"><i class="fa-solid fa-pen-to-square"></i></a></div>'
-                .'<div class="col-1 d-none d-md-block text-center"><a href="delete_commande?id='.$commande['id_commande'].'"><i class="fa-solid fa-trash-can"></i></a></div>'
-                .'<div class="col-2 d-md-none text-center  show-detail"><a href="commande_details?id='.$commande['id_commande'].'"><i class="fa-solid fa-eye"></i></a></div>';
-//                .'<div class="col-2 d-md-none text-center  show-detail"><i class="fa-solid fa-eye"></i></div>';
-            $row.=$col.'</div>';
-        }
-        return $row;
-    }
-    else{
-        return '<div class="container mt-3">
-                    <div class="row">
-                        <div class="col text-center text-red">
-                            <h4>Aucune commande</h4>
-                        </div>
-                    </div>
-                </div>';
-    }
-
-}
 
 /**
  * Gestion date

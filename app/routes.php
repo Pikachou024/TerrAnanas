@@ -185,8 +185,19 @@ $routes=[
         "action"=>"deleteMessage",
         'path'=>"admin",
         "base_template"=>"base_admin"
-    ]
-
+    ],
+    "liste_commandes_admin"=>[
+        "controller"=>"CommandesAdmin",
+        "action"=>"listeCommandes",
+        'path'=>"admin",
+        "base_template"=>"base_admin"
+    ],
+    "liste_articles_admin"=>[
+    "controller"=>"ArticleAdmin",
+    "action"=>"listeArticles",
+    'path'=>"admin",
+    "base_template"=>"base_admin"
+]
 
 
 ];

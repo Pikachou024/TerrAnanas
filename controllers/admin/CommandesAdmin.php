@@ -13,33 +13,28 @@ class CommandesAdmin extends AbstractController
         $statusModel = new statusModel();
         $statut = $statusModel->getAllstatus();
 
-        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
-        $params['statutCommande']=intval($statutCommande);
+        $statutCommande = 1 ;
+        $params['statutCommande']=$statutCommande;
         $params['namestatut']= $statusModel->getNamestatus($statutCommande);
 
         $commandeModel = new CommandeModel();
         $commandes = $commandeModel -> getAllCommandes($statutCommande);
 
-        if(!empty($_POST['searchDate'])){
-            $date = strip_tags(trim($_POST['searchDate']));
-            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
-            $params['date']=$date;
-        }
-        else{
-            unset($_SESSION['commandeByDate']);
-        }
+//        if(!empty($_POST['searchDate'])){
+//            $date = strip_tags(trim($_POST['searchDate']));
+//            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
+//            $params['date']=$date;
+//        }
+//        else{
+//            unset($_SESSION['commandeByDate']);
+//        }
 
-        $params['view']=viewCommandes($commandes);
         $params['statut']=$statut;
         $params['commandes']=$commandes;
         $params['title']="Listes des commandes";
+        $params['view'] = getPathTemplate('admin','listes_commandes_admin');
 
-        if(!empty($_GET['ajax'])){
-            echo json_encode($params['view']);
-        }
-        else{
-            $this->render($this->file, $this->page, $this->base, $params);
-        }
+        $this->render($this->file, $this->page, $this->base, $params);
     }
 
     function commandeDetails(){
@@ -106,5 +101,23 @@ class CommandesAdmin extends AbstractController
         $commandeModel->validCommande(4,$idCommande);
 
         header('location:commandes_admin');
+    }
+
+    function listeCommandes(){
+        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
+
+        $commandeModel = new CommandeModel();
+        $commandes = $commandeModel -> getAllCommandes($statutCommande);
+
+        if(!empty($_POST['searchDate'])){
+            $date = strip_tags(trim($_POST['searchDate']));
+            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
+            $params['date']=$date;
+        }
+        else{
+            unset($_SESSION['commandeByDate']);
+        }
+        $params['commandes']=$commandes;
+        include getPathTemplate('admin','listes_commandes_admin');
     }
 }
