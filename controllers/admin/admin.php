@@ -37,7 +37,7 @@ class Admin extends AbstractController
     function parametre(){
         $role = getUserRole();
 
-        if($role != "client") {
+        if($role != "admin") {
             http_response_code(403);
             echo("Désolé la page n'existe pas");
             exit;

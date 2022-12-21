@@ -1,15 +1,14 @@
-let searchDate = document.querySelector("#reservationDate");
-let status = document.querySelector("#selectStatut")
+let searchArticle = document.querySelector("#articleSearch");
 let form = document.querySelector('#form-commande');
 
-status.addEventListener('change',submit);
-searchDate.addEventListener('change',submit);
+searchArticle.addEventListener('keyup',submit);
 
 function submit(event) {
     event.preventDefault();
     let formData = new FormData(form);
     let container = document.querySelector('.view');
-    fetch('commandes_admin?ajax=true', {method: 'POST', body: formData})
+    // fetch('commandes_admin?ajax=true', {method: 'POST', body: formData})
+    fetch('articles_client?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())
         .then(data => {
             container.innerHTML='';

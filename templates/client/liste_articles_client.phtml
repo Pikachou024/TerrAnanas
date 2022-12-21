@@ -1,0 +1,148 @@
+<form method="POST" action="<?='add_panier';?>">
+
+<?php if(isset($_SESSION['articleSearch'])) :?>
+    <?php if(empty($_SESSION['articleSearch'])) :?>
+        <div class="container-fluide">
+            <div class="container p-0 ">
+                <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0">
+                    <div class="col-2 d-none d-md-block text-center font-weight-bold"> <p>Article</p> </div>
+                    <div class="col-2 d-md-none text-center font-weight-bold"> <p>Art</p> </div>
+                    <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Origine</p> </div>
+                    <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Ori</p> </div>
+                    <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prix/Unitée</p> </div>
+                    <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prx/Ute</p> </div>
+                    <div class="col-2 text-center font-weight-bold"> <p>Poids</p> </div>
+                </div>
+            </div>
+            <div class="row line-out pt-2 pb-2 m-0">
+                <div class="col-12 mt-3 mb-3 text-center "> Aucun article trouvé</div>
+            </div>
+        </div>
+
+    <?php else : ?>
+        <div class="container p-0 ">
+            <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0">
+                <div class="col-2 d-none d-md-block text-center font-weight-bold"> <p>Article</p> </div>
+                <div class="col-2 d-md-none text-center font-weight-bold"> <p>Art</p> </div>
+                <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Origine</p> </div>
+                <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Ori</p> </div>
+                <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prix/Unitée</p> </div>
+                <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prx/Ute</p> </div>
+                <div class="col-2 text-center font-weight-bold"> <p>Poids</p> </div>
+            </div>
+            <?php foreach ($_SESSION['articleSearch'] as $article): ?>
+
+                <div class="row line-out pt-2 pb-2 m-0">
+                    <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                    <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                    <div class="col-2 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                    <div class="col-4 col-sm-3 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
+                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
+                    <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
+                    <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
+                </div>
+            <?php endforeach; ?>
+
+        </div>
+    <?php endif;?>
+<?php else : ?>
+    <div class="container-fluide">
+        <h3 class="text-center text-red m-0 p-2">Légumes</h3>
+
+        <div class="container p-0 ">
+<!--            <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0">-->
+<!--                <div class="col-2 d-none d-md-block text-center font-weight-bold"> <p>Article</p> </div>-->
+<!--                <div class="col-2 d-md-none text-center font-weight-bold"> <p>Art</p> </div>-->
+<!--                <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Origine</p> </div>-->
+<!--                <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Ori</p> </div>-->
+<!--                <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prix/Unitée</p> </div>-->
+<!--                <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prx/Ute</p> </div>-->
+<!--                <div class="col-2 text-center font-weight-bold"> <p>Poids</p> </div>-->
+<!--            </div>-->
+            <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0 d-grid">
+                <div class="col-6 d-grid-cell">
+                    <div class="row d-grid">
+                        <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <p>Article</p> </div>
+                        <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <p>Origine</p> </div>
+                    </div>
+                </div>
+                <div class="col-6 d-grid-cell">
+                    <div class="row d-grid">
+                        <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <p>Prix/Unitée</p> </div>
+                        <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <p>Poids</p> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php foreach ($params['articles'] as $article): ?>
+            <?php if($article['famille']=="Légume" && $article['id_statutArticle']!=3):?>
+                <div class="row line-out pt-2 pb-2 m-0 d-grid">
+                    <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                    <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                    <div class="col-6 d-grid-cell">
+                        <div class="row d-grid">
+                            <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                            <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 d-grid-cell">
+                        <div class="row d-grid">
+                            <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>   </div>
+                            <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell"> <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>  </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-grid-cell">
+                        <div class="row d-grid">
+                            <div class="col-12 col-md-6 text-center font-weight-bold d-grid-cell "> <input class="w-50 text-center" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
+
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="row line-out pt-2 pb-2 m-0">-->
+<!--                    <input type="hidden" name="id_article[]" value="--><?//=$article['id_article'];?><!--">-->
+<!--                    <input type="hidden" name="unite[]" value="--><?//=$article['unite'];?><!--">-->
+<!--                    <input type="hidden" name="famille[]" value="--><?//=$article['famille'];?><!--">-->
+<!--                    <div class="col-3 text-center"><input type="hidden" name="article[]" value="--><?//= $article["article"];?><!--">--><?//= $article["article"];?><!-- </div>-->
+<!--                    <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" --><?//= $article["origine"];?><!--"> --><?//= $article["origine"];?><!--</div>-->
+<!--                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="--><?//= $article["prix"]/100;?><!--">--><?//= ($article["prix"]/100)." €/".$article['unite'];?><!--  </div>-->
+<!--                    <div class="col-2 text-center"><input type="hidden" name="poids[]" value="--><?//= $article["poids"];?><!--">--><?//= $article["poids"] ." " .$article['unite'];?><!-- </div>-->
+<!--                    <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>-->
+<!--                </div>-->
+            <?php endif ;?>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="container-fluide ">
+        <h3 class="text-center text-red m-0 p-2 " >Fruits</h3>
+        <div class="container p-0 ">
+            <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0">
+                <div class="col-2 d-none d-md-block text-center font-weight-bold"> <p>Article</p> </div>
+                <div class="col-2 d-md-none text-center font-weight-bold"> <p>Art</p> </div>
+                <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Origine</p> </div>
+                <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Ori</p> </div>
+                <div class="col-4 d-none d-md-block col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prix/Unitée</p> </div>
+                <div class="col-4 d-md-none col-sm-3 col-md-2 text-center font-weight-bold"> <p>Prx/Ute</p> </div>
+                <div class="col-2 text-center font-weight-bold"> <p>Poids</p> </div>
+            </div>
+        </div>
+        <?php foreach ($params['articles'] as $article): ?>
+            <?php if($article['famille']=="Fruit" && $article['id_statutArticle']!=3):?>
+                <div class="row line-out pt-2 pb-2 m-0">
+                    <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                    <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                    <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                    <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?></div>
+                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
+                    <div class="col-2 text-center"><input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?> </div>
+                    <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>
+                </div>
+            <?php endif ;?>
+        <?php endforeach; ?>
+    </div>
+<?php endif;?>
+    <div class="col-12 text-center pt-3 pb-2"><button type="submit" class="btn bg-alt-background-color text-darkgreen">Ajouter</button></div>
+</form>

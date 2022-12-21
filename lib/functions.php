@@ -102,7 +102,7 @@ function checkArticle($idArticle,$quantite) :bool {
         return true;
     }
 //    Si $_SESSION['article'] est vide, on ne fait rien
-    if(empty($_SESSION['article'])){
+    if(empty($_SESSION['panier'])){
         return false;
     }
     else{

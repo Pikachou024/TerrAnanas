@@ -30,7 +30,12 @@ class Historique extends AbstractController
         $params['statut']=$statut;
         $params['commandes']=$commandes;
         $params['title']="TerrAnanas - Mes commandes";
-        $this->render($this->file,$this->page,$this->base,$params);
+        if(!empty($_GET['ajax'])){
+            $this->render($this->file, 'liste_commandes_client', '', $params);
+        }else{
+            $this->render($this->file, $this->page, $this->base, $params);
+        }
+//        $this->render($this->file,$this->page,$this->base,$params);
     }
 
     function getOneCommande(){

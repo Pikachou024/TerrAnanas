@@ -9,14 +9,46 @@ class Commande extends AbstractController
         $statusModel = new StatusModel();
         $statutArticle = $statusModel->getAllStatusArticle();
 
-        if(!empty($_GET['articleSearch'])){
-            $articleSearch = $_GET['articleSearch'];
+        if(!empty($_POST['articleSearch'])){
+            $articleSearch = $_POST['articleSearch'];
             $params["articleSearch"]=$articleSearch;
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
         }
         else {
             unset($_SESSION['articleSearch']);
         }
+
+//        if(!empty($_POST)){
+//
+//            $idArticle =array_map('strip_tags',$_POST['id_article']);
+//            $famille =$_POST['famille'];
+//            $unite =$_POST['unite'];
+//            $article =$_POST['article'];
+//            $origine =$_POST['origine'];
+//            $poids =$_POST['poids'];
+//            $prix = $_POST["prix"];
+//            $quantite = $_POST['quantite'];
+//
+//            for($i=0 ; $i<(count($articles)) ; $i++){
+//                addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+//            }
+//            header("location:articles_client");
+//        }
+
+        $params["articles"]=$articles;
+        $params['title']="TerrAnanas - Passer une commande";
+
+        if(!empty($_GET['ajax'])){
+            $this->render($this->file, 'liste_articles_client', '', $params);
+        }else{
+            $this->render($this->file, $this->page, $this->base, $params);
+        }
+//        $this->render($this->file, $this->page, $this->base, $params);
+    }
+
+    function addPanier(){
+        $articleModel = new ArticleModel();
+        $articles = $articleModel->getAllArticles();
 
         if(!empty($_POST)){
 
@@ -32,12 +64,9 @@ class Commande extends AbstractController
             for($i=0 ; $i<(count($articles)) ; $i++){
                 addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
             }
-            header("location:articles_client");
-        }
 
-        $params["articles"]=$articles;
-        $params['title']="TerrAnanas - Passer une commande";
-        $this->render($this->file, $this->page, $this->base, $params);
+        }
+        header("location:articles_client");
     }
 
     function panier(){

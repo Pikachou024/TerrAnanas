@@ -17,14 +17,6 @@ class UsersAdmin extends AbstractController
         $params['namestatut']= $status->getNamestatus($userstatut);
         $users = $userModel ->getAllUsers($userstatut);
 
-//if(!empty($_POST['userstatut'])){
-//    $userstatut = $_POST['userstatut'];
-//}
-//else{
-//    $userstatut = 1;
-//}
-
-//$userSearch = (!empty($_POST['userSearch'])) ? strip_tags(trim($_POST['userSearch'])) : 1;
         if(!empty($_POST['userSearch'])){
             $userSearch = $_POST['userSearch'];
             $_SESSION['userSearch'] = searchUser($userSearch,$users);
@@ -37,7 +29,13 @@ class UsersAdmin extends AbstractController
         $params['statut']=$statut;
         $params['users']=$users;
         $params['title']="Listes des clients";
-        $this->render($this->file, $this->page, $this->base, $params);
+
+        if(!empty($_GET['ajax'])){
+            $this->render($this->file, 'liste_users_admin', '', $params);
+        }else{
+            $this->render($this->file, $this->page, $this->base, $params);
+        }
+//        $this->render($this->file, $this->page, $this->base, $params);
     }
 
     function editUser(){

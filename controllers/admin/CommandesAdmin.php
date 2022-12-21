@@ -10,6 +10,7 @@ class CommandesAdmin extends AbstractController
 //            exit;
 //        }
 
+
         $statusModel = new statusModel();
         $statut = $statusModel->getAllstatus();
 
@@ -17,24 +18,31 @@ class CommandesAdmin extends AbstractController
         $params['statutCommande']=$statutCommande;
         $params['namestatut']= $statusModel->getNamestatus($statutCommande);
 
+        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
+
         $commandeModel = new CommandeModel();
         $commandes = $commandeModel -> getAllCommandes($statutCommande);
 
-//        if(!empty($_POST['searchDate'])){
-//            $date = strip_tags(trim($_POST['searchDate']));
-//            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
-//            $params['date']=$date;
-//        }
-//        else{
-//            unset($_SESSION['commandeByDate']);
-//        }
+        if(!empty($_POST['searchDate'])){
+            $date = strip_tags(trim($_POST['searchDate']));
+            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
+            $params['date']=$date;
+        }
+        else{
+            unset($_SESSION['commandeByDate']);
+        }
+//        $params['commandes']=$commandes;
 
         $params['statut']=$statut;
         $params['commandes']=$commandes;
         $params['title']="Listes des commandes";
-        $params['view'] = getPathTemplate('admin','listes_commandes_admin');
-
-        $this->render($this->file, $this->page, $this->base, $params);
+//        $params['view'] = getPathTemplate('admin','listes_commandes_admin');
+        if(!empty($_GET['ajax'])){
+            $this->render($this->file, 'liste_commandes_admin', '', $params);
+        }else{
+            $this->render($this->file, $this->page, $this->base, $params);
+        }
+//        $this->render($this->file, $this->page, $this->base, $params);
     }
 
     function commandeDetails(){
@@ -103,21 +111,21 @@ class CommandesAdmin extends AbstractController
         header('location:commandes_admin');
     }
 
-    function listeCommandes(){
-        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
-
-        $commandeModel = new CommandeModel();
-        $commandes = $commandeModel -> getAllCommandes($statutCommande);
-
-        if(!empty($_POST['searchDate'])){
-            $date = strip_tags(trim($_POST['searchDate']));
-            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
-            $params['date']=$date;
-        }
-        else{
-            unset($_SESSION['commandeByDate']);
-        }
-        $params['commandes']=$commandes;
-        include getPathTemplate('admin','listes_commandes_admin');
-    }
+//    function listeCommandes(){
+//        $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
+//
+//        $commandeModel = new CommandeModel();
+//        $commandes = $commandeModel -> getAllCommandes($statutCommande);
+//
+//        if(!empty($_POST['searchDate'])){
+//            $date = strip_tags(trim($_POST['searchDate']));
+//            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
+//            $params['date']=$date;
+//        }
+//        else{
+//            unset($_SESSION['commandeByDate']);
+//        }
+//        $params['commandes']=$commandes;
+//        include getPathTemplate('admin','liste_commandes_admin');
+//    }
 }

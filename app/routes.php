@@ -56,6 +56,12 @@ $routes=[
         'path'=>"client",
         "base_template"=>"base_client"
     ],
+    "add_panier"=>[
+        "controller"=>"Commande",
+        "action"=>"addPanier",
+        'path'=>"client",
+        "base_template"=>""
+    ],
     "panier"=>[
         "controller"=>"Commande",
         "action"=>"panier",
@@ -185,19 +191,25 @@ $routes=[
         "action"=>"deleteMessage",
         'path'=>"admin",
         "base_template"=>"base_admin"
-    ],
-    "liste_commandes_admin"=>[
-        "controller"=>"CommandesAdmin",
-        "action"=>"listeCommandes",
-        'path'=>"admin",
-        "base_template"=>"base_admin"
-    ],
-    "liste_articles_admin"=>[
-    "controller"=>"ArticleAdmin",
-    "action"=>"listeArticles",
-    'path'=>"admin",
-    "base_template"=>"base_admin"
-]
+    ]
+//    "liste_commandes_admin"=>[
+//        "controller"=>"CommandesAdmin",
+//        "action"=>"listeCommandes",
+//        'path'=>"admin",
+//        "base_template"=>"base_admin"
+//    ],
+//    "liste_articles_admin"=>[
+//    "controller"=>"ArticleAdmin",
+//    "action"=>"listeArticles",
+//    'path'=>"admin",
+//    "base_template"=>"base_admin"
+//    ],
+//    "liste_users_admin"=>[
+//        "controller"=>"UsersAdmin",
+//        "action"=>"listeArticles",
+//        'path'=>"admin",
+//        "base_template"=>"base_admin"
+//    ],
 
 
 ];

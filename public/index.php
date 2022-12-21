@@ -41,5 +41,3 @@ $path = $routes[$page]["path"];
 autoloadController($controllerFile,$path);
 $classe = new $controllerFile($path,$page,$routes[$page]['base_template']);
 $classe->$action();
-
-

@@ -9,7 +9,7 @@ function submit(event) {
     event.preventDefault();
     let formData = new FormData(form);
     let container = document.querySelector('.view');
-    fetch('commandes_admin?ajax=true', {method: 'POST', body: formData})
+    fetch('historique_commandes?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())
         .then(data => {
             container.innerHTML='';

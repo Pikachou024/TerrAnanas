@@ -7,17 +7,9 @@
                     <div class="input-group w-75 ">
                         <?php if(empty($_SESSION['articleSearch'])) :?>
                             <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article" >
-
                         <?php else : ?>
                             <input type="search" class="form-control" name="articleSearch" id="articleSearch" value="<?=$params['articleSearch'];?>">
                         <?php endif;?>
-
-                        <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default bg-alt-background-color text-darkgreen" >
-                            Valider
-                        <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
                     </div>
                 </form>
             </div>
@@ -32,7 +24,8 @@
     <div class="row">
         <div class="col-12 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0 view">
 
-            <?php include $params['view'];?>
+<!--            --><?php //include $params['view'];?>
+            <?php $this->render($this->file, 'liste_articles_admin', '', $params);?>
 
 <!---->
 <!--            --><?php //if(empty($_SESSION['articleSearch'])) :?>
