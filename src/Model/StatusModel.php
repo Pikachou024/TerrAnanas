@@ -24,4 +24,12 @@ class StatusModel extends AbstractModel
         return $this->db->getAllResults($sql);
     }
 
+    function getNameStatusArticle($idStatut){
+        $sql ="SELECT *
+               FROM statutArticle
+               WHERE id_statutArticle = ?";
+
+        return $this->db->getOneResult($sql,[$idStatut]);
+    }
+
 }

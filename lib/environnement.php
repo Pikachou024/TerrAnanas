@@ -25,6 +25,30 @@ function getPathCSS($file,$filename): string
 }
 function getPathTemplate($file,$template){
 
-//    return PATH_ROOT.PATH_TEMPLATES.'/'.$file.'/'.$base.".phtml";
     return $_SERVER['DOCUMENT_ROOT'].PATH_TEMPLATES.'/'.$file.'/'.$template.".phtml";
+}
+
+function autoloader($className) {
+    $paths = [
+        "../src/Core/",
+        "../src/Model/",
+        "../app/",
+        "../lib/"
+    ];
+
+    foreach ($paths as $path) {
+        $file = $path . $className . ".php";
+        if (file_exists($file)) {
+            include $file;
+            return;
+        }
+    }
+}
+
+/*
+ * inclusion des Classe
+ */
+function autoloadController($class_name,$path): void
+{
+    include '../controllers/'.$path.'/'.ucfirst($class_name) . '.php';
 }

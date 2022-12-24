@@ -2,7 +2,7 @@
 
 class Client extends AbstractController
 {
-    function accueil(){
+    function index(){
         $dateDuJour = dateFr(date('D d M Y'));
         $idUser = intval(getUserId());
         $commandeModel = new CommandeModel();

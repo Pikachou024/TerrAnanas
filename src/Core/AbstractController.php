@@ -1,12 +1,10 @@
 <?php
 
-
 abstract class AbstractController{
 
     protected string $file;
     protected string $page;
     protected string $base;
-
 
     function __construct(string $file, string $page, string $base)
     {
@@ -24,7 +22,5 @@ abstract class AbstractController{
         else{
             require_once (getPathTemplate($file,$base));
         }
-
     }
-
 }

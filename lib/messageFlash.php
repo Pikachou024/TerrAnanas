@@ -15,10 +15,22 @@ function addFlashMessage(string $message, string $type = 'success') {
 function displayFlashMessages() {
     if (isset($_SESSION['flash_messages'])) {
         foreach ($_SESSION['flash_messages'] as $message) {
-            echo '<div class="flash-message flash-' . $message['type'] . '">' . $message['message'] . '</div>';
+            echo '<div class="bg-red text-light w-50 text-center align-self-center flash-message flash-' . $message['type'] . '">' . $message['message'] . '</div>';
         }
         unset($_SESSION['flash_messages']);
     }
+}
+
+function canProceed() {
+    if (!isset($_SESSION['flash_messages'])) {
+        return true;
+    }
+    foreach ($_SESSION['flash_messages'] as $message) {
+        if ($message['type'] == 'error') {
+            return false;
+        }
+    }
+    return true;
 }
 
 /*

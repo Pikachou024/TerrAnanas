@@ -6,7 +6,7 @@ $routes=[
      */
     "home"=>[
         "controller"=>"Home",
-        "action"=>"accueil",
+        "action"=>"index",
         'path'=>"utilisateur",
         "base_template"=>"base"
     ],
@@ -46,7 +46,7 @@ $routes=[
      */
     "client"=>[
         "controller"=>"Client",
-        "action"=>"accueil",
+        "action"=>"index",
         'path'=>"client",
         "base_template"=>"base_client"
     ],
@@ -98,7 +98,7 @@ $routes=[
      */
     "admin"=>[
         "controller"=>"Admin",
-        "action"=>"accueil",
+        "action"=>"index",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
@@ -192,25 +192,5 @@ $routes=[
         'path'=>"admin",
         "base_template"=>"base_admin"
     ]
-//    "liste_commandes_admin"=>[
-//        "controller"=>"CommandesAdmin",
-//        "action"=>"listeCommandes",
-//        'path'=>"admin",
-//        "base_template"=>"base_admin"
-//    ],
-//    "liste_articles_admin"=>[
-//    "controller"=>"ArticleAdmin",
-//    "action"=>"listeArticles",
-//    'path'=>"admin",
-//    "base_template"=>"base_admin"
-//    ],
-//    "liste_users_admin"=>[
-//        "controller"=>"UsersAdmin",
-//        "action"=>"listeArticles",
-//        'path'=>"admin",
-//        "base_template"=>"base_admin"
-//    ],
-
-
 ];
 return $routes ;

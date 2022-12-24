@@ -2,7 +2,7 @@
     <div class="container mt-3 mb-3">
         <h2 class="text-center text-red"> Listes des articles</h2>
         <div class="row">
-            <div class="col-10 col-md-8">
+            <div class="col-10 ">
                 <form method="POST" action ="articles_admin" class="navbar-form navbar-right" id="form-commande" role="search">
                     <div class="input-group w-75 ">
                         <?php if(empty($_SESSION['articleSearch'])) :?>
@@ -13,10 +13,10 @@
                     </div>
                 </form>
             </div>
-            <div class="col-2 col-md-4 text-center">
+
+            <div class="col-2 col-md-2 text-center">
                 <a href="add_article" > <img src="http://localhost/TerrAnanas/public/images/add_icon.png" class="img-responsive mw-100" > <span class="d-none d-md-block">Ajouter un article</span></a>
             </div>
-
         </div>
     </div>
 

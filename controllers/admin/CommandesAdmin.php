@@ -14,11 +14,12 @@ class CommandesAdmin extends AbstractController
         $statusModel = new statusModel();
         $statut = $statusModel->getAllstatus();
 
-        $statutCommande = 1 ;
-        $params['statutCommande']=$statutCommande;
-        $params['namestatut']= $statusModel->getNamestatus($statutCommande);
+//        $statutCommande = 1 ;
+
 
         $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
+        $params['statutCommande']=$statutCommande;
+        $params['namestatut']= $statusModel->getNamestatus($statutCommande);
 
         $commandeModel = new CommandeModel();
         $commandes = $commandeModel -> getAllCommandes($statutCommande);

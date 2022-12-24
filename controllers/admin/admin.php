@@ -2,7 +2,7 @@
 
 class Admin extends AbstractController
 {
-    function accueil(){
+    function index(){
         $dateDuJour = dateFr(date('D d M Y'));
         /*
          * Partie commande du jour

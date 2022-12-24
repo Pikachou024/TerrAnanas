@@ -3,13 +3,7 @@
 function getURL($url){
     return str_replace(PATH_ROOT2,'',$url);
 }
-/*
- * inclusion des Classe
- */
-function autoloadController($class_name,$path): void
-{
-    include '../controllers/'.$path.'/'.ucfirst($class_name) . '.php';
-}
+
 
 function checkEmail($email,$users):bool{
     if(empty($users)){

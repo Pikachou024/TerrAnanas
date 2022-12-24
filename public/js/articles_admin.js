@@ -11,6 +11,7 @@ function submit(event) {
     fetch('articles_admin?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())
         .then(data => {
+            console.log(data)
             container.innerHTML='';
             container.innerHTML=data;
         })
