@@ -3,6 +3,15 @@
 class Client extends AbstractController
 {
     function index(){
+
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            echo("accès refusé");
+            exit;
+        }
+
+
         $dateDuJour = dateFr(date('D d M Y'));
         $idUser = intval(getUserId());
         $commandeModel = new CommandeModel();

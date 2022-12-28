@@ -3,7 +3,9 @@
  */
 let articlesearch = document.querySelector("#articleSearch");
 let inputQuantite = document.querySelectorAll(".quantite");
-let form = document.querySelector('#form-commande');
+let form = document.querySelector('#form-search');
+
+
 
 /*
     Déclaration d'un objet me permettant de stocker tous les quantitées rentrés avec l'id de l'article

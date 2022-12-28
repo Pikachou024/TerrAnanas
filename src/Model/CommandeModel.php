@@ -2,11 +2,17 @@
 
 class CommandeModel extends AbstractModel
 {
-    function addCommande($idUser,$montant,$dateLivraison,$statutCommande){
-        $sql = " INSERT INTO commande(id_user,montant,date_commande,date_livraison,id_statut)
-                VALUES (?,?,NOW(),?,?)";
+    function getAllIdCommande(){
+        $sql = "SELECT id_commande
+                FROM commande";
 
-        return $this ->db->executeQuerry($sql,[$idUser,$montant,$dateLivraison,$statutCommande]);
+        return $this -> db -> getAllResults($sql);
+    }
+    function addCommande($idCommande,$idUser,$montant,$dateLivraison,$statutCommande){
+        $sql = " INSERT INTO commande(id_commande,id_user,montant,date_commande,date_livraison,id_statut)
+                VALUES (?,?,?,NOW(),?,?)";
+
+        return $this ->db->executeQuerry($sql,[$idCommande,$idUser,$montant,$dateLivraison,$statutCommande]);
     }
 
     function addDetailsCommande($idCommande,$idArticle,$prix,$quantite){
@@ -21,7 +27,7 @@ class CommandeModel extends AbstractModel
                 SET         id_statut = ?
                 where       id_commande = ?";
 
-        return $this->db->executeQuerry($sql,[$idCommande]);
+        return $this->db->executeQuerry($sql,[$idCommande,$statutCommande]);
     }
 
     function lastCommandeId($idUser){

@@ -25,7 +25,6 @@
                 <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Poids</p> </div>
                 <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Statut</p> </div>
             </div>
-
             <?php foreach ($_SESSION['articleSearch'] as $article): ?>
                 <div class="row line-out pt-2 pb-2 m-0 d-grid">
                     <div class="col-6 col-md-2 mt-1 mb-1 text-center"><?= $article["article"];?> </div>
@@ -33,12 +32,17 @@
                     <div class="col-4 col-md-2 mt-1 mb-1 text-center "><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
                     <div class="col-4 col-md-2 mt-1 mb-1 text-center "><?= $article["poids"] ." " .$article['unite'];?> </div>
                     <div class="col-4 col-md-2 mt-1 mb-1 text-center "><?= $article["statutArticle"];?> </div>
-                    <div class="col-6 col-md-1 mt-1 mb-1 text-center"> <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
-                    <div class="col-6 col-md-1 mt-1 mb-1 text-center"> <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
+                    <div class="col-6 col-md-1 mt-1 mb-1 text-center">
+                        <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square text-darkgreen"></i></a>
+                    </div>
+                    <div class="col-6 col-md-1 mt-1 mb-1 text-center">
+                        <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
     <?php endif;?>
+
 <?php else : ?>
     <div class="container-fluide">
         <h3 class="text-center text-red m-0 p-2">Légumes</h3>
@@ -46,15 +50,16 @@
             <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0 d-grid">
                 <div class="col-10 ">
                     <div class="row d-grid">
-                        <div class="col-6 col-md-3 text-center font-weight-bold"> <p>Article</p> </div>
-                        <div class="col-6 col-md-3 text-center font-weight-bold"> <p>Origine</p> </div>
-                        <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Prix/Unitée</p> </div>
-                        <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Poids</p> </div>
-                        <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Statut</p> </div>
+                        <div class="col-6 col-md-3 text-center font-weight-bold"> <p class="mt-2 mb-2">Article</p> </div>
+                        <div class="col-6 col-md-3 text-center font-weight-bold"> <p class="mt-2 mb-2">Origine</p> </div>
+                        <div class="col-4 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Prix/Unitée</p> </div>
+                        <div class="col-4 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Poids</p> </div>
+                        <div class="col-4 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Statut</p> </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <?php foreach ($params['articles'] as $article): ?>
             <?php if($article['famille']=="Légume"):?>
                 <div class="row line-out pt-2 pb-2 m-0 d-flex flex-row">
@@ -69,27 +74,33 @@
                     </div>
                     <div class="col-2 ">
                         <div class="row d-grid">
-                            <div class="col-12 col-md-6 mt-1 mb-1 text-center"> <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
-                            <div class="col-12 col-md-6 mt-1 mb-1 text-center"> <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
+                            <div class="col-12 col-md-6 mt-1 mb-1 text-center">
+                                <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square text-darkgreen"></i></a>
+                            </div>
+                            <div class="col-12 col-md-6 mt-1 mb-1 text-center">
+                                <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             <?php endif ;?>
         <?php endforeach; ?>
+
     </div>
 
     <div class="container-fluide ">
         <h3 class="text-center text-red m-0 p-2 " >Fruits</h3>
         <div class="container p-0 ">
             <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0 d-grid">
-                <div class="col-6 col-md-2 text-center font-weight-bold"> <p>Article</p> </div>
-                <div class="col-6 col-md-2 text-center font-weight-bold"> <p>Origine</p> </div>
-                <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Prix/Unitée</p> </div>
-                <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Poids</p> </div>
-                <div class="col-4 col-md-2 text-center font-weight-bold"> <p>Statut</p> </div>
+                <div class="col-6 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Article</p> </div>
+                <div class="col-6 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Origine</p> </div>
+                <div class="col-4 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Prix/Unitée</p> </div>
+                <div class="col-4 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Poids</p> </div>
+                <div class="col-4 col-md-2 text-center font-weight-bold"> <p class="mt-2 mb-2">Statut</p> </div>
             </div>
         </div>
+
+
         <?php foreach ($params['articles'] as $article): ?>
             <?php if($article['famille']=="Fruit"):?>
                 <div class="row line-out pt-2 pb-2 m-0 d-grid">
@@ -98,8 +109,12 @@
                     <div class="col-4 col-md-2 mt-1 mb-1 text-center "><?= ($article["prix"]/100)." €/".$article['unite'];?>  </div>
                     <div class="col-4 col-md-2 mt-1 mb-1 text-center "><?= $article["poids"] ." " .$article['unite'];?> </div>
                     <div class="col-4 col-md-2 mt-1 mb-1 text-center "><?= $article["statutArticle"];?> </div>
-                    <div class="col-6 col-md-1 mt-1 mb-1 text-center"> <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
-                    <div class="col-6 col-md-1 mt-1 mb-1 text-center"> <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
+                    <div class="col-6 col-md-1 mt-1 mb-1 text-center">
+                        <a href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square text-darkgreen"></i></a>
+                    </div>
+                    <div class="col-6 col-md-1 mt-1 mb-1 text-center">
+                        <a href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
+                    </div>
                 </div>
             <?php endif ;?>
         <?php endforeach; ?>

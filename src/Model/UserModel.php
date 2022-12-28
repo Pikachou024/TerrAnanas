@@ -2,6 +2,16 @@
 
 class UserModel extends AbstractModel
 {
+    function Users(){
+        $sql="SELECT *
+              FROM      user usr
+              INNER JOIN statut sta on sta.id_statut = usr.id_statut
+              INNER JOIN role rol on rol.id_role = usr.id_role
+              ORDER BY  client";
+
+        return $this-> db -> getAllResults($sql);
+    }
+
 //    Afficher tous les clients
     function getAllUsers($idstatut){
         $sql="SELECT *

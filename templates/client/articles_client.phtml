@@ -1,9 +1,10 @@
 <main class="mt-3">
-    <div class="container pt-3 pb-3 bg-light sticky-top">
+    <?php displayFlashMessages() ; ?>
+    <div class="container pt-3 pb-3">
         <h2 class="text-center text-red"> LISTES DES ARTICLES</h2>
         <div class="row">
             <div class="col-8 ">
-                <form method="GET" action ="articles_client" class="navbar-form navbar-right" id="form-commande" role="search">
+                <form method="GET" action ="articles_client" class="navbar-form navbar-right" id="form-search" role="search">
                     <div class="input-group d-flex justify-content-center">
                         <?php if(empty($_SESSION['articleSearch'])) :?>
                             <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
@@ -16,103 +17,16 @@
         </div>
     </div>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 pt-2 pb-2 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0 view">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 pt-2 pb-2 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0 view">
 
-                            <?php $this->render($this->file, 'liste_articles_client','', $params);?>
-
-<!--                            --><?php //if(empty($_SESSION['articleSearch'])) :?>
-<!--                                <form method="post" action="--><?//='articles_client';?><!--">-->
-<!--                                    <h3 class="text-center text-red mb-0 pb-2">LEGUMES</h3>-->
-<!--                                    <div class="container p-1">-->
-<!--                                        <div class="row bg-first-lightbackground-color">-->
-<!--                                            <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>-->
-<!--                                            <div class="col-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>-->
-<!--                                            <div class="col-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>-->
-<!--                                            <div class="col-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>-->
-<!--                                            <div class="col-2 text-center"> </div>-->
-<!--                                        </div>-->
-<!--                                --><?php //foreach ($params['articles'] as $article): ?>
-<!--                                    --><?php //if($article['id_famille']==2 && $article['id_statutArticle']!=3):?>
-<!---->
-<!--                                            <div class="row line-out">-->
-<!--                                                <input type="hidden" name="id_article[]" value="--><?//=$article['id_article'];?><!--">-->
-<!--                                                <input type="hidden" name="unite[]" value="--><?//=$article['unite'];?><!--">-->
-<!--                                                <input type="hidden" name="famille[]" value="--><?//=$article['famille'];?><!--">-->
-<!--                                                <div class="col-3 text-center"><input type="hidden" name="article[]" value="--><?//= $article["article"];?><!--">--><?//= $article["article"];?><!-- </div>-->
-<!--                                                <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" --><?//= $article["origine"];?><!--"> --><?//= $article["origine"];?><!--</div>-->
-<!--                                                <div class="col-3 text-center"><input type="hidden" name="prix[]" value="--><?//= ($article["prix"])/100;?><!--">--><?//= ($article["prix"]/100)." €/".$article['unite'];?><!--  </div>-->
-<!--                                                <div class="col-2 text-center"><input type="hidden" name="poids[]" value="--><?//= $article["poids"];?><!--">--><?//= $article["poids"] ." " .$article['unite'];?><!-- </div>-->
-<!--                                                <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>-->
-<!--                                            </div>-->
-<!---->
-<!--                                    --><?php //endif ;?>
-<!--                                --><?php //endforeach; ?>
-<!--                                    </div>-->
-<!--                                    <h3 class="text-center  text-red mb-0 pb-2 pt-3">FRUITS</h3>-->
-<!--                                    <div class="container p-1">-->
-<!--                                        <div class="row bg-first-lightbackground-color">-->
-<!--                                            <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>-->
-<!--                                            <div class="col-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>-->
-<!--                                            <div class="col-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>-->
-<!--                                            <div class="col-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>-->
-<!--                                            <div class="col-2 text-center"> </div>-->
-<!--                                        </div>-->
-<!--                                    --><?php //foreach ($params['articles'] as $article): ?>
-<!--                                        --><?php //if($article['id_famille']==1 && $article['id_statutArticle']!=3):?>
-<!---->
-<!--                                                <div class="row line-out">-->
-<!--                                                    <input type="hidden" name="id_article[]" value="--><?//=$article['id_article'];?><!--">-->
-<!--                                                    <input type="hidden" name="unite[]" value="--><?//=$article['unite'];?><!--">-->
-<!--                                                    <input type="hidden" name="famille[]" value="--><?//=$article['famille'];?><!--">-->
-<!--                                                    <div class="col-3 text-center"><input type="hidden" name="article[]" value="--><?//= $article["article"];?><!--">--><?//= $article["article"];?><!-- </div>-->
-<!--                                                    <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" --><?//= $article["origine"];?><!--"> --><?//= $article["origine"];?><!--</div>-->
-<!--                                                    <div class="col-3 text-center"><input type="hidden" name="prix[]" value="--><?//= $article["prix"]/100;?><!--">--><?//= ($article["prix"]/100)." €/".$article['unite'];?><!--  </div>-->
-<!--                                                    <div class="col-2 text-center"><input type="hidden" name="poids[]" value="--><?//= $article["poids"];?><!--">--><?//= $article["poids"] ." " .$article['unite'];?><!-- </div>-->
-<!--                                                    <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>-->
-<!--                                                </div>-->
-<!---->
-<!--                                        --><?php //endif ;?>
-<!--                                    --><?php //endforeach; ?>
-<!--                                    </div>-->
-<!--                                <div class="col-12 text-center pt-3 pb-2"><button type="submit" class="btn bg-alt-background-color text-darkgreen">Valider la commande</button></div>-->
-<!---->
-<!--                                </form>-->
-<!--                            --><?php //else : ?>
-<!---->
-<!--                                    <form method="post" action="--><?//='articles_client';?><!--">-->
-<!--                                        <div class="container">-->
-<!--                                            <div class="row bg-first-lightbackground-color">-->
-<!--                                                <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>-->
-<!--                                                <div class="col-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>-->
-<!--                                                <div class="col-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>-->
-<!--                                                <div class="col-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>-->
-<!--                                                <div class="col-2 text-center"> </div>-->
-<!--                                            </div>-->
-<!--                                --><?php //foreach ($_SESSION['articleSearch'] as $article): ?>
-<!--                                            <div class="row line-out">-->
-<!--                                                <input type="hidden" name="id_article[]" value="--><?//=$article['id_article'];?><!--">-->
-<!--                                                <input type="hidden" name="unite[]" value="--><?//=$article['unite'];?><!--">-->
-<!--                                                <input type="hidden" name="famille[]" value="--><?//=$article['famille'];?><!--">-->
-<!--                                                <div class="col-3 text-center"><input type="hidden" name="article[]" value="--><?//= $article["article"];?><!--">--><?//= $article["article"];?><!-- </div>-->
-<!--                                                <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" --><?//= $article["origine"];?><!--"> --><?//= $article["origine"];?><!--</div>-->
-<!--                                                <div class="col-3 text-center"><input type="hidden" name="prix[]" value="--><?//= $article["prix"]/100;?><!--">--><?//= ($article["prix"]/100)." €/".$article['unite'];?><!--  </div>-->
-<!--                                                <div class="col-2 text-center"><input type="hidden" name="poids[]" value="--><?//= $article["poids"];?><!--">--><?//= $article["poids"] ." " .$article['unite'];?><!-- </div>-->
-<!--                                                <div class="col-2 p-0 text-center"><input class="w-50" type="number" id="quantite" name="quantite[]" min="0" value="0"></div>-->
-<!--                                            </div>-->
-<!--                                --><?php //endforeach;?>
-<!--                                        </div>-->
-<!--                                        <div class="col-12 text-center pt-3 pb-2"><button type="submit" class="btn bg-alt-background-color text-darkgreen">Valider la commande</button></div>-->
-<!---->
-<!--                                    </form>-->
-<!--                            --><?php //endif ;?>
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <?php $this->render($this->file, 'liste_articles_client','', $params);?>
 
             </div>
         </div>
     </div>
 </main>
+
+
 <script src="http://localhost/TerrAnanas/public/js/articles_client.js" defer></script>

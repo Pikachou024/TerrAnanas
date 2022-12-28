@@ -1,35 +1,42 @@
-<main class="p-0 pt-md-4 pb-md-4">
-    <div class="container ">
-        <div class="row">
-            <div class="col-12 d-flex flex-column justify-content-center mb-2 ">
-                <?php displayFlashMessages() ;?>
+
+
+    <main class="p-0 pt-md-4 pb-md-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex flex-column justify-content-center mb-2 ">
+                    <?php displayFlashMessages() ;?>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container border-custom bg-second-background-color ">
-        <div class="row">
-            <div class="col-12 p-0">
-                <h3 class="text-center text-red mt-2 mb-3"> AJOUTER UN ARTICLE </h3>
+        <div class="container border-custom bg-second-background-color ">
+            <div class="row">
+                <div class="col-12 p-0">
+                    <h3 class="text-center text-red mt-2 mb-3"> AJOUTER UN ARTICLE </h3>
 
-                <form method="POST" action="<?='add_article';?>">
+                <form method="POST" action="add_article">
                     <div class="container">
                         <div class="row mt-2">
+
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5 ">
                                 <label class="mb-1 font-weight-bold" for="label" > Article </label>
                                 <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
                             </div>
+
                             <div class="col-12 col-md-6 text-center mb-3 mb-md-5">
                                 <label class="mb-1 font-weight-bold" for="origine">Origine</label>
                                 <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
                             </div>
+
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1 font-weight-bold" for="prix">Prix</label>
                                 <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix'];?>">
                             </div>
+
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1 font-weight-bold" for="poids">Poids</label>
                                 <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
                             </div>
+
                             <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
                                 <label class="mb-1 font-weight-bold" for="unite">Unite</label>
                                 <select class="form-control" name="unite" id="unite">
@@ -61,11 +68,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-center justify-content-end">
-                        <button type="submit" class="btn mb-2 bg-alt-background-color text-darkgreen ">Ajouter</button>
-                    </div>
-                </form>
+
+                        <div class="text-center justify-content-end">
+                            <button type="submit" class="btn mb-2 bg-alt-background-color text-darkgreen ">Ajouter</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>

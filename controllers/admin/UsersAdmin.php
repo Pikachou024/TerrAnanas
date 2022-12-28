@@ -94,6 +94,11 @@ class UsersAdmin extends AbstractController
 
             if(empty($error)) {
                 $userModel->editUser($client, $address, $city, $postal, $contact, $phone, $email, $statut, $idUser);
+                if($statut == 2){
+                    $subject ="Validation de l'inscription";
+                    $message="Votre compte est activé, vous pouvez désormais vous connecter";
+                    sendMail(getUserEmail(),$email,$subject,$message,false);
+                }
                 header('location: users_admin');
                 exit;
             }

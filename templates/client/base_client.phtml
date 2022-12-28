@@ -49,14 +49,18 @@
 
                     <div class="navbar-nav  position-absolute " style="right:0;top:5px; z-index:1">
                         <ul class="navbar-nav d-flex flex-row align-items-center">
-                            <li class="nav-item">
-                                <a class="nav-link " href="panier" >
+                            <li class="nav-item ">
+                                <a class="nav-link d-flex flex-row align-items-center" href="panier" >
                                     <img src="http://localhost/TerrAnanas/public/images/icon/panier.png" class="img-responsive mw-100 d-block mb-auto mt-auto" >
+                                    <?php if(!empty($_SESSION['panier'])): ?>
+                                        <span><?= count($_SESSION['panier']) ?></span>
+                                    <?php endif;?>
                                 </a>
+
                             </li>
                             <li class="nav-item dropdown mr-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    TerrAnanas
+                                    <?=getUserName()?>
                                 </a>
                                 <div class="dropdown-menu position-absolute p-0"  aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="home">Accueil TerrAnans</a>

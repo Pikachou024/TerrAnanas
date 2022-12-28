@@ -1,9 +1,9 @@
 <?php
+
 class ArticleAdmin extends AbstractController
 {
-    function articles(){
+    function index(){
         $role = getUserRole();
-
         /*
          * Je vérifie que l'utilisateur a le role admin
          */
@@ -52,6 +52,16 @@ class ArticleAdmin extends AbstractController
 
     function addArticle(){
         /*
+         * Je vérifie le role de l'utilisateur
+         */
+        $role = getUserRole();
+        if($role != "admin") {
+            http_response_code(403);
+            echo("Désolé la page n'existe pas");
+            exit;
+        }
+
+        /*
          * J'initialise mes variables avec un string vide me permettant (en cas d'erreur)
          * de conserver ce que l'utilisateur aura noté dans le champ
          */
@@ -76,13 +86,13 @@ class ArticleAdmin extends AbstractController
              * Je récupère ensuite les données validées par l’utilisateur dans des variables avec
              * la méthode POST,et j'initialise les variables.
              */
-            $label = strip_tags(trim($_POST['label']));
-            $origine = strip_tags(trim($_POST['origine']));
-            $prix =  strip_tags(trim($_POST['prix']));
-            $poids =  strip_tags(trim($_POST['poids']));
-            $famille = strip_tags(trim($_POST['famille']));
-            $unite =  strip_tags(trim($_POST['unite']));
-            $statut = strip_tags(trim($_POST['statut']));
+            $label = strip_tags(htmlspecialchars(trim($_POST['label'])));
+            $origine = strip_tags(htmlspecialchars(trim($_POST['origine'])));
+            $prix =  strip_tags(htmlspecialchars(trim($_POST['prix'])));
+            $poids =  strip_tags(htmlspecialchars(trim($_POST['poids'])));
+            $famille = strip_tags(htmlspecialchars(trim($_POST['famille'])));
+            $unite =  strip_tags(htmlspecialchars(trim($_POST['unite'])));
+            $statut = strip_tags(htmlspecialchars(trim($_POST['statut'])));
 
             /*
              * Je vérifie si tous les champs ont bien été remplis sinon je renvoie un message d'erreur.

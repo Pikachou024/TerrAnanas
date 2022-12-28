@@ -22,21 +22,24 @@ $routes=[
         'path'=>"utilisateur",
         "base_template"=>"base"
     ],
+
+    "signup"=>[
+        "controller"=>"Connexion",
+        "action"=>"signup",
+        'path'=>"utilisateur",
+        "base_template"=>"base"
+    ],
     "login"=>[
         "controller"=>"Connexion",
         "action"=>"login",
         'path'=>"utilisateur",
         "base_template"=>"base"
     ],
+
+
     "logout"=>[
         "controller"=>"Connexion",
         "action"=>"logout",
-        'path'=>"utilisateur",
-        "base_template"=>"base"
-    ],
-    "inscription"=>[
-        "controller"=>"Connexion",
-        "action"=>"signup",
         'path'=>"utilisateur",
         "base_template"=>"base"
     ],
@@ -50,6 +53,8 @@ $routes=[
         'path'=>"client",
         "base_template"=>"base_client"
     ],
+
+
     "articles_client"=>[
         "controller"=>"Commande",
         "action"=>"articles",
@@ -74,6 +79,7 @@ $routes=[
         'path'=>"client",
         "base_template"=>"base_client"
     ],
+
     "historique_commandes"=>[
         "controller"=>"Historique",
         "action"=>"commandes",
@@ -110,16 +116,18 @@ $routes=[
     ],
     "articles_admin" =>[
         "controller"=>"ArticleAdmin",
-        "action"=>"articles",
+        "action"=>"index",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
+
     "add_article" =>[
         "controller"=>"ArticleAdmin",
         "action"=>"addArticle",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
+
     "edit_article" =>[
         "controller"=>"ArticleAdmin",
         "action"=>"editArticle",
@@ -194,3 +202,5 @@ $routes=[
     ]
 ];
 return $routes ;
+
+

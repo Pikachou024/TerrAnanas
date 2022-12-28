@@ -4,7 +4,7 @@ class Connexion extends AbstractController
 {
     function login(){
         $email = '';
-        $params['email']=$email;
+
         if(!empty($_POST)){
             $email = strip_tags(trim($_POST['email']));
             $password = strip_tags(trim($_POST['password']));
@@ -16,19 +16,16 @@ class Connexion extends AbstractController
             if($user){
                 registerUser($user['id_user'],$user['client'],$user['email'],$user['role']);
                 if($user['id_role'] == 2){
-                    if($user['id_statut']==2){
+                    if($user['id_statut']== 2){
                         header('location:client');
                     }
-                    elseif($user['id_statut']==1){
-                        /*
-                         * TODO message a faire
-                         */
-//                        echo"Votre demande d'inscription est en cours de traitement";
+                    elseif($user['id_statut'] == 1){
+                        addFlashMessage("Votre demande d'inscription est en cours de traitement");
                         header('location:login');
                     }
                     else{
-//                        echo("Votre demande a été refusé");
-                        header('location:contact');
+                        addFlashMessage("Votre demande d'inscription a été réfusé, pour plus de renseignement n'hésitez pas à nous contacter.");
+                        header('location:login');
                     }
                     exit;
                 }
@@ -37,10 +34,18 @@ class Connexion extends AbstractController
                     exit;
                 }
             }
+            else{
+                addFlashMessage("L'email ou le mot de passe est incorrect");
+                header('location:login');
+                exit;
+            }
         }
+
+        $params['email']=$email;
         $params['title'] =  "TerrAnanas - Espace Pro";
         $this->render($this->file, $this->page, $this->base, $params);
     }
+
 
     function logout(){
         disconnect();
@@ -59,36 +64,20 @@ class Connexion extends AbstractController
         $phone = '';
         $email = '';
 
-
-//        if(isset($_SESSION['confirmation'])){
-//            unset($_SESSION['confirmation']);
-//        }
         $userModel = new UserModel();
-        //Indice en fonction de bdd status à faire
-        for ($i = 1; $i <= 3; $i++) {
-            $allUsers = $userModel->getAllUsers($i);
-            if($allUsers){
-                foreach ($allUsers as $index => $user) {
-                    $users[] = $user;
-                }
-            }
-            else{
-                $users=[];
-            }
-        }
-
+        $users = $userModel->Users();
         $error=[];
 
         if (!empty($_POST)) {
-            $client = strip_tags(trim($_POST['client']));
-            $address = strip_tags(trim($_POST['address']));
-            $city = strip_tags(trim($_POST['city']));
-            $postal = strip_tags(trim($_POST['postal']));
-            $contact = strip_tags(trim($_POST['contact']));
-            $phone = strip_tags(trim($_POST['phone']));
-            $email = strip_tags(trim($_POST['email']));
-            $password = strip_tags(trim($_POST['password']));
-            $confirmPassword = strip_tags(trim($_POST['confirmPassword']));
+            $client = strip_tags(htmlspecialchars(trim($_POST['client'])));
+            $address = strip_tags(htmlspecialchars(trim($_POST['address'])));
+            $city = strip_tags(htmlspecialchars(trim($_POST['city'])));
+            $postal = strip_tags(htmlspecialchars(trim($_POST['postal'])));
+            $contact = strip_tags(htmlspecialchars(trim($_POST['contact'])));
+            $phone = strip_tags(htmlspecialchars(trim($_POST['phone'])));
+            $email = strip_tags(htmlspecialchars(trim($_POST['email'])));
+            $password = strip_tags(htmlspecialchars(trim($_POST['password'])));
+            $confirmPassword = strip_tags(htmlspecialchars(trim($_POST['confirmPassword'])));
 
             if (!$client) {
                 $error['client'] = "Veuillez remplir le champ";
@@ -120,11 +109,9 @@ class Connexion extends AbstractController
             if (empty($error)) {
                 $hash = password_hash($password, PASSWORD_DEFAULT);
                 $userModel->addUser($client, $address, $city, $postal, $contact, $phone, $email, $hash, 1, 2);
-                /*
-                 * TODO message de confirmation à faire
-                 */
-//                $_SESSION['confirmation']="Votre demande d'inscription sera étudié par nos services";
-                header('location:inscription');
+                addFlashMessage("Votre demande d'inscription sera pris en compte par notre service.");
+
+                header('location:login');
                 exit;
             }
         }
@@ -140,5 +127,42 @@ class Connexion extends AbstractController
         ];
             $params['title'] =  "TerrAnanas - Inscription";
             $this->render($this->file, $this->page, $this->base, $params);
+    }
+
+    // Méthode pour réinitialiser le mot de passe de l'utilisateur
+    public function resetPassword($userId, $newPassword)
+    {
+        // Valider les données d'entrée (par exemple, vérifier que l'ID de l'utilisateur existe réellement dans la base de données)
+
+        // Générer un jeton de réinitialisation de mot de passe
+        $resetToken = generateResetToken();
+        $expiryDate = time() + (60 * 60);
+
+        // Envoyer un e-mail à l'utilisateur avec le jeton de réinitialisation de mot de passe
+        sendResetPasswordEmail($userId, $resetToken);
+
+        // Enregistrer le jeton de réinitialisation de mot de passe et la date d'expiration dans la base de données
+        saveResetToken($userId, $resetToken, $expiryDate);
+    }
+
+    // Méthode pour valider le jeton de réinitialisation de mot de passe et mettre à jour le mot de passe de l'utilisateur
+    public function validateResetToken($userId, $resetToken, $newPassword)
+    {
+        // Récupérer le jeton de réinitialisation de mot de passe et la date d'expiration de la base de données
+        $storedResetToken = getResetToken($userId);
+        $storedExpiryDate = getResetTokenExpiryDate($userId);
+
+        // Vérifier que le jeton de réinitialisation de mot de passe est valide et n'a pas expiré
+        if ($resetToken == $storedResetToken && $expiryDate > time()) {
+            // Mettre à jour le mot de passe de l'utilisateur
+            updatePassword($userId, $newPassword);
+
+            // Supprimer le jeton de réinitialisation de mot de passe de la base de données
+            deleteResetToken($userId);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

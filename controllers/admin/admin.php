@@ -3,6 +3,15 @@
 class Admin extends AbstractController
 {
     function index(){
+
+        $role = getUserRole();
+
+        if($role != "admin") {
+            http_response_code(403);
+            echo("accès refusé");
+            exit;
+        }
+
         $dateDuJour = dateFr(date('D d M Y'));
         /*
          * Partie commande du jour
@@ -23,12 +32,14 @@ class Admin extends AbstractController
 //         * Partie Inscription
 //         * affiche les utilisateurs en attentent de validation
 //         */
-//        $userModel = new userModel();
-//        $users = $userModel ->getAllUsers(1);
+        $userModel = new userModel();
+        $users = $userModel ->getAllUsers(1);
+
         $params=[
             'dateDuJour'=>$dateDuJour,
             'commandeDuJour'=>$commandeDuJour,
             'commandeValidee'=>$commandeValidee,
+            "usersInt"=>count($users),
             'title' => "TerrAnanas - Gérer vos commandes en quelques click"
         ];
         $this->render($this->file, $this->page, $this->base, $params);

@@ -2,13 +2,12 @@
 
 class FrancoModel extends AbstractModel
 {
-    function getFranco($id)
+    function getFranco()
     {
         $sql = "SELECT franco
-               FROM franco
-               WHERE id_franco = ?";
+                FROM franco";
 
-        return $this->db->getOneResult($sql, [$id]);
+        return $this->db->getAllResults($sql);
     }
 
     function editFranco($franco,$id){

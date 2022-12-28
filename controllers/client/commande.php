@@ -2,78 +2,135 @@
 
 class Commande extends AbstractController
 {
-    function articles(){
-        $params=[];
-        $articleModel = new ArticleModel();
-        $articles = $articleModel->getAllArticles();
-        $statusModel = new StatusModel();
-        $statutArticle = $statusModel->getAllStatusArticle();
 
-        if(!empty($_POST['articleSearch'])){
-            $articleSearch = $_POST['articleSearch'];
-            $params["articleSearch"]=$articleSearch;
-            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+        function articles(){
+
+            $role = getUserRole();
+            if(!$role) {
+                http_response_code(403);
+                echo("accès refusé");
+                exit;
+            }
+
+            $params=[];
+            $articleModel = new ArticleModel();
+            $articles = $articleModel->getAllArticles();
+            $statusModel = new StatusModel();
+            $statutArticle = $statusModel->getAllStatusArticle();
+
+            if(!empty($_POST['articleSearch'])){
+                $articleSearch = $_POST['articleSearch'];
+                $params["articleSearch"]=$articleSearch;
+                $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+            }
+            else {
+                unset($_SESSION['articleSearch']);
+            }
+
+            $params["articles"]=$articles;
+            $params['title']="TerrAnanas - Passer une commande";
+
+            if(!empty($_GET['ajax'])){
+                $this->render($this->file, 'liste_articles_client', '', $params);
+            }else{
+                $this->render($this->file, $this->page, $this->base, $params);
+            }
+
         }
-        else {
-            unset($_SESSION['articleSearch']);
-        }
-
-//        if(!empty($_POST)){
-//
-//            $idArticle =array_map('strip_tags',$_POST['id_article']);
-//            $famille =$_POST['famille'];
-//            $unite =$_POST['unite'];
-//            $article =$_POST['article'];
-//            $origine =$_POST['origine'];
-//            $poids =$_POST['poids'];
-//            $prix = $_POST["prix"];
-//            $quantite = $_POST['quantite'];
-//
-//            for($i=0 ; $i<(count($articles)) ; $i++){
-//                addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
-//            }
-//            header("location:articles_client");
-//        }
-
-        $params["articles"]=$articles;
-        $params['title']="TerrAnanas - Passer une commande";
-
-        if(!empty($_GET['ajax'])){
-            $this->render($this->file, 'liste_articles_client', '', $params);
-        }else{
-            $this->render($this->file, $this->page, $this->base, $params);
-        }
-//        $this->render($this->file, $this->page, $this->base, $params);
-    }
 
     function addPanier(){
-        $articleModel = new ArticleModel();
-        $articles = $articleModel->getAllArticles();
+
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            echo("accès refusé");
+            exit;
+        }
+
+//        $articleModel = new ArticleModel();
+//        $articles = $articleModel->getAllArticles();
 
         if(!empty($_POST)){
 
-            $idArticle =array_map('strip_tags',$_POST['id_article']);
-            $famille =$_POST['famille'];
-            $unite =$_POST['unite'];
-            $article =$_POST['article'];
-            $origine =$_POST['origine'];
-            $poids =$_POST['poids'];
-            $prix = $_POST["prix"];
-            $quantite = $_POST['quantite'];
+            $idArticle = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['id_article']);
 
-            for($i=0 ; $i<(count($articles)) ; $i++){
+            $famille = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['famille']);
+
+            $unite = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['unite']);
+
+            $article = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['article']);
+
+            $origine = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['origine']);
+
+            $poids = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['poids']);
+
+            $prix = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['prix']);
+
+            $quantite = array_map(function($value) {
+                if (!is_numeric($value)) {
+                    addFlashMessage("Erreur : Veuillez rentrer un nombre",'error');
+                    header("location:articles_client");
+                    exit;
+                }
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['quantite']);
+
+            for($i=0 ; $i<(count($article)) ; $i++){
                 addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+            }
+            if(!empty($_SESSION['panier'])){
+                addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
             }
 
         }
         header("location:articles_client");
+
     }
 
     function panier(){
-//        unset($_SESSION['panier']);
+
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            echo("accès refusé");
+            exit;
+        }
+
         $params=[];
         $francoModel = new FrancoModel();
-        $franco = $francoModel->getFranco(1);
+        $franco = $francoModel->getFranco();
+        $franco = $franco[0]['franco'];
+
         $params['franco'] = $franco;
 
         if(empty($_SESSION['panier'])){
@@ -84,9 +141,9 @@ class Commande extends AbstractController
         }
 
         $date = new DateTimeImmutable();
-        $dateLivraison = dateFr($date->format('D d M Y'));
-        $dateLivraison1 = addDayDate(1);
-        $dateLivraison2 = addDayDate(2);
+//        $dateLivraison = dateFr($date->format('D d M Y'));
+        $dateLivraison1 = addDayDate(2);
+        $dateLivraison2 = addDayDate(3);
         $params['date']=$date;
         $params['dateLivraison1']=$dateLivraison1;
         $params['dateLivraison2']=$dateLivraison2;
@@ -95,19 +152,23 @@ class Commande extends AbstractController
     }
 
     function validationCommande(){
+
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            echo("accès refusé");
+            exit;
+        }
+
         $commandeModel = new CommandeModel();
         $francoModel = new FrancoModel();
-        $franco = $francoModel->getFranco(1);
+        $franco = $francoModel->getFranco();
+        $franco = $franco[0]['franco'];
 
         /**
-         * On vérifie qu'un utilisateur est bien connecté pour valider le panier
-         * sinon on le redirige vers login
-         * TODO verifie si l'utilisateur connecté a bien le bon role
+         * On récupère l'id de l'utilisateur connecté
          */
         $idUser = getUserId();
-        if(!$idUser){
-            header('location: login');
-        }
 
         /**
          * On vérifie que le panier n'est pas vide
@@ -120,15 +181,11 @@ class Commande extends AbstractController
 
         /**
          * On redirige sur la page "panier" si le montant du panier n'atteint pas le franco
-         * TODO afficher un message pour prevenir que le montant n'atteint pas le franco
          */
-        if(montantTotal($_SESSION['panier']) > $franco){
-            $_SESSION['franco']="Le montant du panier doit être supérieur à ".$franco;
+        if(montantTotal($_SESSION['panier']) < $franco){
+            addFlashMessage("Le montant du panier doit être supérieur à ".$franco."€",'error');
             header('location:panier');
             exit;
-        }
-        elseif (isset($_SESSION['franco'])){
-            unset($_SESSION['franco']);
         }
 
         /**
@@ -136,8 +193,23 @@ class Commande extends AbstractController
          */
         if(!empty($_POST)){
             $dateLivraison = strip_tags(trim($_POST['dateLivraison']));
-            $idArticle = $_POST['id_article'];
-            $quantite = $_POST['quantite' ];
+
+            $idArticle = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['id_article']);
+
+            $quantite = array_map(function($value) {
+                if (!is_numeric($value)) {
+                    addFlashMessage("Erreur : Veuillez rentrer un nombre",'error');
+                    header("location:panier");
+                    exit;
+                }
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['quantite']);
 
             for($i=0 ; $i<(count($_SESSION['panier'])) ; $i++) {
                 modifierQTeArticle($idArticle[$i], $quantite[$i]);
@@ -153,16 +225,26 @@ class Commande extends AbstractController
             $idStatus = 1;
 
             /**
-             * Ajout en BDD dans 2 tables : commande et detailsCommande
-             *
+             * J'initialise un id pour ma table commande
+             * Je vérifie que l'id est unique sinon je change l'id en ajoutant +1
              */
-            $commandeModel -> addCommande($idUser,$montant,$dateLivraison,$idStatus);
-            $idCommande = $commandeModel->lastCommandeId($idUser);
-            for($i=0 ; $i < count($_SESSION['panier'])  ; $i++ ){
-                $commandeModel->addDetailsCommande($idCommande["max(id_commande)"],$_SESSION['panier'][$i]['id_article'],(float)($_SESSION['panier'][$i]['prix'])*100,$_SESSION['panier'][$i]['quantite']);
+            $idCommande=1;
+            $arrayId =  $commandeModel -> getAllIdCommande();
+            $id_commandes = array_column($arrayId, "id_commande");
+            while (in_array($idCommande, $id_commandes)) {
+                $idCommande++;
             }
 
-            //    TODO s'il n'y a pas d'érreur, on vide le panier'
+            /**
+             * Ajout en BDD dans 2 tables : commande et detailsCommande
+             */
+            $commandeModel -> addCommande($idCommande,$idUser,$montant,$dateLivraison,$idStatus);
+            for($i=0 ; $i < count($_SESSION['panier'])  ; $i++ ){
+                $commandeModel->addDetailsCommande(
+                    $idCommande,$_SESSION['panier'][$i]['id_article'],($_SESSION['panier'][$i]['prix'])*100,$_SESSION['panier'][$i]['quantite']
+                );
+            }
+            addFlashMessage("Votre commande sera pris en charge par notre service");
             unset($_SESSION['panier']);
 
         }

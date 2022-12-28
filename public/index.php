@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+include "../vendor/autoload.php";
 include "../app/config.php";
 include "../app/Router.php";
 
@@ -54,7 +54,7 @@ if (!$page) {
 }
 if (!array_key_exists($page, $routes)) {
     http_response_code(404);
-    echo("Page introuvable");
+    echo("404 NOT FOUND");
     exit;
 }
 
@@ -66,3 +66,5 @@ $baseTemplate = $router->getBaseTemplate($page);
 autoloadController($controllerName, $path);
 $controller = new $controllerName($path, $page, $baseTemplate);
 $controller->$actionName();
+
+//unset($_SESSION['panier']);
