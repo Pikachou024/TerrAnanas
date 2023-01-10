@@ -1,0 +1,32 @@
+@import 'variables';
+
+@import 'responsive';
+@import 'listeArticle';
+
+body {
+    background-color: $secondLightColor;
+    margin: 0;
+
+}
+
+main {
+    margin-top: 50px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    margin-top: auto;
+    height: 100px;
+    background-color: #1b1e21;
+
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}

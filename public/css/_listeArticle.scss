@@ -1,0 +1,221 @@
+
+.headerTitle{
+  color: $secondColor;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: bold;
+}
+.headerArticle{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: sticky;
+  top: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #FFFAE2;
+  &-search{
+    display: flex;
+    align-items: center;
+
+  }
+  &-layout{
+    display: none;
+  }
+}
+
+.form-control {
+
+  background-color: #F6F6F6;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 50px 10px 50px;
+  font-size: 14px;
+  color: #333;
+  transition: 0.3s;
+}
+
+.form-control:focus {
+  outline: none;
+  background-color: #FDFDFD;
+  box-shadow: 0 0 0 2px $secondColor;
+}
+
+.form-control::placeholder {
+  text-align: center;
+  color: #999;
+  opacity: 1;
+}
+
+.rayon{
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: $secondColor;
+}
+
+.liste{
+
+  &-article{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 10px 0 10px 0;
+    &-input{
+      text-align: center;
+    }
+    &-input.image {
+      display: none;
+    }
+    &-input.quantite{
+      grid-area: 3 / 1 / 4 / 3;
+      text-align: center;
+    }
+    &-aucun{
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+
+  &-button{
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+    background-color: #FFFAE2;
+
+  }
+
+  &-button>button{
+    background-color: #004E0B;
+    color: #E2F3CA;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  &-button>button:hover{
+    cursor: pointer;
+    color: $secondColor;
+  }
+}
+
+.liste-article:nth-child(2n){
+
+  background: #FDFDFD;
+}
+.liste-article:nth-child(2n+1){
+  background: #E2F3CA;
+}
+
+@media screen and (min-width: 540px) {
+  .headerArticle-layout{
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  .liste{
+    display: flex;
+    flex-direction: row;
+    //flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    &-article {
+      display: flex;
+      flex-direction: column;
+      //flex-direction: row;
+      justify-content: space-around;
+      width: 250px;
+      height: 350px;
+      //width: 1200px;
+      margin-bottom: 20px;
+      box-shadow: 0 5px 4px rgba(0,0,0,0.2);
+      text-align: center;
+
+      &-input.image{
+        display: block;
+        width: 150px;
+        height: 150px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      &-input.image>img{
+
+        width: 100%;
+        height: 100%;
+      }
+
+    }
+    &-article:nth-child(2n){
+      background: #E2F3CA;
+    }
+    &-article:nth-child(2n+1){
+      background: #E2F3CA;
+    }
+
+    &-article>div{
+      margin-bottom: auto;
+    }
+  }
+  .headerArticle-layout-grid,.headerArticle-layout-list{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .headerArticle-layout .fa-solid {
+    font-size: 24px;
+    text-align: center;
+    color: $secondColor;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: $firstLightColor;
+  }
+  .headerArticle-layout .fa-solid:hover{
+    cursor: pointer;
+
+  }
+  //
+  //.grid{
+  //  display: grid;
+  //  grid-template-columns: repeat(5, 1fr);
+  //  grid-template-rows: 1fr;
+  //  grid-column-gap: 10px;
+  //  grid-row-gap: 0px;
+  //}
+
+  .list{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    width: 1200px;
+    height: auto;
+    margin-bottom: 0;
+  }
+  .list:nth-child(2n){
+    background: #FDFDFD;
+  }
+  .list:nth-child(2n+1){
+    background: $firstLightColor;
+  }
+  .liste-article-input.quantite{
+    grid-area: 1 / 5 / 2 / 6;
+    text-align: center;
+  }
+
+  .select{
+    border: 2px solid $secondColor;
+    border-radius: 5px;
+  }
+  .hide {
+    display: none;
+  }
+}

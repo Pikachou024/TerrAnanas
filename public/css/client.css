@@ -1,0 +1,23 @@
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:link {
+  color: #E2F3CA;
+}
+
+a:visited {
+  color: #E2F3CA;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.headerNavbar {
+  background-color: #004E0B;
+}/*# sourceMappingURL=client.css.map */

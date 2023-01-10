@@ -22,6 +22,7 @@ class Commande extends AbstractController
                 $articleSearch = $_POST['articleSearch'];
                 $params["articleSearch"]=$articleSearch;
                 $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+
             }
             else {
                 unset($_SESSION['articleSearch']);
@@ -32,6 +33,8 @@ class Commande extends AbstractController
 
             if(!empty($_GET['ajax'])){
                 $this->render($this->file, 'liste_articles_client', '', $params);
+//                echo json_encode($_SESSION['articleSearch']);
+
             }else{
                 $this->render($this->file, $this->page, $this->base, $params);
             }

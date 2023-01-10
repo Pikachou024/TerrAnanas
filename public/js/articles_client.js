@@ -2,10 +2,8 @@
     Selection de ma barre de recherche et des quantitées rentré
  */
 let articlesearch = document.querySelector("#articleSearch");
-let inputQuantite = document.querySelectorAll(".quantite");
+let inputQuantite = document.querySelectorAll(".quantite>input");
 let form = document.querySelector('#form-search');
-
-
 
 /*
     Déclaration d'un objet me permettant de stocker tous les quantitées rentrés avec l'id de l'article
@@ -16,6 +14,7 @@ for( const quantite of inputQuantite){
     quantite.addEventListener('change',function (event){
         stockQuantite[event.currentTarget.id]=event.currentTarget.value;
     });
+
 }
 articlesearch.addEventListener('keyup',search);
 
@@ -23,10 +22,21 @@ articlesearch.addEventListener('keyup',search);
     function pour la recherche d'un article.
  */
 function search(event) {
+
     event.preventDefault();
+    let listArticle = document.querySelectorAll('.liste-article');
     let formData = new FormData(form);
+
     // container est la zone qui affiche la liste d'articles
-    let container = document.querySelector('.view');
+    let container = document.querySelector('.templateListeArticle');
+
+    let isListView = false;
+    for (const element of listArticle) {
+        if (element.classList.contains("list")) {
+            isListView = true;
+            break;
+        }
+    }
     // Methode en ajax
     fetch('articles_client?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())
@@ -37,8 +47,10 @@ function search(event) {
              */
             container.innerHTML = '';
             container.innerHTML = data;
-            inputQuantite = document.querySelectorAll('.quantite');
-            for (const quantite of inputQuantite) {
+            let newListArticle = document.querySelectorAll('.liste-article');
+            toggleListArticle(newListArticle, isListView);
+            let newInputQuantite = document.querySelectorAll('.quantite>input');
+            for (const quantite of newInputQuantite) {
                 if (existId(stockQuantite, quantite.id)) {
                     quantite.value = stockQuantite[quantite.id]
                 }
@@ -50,3 +62,69 @@ function search(event) {
 function existId(objet, cle) {
     return objet.hasOwnProperty(cle);
 }
+
+
+let buttonGrid = document.querySelector('.headerArticle-layout-grid')
+let buttonList = document.querySelector('.headerArticle-layout-list')
+
+function toggleListArticle(elements, isAdd) {
+    for (const element of elements) {
+        if (isAdd) {
+            element.classList.add("list");
+
+        } else {
+            element.classList.remove("list");
+        }
+    }
+}
+function togglePicture(elements,isAdd) {
+    for (const element of elements) {
+        if (isAdd) {
+            element.style.display="none";
+
+        } else {
+            element.style.display="block";
+        }
+    }
+}
+
+
+
+buttonList.addEventListener('click', function() {
+    let listArticle = document.querySelectorAll('.liste-article');
+    let pictureArticle = document.querySelectorAll('.liste-article-input.image');
+    buttonList.classList.add('select');
+    buttonGrid.classList.remove('select');
+    toggleListArticle(listArticle, true);
+    togglePicture(pictureArticle,true)
+});
+
+buttonGrid.addEventListener('click', function() {
+    let listArticle = document.querySelectorAll('.liste-article');
+    let pictureArticle = document.querySelectorAll('.liste-article-input.image');
+    buttonList.classList.remove('select');
+    buttonGrid.classList.add('select');
+    toggleListArticle(listArticle, false);
+    togglePicture(pictureArticle,false)
+});
+
+const mq = window.matchMedia("(max-width: 540px)");
+function handleScreenSizeChange(mq) {
+    let pictureArticle = document.querySelectorAll('.liste-article-input.image');
+    if (mq.matches) {
+        // for (const element of pictureArticle) {
+        //     element.removeAttribute('style');
+        // }
+        togglePicture(pictureArticle,true)
+    }
+    else{
+        if(buttonList.classList.contains('select')){
+            togglePicture(pictureArticle,true);
+        }else{
+            togglePicture(pictureArticle,false)
+        }
+
+    }
+}
+handleScreenSizeChange(mq);
+mq.addListener(handleScreenSizeChange);
