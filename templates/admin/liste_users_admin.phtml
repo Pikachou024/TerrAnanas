@@ -1,35 +1,56 @@
-<?php if($params['users']):?>
-    <?php if(empty($_SESSION['userSearch'])) :?>
-            <?php foreach ($params['users'] as $user): ?>
-                <div class="row pt-2 pb-2 line-out d-flex align-items-center">
-                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["client"];?>  </div>
-                    <div class="col-2 d-none d-lg-block text-center"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
-                    <div class="col-2 d-none d-sm-block col-lg-2 text-center"><?= $user["contact"];?> </div>
-                    <div class="col-5 col-md-2 col-lg-2 text-center"><?= $user["phone"];?> </div>
-                    <div class="col-4 d-none d-md-block col-md-4 col-lg-3 text-center"><?= $user["email"];?> </div>
-                    <div class="col-1 d-none d-lg-block text-center"> <a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-pen-to-square"></i></a> <a href="<?='delete_user?id='.$user["id_user"];?>"><i class="fa-solid fa-trash-can"></i></a></div>
-                    <!--                                    <div class="col-1 d-none d-md-block text-center"> <a href="--><?//='delete_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-trash-can"></i></a> </div>-->
-                    <div class="col-1  d-lg-none text-center pl-1 pr-1"> <i class="fa-solid fa-eye"></i> </div>
-                </div>
-            <?php endforeach; ?>
+<div class="liste bg">
+    <div class="liste-client head">
+        <div class="liste-client-item"> Société </div>
+        <div class="liste-client-item address"> Adresse </div>
+        <div class="liste-client-item"> Contact </div>
+        <div class="liste-client-item"> Téléphone </div>
+        <div class="liste-client-item"> Email </div>
+        <div class="liste-client-item action">
+            <div class="action-edit"> Editer </div>
+            <div class="action-delete"> Supprimer </div>
+        </div>
+    </div>
+
+<?php if(isset($_SESSION['userSearch'])) :?>
+    <?php if(empty($_SESSION['userSearch'])):?>
+            <div class="liste-client-aucun">
+                <p>Aucun client trouvé</p>
+            </div>
+
     <?php else : ?>
-            <?php foreach ($_SESSION['userSearch'] as $user): ?>
-                <div class="row pt-2 pb-2 line-out d-flex align-items-center">
-                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center"><?= $user["client"];?>  </div>
-                    <div class="col-2 d-none d-lg-block text-center"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
-                    <div class="col-2 d-none d-md-block col-lg-2 text-center"><?= $user["contact"];?> </div>
-                    <div class="col-2 d-none d-sm-block col-md-2 col-lg-2 text-center"><?= $user["phone"];?> </div>
-                    <div class="col-4 col-md-3 col-lg-2 text-center"><?= $user["email"];?> </div>
-                    <div class="col-1 d-none d-lg-block text-center"> <a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-pen-to-square"></i></a> </div>
-                    <div class="col-1 d-none d-md-block text-center"> <a href="<?='delete_user?id='.$user["id_user"];?>"><i class="fa-solid fa-trash-can"></i></a> </div>
-                    <div class="col-2 col-sm-1 d-lg-none text-center pl-1 pr-1"> <i class="fa-solid fa-eye"></i> </div>
-                </div>
-            <?php endforeach; ?>
-    <?php endif;?>
-<?php else:?>
-        <div class="row pt-2 pb-2 line-out">
-            <div class="col text-center ">
-                Aucun client
+        <?php foreach ($_SESSION['userSearch'] as $user): ?>
+        <div class="liste-client">
+            <div class="liste-client-item"><?= $user["client"];?>  </div>
+            <div class="liste-client-item address"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
+            <div class="liste-client-item"><?= $user["contact"];?> </div>
+            <div class="liste-client-item"><?= $user["phone"];?> </div>
+            <div class="liste-client-item"><?= $user["email"];?> </div>
+            <div class="liste-client-item action">
+                <div class="action-edit"> <a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                <div class="action-delete"> <a href="<?='delete_user?id='.$user["id_user"];?>"><i class="fa-solid fa-trash-can"></i></a></div>
             </div>
         </div>
+        <?php endforeach; ?>
+    <?php endif;?>
+<?php else:?>
+    <?php if($params['users']) : ?>
+        <?php foreach ($params['users'] as $user): ?>
+            <div class="liste-client">
+                <div class="liste-client-item"><?= $user["client"];?>  </div>
+                <div class="liste-client-item address"><?= $user["address"] .', '.$user["city"].' '.$user["postal"];?>  </div>
+                <div class="liste-client-item"><?= $user["contact"];?> </div>
+                <div class="liste-client-item"><?= $user["phone"];?> </div>
+                <div class="liste-client-item"><?= $user["email"];?> </div>
+                <div class="liste-client-item action">
+                    <div class="action-edit"> <a href="<?='edit_user?id='.$user["id_user"];?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="action-delete"> <a href="<?='delete_user?id='.$user["id_user"];?>"><i class="fa-solid fa-trash-can"></i></a></div>
+                </div>
+            </div>
+    <?php endforeach; ?>
+    <?php else : ?>
+        <div class="liste-client-aucun">
+            <p>Aucun client trouvé</p>
+        </div>
+    <?php endif;?>
 <?php endif;?>
+</div>

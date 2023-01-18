@@ -8,11 +8,12 @@ searchStatut.addEventListener('change',submit)
 function submit(event) {
     event.preventDefault();
     let formData = new FormData(form);
-    let container = document.querySelector('.view');
+    let container = document.querySelector('.templateListeArticle');
 
     fetch('users_admin?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())
         .then(data => {
+            console.log(data)
             container.innerHTML='';
             container.innerHTML=data;
         })

@@ -6,7 +6,7 @@ searchArticle.addEventListener('keyup',submit);
 function submit(event) {
     event.preventDefault();
     let formData = new FormData(form);
-    let container = document.querySelector('.view');
+    let container = document.querySelector('.templateListeArticle');
     // fetch('commandes_admin?ajax=true', {method: 'POST', body: formData})
     fetch('articles_admin?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())

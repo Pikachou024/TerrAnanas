@@ -36,7 +36,6 @@ $routes=[
         "base_template"=>"base"
     ],
 
-
     "logout"=>[
         "controller"=>"Connexion",
         "action"=>"logout",

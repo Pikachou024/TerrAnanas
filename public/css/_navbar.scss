@@ -1,0 +1,307 @@
+
+.hide{
+  display: none;
+}
+
+.headerNavbar-function-list-item-link{
+  padding: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: $secondLightColor;
+  //transition: color 0.3s, border-bottom 0.7s;
+}
+
+.headerNavbar-function-list-item-link:link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.headerNavbar-function-list-item-link:visited {
+  color: $secondLightColor;
+}
+
+.headerNavbar-function-list-item-link:hover {
+  //color: $secondLightColor;
+  border-bottom: 2px solid $secondLightColor;
+  padding: 5px;
+}
+
+.footerNavbar-info-navigation-liste-item-link{
+  text-decoration: none;
+  font-weight: bold;
+  color: #0F0F0F;}
+
+.footerNavbar-info-navigation-liste-item-link:link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.footerNavbar-info-navigation-liste-item-link:visited {
+  color: #0F0F0F;}
+
+.footerNavbar-info-navigation-liste-item-link:hover {
+  color: $secondLightColor;
+}
+
+.headerNavbar {
+  background-color: $altSecond;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: $heightNavbarMobile;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  &-img{
+    position: absolute;
+    top:10px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100px;
+    z-index: 2;
+    &-link > img{
+      width: 100%;
+      transition: transform 0.3s ease-in-out;
+    }
+    &-link > img:hover{
+      transform: scale(1.1);
+    }
+  }
+  &-function, &-info{
+    display: flex;
+    align-items: center;
+  }
+
+  &-function-list {
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    padding: 30% 0 0 0;
+    top: $heightNavbarMobile;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $altSecond;
+    text-align: center;
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: all 0.5s;
+    font-size: 24px;
+
+    &.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    &-item{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: black;
+    }
+  }
+
+  &-function-burger{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    margin-left: 20px;
+  }
+  &-function-burger:hover{
+    cursor: pointer;
+  }
+  &-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  &-info-list{
+    margin : 0 20px;
+    display: flex;
+    flex-direction: row;
+    padding-right: 0;
+    align-items: center;
+    &-item{
+
+      &-link{
+        i {
+          position: relative;
+          transform:scale(110%);
+          span {
+            position: absolute;
+            bottom: 45%;
+            right: 55%;
+            font-size: 12px;
+            color:$secondColor;
+            font-weight: bold;
+          }
+        }
+      }
+
+      &-dropdown{
+        display: flex;
+        align-items: center;
+        color: #E2F3CA;
+        margin: 0;
+        font-weight: bold;
+
+        i{
+          padding-left: 5px;
+        }
+      }
+      &-dropdown:hover{
+        cursor: pointer;
+      }
+      &-dropdownContent{
+        background-color: $altSecond;
+        position: absolute;
+        right: 0;
+        padding: 0;
+        top: $heightNavbarMobile;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        opacity: 0;
+        text-align: center;
+        transform: translateX(200%);
+        transition: all 0.5s;
+        padding-top: $heightNavbarMobile;
+        font-size: 24px;
+      }
+      &-dropdownContent > li {
+        padding: 10px;
+      }
+      &-dropdownContent.active{
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .logout{
+        background-color: $firstLightColor;
+      }
+      .logout>a{
+        color: $firstColor;
+      }
+      .logout>a:hover{
+        color: $altColor;
+      }
+    }
+  }
+
+  .fa-solid {
+    font-size: 20px;
+    text-align: center;
+    color: #E2F3CA;
+    padding-right: 10px;
+  }
+
+  //.nameUser{
+  //  display: none;
+  //}
+}
+
+.footerNavbar{
+  background-color: $altSecond;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  h3{
+    color: $altColor;
+  }
+  &-info{
+    color: #0F0F0F;
+    &-navigation{
+      &-liste{
+        padding: 0;
+        &-item{
+          padding: 5px 0;
+        }
+      }
+    }
+    &-reseau-lien i{
+      font-size: 24px;
+    }
+  }
+
+}
+
+@media screen and (min-width: 640px) {
+  .headerNavbar{
+    height: $heightNavbar;
+    display: flex;
+    //flex-direction:row;
+    justify-content: normal;
+    &-img{
+      position: static;
+      max-width: 80px;
+      transform: none;
+      margin-left: 20px;
+    }
+    &-function{
+      order:1;
+      margin-right: 20px;
+      &-list{
+        position:static;
+        opacity: 1;
+        transform: translateY(0);
+        width: auto;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 0;
+        font-size: 18px;
+
+        &-item{
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+      }
+    }
+    &-function-burger {
+      display: none;
+    }
+    &-info {
+      order:2;
+      margin-left: auto;
+    }
+  }
+  .footerNavbar-info{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .headerNavbar{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    border-radius:0 0 20px 20px;
+    justify-content: space-between;
+
+    transition: transform 0.5s ease-in-out; /* ajout d'une transition sur la propriété transform */
+    transform: translateY(0); /* position initiale */
+    &-info{
+      margin-left: 0;
+    }
+  }
+  .headerNavbar.hide {
+    transform: translateY(-100%); /* masque le navbar quand il y a une largeur d'écran de 1200px */
+  }
+
+  .footerNavbar-info{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

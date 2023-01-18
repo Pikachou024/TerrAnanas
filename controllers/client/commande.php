@@ -50,9 +50,6 @@ class Commande extends AbstractController
             exit;
         }
 
-//        $articleModel = new ArticleModel();
-//        $articles = $articleModel->getAllArticles();
-
         if(!empty($_POST)){
 
             $idArticle = array_map(function($value) {
@@ -113,6 +110,8 @@ class Commande extends AbstractController
             }
             if(!empty($_SESSION['panier'])){
                 addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
+
+//                echo json_encode(['message'=>"Vos articles ont bien été ajouté dans votre panier"]);
             }
 
         }

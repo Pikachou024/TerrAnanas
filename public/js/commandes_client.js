@@ -8,7 +8,7 @@ searchDate.addEventListener('change',submit);
 function submit(event) {
     event.preventDefault();
     let formData = new FormData(form);
-    let container = document.querySelector('.view');
+    let container = document.querySelector('.templateListeCommande');
     fetch('historique_commandes?ajax=true', {method: 'POST', body: formData})
         .then(response => response.text())
         .then(data => {

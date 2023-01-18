@@ -1,119 +1,44 @@
-<main class="mt-5">
-    <div class="container mt-3 mb-3">
-        <form method="POST" action="<?='commandes_admin';?>" id="form-commande" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <div class="datepicker date input-group">
-                                <?php if(empty($_SESSION['commandeByDate'])) :?>
-                                    <input type="date" name="searchDate" placeholder="Choisir une date" class="form-control" id="reservationDate">
-                                <?php else : ?>
-                                    <input type="date" name="searchDate" value="<?= $params['date'];?>" class="form-control" id="reservationDate">
-                                <?php endif;?>
-<!--                                <div class="input-group-append"><span class="input-group-text px-"><i class="fa fa-calendar"></i></span></div>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6">
-                    <?php if($params['commandes']):?>
-                        <select class="form-control " name="statut" id="selectStatut">
-                            <option value="<?= $params['commandes'][0]['id_statut'] ?>"><?=$params['commandes'][0]['statut']?></option>
-                            <?php foreach ($params['statut'] as $statut): ?>
-                                <?php if($statut['id_statut'] != $params['commandes'][0]['id_statut']): ?>
-                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
-                                <?php endif ;?>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php else : ?>
-                        <select class="form-control " name="statut" id="statut">
-                            <option value="<?= $params['statutCommande'] ?>"><?= $params['namestatut']['statut'] ?></option>
-                            <?php foreach ($params['statut'] as $statut): ?>
-                                <?php if($statut['id_statut'] != $params['statutCommande']): ?>
-                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
-                                <?php endif ;?>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </form>
-    </div>
+<h3 class="titleCommande"> Mes commandes </h3>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0">
-                <h3 class="text-center text-red"> Liste des commandes </h3>
-                <div class="container bg-first-lightbackground-color">
-                    <div class="row pt-2 pb-2  font-weight-bold">
-                        <div class="col-2 d-none d-md-block text-center "> Commande </div>
-                        <div class="col-2 d-md-none text-center "> Cde </div>
-                        <div class="col-4 col-sm-3 col-md-2 text-center "> Client </div>
-                        <div class="col-4 col-sm-3 col-md-2 text-center "> Montant </div>
-                        <div class="col-2 d-none d-sm-block text-center "> Date commande </div>
-                        <div class="col-2 d-none d-md-block text-center "> Date livraison </div>
-                        <div class="col-2 d-none d-md-block text-center "> Détails </div>
-                        <div class="col-2 d-md-none text-center "> Dts </div>
-                    </div>
-                </div>
+<form method="post" action="historique_commandes" id="form-commande" class="formCommande">
+    <div class="headerCommande">
+        <div class="headerCommande-date">
+            <?php if(empty($_SESSION['commandeByDate'])) :?>
+                <input type="date" class="form-control" name="searchDate" placeholder="Choisir une date"id="reservationDate">
+            <?php else : ?>
+                <input type="date" class="form-control" name="searchDate" value="<?= $params['date'];?>"id="reservationDate">
+            <?php endif;?>
+        </div>
 
-                <div class="container view">
-<!--                    --><?php //include $params['view'];?>
-                    <?php $this->render($this->file, 'liste_commandes_admin', '', $params);?>
-
-                </div>
-
-
-
-
-<!--                --><?php //if($params['commandes']):?>
-<!---->
-<!--                    --><?php //if(empty($_SESSION['commandeByDate'])) :?>
-<!--                -->
-<!--                    <div class="container transform-ajax">-->
-<!--                        --><?php //foreach ($params['commandes'] as $commande): ?>
-<!--                                <div class="row pt-2 pb-2 line-out" >-->
-<!--                                    <div class="col-2 text-center" data-value="Id">--><?//=$commande['id_commande'];?><!--</div>-->
-<!--                                    <div class="col-4 col-sm-3 col-md-2 text-center" data-value="Societé">--><?//=$commande['client'];?><!--</div>-->
-<!--                                    <div class="col-4 col-sm-3 col-md-2 text-center" data-value="Montant">--><?//=($commande['montant'])/100 ." €" ;?><!--</div>-->
-<!--                                    <div class="col-2 d-none d-sm-block text-center" data-value="Date de lacommande">--><?//= date('d/m/y', strtotime($commande['date_commande'])) ;?><!--</div>-->
-<!--                                    <div class="col-2 d-none d-md-block text-center" data-value="Date de la livraison">--><?//= date('d/m/y', strtotime($commande['date_livraison'])) ;?><!--</div>-->
-<!--                                    <div class="col-1 d-none d-md-block text-center" ><a href="--><?//='commande_details?id='.$commande['id_commande'] ;?><!--"><i class="fa-solid fa-pen-to-square"></i></i></a></div>-->
-<!--                                    <div class="col-1 d-none d-md-block text-center"><a href="--><?//='delete_commande?id='.$commande['id_commande'] ;?><!--"><i class="fa-solid fa-trash-can"></i></a></div>-->
-<!--                                    <div class="col-2 d-md-none text-center  show-detail"><i class="fa-solid fa-eye"></i></div>-->
-<!--                                </div>-->
-<!--                        --><?php //endforeach; ?>
-<!--                    </div>-->
-<!--                    --><?php //else :?>
-<!--                        <div class="container">-->
-<!--                            --><?php //foreach ($_SESSION['commandeByDate'] as $commande): ?>
-<!--                                    <div class="row pt-2 pb-2 line-out">-->
-<!--                                        <div class="col-2 text-center">--><?//=$commande['id_commande'];?><!-- </div>-->
-<!--                                        <div class="col-4 col-sm-3 col-md-2 text-center">--><?//=$commande['client'];?><!-- </div>-->
-<!--                                        <div class="col-4 col-sm-3 col-md-2 text-center">--><?//=($commande['montant'])/100 ." €" ;?><!-- </div>-->
-<!--                                        <div class="col-2 d-none d-sm-block text-center">--><?//= date('d/m/y', strtotime($commande['date_commande'])) ;?><!-- </div>-->
-<!--                                        <div class="col-2 d-none d-md-block text-center">--><?//= date('d/m/y', strtotime($commande['date_livraison'])) ;?><!-- </div>-->
-<!--                                        <div class="col-1 d-none d-md-block text-center"> <a href="--><?//='commande_details?id='.$commande['id_commande'] ;?><!--"><i class="fa-solid fa-pen-to-square"></i></i></a> </div>-->
-<!--                                        <div class="col-1 d-none d-md-block text-center"> <a href="--><?//='delete_commande?id='.$commande['id_commande'] ;?><!--"><i class="fa-solid fa-trash-can"></i></a> </div>-->
-<!--                                        <div class="col-2 d-md-none text-center"> <i class="fa-solid fa-eye"></i> </div>-->
-<!--                                    </div>-->
-<!--                            --><?php //endforeach; ?>
-<!--                        </div>-->
-<!--                    --><?php //endif;?>
-<!--                --><?php //else:?>
-<!--                    <div class="container">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col text-center text-red">-->
-<!--                                <h4>Aucune commande</h4>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                --><?php //endif;?>
-            </div>
+        <div class="headerCommande-statut">
+            <?php if($params['commandes']):?>
+                <select class="form-control " name="statut" id="selectStatut">
+                    <option value="<?= $params['commandes'][0]['id_statut'] ?>"><?= $params['commandes'][0]['statut'] ?></option>
+                    <?php foreach ($params['statut'] as $statut): ?>
+                        <?php if($statut['id_statut'] != $params['commandes'][0]['id_statut'] && $statut['id_statut'] != 4): ?>
+                            <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            <?php else : ?>
+                <select class="form-control " name="statut" id="selectStatut">
+                    <option value="<?= $params['statutCommande'] ?>"><?= $params['nameStatut']['statut'] ?></option>
+                    <?php foreach ($params['statut'] as $statut): ?>
+                        <?php if($statut['id_statut'] != $params['statutCommande'] && $statut['id_statut'] != 4): ?>
+                            <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
         </div>
     </div>
 
-</main>
+</form>
+
+<div class="templateListeCommande">
+    <?php $this->render($this->file, 'liste_commandes_admin', '', $params);?>
+
+</div>
+
 <script src="http://localhost/TerrAnanas/public/js/commandes_admin.js" defer></script>
 

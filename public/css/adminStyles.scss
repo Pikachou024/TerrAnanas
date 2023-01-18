@@ -1,0 +1,42 @@
+@import 'variables';
+@import 'flashMessage';
+
+@import 'responsive';
+@import 'listeArticle';
+@import 'panier';
+@import 'commande';
+
+
+@import 'adminArticle';
+@import 'adminClient';
+
+html,
+body {
+  background-color: $secondLightColor;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+main {
+  //flex: 1;
+  max-width: 1440px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+footer {
+  background-color: #1b1e21;
+  width: 100%;
+  height: 100px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}

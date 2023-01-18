@@ -1,65 +1,70 @@
-<main>
-    <div class="container mt-5">
-        <div class="row justify-content-between">
-            <div class="col-12 col-sm-5 p-0 text-center border-custom mb-3">
-                <h3 class="text-red bg-second-background-color"> TERRANAS</h3>
-                <p><?=$params['dateDuJour']?></p>
-            </div>
-            <div class="col-12 col-sm-5 p-0 text-center border-custom mb-3">
-                <h3 class="text-red bg-second-background-color ">INSCRIPTION</h3>
-                <p>En attente ( <?=$params['usersInt']?> ) <a href="users_admin">Voir</a> </p>
-            </div>
+<div class="headerDate">
+    <div class="headerDate-inscription">
+        <h4 class=""> TERRANAS</h4>
+        <p><?=$params['dateDuJour']?></p>
+    </div>
+    <div class="headerDate-inscription">
+        <h4 class="">INSCRIPTION</h4>
+        <p>En attente ( <?=$params['usersInt']?> ) <a href="users_admin">Voir</a> </p>
+    </div>
+</div>
+
+<div class="templateListeCommande">
+
+    <div class="liste">
+        <h4 class="headerTitle">COMMANDE EN ATTENTE</h4>
+        <div class="liste-commande head">
+            <div class="liste-commande-item">COMMANDE N°</div>
+            <div class="liste-commande-item">DATE COMMANDE</div>
+            <div class="liste-commande-item">DATE LIVRAISON</div>
+            <div class="liste-commande-item">MONTANT</div>
+            <div class="liste-commande-item detail">DETAILS</div>
         </div>
+
+<?php if($params['commandeDuJour']) : ?>
+    <?php foreach ($params['commandeDuJour'] as $commande): ?>
+        <div class="liste-commande" >
+            <div class="liste-commande-item" ><?=$commande['id_commande'];?></div>
+            <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_commande']));?></div>
+            <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_livraison'])) ;?></div>
+            <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?></div>
+            <div class="liste-commande-item detail" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-eye"></i></a> </div>
+        </div>
+    <?php endforeach; ?>
+<?php else:?>
+        <div class="emptyCommande">
+            <p>Aucune commande</p>
+        </div>
+<?php endif;?>
+</div>
+
+<div class="liste">
+    <h4 class="headerTitle">COMMANDE VALIDEE</h4>
+    <div class="liste-commande head">
+        <div class="liste-commande-item">COMMANDE N°</div>
+        <div class="liste-commande-item">DATE COMMANDE</div>
+        <div class="liste-commande-item">DATE LIVRAISON</div>
+        <div class="liste-commande-item">MONTANT</div>
+        <div class="liste-commande-item detail">DETAILS</div>
     </div>
 
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col-12  ml-lg-auto mr-lg-3 p-0 ">
-                <div class="col-12 mb-5 pb-3 pt-2  border-custom bg-second-background-color ">
-                    <h3 class=" text-center p-2 mb-4 text-red ">COMMANDE EN ATTENTE</h3>
-                    <div class="row text-center bg-first-lightbackground-color">
-                        <div class="d-none d-md-block col-4"><p class="font-weight-bold">JOUR DE LA COMMANDE</p> </div>
-                        <div class="d-md-none col-4"><p class="font-weight-bold">JOUR CMD</p> </div>
-                        <div class="d-none d-md-block col-4"><p class="font-weight-bold">JOUR DE LA LIVRAISON</p> </div>
-                        <div class="d-md-none col-4"><p class="font-weight-bold">JOUR LIV</p> </div>
-                        <div class="d-none d-md-block col-3"><p class="font-weight-bold">MONTANT</p></div>
-                        <div class="d-md-none col-3"><p class="font-weight-bold">MT</p></div>
-                        <div class="col-1 p-1"> </div>
-                    </div>
-                    <?php foreach ($params['commandeDuJour'] as $commande): ?>
-                        <div class="row line-out text-center">
-                            <div class="col-4"><p class=""><?=$commande['client'];?></p> </div>
-                            <div class="col-4"><p><?=$commande['date_livraison'] ;?></p> </div>
-                            <div class="col-3"><p><?=($commande['montant']/100) ." €" ;?></p> </div>
-                            <div class="col-1 p-1"><a href="<?='commande_details?id='.$commande['id_commande'] ;?>">Voir</a> </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+    <?php if($params['commandeValidee']) : ?>
+        <?php foreach ($params['commandeValidee'] as $commande): ?>
+            <div class="liste-commande" >
+                <div class="liste-commande-item" ><?=$commande['id_commande'];?></div>
+                <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_commande']));?></div>
+                <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_livraison'])) ;?></div>
+                <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?></div>
+                <div class="liste-commande-item detail" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-eye"></i></a> </div>
             </div>
-
-            <div class="col-12 mb-5 pb-3 pt-2  border-custom bg-second-background-color ">
-                <h3 class=" text-center p-2 mb-4 text-red ">COMMANDE VALIDEE</h3>
-                <div class="row text-center bg-first-lightbackground-color">
-                    <div class="d-none d-md-block col-4"><p class="font-weight-bold">JOUR DE LA COMMANDE</p> </div>
-                    <div class="d-md-none col-4"><p class="font-weight-bold">JOUR CMD</p> </div>
-                    <div class="d-none d-md-block col-4"><p class="font-weight-bold">JOUR DE LA LIVRAISON</p> </div>
-                    <div class="d-md-none col-4"><p class="font-weight-bold">JOUR LIV</p> </div>
-                    <div class="d-none d-md-block col-3"><p class="font-weight-bold">MONTANT</p></div>
-                    <div class="d-md-none col-3"><p class="font-weight-bold">MT</p></div>
-                    <div class="col-1 p-1"> </div>
-                </div>
-                <?php foreach ($params['commandeValidee'] as $commande): ?>
-                    <div class="row line-out text-center">
-                        <div class="col-4"><p class=""><?=$commande['client'];?></p> </div>
-                        <div class="col-4"><p><?=$commande['date_livraison'] ;?></p> </div>
-                        <div class="col-3"><p><?=($commande['montant']/100) ." €" ;?></p> </div>
-                        <div class="col-1 p-1"><a href="<?='commande_details?id='.$commande['id_commande'] ;?>">Voir</a> </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+        <?php endforeach; ?>
+    <?php else:?>
+        <div class="emptyCommande">
+            <p>Aucune commande</p>
         </div>
-    </div>
+    <?php endif;?>
+</div>
+</div>
 
-</main>
 <!--Chargement des scripts pour le dashboard admin-->
 <script type="text/javascript" src="http://localhost/ProjetCommande/public/js/admin/ajax_admin.js" defer></script>

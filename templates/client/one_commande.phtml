@@ -1,41 +1,33 @@
-<main class="mt-3">
-    <div class="container mt-3">
-        <div class="row justify-content-between">
-            <div class="col-12 col-sm-5 p-0 text-center border-custom mb-3">
-                <h4 class="text-red bg-second-background-color"> COMMANDE</h4>
-                <p><?=$params['dateCommande']?></p>
-            </div>
-            <div class="col-12 col-sm-5 p-0 text-center border-custom mb-3">
-                <h4 class="text-red bg-second-background-color "> LIVRAISON </h4>
-                <p><?=$params['dateLivraison']?></p>
-            </div>
-        </div>
+
+<div class="headerDate">
+    <div class="headerDate-commande">
+        <h4 class=""> COMMANDE</h4>
+        <p><?=$params['dateCommande']?></p>
+    </div>
+    <div class="headerDate-livraison">
+        <h4 class=""> LIVRAISON </h4>
+        <p><?=$params['dateLivraison']?></p>
+    </div>
+</div>
+
+<div class="liste">
+    <div class="liste-article head list">
+        <div class="liste-article-item"> <p>ARTICLE</p> </div>
+        <div class="liste-article-item"> <p>ORIGINE</p> </div>
+        <div class="liste-article-item"> <p>PRIX</p> </div>
+        <div class="liste-article-item"> <p>POIDS</p> </div>
+        <div class="liste-article-item quantite"> <p>QUANTITEE</p> </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 pt-2 pb-2 border-custom bg-second-background-color">
-                    <div class="container ">
-                        <div class="row bg-first-lightbackground-color d-grid">
-                            <div class="col-6 col-md-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>
-                            <div class="col-6 col-md-3 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>
-                            <div class="col-6 col-md-2 text-center"> <p class="font-weight-bold">PRIX</p> </div>
-                            <div class="col-6 col-md-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>
-                            <div class="col-12 col-md-2 text-center"> <p class="font-weight-bold">QUANTITEE</p></div>
-                        </div>
-                    </div>
-                        <div class="container">
-                            <?php foreach ($params['articlesCommande'] as $article): ?>
-                                <div class="row line-out d-grid">
-                                    <div class="col-6 col-md-3 mt-1 mb-1 text-center"><?= $article["article"];?> </div>
-                                    <div class="col-6 col-md-3 mt-1 mb-1 text-center"><?= $article["origine"];?></div>
-                                    <div class="col-6 col-md-2 mt-1 mb-1 text-center"><?= ($article["prix"] / 100).'€/'.$article['unite'];?>  </div>
-                                    <div class="col-6 col-md-2 mt-1 mb-1 text-center"><?= $article["poids"] ." " .$article['unite'];?> </div>
-                                    <div class="col-12 col-md-2 mt-1 mb-1  text-center"><?=$article['quantite'];?></div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
+<?php foreach ($params['articlesCommande'] as $article): ?>
+    <div class="liste-article list">
+        <div class="liste-article-item"><?= $article["article"];?> </div>
+        <div class="liste-article-item"><?= $article["origine"];?></div>
+        <div class="liste-article-item"><?= ($article["prix"] / 100).'€/'.$article['unite'];?>  </div>
+        <div class="liste-article-item"><?= $article["poids"] ." " .$article['unite'];?> </div>
+        <div class="liste-article-item quantite"><?=$article['quantite'];?></div>
+    </div>
+<?php endforeach; ?>
                 </div>
         </div>
-    </div>
-</main>
+</div>

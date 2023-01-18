@@ -4,7 +4,6 @@ const burger = document.getElementById('burger');
 const cross = document.getElementById('cross');
 let dropDown = document.querySelector('.headerNavbar-info-list-item-dropdown');
 let dropdownContent = document.querySelector('.headerNavbar-info-list-item-dropdownContent');
-
 menuBtn.addEventListener('click', () => {
     if (menu.classList.contains('active')) {
         menu.classList.remove('active');
@@ -13,31 +12,53 @@ menuBtn.addEventListener('click', () => {
 
     } else {
         menu.classList.add('active');
-        dropdownContent.classList.remove('active');
+        if(dropDown) {
+            dropdownContent.classList.remove('active');
+        }
         burger.classList.add('hide');
         cross.classList.remove('hide');
     }
 });
 
-dropDown.addEventListener('click', function(){
-    if (dropdownContent.classList.contains('active')) {
-        dropdownContent.classList.remove('active');
-    }else {
-        dropdownContent.classList.add('active');
-        menu.classList.remove('active');
+if(dropDown){
+    dropDown.addEventListener('click', function(){
 
-        if(burger.classList.contains('hide')){
-            burger.classList.remove('hide');
-            cross.classList.add('hide');
+        if (dropdownContent.classList.contains('active')) {
+            dropdownContent.classList.remove('active');
+        }else {
+            dropdownContent.classList.add('active');
+            menu.classList.remove('active');
+
+            if(burger.classList.contains('hide')){
+                burger.classList.remove('hide');
+                cross.classList.add('hide');
+            }
         }
-    }
-});
+    });
+}
+
 
 document.addEventListener('click',function(event){
     if (event.target !== menuBtn && event.target !== menu && event.target !== burger && event.target !== cross && event.target !== dropDown && event.target !== dropdownContent) {
         burger.classList.remove('hide');
         cross.classList.add('hide');
         menu.classList.remove('active');
-        dropdownContent.classList.remove('active');
+        if(dropDown) {
+            dropdownContent.classList.remove('active');
+        }
     }
 })
+
+
+const navbar = document.querySelector('.headerNavbar');
+let previousScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > previousScroll) {
+        navbar.classList.add('hide');
+    } else {
+        navbar.classList.remove('hide');
+    }
+    previousScroll = currentScroll;
+});

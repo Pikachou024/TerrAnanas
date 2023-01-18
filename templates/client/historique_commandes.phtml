@@ -1,68 +1,47 @@
-<main>
+<h3 class="titleCommande"> Mes commandes </h3>
 
-    <div class="container mt-3 mb-3">
-        <form method="post" action="historique_commandes" id="form-commande">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="form-group">
-                            <div class="form-group">
-                                <div class="datepicker date input-group">
-                                    <?php if(empty($_SESSION['commandeByDate'])) :?>
-                                        <input type="date" name="searchDate" placeholder="Choisir une date" class="form-control" id="reservationDate">
-                                    <?php else : ?>
-                                        <input type="date" name="searchDate" value="<?= $params['date'];?>" class="form-control" id="reservationDate">
-                                    <?php endif;?>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-                <div class="col-12 col-md-6">
+<form method="post" action="historique_commandes" id="form-commande">
+    <div class="headerCommande">
+        <div class="headerCommande-date">
+            <?php if(empty($_SESSION['commandeByDate'])) :?>
+                <input type="date" class="form-control" name="searchDate" placeholder="Choisir une date"id="reservationDate">
+            <?php else : ?>
+                <input type="date" class="form-control" name="searchDate" value="<?= $params['date'];?>"id="reservationDate">
+            <?php endif;?>
+        </div>
 
-                    <?php if($params['commandes']):?>
-                        <select class="form-control " name="statut" id="selectStatut">
-                            <option value="<?= $params['commandes'][0]['id_statut'] ?>"><?= $params['commandes'][0]['statut'] ?></option>
-                            <?php foreach ($params['statut'] as $statut): ?>
-                                <?php if($statut['id_statut'] != $params['commandes'][0]['id_statut'] && $statut['id_statut'] != 4): ?>
-                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
-                                <?php endif ;?>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php else : ?>
-                        <select class="form-control " name="statut" id="selectStatut">
-                            <option value="<?= $params['statutCommande'] ?>"><?= $params['nameStatut']['statut'] ?></option>
-                            <?php foreach ($params['statut'] as $statut): ?>
-                                <?php if($statut['id_statut'] != $params['statutCommande'] && $statut['id_statut'] != 4): ?>
-                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
-                                <?php endif ;?>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </form>
+        <div class="headerCommande-statut">
+            <?php if($params['commandes']):?>
+                <select class="form-control " name="statut" id="selectStatut">
+                    <option value="<?= $params['commandes'][0]['id_statut'] ?>"><?= $params['commandes'][0]['statut'] ?></option>
+                    <?php foreach ($params['statut'] as $statut): ?>
+                        <?php if($statut['id_statut'] != $params['commandes'][0]['id_statut'] && $statut['id_statut'] != 4): ?>
+                            <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            <?php else : ?>
+                <select class="form-control " name="statut" id="selectStatut">
+                    <option value="<?= $params['statutCommande'] ?>"><?= $params['nameStatut']['statut'] ?></option>
+                    <?php foreach ($params['statut'] as $statut): ?>
+                        <?php if($statut['id_statut'] != $params['statutCommande'] && $statut['id_statut'] != 4): ?>
+                            <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
+        </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0">
-                <h3 class="text-center text-red"> Mes commandes </h3>
-                <div class="container bg-first-lightbackground-color">
-                    <div class="row pt-2 pb-2 d-flex align-items-center font-weight-bold">
-                        <div class="col-2 d-none d-md-block text-center "> Commande </div>
-                        <div class="col-2 d-md-none text-center "> Cde </div>
-                        <div class="col-4 col-sm-3 col-md-2 text-center "> Montant </div>
-                        <div class="col-4 d-none d-md-block col-md-3 text-center "> Date commande </div>
-                        <div class="col-4 col-md-3 text-center "> Date livraison </div>
-                        <div class="col-2 d-none d-md-block text-center "> Détails </div>
-                        <div class="col-2 d-md-none text-center "> Dts </div>
-                    </div>
-                </div>
+</form>
 
-                <div class="container view">
-                    <!--                    --><?php //include $params['view'];?>
+
+
+        <div class="templateListeCommande">
+
                     <?php $this->render($this->file, 'liste_commandes_client', '', $params);?>
 
-                </div>
+        </div>
 
 <!--                --><?php //if($params['commandes']):?>
 <!---->
@@ -100,10 +79,7 @@
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                --><?php //endif;?>
-            </div>
-        </div>
-    </div>
 
-</main>
+
 <script src="http://localhost/TerrAnanas/public/js/commandes_client.js" defer></script>
 

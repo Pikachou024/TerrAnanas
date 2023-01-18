@@ -1,0 +1,62 @@
+.headerPanier{
+  background-color: $secondLightColor;
+  position: sticky;
+  top: 50px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  &-label{
+    font-size: 14px;
+  }
+  &-select{
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 12px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+    appearance: none;
+    background-color: #FDFDFD;
+  }
+  &-select:hover{
+    cursor: pointer;
+  }
+  &-select option{
+    font-size: 14px;
+    padding: 5px;
+  }
+  &-button>button{
+    background-color: $firstColor;
+    color: $firstLightColor;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 10px;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+}
+.buttonPanier{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0;
+  &-retour>button , &-vider>button{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 10px;
+    font-size: 14px;
+    margin : 5px 20px ;
+    text-align: center;
+  }
+  &-retour>button{
+    background-color: $firstColor;
+  }
+  &-vider>button{
+    background-color: $altColor;
+    color: #1b1e21;
+  }
+}

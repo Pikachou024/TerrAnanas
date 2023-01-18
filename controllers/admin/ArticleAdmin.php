@@ -20,14 +20,15 @@ class ArticleAdmin extends AbstractController
         $articles = $articleModel ->getAllArticles();
         $statutModel = new StatusModel();
         $statut = $statutModel->getAllstatusArticle();
-
+        $params=[];
         /*
          * Gestion de la soumission de mon formulaire ( rechercher un article )
          */
         if(!empty($_POST['articleSearch'])){
             $articleSearch = $_POST['articleSearch'];
-            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
             $params['articleSearch']=$articleSearch;
+            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+//            dump($_SESSION['articleSearch']);
 
         }else{
             unset( $_SESSION['articleSearch']);

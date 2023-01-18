@@ -63,7 +63,6 @@ function existId(objet, cle) {
     return objet.hasOwnProperty(cle);
 }
 
-
 let buttonGrid = document.querySelector('.headerArticle-layout-grid')
 let buttonList = document.querySelector('.headerArticle-layout-list')
 
@@ -77,18 +76,17 @@ function toggleListArticle(elements, isAdd) {
         }
     }
 }
+
 function togglePicture(elements,isAdd) {
     for (const element of elements) {
         if (isAdd) {
-            element.style.display="none";
+            element.classList.add("hide");
 
         } else {
-            element.style.display="block";
+            element.classList.remove("hide");
         }
     }
 }
-
-
 
 buttonList.addEventListener('click', function() {
     let listArticle = document.querySelectorAll('.liste-article');
@@ -107,24 +105,3 @@ buttonGrid.addEventListener('click', function() {
     toggleListArticle(listArticle, false);
     togglePicture(pictureArticle,false)
 });
-
-const mq = window.matchMedia("(max-width: 540px)");
-function handleScreenSizeChange(mq) {
-    let pictureArticle = document.querySelectorAll('.liste-article-input.image');
-    if (mq.matches) {
-        // for (const element of pictureArticle) {
-        //     element.removeAttribute('style');
-        // }
-        togglePicture(pictureArticle,true)
-    }
-    else{
-        if(buttonList.classList.contains('select')){
-            togglePicture(pictureArticle,true);
-        }else{
-            togglePicture(pictureArticle,false)
-        }
-
-    }
-}
-handleScreenSizeChange(mq);
-mq.addListener(handleScreenSizeChange);

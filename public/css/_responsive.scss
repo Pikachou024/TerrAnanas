@@ -70,7 +70,6 @@ a:hover {
     justify-content: center;
     align-items: center;
     z-index: 2;
-    //margin-left: 10px;
     padding-left: 20px;
   }
   &-function-burger:hover{
@@ -83,7 +82,8 @@ a:hover {
 
   }
   &-info-list{
-    //margin-bottom: 0;
+    margin-bottom: 0;
+    margin-top: 0;
     display: flex;
     flex-direction: row;
     padding-right: 0;
@@ -141,7 +141,6 @@ a:hover {
         transform: translateY(0);
       }
       .logout{
-
         background-color: $firstLightColor;
       }
       .logout>a{
@@ -161,6 +160,7 @@ a:hover {
   }
 
 }
+
 
 @media screen and (min-width: 640px) {
   .headerNavbar{

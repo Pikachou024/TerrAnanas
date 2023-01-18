@@ -1,99 +1,82 @@
-<main class="mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 p-0">
-
-                <?php if(!empty($_SESSION['panier'])) :?>
-                    <?php displayFlashMessages() ?>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12  justify-content-center">
-                                <h4 class="text-center">Sélectionner une date de livraison</h4>
-                                <form method="POST" action="<?='validation_commande';?>" id="form-commande" class="d-flex flex-row justify-content-center">
-
-                                    <select class="form-control w-75" name="dateLivraison" id="dateLivraison">
-                                        <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')). ' + 1 days'))  ?>">
-                                            <?= $params['dateLivraison1'] ;?>
-                                        </option>
-                                        <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>">
-                                            <?= $params['dateLivraison2'] ;?>
-                                        </option>
-                                    </select>
-                                    <div class="text-center justify-content-end">
-                                        <button type="submit" class="btn bg-alt-background-color text-darkgreen mb-2 ">Valider</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif;?>
-
-                <?php if(isset($params['articles'])): ?>
-                    <div class="container p-1">
-
-                        <div class="row">
-                            <div class="col-12 p-0 border-custom bg-second-background-color">
-                                <h3 class="text-center mt-2 text-red">VOTRE PANIER</h3>
-                                    <div class="container ">
-                                        <div class="row bg-first-lightbackground-color">
-                                            <div class="col-3 text-center"> <p class="font-weight-bold">ARTICLE</p> </div>
-                                            <div class="col-2 text-center"> <p class="font-weight-bold">ORIGINE</p> </div>
-                                            <div class="col-3 text-center"> <p class="font-weight-bold">PRIX</p> </div>
-                                            <div class="col-2 text-center"> <p class="font-weight-bold">POIDS</p> </div>
-                                            <div class="col-2 text-center"> </div>
-                                        </div>
-                                    </div>
-                                <div class="container">
-
-                                <?php foreach ($params['articles'] as $article): ?>
-                                    <div class="row line-out">
-                                        <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-                                        <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
-                                        <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
-                                        <div class="col-3 text-center"><input type="hidden" name="article[]" value="<?= $article["article"];?>">
-                                            <?= $article["article"];?>
-                                        </div>
-                                        <div class="col-2 text-center"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>">
-                                            <?= $article["origine"];?>
-                                        </div>
-                                        <div class="col-3 text-center"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>">
-                                            <?= $article["prix"]." €/".$article['unite'];?>
-                                        </div>
-                                        <div class="col-2 text-center">
-                                            <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>
-                                        </div>
-                                        <div class="col-2 p-0 text-center">
-                                            <input class="w-50 text-center" type="number" id="quantite" name="quantite[]" min="0" value="<?=$article['quantite'];?>">
-                                        </div>
-                                    </div>
-                                <?php endforeach; ?>
-
-                                </div>
-
-                            </form>
-
-                        <?php else:?>
-                            <div class="container mt-5 mb-5">
-                                <div class="row">
-                                    <div class="col-12 text-center"><h4><?=$params['message'];?></h4> </div>
-                                </div>
-                            </div>
-
-                            </div>
-                        </div>
-                    </div>
-                <?php endif ;?>
-                <div class="text-center justify-content-end mt-3 ">
-                    <a href="empty_basket"> <button class="btn bg-red text-light mb-2 ">Vider son panier </button></a>
-                </div>
-
-                <div class="text-center justify-content-end mt-3 ">
-                    <a href="articles_client"> <button class="btn bg-alt-background-color text-darkgreen mb-2 ">Retourner sur la liste des articles </button></a>
-                </div>
+<div class="flash-message">
+    <?php displayFlashMessages() ; ?>
+</div>
+<h3 class="headerTitle">VOTRE PANIER</h3>
+<?php if(!empty($_SESSION['panier'])) :?>
 
 
-
-            </div>
+<form method="POST" action="<?='validation_commande';?>" id="form-commande">
+    <div class="headerPanier">
+        <label class="headerPanier-label">Sélectionner une date de livraison</label>
+        <select class="headerPanier-select" name="dateLivraison" id="dateLivraison">
+            <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')). ' + 1 days'))  ?>">
+                <?= $params['dateLivraison1'] ;?>
+            </option>
+            <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>">
+                <?= $params['dateLivraison2'] ;?>
+            </option>
+        </select>
+        <div class="headerPanier-button">
+            <button type="submit">Valider la commande</button>
         </div>
     </div>
 
-</main>
+
+
+
+<?php endif;?>
+
+<?php if(isset($params['articles'])): ?>
+
+
+<div class="liste">
+    <div class="liste-article head list">
+        <div class="liste-article-item"> <p>ARTICLE</p> </div>
+        <div class="liste-article-item"> <p>ORIGINE</p> </div>
+        <div class="liste-article-item"> <p>PRIX</p> </div>
+        <div class="liste-article-item"> <p>POIDS</p> </div>
+<!--        <div> </div>-->
+    </div>
+
+<?php foreach ($params['articles'] as $article): ?>
+    <div class="liste-article list">
+        <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+        <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+        <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+        <div class="liste-article-item"><input type="hidden" name="article[]" value="<?= $article["article"];?>">
+            <?= $article["article"];?>
+        </div>
+        <div class="liste-article-item"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>">
+            <?= $article["origine"];?>
+        </div>
+        <div class="liste-article-item"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>">
+            <?= $article["prix"]." €/".$article['unite'];?>
+        </div>
+        <div class="liste-article-item">
+            <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>
+        </div>
+        <div class="liste-article-item quantite">
+            <input type="number" id="quantite" name="quantite[]" min="0" value="<?=$article['quantite'];?>">
+        </div>
+    </div>
+<?php endforeach; ?>
+
+    </div>
+
+</form>
+
+<?php else:?>
+
+<div class="emptyPanier"><h4><?=$params['message'];?></h4> </div>
+
+
+<?php endif ;?>
+<div class="buttonPanier">
+    <div class="buttonPanier-retour">
+        <button> <a href="articles_client"> Retourner sur la liste des articles </a></button>
+    </div>
+    <div class="buttonPanier-vider">
+        <button><a href="empty_basket"> Vider son panier </a></button>
+    </div>
+</div>
+

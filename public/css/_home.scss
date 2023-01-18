@@ -1,0 +1,256 @@
+.presentation-texte,.valeurs,.mission-article,.client-article,.inscription-client{
+  width: 90%;
+  //margin-left: auto;
+  //margin-right: auto;
+  //margin-bottom: 5%;
+  //margin-top: 5%;
+  margin: 3% auto;
+}
+h3{
+  color:$secondColor;
+}
+.headContent{
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-image: url(http://localhost/TerrAnanas/public/images/home.png);
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  &-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: $secondColor;
+
+    padding: 20px;
+    background-color: #ffffff; /* Couleur d'arrière-plan blanche */
+    border: 2px solid #FDB813; /* Bordure noire de 10px */
+
+  }
+}
+.presentation{
+  text-align: center;
+  background-color: $firstLightColor;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  p,h3{
+    margin-top: 0;
+  }
+
+}
+
+.valeurs{
+
+  &-article{
+    text-align: center;
+    margin-bottom: 20px;
+    &-texte > h3 {
+      margin-top: 0;
+    }
+    &-image{
+      max-width: 250px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &-image>img{
+      width: 100%;
+      box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.mission{
+  &-article{
+    text-align: center;
+  }
+}
+
+.client{
+  background-color: $firstLightColor;
+  padding: 10px 0;
+  &-article{
+    text-align: center;
+  }
+}
+.listeClient{
+  &-image{
+    max-width: 200px;
+    margin: 10px auto;
+  }
+  &-image>img{
+    width: 100%;
+  }
+}
+.inscription{
+  &-client{
+    text-align: center;
+    &-lien{
+      &-link{
+        background-color: $firstColor;
+        border-radius: 0 20px 0 20px;
+        padding: 10px 20px;
+        display: inline-block;
+        text-decoration: none;
+        color: $firstLightColor;
+        font-size: 18px;
+        transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+      }
+      &-link:visited{
+        color: $firstLightColor;
+      }
+      &-link:hover{
+        border-radius: 0 ;
+        background-color: $firstLightColor;
+        color: $firstColor;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+
+  .presentation{
+    padding: 20px 0;
+    margin-bottom: 20px;
+    p{
+      margin-top: 0;
+    }
+
+  }
+
+  .valeurs-article {
+    display: grid;
+    //grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    .valeurs-article-image{
+      grid-area: 1 / 1 / 2 / 2;
+      margin-left: 0;
+      height: auto;
+    }
+    .valeurs-article-texte{
+      grid-area: 1 / 2 / 2 / 3;
+      text-align: left;
+    }
+  }
+
+  .valeurs-article:nth-child(2n){
+
+    grid-template-columns: 2fr 1fr;
+    .valeurs-article-image{
+      grid-area: 1 / 2 / 2 / 3;
+      margin-right: 0;
+      margin-left: auto;
+      height: auto;
+    }
+    .valeurs-article-texte{
+      grid-area: 1 / 1 / 2 / 2;
+      //text-align: right;
+    }
+  }
+  //
+  //.valeurs-article :nth-child(2n+1){
+  //  .valeurs-article-image{
+  //    grid-area: 1 / 1 / 2 / 2;
+  //  }
+  //  .valeurs-article-texte{
+  //    grid-area: 1 / 2 / 2 / 3;
+  //    text-align: left;
+  //  }
+  //}
+  .valeurs-article-image{
+    max-width: 300px;
+  }
+
+  .listeClient{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+      &-image{
+        max-width: 200px;
+        margin: auto auto;
+      }
+      &-image>img{
+        width: 100%;
+      }
+  }
+
+}
+
+@media screen and (min-width: 840px) {
+  .presentation-texte,.valeurs,.mission-article,.client-article,.inscription-client{
+    width: 80%;
+    font-size: 1.1em;
+  }
+
+  .valeurs-article-image{
+    max-width: none;
+  }
+  .listeClient{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    &-image{
+      max-width: 150px;
+    }
+
+  }
+
+}
+@media screen and (min-width: 1200px) {
+  .presentation-texte,.valeurs,.mission-article,.client-article,.inscription-client{
+    width: 70%;
+    //margin-left: auto;
+    //margin-right: auto;
+    font-size: 1.2em;
+  }
+  .valeurs{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10%;
+    grid-row-gap: 5%;
+    .valeurs-article {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+      grid-column-gap: 0px;
+      grid-row-gap:10px;
+      .valeurs-article-image{
+        grid-area: 1 / 1 / 2 / 2;
+        //margin-left: auto;
+        text-align: center;
+        margin: auto;
+      }
+      .valeurs-article-texte{
+        grid-area: 2 / 1 / 3 / 2;
+        text-align: center;
+      }
+    }
+  }
+
+  .valeurs-article:nth-child(2n){
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    .valeurs-article-image{
+      grid-area: 1 / 1 / 2 / 2;
+      //margin-left: auto;
+      //margin-right: auto;
+      margin: auto;
+      text-align: center;
+
+    }
+    .valeurs-article-texte{
+      grid-area: 2 / 1 / 3 / 2;
+      text-align: center;
+    }
+  }
+}

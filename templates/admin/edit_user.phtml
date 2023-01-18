@@ -1,87 +1,77 @@
-<main class="mt-5">
-    <div class="container border-custom bg-second-background-color">
-        <div class="row">
-            <div class="col-12 p-0">
-                <h3 class="text-center text-red mt-2 mb-3"> Modification : <?=$params['client'];?> </h3>
-                <form method="POST" action="<?='edit_user?id='.$params['user']['id_user'];?>">
-                    <div class="container">
-                        <div class="row mt-2 font-weight-bold">
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="client">Nom de la société</label>
-                                <input type="text" class="form-control" id="client" name="client" value="<?=$params['client'];?>">
-                                <?php if (isset($params['error']['client'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['client']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="address">Adresse</label>
-                                <input type="text" class="form-control" id="address" name="address" value="<?=$params['address'];?>">
-                                <?php if (isset($params['error']['address'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['address']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="city">Ville</label>
-                                <input type="text" class="form-control" id="city" name="city" value="<?=$params['city'];?>">
-                                <?php if (isset($params['error']['city'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['city']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="postal">Code postal</label>
-                                <input type="text" class="form-control" id="postal" name="postal" value="<?=$params['postal'];?>">
-                                <?php if (isset($params['error']['postal'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['postal']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="contact">Personne à contacter</label>
-                                <input type="text" class="form-control" id="quantité" name="contact" value="<?=$params['contact'];?>">
-                                <?php if (isset($params['error']['contact'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['contact']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="phone">Téléphone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="<?=$params['phone'];?>">
-                                <?php if (isset($params['error']['phone'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['phone']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
-                                <?php if (isset($params['error']['email'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
-                                <?php if (isset($params['error']['email'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
-                                <?php endif; ?>
-                            </div>
+<h3 class="headerTitle">Modification : <?=$params['client'];?></h3>
 
-                            <div class="col-12 col-md-6 offset-md-3 text-center mb-3 mb-md-4 ">
-                                <label for="status">Status</label>
-                                <select class="form-control" name="statut" id="statut">
-                                    <option value="<?=$params['user']['id_statut'];?>"><?=$params['user']['statut'];?></option>
-                                    <?php foreach ($params['statut'] as $statutUser): ?>
-                                        <?php if($params['user']['id_statut']!=$statutUser['id_statut']): ?>
-                                            <option value="<?=$statutUser['id_statut'];?>"><?=$statutUser['statut'];?></option>
-                                        <?php endif ;?>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="text-center justify-content-end">
-                        <button type="submit" class="btn bg-custom-red mb-2  ">Valider</button>
-                    </div>
-                </form>
+<form method="POST" action="<?='edit_user?id='.$params['user']['id_user'];?>" class="formAddClient">
+    <div class="client">
+        <div class="client-item">
+                <label for="client">Nom de la société</label>
+                <input type="text" class="form-control" id="client" name="client" value="<?=$params['client'];?>">
+                <?php if (isset($params['error']['client'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['client']);?></p>
+                <?php endif; ?>
             </div>
-        </div>
+        <div class="client-item">
+                <label for="address">Adresse</label>
+                <input type="text" class="form-control" id="address" name="address" value="<?=$params['address'];?>">
+                <?php if (isset($params['error']['address'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['address']);?></p>
+                <?php endif; ?>
+            </div>
+        <div class="client-item">
+                <label for="city">Ville</label>
+                <input type="text" class="form-control" id="city" name="city" value="<?=$params['city'];?>">
+                <?php if (isset($params['error']['city'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['city']);?></p>
+                <?php endif; ?>
+            </div>
+        <div class="client-item">
+                <label for="postal">Code postal</label>
+                <input type="text" class="form-control" id="postal" name="postal" value="<?=$params['postal'];?>">
+                <?php if (isset($params['error']['postal'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['postal']);?></p>
+                <?php endif; ?>
+            </div>
+        <div class="client-item">
+                <label for="contact">Personne à contacter</label>
+                <input type="text" class="form-control" id="quantité" name="contact" value="<?=$params['contact'];?>">
+                <?php if (isset($params['error']['contact'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['contact']);?></p>
+                <?php endif; ?>
+            </div>
+        <div class="client-item">
+                <label for="phone">Téléphone</label>
+                <input type="text" class="form-control" id="phone" name="phone" value="<?=$params['phone'];?>">
+                <?php if (isset($params['error']['phone'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['phone']);?></p>
+                <?php endif; ?>
+            </div>
+        <div class="client-item">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
+                <?php if (isset($params['error']['email'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
+                <?php endif; ?>
+            </div>
+        <div class="client-item">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
+                <?php if (isset($params['error']['email'])): ?>
+                    <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
+                <?php endif; ?>
+            </div>
+
+        <div class="client-item">
+                <label for="status">Status</label>
+                <select class="form-control" name="statut" id="statut">
+                    <option value="<?=$params['user']['id_statut'];?>"><?=$params['user']['statut'];?></option>
+                    <?php foreach ($params['statut'] as $statutUser): ?>
+                        <?php if($params['user']['id_statut']!=$statutUser['id_statut']): ?>
+                            <option value="<?=$statutUser['id_statut'];?>"><?=$statutUser['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+    <div class="client-item">
+        <button type="submit" >Modifier</button>
     </div>
-</main>
+</form>

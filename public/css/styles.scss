@@ -1,32 +1,30 @@
 @import 'variables';
+@import 'flashMessage';
 
-@import 'responsive';
-@import 'listeArticle';
+@import 'navbar';
+@import 'home';
+@import 'calendrier';
+//@import 'listeArticle';
+//@import 'panier';
+//@import 'commande';
 
+
+//font-family: Spiegel, "Arial Narrow", Arial, sans-serif;
+
+
+html,
 body {
-    background-color: $secondLightColor;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
-
+    padding: 0;
 }
 
-main {
-    margin-top: 50px;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
+ul {
+    list-style-type: none;
 }
 
-footer {
-    margin-top: auto;
-    height: 100px;
-    background-color: #1b1e21;
-
-}
-
-.hide {
-    display: none;
-}
-
-.show {
-    display: block;
+h1,
+h2,
+h3 {
+    font-family: 'Roboto', sans-serif;
 }

@@ -17,11 +17,14 @@ class Historique extends AbstractController
         $commandes = $commandeModel -> getCommandeByClient($idUser,$statutCommande);
 
         if(!empty($_POST['searchDate'])){
+//            $date = strip_tags(trim($_POST['searchDate']));
+//            $params['date']=$date;
+//            $dateTime = DateTime::createFromFormat('d/m/Y', $date);
+//            $newFormatDate = $dateTime->format('Y-m-d');
+//            $_SESSION['commandeByDate']= $commandeModel->getCommandeByDate($newFormatDate,$statutCommande);
             $date = strip_tags(trim($_POST['searchDate']));
+            $commandes=$commandeModel->getCommandeByDate($date,$statutCommande);
             $params['date']=$date;
-            $dateTime = DateTime::createFromFormat('d/m/Y', $date);
-            $newFormatDate = $dateTime->format('Y-m-d');
-            $_SESSION['commandeByDate']= $commandeModel->getCommandeByDate($newFormatDate,$statutCommande);
         }
         else{
             unset($_SESSION['commandeByDate']);
@@ -50,7 +53,6 @@ class Historique extends AbstractController
 
         $dateCommande = dateFr(date('D d M Y', strtotime($commande['date_commande'])));
         $dateLivraison = dateFr(date('D d M Y', strtotime($commande['date_livraison'])));
-
         $montantCommande = $articlesCommande[0]['montant'];
 
         $client = $commandeModel->getClientByIdCommande($idCommande);

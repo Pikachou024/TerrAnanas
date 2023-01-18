@@ -1,82 +1,63 @@
+<h3 class="headerTitle"> AJOUTER UN ARTICLE </h3>
 
+<form method="POST" action="add_article" class="formAddArticle">
 
-    <main class="p-0 pt-md-4 pb-md-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 d-flex flex-column justify-content-center mb-2 ">
-                    <?php displayFlashMessages() ;?>
-                </div>
-            </div>
+    <div class="article">
+
+        <div class="article-item">
+            <label  for="label"> Article </label>
+            <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
         </div>
-        <div class="container border-custom bg-second-background-color ">
-            <div class="row">
-                <div class="col-12 p-0">
-                    <h3 class="text-center text-red mt-2 mb-3"> AJOUTER UN ARTICLE </h3>
 
-                <form method="POST" action="add_article">
-                    <div class="container">
-                        <div class="row mt-2">
-
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-5 ">
-                                <label class="mb-1 font-weight-bold" for="label" > Article </label>
-                                <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
-                            </div>
-
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-5">
-                                <label class="mb-1 font-weight-bold" for="origine">Origine</label>
-                                <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
-                            </div>
-
-                            <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1 font-weight-bold" for="prix">Prix</label>
-                                <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix'];?>">
-                            </div>
-
-                            <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1 font-weight-bold" for="poids">Poids</label>
-                                <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
-                            </div>
-
-                            <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1 font-weight-bold" for="unite">Unite</label>
-                                <select class="form-control" name="unite" id="unite">
-                                    <option value="0">Sélectionner une unitée</option>
-                                    <?php foreach ($params['unites'] as $unite): ?>
-                                        <option value="<?=$unite['id_unite'];?>"><?=$unite['unite'];?></option>
-                                    <?php endforeach; ?>
-                                </select>
-
-                            </div>
-                            <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1 font-weight-bold" for="famille">Famille</label>
-                                <select class="form-control" name="famille" id="famille">
-                                    <option value="0">Sélectionner une famille</option>
-                                    <?php foreach ($params['familles'] as $famille): ?>
-                                        <option value="<?=$famille['id_famille'];?>"><?=$famille['famille'];?></option>
-                                    <?php endforeach; ?>
-                                </select>
-
-                            </div>
-                            <div class="col-12 col-md-6  text-center mb-3 mb-md-5">
-                                <label class="mb-1 font-weight-bold" for="statut">Disponibilité</label>
-                                <select class="form-control" name="statut" id="statut">
-                                    <option value="0">Sélectionner une unitée</option>
-                                    <?php foreach ($params['statut'] as $statut): ?>
-                                        <option value="<?=$statut['id_statutArticle'];?>"><?=$statut['statutArticle'];?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="text-center justify-content-end">
-                            <button type="submit" class="btn mb-2 bg-alt-background-color text-darkgreen ">Ajouter</button>
-                        </div>
-
-                    </form>
-
-
-                </div>
-            </div>
+        <div class="article-item">
+            <label  for="origine">Origine</label>
+            <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
         </div>
-    </main>
+
+        <div class="article-item">
+            <label  for="prix">Prix</label>
+            <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix'];?>">
+        </div>
+
+        <div class="article-item">
+            <label for="poids">Poids</label>
+            <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
+        </div>
+
+        <div class="article-item">
+            <label class="" for="unite">Unite</label>
+            <select class="form-control" name="unite" id="unite">
+                <option value="0">Sélectionner une unitée</option>
+                <?php foreach ($params['unites'] as $unite): ?>
+                    <option value="<?=$unite['id_unite'];?>"><?=$unite['unite'];?></option>
+                <?php endforeach; ?>
+            </select>
+
+        </div>
+        <div class="article-item">
+            <label class="" for="famille">Famille</label>
+            <select class="form-control" name="famille" id="famille">
+                <option value="0">Sélectionner une famille</option>
+                <?php foreach ($params['familles'] as $famille): ?>
+                    <option value="<?=$famille['id_famille'];?>"><?=$famille['famille'];?></option>
+                <?php endforeach; ?>
+            </select>
+
+        </div>
+        <div class="article-item">
+            <label  for="statut">Disponibilité</label>
+            <select class="form-control" name="statut" id="statut">
+                <option value="0">Sélectionner une unitée</option>
+                <?php foreach ($params['statut'] as $statut): ?>
+                    <option value="<?=$statut['id_statutArticle'];?>"><?=$statut['statutArticle'];?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="article-item">
+            <button type="submit" >Ajouter</button>
+        </div>
+    </div>
+
+
+
+</form>

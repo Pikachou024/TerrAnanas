@@ -1,128 +1,48 @@
-<main class="mt-5">
-    <div class="container mt-3 mb-3">
-
-        <?php if(isset($params['flash'])) : ?>
-            <div class="alert alert-danger" role="alert">
-                <?= $params['flash'] ;?>
-            </div>
-        <?php endif;?>
-        <form method="POST" action ="users_admin" class="navbar-form navbar-right" id="form-commande" role="search">
-            <div class="row">
-                <div class="col-12 col-md-5">
-                    <div class="input-group w-75">
-
-                        <?php if(empty($_SESSION['userSearch'])) :?>
-                            <input type="search" class="form-control" name="userSearch" id="userSearch" placeholder="Rechercher un client">
-
-                        <?php else : ?>
-                            <input type="search" class="form-control" name="userSearch" id="userSearch" value="<?= $params['userSearch'];?>">
-                        <?php endif;?>
-                    </div>
-                </div>
-                <div class="col-12 col-md-5">
-                    <?php if($params['users']):?>
-                        <select class="form-control " name="userstatut" id="userStatut">
-                            <option value="<?= $params['users'][0]['id_statut'] ?>"><?= $params['users'][0]['statut'] ?></option>
-                            <?php foreach ($params['statut'] as $statut): ?>
-                                <?php if($statut['id_statut'] != $params['users'][0]['id_statut']): ?>
-                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
-                                <?php endif ;?>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php else : ?>
-                        <select class="form-control " name="userstatut" id="userStatut">
-                            <option value="<?= $params['statutUser'] ?>"><?= $params['namestatut']['statut'] ?></option>
-                            <?php foreach ($params['statut'] as $statut): ?>
-                                <?php if($statut['id_statut'] != $params['statutUser']): ?>
-                                    <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
-                                <?php endif ;?>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php endif; ?>
-                </div>
 
 
-            </div>
-        </form>
+<?php if(isset($params['flash'])) : ?>
+    <div class="alert alert-danger" role="alert">
+        <?= $params['flash'] ;?>
     </div>
+<?php endif;?>
+<h3 class="headerTitle"> Listes clients</h3>
 
+<form method="POST" action ="users_admin" class="formClient" id="form-commande" role="search">
+    <div class="headerClient">
+        <div class="headerClient-search">
+                <?php if(empty($_SESSION['userSearch'])) :?>
+                    <input type="search" class="form-control" name="userSearch" id="userSearch" placeholder="Rechercher un client">
+
+                <?php else : ?>
+                    <input type="search" class="form-control" name="userSearch" id="userSearch" value="<?= $params['userSearch'];?>">
+                <?php endif;?>
+        </div>
+        <div class="headerClient-statut">
+            <?php if($params['users']):?>
+                <select class="form-control " name="userstatut" id="userStatut">
+                    <option value="<?= $params['users'][0]['id_statut'] ?>"><?= $params['users'][0]['statut'] ?></option>
+                    <?php foreach ($params['statut'] as $statut): ?>
+                        <?php if($statut['id_statut'] != $params['users'][0]['id_statut']): ?>
+                            <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            <?php else : ?>
+                <select class="form-control " name="userstatut" id="userStatut">
+                    <option value="<?= $params['statutUser'] ?>"><?= $params['namestatut']['statut'] ?></option>
+                    <?php foreach ($params['statut'] as $statut): ?>
+                        <?php if($statut['id_statut'] != $params['statutUser']): ?>
+                            <option value="<?=$statut['id_statut'];?>"><?=$statut['statut'];?></option>
+                        <?php endif ;?>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
         </div>
     </div>
+</form>
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-12 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0">
-            <h2 class="text-center text-red"> Listes clients</h2>
-            <div class="container bg-first-lightbackground-color">
-                <div class="row pt-2 pb-2 d-flex align-items-center">
-<!--                    <div class="col-1 text-center"> Statut </div>-->
-                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center font-weight-bold"> Société </div>
-                    <div class="col-2 d-none d-lg-block text-center font-weight-bold"> Adresse </div>
-                    <div class="col-2 d-none d-sm-block col-lg-2 text-center font-weight-bold"> Contact </div>
-                    <div class="col-5 d-sm-block col-md-2 col-lg-2 text-center font-weight-bold"> Téléphone </div>
-                    <div class="col-5 d-none d-md-block col-md-4 col-lg-3 text-center font-weight-bold"> Email </div>
-                    <div class="col-1">   </div>
-                </div>
-            </div>
-
-            <div class="container view">
-
-                <?php $this->render($this->file, 'liste_users_admin', '', $params);?>
-            </div>
-
-
-
-
-
-        </div>
-    </div>
+<div class="templateListeArticle">
+    <?php $this->render($this->file, 'liste_users_admin', '', $params);?>
 </div>
-<!--            --><?php //if($params['users']):?>
-<!--                --><?php //if(empty($_SESSION['userSearch'])) :?>
-<!--                    <div class="container">-->
-<!--                        --><?php //foreach ($params['users'] as $user): ?>
-<!--                                <div class="row pt-2 pb-2 line-out d-flex align-items-center">-->
-<!--                                    <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">--><?//= $user["client"];?><!--  </div>-->
-<!--                                    <div class="col-2 d-none d-lg-block text-center">--><?//= $user["address"] .', '.$user["city"].' '.$user["postal"];?><!--  </div>-->
-<!--                                    <div class="col-2 d-none d-sm-block col-lg-2 text-center">--><?//= $user["contact"];?><!-- </div>-->
-<!--                                    <div class="col-5 col-md-2 col-lg-2 text-center">--><?//= $user["phone"];?><!-- </div>-->
-<!--                                    <div class="col-4 d-none d-md-block col-md-4 col-lg-3 text-center">--><?//= $user["email"];?><!-- </div>-->
-<!--                                    <div class="col-1 d-none d-lg-block text-center"> <a href="--><?//='edit_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-pen-to-square"></i></a> <a href="--><?//='delete_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-trash-can"></i></a></div>-->
-<!--                                   <div class="col-1 d-none d-md-block text-center"> <a href="--><?////='delete_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-trash-can"></i></a> </div>-->
-<!--                                    <div class="col-1  d-lg-none text-center pl-1 pr-1"> <i class="fa-solid fa-eye"></i> </div>-->
-<!--                                </div>-->
-<!--                        --><?php //endforeach; ?>
-<!--                    </div>-->
-<!-- -->
-<!--            --><?php //else : ?>
-<!--            <div class="container-fluide bg-light ">-->
-<!--                --><?php //foreach ($_SESSION['userSearch'] as $user): ?>
-<!--                    <div class="row pt-2 pb-2 line-out m-0 d-flex align-items-center">-->
-<!--                        <div class="col-5 col-sm-4 col-md-3 col-lg-2 text-center">--><?//= $user["client"];?><!--  </div>-->
-<!--                        <div class="col-2 d-none d-lg-block text-center">--><?//= $user["address"] .', '.$user["city"].' '.$user["postal"];?><!--  </div>-->
-<!--                        <div class="col-2 d-none d-md-block col-lg-2 text-center">--><?//= $user["contact"];?><!-- </div>-->
-<!--                        <div class="col-2 d-none d-sm-block col-md-2 col-lg-2 text-center">--><?//= $user["phone"];?><!-- </div>-->
-<!--                        <div class="col-4 col-md-3 col-lg-2 text-center">--><?//= $user["email"];?><!-- </div>-->
-<!--                        <div class="col-1 d-none d-lg-block text-center"> <a href="--><?//='edit_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-pen-to-square"></i></a> </div>-->
-<!--                        <div class="col-1 d-none d-md-block text-center"> <a href="--><?//='delete_user?id='.$user["id_user"];?><!--"><i class="fa-solid fa-trash-can"></i></a> </div>-->
-<!--                        <div class="col-2 col-sm-1 d-lg-none text-center pl-1 pr-1"> <i class="fa-solid fa-eye"></i> </div>-->
-<!--                    </div>-->
-<!--                    --><?php //endforeach; ?>
-<!--            </div>-->
-<!--            --><?php //endif;?>
-<!--            --><?php //else:?>
-<!--                <div class="container">-->
-<!--                    <div class="row pt-2 pb-2 line-out">-->
-<!--                        <div class="col text-center ">-->
-<!--                            Aucun client-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            --><?php //endif;?>
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
-</main>
 <script src="http://localhost/TerrAnanas/public/js/users_admin.js" defer></script>

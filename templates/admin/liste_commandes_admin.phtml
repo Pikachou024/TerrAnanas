@@ -1,24 +1,55 @@
-<?php if ($params['commandes']): ?>
 
-    <?php foreach ($params['commandes'] as $commande): ?>
-        <div class="row pt-2 pb-2 line-out" >
-            <div class="col-2 text-center" data-value="Id"><?=$commande['id_commande'];?></div>
-            <div class="col-4 col-sm-3 col-md-2 text-center" data-value="Societé"><?=$commande['client'];?></div>
-            <div class="col-4 col-sm-3 col-md-2 text-center" data-value="Montant"><?=($commande['montant'])/100 ." €" ;?></div>
-            <div class="col-2 d-none d-sm-block text-center" data-value="Date de lacommande"><?= date('d/m/y', strtotime($commande['date_commande'])) ;?></div>
-            <div class="col-2 d-none d-md-block text-center" data-value="Date de la livraison"><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?></div>
-            <div class="col-1 d-none d-md-block text-center" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
-            <div class="col-1 d-none d-md-block text-center"><a href="<?='delete_commande?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-trash-can"></i></a></div>
-            <div class="col-2 d-md-none text-center  show-detail"><i class="fa-solid fa-eye"></i></div>
-        </div>
-    <?php endforeach; ?>
-
-<?php else :?>
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col text-center text-red">
-                <h4>Aucune commande</h4>
-            </div>
+<div class="liste">
+    <div class="liste-commande head">
+        <div class="liste-commande-item"> Commande </div>
+        <div class="liste-commande-item"> Montant </div>
+        <div class="liste-commande-item"> Date commande </div>
+        <div class="liste-commande-item"> Date livraison </div>
+        <div class="liste-commande-item action">
+            <div class="action-edit"> Editer </div>
+            <div class="action-delete"> Supprimer </div>
         </div>
     </div>
+
+
+    <?php if($params['commandes']):?>
+    <?php if(empty($_SESSION['commandeByDate'])) :?>
+        <?php foreach ($params['commandes'] as $commande): ?>
+            <div class="liste-commande" >
+                <div class="liste-commande-item" ><?=$commande['id_commande'];?></div>
+                <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?> </div>
+                <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
+                <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
+                <div class="liste-commande-item action">
+                    <div class="action-edit" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="action-delete"><a href="<?='delete_commande?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-trash-can"></i></a></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else :?>
+        <?php foreach ($_SESSION['commandeByDate'] as $commande): ?>
+            <div class="liste-commande" >
+                <div class="liste-commande-item" ><?=$commande['id_commande'];?></div>
+                <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?> </div>
+                <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
+                <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
+                <div class="liste-commande-item action">
+                    <div class="action-edit" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="action-delete"><a href="<?='delete_commande?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-trash-can"></i></a></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif;?>
+<!--</div>-->
+<?php else:?>
+    <div class="emptyCommande">
+        <p>Aucune commande</p>
+    </div>
+
+
+
 <?php endif;?>
+
+</div>
+
+

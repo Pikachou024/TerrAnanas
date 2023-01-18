@@ -1,40 +1,33 @@
-<main class="mt-3">
-    <div class="container mt-3 mb-3">
-        <h2 class="text-center text-red"> Listes des articles</h2>
-        <div class="row">
-            <div class="col-9 d-flex align-items-center">
-                <form method="POST" action ="articles_admin" class="w-75"  id="form-commande" role="search">
-                    <div class="input-group ">
-                        <?php if(empty($_SESSION['articleSearch'])) :?>
-                            <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article" >
-                        <?php else : ?>
-                            <input type="search" class="form-control" name="articleSearch" id="articleSearch" value="<?=$params['articleSearch'];?>">
-                        <?php endif;?>
-                    </div>
-                </form>
-            </div>
+<div class="flash-message">
+    <?php displayFlashMessages() ; ?>
+</div>
 
-            <div class="col-3 text-center">
-                <a href="add_article" class="d-flex flex-row justify-content-center align-items-center link">
-                    <p class="d-none d-md-block m-0 align-item-center">Ajouter un article</p>
-                    <img src="http://localhost/TerrAnanas/public/images/icon/add_icon.png" class="img-responsive mw-100">
-                </a>
+<h3 class="headerTitle"> LISTES DES ARTICLES</h3>
+
+<div class="headerArticleAdmin">
+    <div class="headerArticleAdmin-search">
+        <form method="POST" action ="articles_admin" class="headerArticleAdmin-search-form" id="form-commande" role="search">
+            <div class="headerArticleAdmin-search-form-input">
+                <?php if(empty($_SESSION['articleSearch'])) :?>
+                    <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article" >
+                <?php else : ?>
+                    <input type="search" class="form-control" name="articleSearch" id="articleSearch" value="<?=$params['articleSearch'];?>">
+                <?php endif;?>
             </div>
-        </div>
+        </form>
     </div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-12 border-custom bg-second-background-color pt-2 pb-3 pl-0 pr-0 view">
-
-            <?php $this->render($this->file, 'liste_articles_admin', '', $params);?>
-
-        </div>
+    <div class="headerArticleAdmin-add">
+        <a href="add_article" class="headerArticleAdmin-add-link">
+            <i class="fa-solid fa-circle-plus"></i>
+<!--            <div class="hover">Ajouter un article</div>-->
+        </a>
     </div>
 </div>
-</main>
 
+<div class="templateListeArticle">
+        <?php $this->render($this->file, 'liste_articles_admin', '', $params);?>
+</div>
 
-
-<script src="http://localhost/TerrAnanas/public/js/articles_admin.js" defer></script>
+<script src="http://localhost/TerrAnanas/public/js/main.js" type="module" defer></script>
+<!--<script src="http://localhost/TerrAnanas/public/js/articles_admin.js" defer></script>-->
 

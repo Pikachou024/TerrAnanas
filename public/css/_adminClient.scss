@@ -1,0 +1,159 @@
+.formClient{
+  position: sticky;
+  top: 50px;
+  background-color: #FFFAE2;
+  padding-top: 15px;
+
+  .headerClient{
+    text-align: center;
+    &-search{
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.liste-client{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 10px;
+  text-align: center;
+  padding: 10px;
+  &-item{
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+  &-item.action{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 10px;
+
+    .action-edit a:link,.action-delete a:link{
+      color: $secondColor;
+    }
+    .action-edit a:visited,.action-delete a:visited{
+      color: $secondColor;
+    }
+    .action-edit a:hover,.action-delete a:hover{
+      color: $secondColor;
+    }
+  }
+}
+.liste-client-aucun{
+  text-align: center;
+}
+
+.liste-client.head{
+  display: none;
+}
+
+.liste-client:nth-child(2n+1){
+  background: $whiteColor;
+}
+.liste-client:nth-child(2n){
+  background: #E2F3CA;
+}
+
+// Edit Client//
+
+.formAddClient{
+  text-align: center;
+  .client{
+    background-color: $whiteColor;
+    display: inline-block;
+    //flex-direction: column;
+    padding: 20px;
+    //max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    &-item{
+      display: flex;
+      flex-direction: column;
+      //justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+
+    }
+    &-item>label{
+      color: $secondColor;
+      font-weight: bold;
+    }
+    &-item>input{
+      margin-top: 5px;
+    }
+    &-item>button{
+      background-color: #004E0B;
+      color: #E2F3CA;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      padding: 10px;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    &-item>button:hover{
+      cursor: pointer;
+      color: $secondColor;
+    }
+  }
+}
+@media screen and (min-width: 540px) {
+
+    .liste-client {
+      width: 250px;
+      height: auto;
+      text-align: center;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+  .liste-client:nth-child(2n+1){
+    background: $firstLightColor;
+  }
+  .liste-client:nth-child(2n){
+    background: $firstLightColor;
+  }
+
+
+}
+
+@media screen and (min-width: 840px) {
+  .headerClient{
+    display: flex;
+    justify-content: center;
+    &-search, &-statut{
+      margin: 10px;
+    }
+
+  }
+  .liste-client.head{
+    display: grid;
+    background-color: $whiteColor;
+    border-bottom: 2px solid #F29F05;
+    font-weight: bold;
+  }
+  .liste-client{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 1200px;
+    height: auto;
+    box-shadow:none;
+    margin-bottom: 0;
+  }
+
+  .liste-client:nth-child(2n+1){
+    background: $whiteColor;
+  }
+  .liste-client:nth-child(2n){
+    background: #E2F3CA;
+  }
+}

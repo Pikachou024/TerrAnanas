@@ -5,94 +5,130 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/bootstrap.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/nav.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/nav_bar.css">
+
 <!--    <link rel="stylesheet" type="text/css" href="http://localhost/ProjetCommande/public/css/base_styles.css">-->
-    <link rel="stylesheet" type="text/css" href="<?= getPathCSS('css','base_styles');?>">
+    <link rel="stylesheet" type="text/css" href="<?= getPathCSS('css','styles');?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Satisfy&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="http://localhost/TerrAnanas/public/js/responsive.js" defer></script>
+
     <title><?=$params['title'];?></title>
 
 </head>
 
 <body>
 <header>
-    <nav class="haut-navigation">
-<!--        <div>-->
-<!--            <i class="fa-solid fa-bars menu-burger"></i>-->
-<!--            <a class="" href="#">Acceuil</a>-->
-<!--        </div>-->
-        <ul class="haut-navigation-liste" id="menuresp">
-            <li class="iconli"><a class="icon"><img src="http://localhost/ProjetCommande/public/images/icon/hamburger-button.png" alt="#"></a></li>
-            <li class="accueil"><a href="home">Acceuil</a></li>
-            <li><a href="saisons">Calendrier fruits et legumes</a></li>
-<!--            <li><a href="nos_valeurs">Nos valeurs</a></li>-->
-            <li><a href="contact">Contact</a></li>
-            <li><a href="login">Espace pro</a></li>
-        </ul>
-    </nav>
+    <nav class="headerNavbar">
 
-<!--    <section class="top-nav">-->
-<!--        <div>-->
-<!--            Logo Here-->
-<!--        </div>-->
-<!--        <input id="menu-toggle" type="checkbox" />-->
-<!--        <label class='menu-button-container' for="menu-toggle">-->
-<!--            <div class='menu-button'></div>-->
-<!--        </label>-->
-<!--        <ul class="menu">-->
-<!--            <li>One</li>-->
-<!--            <li>Two</li>-->
-<!--            <li>Three</li>-->
-<!--            <li>Four</li>-->
-<!--            <li>Five</li>-->
-<!--        </ul>-->
-<!--    </section>-->
+        <div class="headerNavbar-function" >
+            <div class="headerNavbar-function-burger" id="menuresp">
+                <i class="fa-solid fa-bars" id="burger"></i>
+                <i class="fa-sharp fa-solid fa-xmark hide" id="cross"></i>
+            </div>
+            <ul class="headerNavbar-function-list"  >
+                <li class="headerNavbar-function-list-item">
+                    <a class="headerNavbar-function-list-item-link" href="saisons">Saisons</a>
+                </li>
+                <li class="headerNavbar-function-list-item">
+                    <a class="headerNavbar-function-list-item-link" href="#">Recettes</a>
+                </li>
+                <li class="headerNavbar-function-list-item">
+                    <a class="headerNavbar-function-list-item-link" href="#">Contact</a>
+                </li>
+                <?php if(!isConnected()):?>
+                    <li class="headerNavbar-function-list-item">
+                        <a class="headerNavbar-function-list-item-link" href="signup" >
+                            Inscription
+                        </a>
+                    </li>
+                    <li class="headerNavbar-function-list-item">
+                        <a class="headerNavbar-function-list-item-link" href="login" >
+                            Connexion
+                        </a>
+                    </li>
+                <?php endif;?>
+            </ul>
+        </div>
+        <div class="headerNavbar-img">
+            <a class="headerNavbar-img-link" href="home"><img src="http://localhost/TerrAnanas/public/images/TerrAnanas_logo.png"></a>
+        </div>
+        <div class="headerNavbar-info" >
+            <?php if(isConnected()):?>
+            <ul class="headerNavbar-info-list">
+                <li class="headerNavbar-info-list-item">
+                    <a class="headerNavbar-info-list-item-link" href="panier" >
+                        <i class="fa-solid fa-cart-shopping">
+                            <?php if(!empty($_SESSION['panier'])): ?>
+                                <span><?= count($_SESSION['panier']) ?></span>
+                            <?php endif;?>
+                        </i>
+                    </a>
+                </li>
+                <li class="headerNavbar-info-list-item">
+                    <p class="headerNavbar-info-list-item-dropdown">
+                        <?=getUserName()?>
+                    </p>
+                    <ul class="headerNavbar-info-list-item-dropdownContent">
+                        <li><a class="" href="home">Accueil TerrAnanas</a></li>
+                        <li><a class="" href="client">Faire un test</a></li>
+                        <li><a class="" href="parametre_admin">Paramètre</a></li>
+                        <li class="logout"><a  href="logout">Se déconnecter</a></li>
+                    </ul>
+                </li>
+            </ul>
+        <?php endif; ?>
+        </div>
+    </nav>
 
 </header>
 
 <?php //include '../templates/utilisateur/' . $template . '.phtml'; ?>
-<?php include $template; ?>
+<main>
+    <?php include $template; ?>
+</main>
+
 
 <footer>
-    <div>
-        <div class="contenu-adresse">
-            <h2>Adresse : </h2>
-            <p>60 Bd Carnot</p>
-            <p>13100, Aix-en-Provence</p>
-        </div>
-        <div class="contenu-navigation">
-            <h2>Liens utiles</h2>
-            <ul class="navigation-liste">
-                <li><a href="#">Acceuil</a></li>
-                <li><a href="#">Qui sommes-nous ?</a></li>
-                <li><a href="#">Nos valeurs</a></li>
-                <li><a href="#">Espace pro</a></li>
-            </ul>
-        </div>
-        <div class="contenu-reseau">
-            <h2>Retrouvez-nous sur</h2>
-            <div class="contenu-reseau-lien"
-            <a><i class="fa-brands fa-facebook"></i></a>
-            <a><i class="fa-brands fa-instagram"></i></a>
-        </div>
-    </div>
+
+    <nav class="footerNavbar">
+        <section class="footerNavbar-info">
+            <div class="footerNavbar-info-adresse">
+                <h3>Adresse  </h3>
+                <p>60 Bd Carnot</p>
+                <p>13100, Aix-en-Provence</p>
+            </div>
+            <div class="footerNavbar-info-navigation">
+                <h3>Liens utiles</h3>
+                <ul class="footerNavbar-info-navigation-liste">
+                    <li class="footerNavbar-info-navigation-liste-item">
+                        <a class="footerNavbar-info-navigation-liste-item-link" href="#">Saisons</a>
+                    </li>
+                    <li class="footerNavbar-info-navigation-liste-item">
+                        <a class="footerNavbar-info-navigation-liste-item-link" href="#">Recettes</a>
+                    </li>
+                    <li class="footerNavbar-info-navigation-liste-item">
+                        <a class="footerNavbar-info-navigation-liste-item-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footerNavbar-info-reseau">
+                <h3>Retrouvez-nous sur</h3>
+                <div class="footerNavbar-info-reseau-lien">
+                    <a><i class="fa-brands fa-facebook"></i></a>
+                    <a><i class="fa-brands fa-instagram"></i></a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="footerNavbar-copyright">
+            <p class="footerNavbar-copyright-text">© TerrAnanas 2023 - Tous droits réservés. Site réalisé par LAM David.</p>
+        </section>
+    </nav>
+
 </footer>
-
-
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/jquery-3.3.1.min.js" defer></script>
-<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/bootstrap.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>
-<!-- Script pour activation du datepicker -->
-<script src="http://localhost/ProjetCommande/public/js/script.js" defer></script>
-<script src="http://localhost/ProjetCommande/public/js/side_nav.js" defer></script>
-
-<script src="http://localhost/ProjetCommande/public/js/client/script.js" defer></script>
-<script src="http://localhost/ProjetCommande/public/js/responsive.js" defer></script>
-
 </body>
 
 </html>

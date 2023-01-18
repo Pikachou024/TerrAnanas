@@ -3,9 +3,10 @@
     </div>
 
     <h3 class="headerTitle"> LISTES DES ARTICLES</h3>
+
     <div class="headerArticle">
         <div class="headerArticle-search">
-            <form method="GET" action ="articles_client" class="headerArticle-search-form" id="form-search" role="search">
+            <form method="POST" action ="articles_client" class="headerArticle-search-form" id="form-search" role="search">
                 <div class="headerArticle-search-form-input">
                     <?php if(empty($_SESSION['articleSearch'])) :?>
                         <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
@@ -23,7 +24,6 @@
                 <i class="fa-sharp fa-solid fa-list"></i>
             </div>
         </div>
-
     </div>
 
 
@@ -36,4 +36,5 @@
 
 
 
-<script src="http://localhost/TerrAnanas/public/js/articles_client.js" defer></script>
+<!--<script src="http://localhost/TerrAnanas/public/js/articles_client.js" defer></script>-->
+<script src="http://localhost/TerrAnanas/public/js/main.js" type="module" defer></script>
