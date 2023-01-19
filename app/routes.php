@@ -12,7 +12,13 @@ $routes=[
     ],
     "saisons"=>[
         "controller"=>"Saisons",
-        "action"=>"saisons",
+        "action"=>"index",
+        'path'=>"utilisateur",
+        "base_template"=>"base"
+    ],
+    "recettes"=>[
+        "controller"=>"Recettes",
+        "action"=>"index",
         'path'=>"utilisateur",
         "base_template"=>"base"
     ],

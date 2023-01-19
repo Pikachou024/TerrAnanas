@@ -1,0 +1,132 @@
+
+.headerRecettes{
+  margin-top: $heightNavbarMobile;
+  background-color: $firstLightColor;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  &-texte{
+    color: $firstColor;
+    font-size: 24px;
+    max-width: 250px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+  }
+
+}
+.recette{
+  margin-top: 50px;
+  &-article{
+    &-title{
+      background-size: cover;
+      background-position: center;
+      max-width: 300px ;
+      min-height: 100px;
+      margin : 10px auto ;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 20px;
+      border: 2px solid #FDB813;
+      color: $secondLightColor;
+      &-text{
+        margin: 10px;
+      }
+    }
+    &-title.tarte{
+      background-image: url(http://localhost/TerrAnanas/public/images/tarte-ananas.png);
+    }
+    &-title.ragout{
+      background-image: url(http://localhost/TerrAnanas/public/images/ragout.png);
+    }
+    &-title.grille{
+      background-image: url(http://localhost/TerrAnanas/public/images/grille.png);
+    }
+    &-item{
+      .ingredient, .preparation{
+        &-title{
+
+          text-align: center;
+        }
+        &-list{
+          padding: 0;
+          margin: 0 20px;
+
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 640px) {
+  .headerRecettes{
+    margin: $heightNavbar+30px auto 0 auto;
+    width: 50%;
+    height: 20vh;
+    border-radius:  20px;
+    &-texte{
+      font-size: 28px;
+      max-width: 80%;
+    }
+
+  }
+  .recette {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+    &-article {
+      margin: 20px 0;
+      border-bottom: 2px solid $secondColor;
+      &-item {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        margin-top:20px ;
+        margin-bottom: 40px;
+        .ingredient-list, .preparation-list{
+          text-align: center;
+        }
+      }
+            &-title{
+              width: 300px ;
+              min-height: 150px;
+
+              &-text{
+                margin: 10px;
+              }
+            }
+    }
+
+    .hidden {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 0px;
+      grid-row-gap: 0px;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .recette {
+    width: 60%;
+  }
+}
+
+.hidden {
+  display: none;
+}

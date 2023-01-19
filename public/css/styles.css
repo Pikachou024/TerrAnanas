@@ -517,19 +517,35 @@ h3 {
     text-align: center;
   }
 }
-section.calendrier {
-  margin-top: 80px;
+.hearderCalendrier {
+  margin-top: 50px;
+  background-color: #E2F3CA;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.hearderCalendrier-texte {
+  color: #004E0B;
+  font-size: 24px;
+  max-width: 250px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+.calendrier {
+  margin: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
-section.calendrier > div {
-  margin: 10px;
-}
-
-#search {
+.filtre-search {
   margin-top: 20px;
   padding: 10px;
   font-size: 18px;
@@ -540,13 +556,19 @@ section.calendrier > div {
   color: #E2F3CA;
   transition: 0.5s;
 }
-
-#search:focus {
+.filtre-search:focus {
   border-radius: 0;
   background-color: #E2F3CA;
   color: #004E0B;
   border: none;
   outline: none;
+}
+
+.fa-eye, .fa-eye-slash {
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 10px;
 }
 
 .listeMonth {
@@ -555,6 +577,7 @@ section.calendrier > div {
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  margin-top: 20px;
 }
 
 .month {
@@ -573,7 +596,7 @@ section.calendrier > div {
   color: #E2F3CA;
 }
 
-.buttonReset {
+.filtre-reset {
   padding: 10px;
   font-size: 14px;
   font-weight: bold;
@@ -614,6 +637,167 @@ section.calendrier > div {
 
 .month.border {
   background-color: #F29F05;
+}
+
+@media screen and (min-width: 640px) {
+  .hearderCalendrier {
+    margin: 110px auto 0 auto;
+    width: 50%;
+    height: 20vh;
+    border-radius: 20px;
+  }
+  .hearderCalendrier-texte {
+    font-size: 28px;
+    max-width: 80%;
+  }
+  .calendrier {
+    flex-direction: column;
+  }
+  .fa-eye, .fa-eye-slash {
+    display: none;
+  }
+  #result {
+    width: 80%;
+  }
+  .listeMonth {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .listeMonth, .listeMonth.show {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+  #result {
+    width: 60%;
+  }
+}
+.hiding {
+  display: none;
+}
+
+.headerRecettes {
+  margin-top: 50px;
+  background-color: #E2F3CA;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.headerRecettes-texte {
+  color: #004E0B;
+  font-size: 24px;
+  max-width: 250px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+}
+
+.recette {
+  margin-top: 50px;
+}
+.recette-article-title {
+  background-size: cover;
+  background-position: center;
+  max-width: 300px;
+  min-height: 100px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  border: 2px solid #FDB813;
+  color: #FFFAE2;
+}
+.recette-article-title-text {
+  margin: 10px;
+}
+.recette-article-title.tarte {
+  background-image: url(http://localhost/TerrAnanas/public/images/tarte-ananas.png);
+}
+.recette-article-title.ragout {
+  background-image: url(http://localhost/TerrAnanas/public/images/ragout.png);
+}
+.recette-article-title.grille {
+  background-image: url(http://localhost/TerrAnanas/public/images/grille.png);
+}
+.recette-article-item .ingredient-title, .recette-article-item .preparation-title {
+  text-align: center;
+}
+.recette-article-item .ingredient-list, .recette-article-item .preparation-list {
+  padding: 0;
+  margin: 0 20px;
+}
+
+@media screen and (min-width: 640px) {
+  .headerRecettes {
+    margin: 110px auto 0 auto;
+    width: 50%;
+    height: 20vh;
+    border-radius: 20px;
+  }
+  .headerRecettes-texte {
+    font-size: 28px;
+    max-width: 80%;
+  }
+  .recette {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .recette-article {
+    margin: 20px 0;
+    border-bottom: 2px solid #F29F05;
+  }
+  .recette-article-item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .recette-article-item .ingredient-list, .recette-article-item .preparation-list {
+    text-align: center;
+  }
+  .recette-article-title {
+    width: 300px;
+    min-height: 150px;
+  }
+  .recette-article-title-text {
+    margin: 10px;
+  }
+  .recette .hidden {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .recette {
+    width: 60%;
+  }
+}
+.hidden {
+  display: none;
 }
 
 html,

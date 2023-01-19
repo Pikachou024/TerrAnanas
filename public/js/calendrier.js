@@ -2,20 +2,28 @@
 
 let inputSearch = document.querySelector('#search');
 let buttonMonth = document.querySelectorAll('.month');
-let buttonReset = document.querySelector('.buttonReset')
+let buttonReset = document.querySelector('.filtre-reset');
+// let buttonToggle = document.querySelector('.filtre-toggle');
+// let open = document.querySelector('.fa-eye');
+// let close = document.querySelector('.fa-eye-slash');
 
+// buttonToggle.addEventListener('click',toogleListMonth)
 
 for (const element of buttonMonth) {
     element.addEventListener('click',function (event){
+        let resultList = document.querySelector('#result');
         let dataMonth = Number(event.currentTarget.dataset.month);
         search(event,dataMonth,true)
+        removeBorder();
+        element.classList.add('border');
+        scrollToElement(resultList);
     })
 }
 
 inputSearch.addEventListener('keyup',function (event) {
     let dataInput = inputSearch.value
-    console.log(dataInput)
     search(event,dataInput,false);
+    removeBorder();
 })
 
 buttonReset.addEventListener('click',function (){
@@ -39,9 +47,6 @@ function search(event,elementSearch,bool){
                 boolean = true;
             }else{
                 result = getResultsBySearch(data,elementSearch);
-                if(result.length === 1){
-                    console.log("1")
-                }
                 boolean = false;
             }
             displayResults(result,boolean);
@@ -51,8 +56,8 @@ function search(event,elementSearch,bool){
                     element.addEventListener('click',function (event){
                         let labelMonth = event.currentTarget.value;
                         let listMonth = getMonthsByLabel(data,labelMonth);
-                        // console.log(listMonth);
                         addBorder(listMonth);
+                        // toogleListMonth();
                     })
                 }
             }
@@ -101,7 +106,7 @@ function getMonthsByLabel(data, label) {
             return data[i].months;
         }
     }
-    return "Label non trouvé";
+
 }
 
 function addBorder(listMonth){
@@ -143,3 +148,22 @@ function displayResults(results,bool) {
         });
 }
 
+// function toogleListMonth(){
+//     let listMonth = document.querySelector('.listeMonth');
+//     if(!open.classList.contains('hiding')){
+//         open.classList.add('hiding');
+//         close.classList.remove('hiding');
+//         // listMonth.classList.add('show');
+//         scrollToElement(listMonth);
+//
+//     }
+//     else{
+//         open.classList.remove('hiding');
+//         close.classList.add('hiding');
+//         // listMonth.classList.remove('show');
+//     }
+// }
+
+function scrollToElement(element) {
+    element.scrollIntoView({ behavior: 'smooth',block: 'center' });
+}

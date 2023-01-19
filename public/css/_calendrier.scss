@@ -1,33 +1,57 @@
+.hearderCalendrier{
+  margin-top: $heightNavbarMobile;
+  background-color: $firstLightColor;
+  height: 100vh;
+  width: 100vw;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  &-texte{
+    color: $firstColor;
+    font-size: 24px;
+    max-width: 250px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
 
-section.calendrier {
-  margin-top: $heightNavbar;
+  }
+}
+.calendrier {
+  margin: 10px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
-section.calendrier > div {
-  margin: 10px;
-}
 
-#search {
-  margin-top: 20px;
-  padding: 10px;
-  font-size: 18px;
-  border-radius: 0 20px 0 20px;
-  border: none;
-  text-align: center;
-  background-color: $firstColor;
-  color:$firstLightColor ;
-  transition: 0.5s;
+.filtre{
+  &-search{
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 0 20px 0 20px;
+    border: none;
+    text-align: center;
+    background-color: $firstColor;
+    color:$firstLightColor ;
+    transition: 0.5s;
+  }
+  &-search:focus{
+    border-radius: 0 ;
+    background-color: $firstLightColor;
+    color: $firstColor;
+    border: none;
+    outline:  none;
+  }
 }
-#search:focus{
-  border-radius: 0 ;
-  background-color: $firstLightColor;
-  color: $firstColor;
-  border: none;
-  outline:  none;
+.fa-eye , .fa-eye-slash{
+  display: block;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 10px;
 }
 .listeMonth{
   display: grid;
@@ -35,6 +59,7 @@ section.calendrier > div {
   grid-template-rows: repeat(4, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  margin-top: 20px;
 }
 .month {
   padding: 10px ;
@@ -51,7 +76,7 @@ section.calendrier > div {
   background-color: $firstColor;
   color: $firstLightColor;
 }
-.buttonReset{
+.filtre-reset{
   padding: 10px ;
   font-size: 14px;
   font-weight: bold;
@@ -79,8 +104,7 @@ section.calendrier > div {
 }
 
 #result button{
-  //font-size: 14px;
-  //color: $firstColor;
+
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   margin: 10px;
@@ -93,7 +117,78 @@ section.calendrier > div {
 .month.border{
   background-color:$secondColor;
 }
+
+//.listeMonth.show{
+//  display: grid;
+//  grid-template-columns: repeat(3, 1fr);
+//  grid-template-rows: repeat(4, 1fr);
+//  grid-column-gap: 0px;
+//  grid-row-gap: 0px;
+//}
 @media screen and (min-width: 640px) {
+  .hearderCalendrier{
+    margin: $heightNavbar+30px auto 0 auto;
+    width: 50%;
+    height: 20vh;
+    //margin-left: auto;
+    //margin-right: auto;
+    border-radius:  20px;
+    &-texte{
+      font-size: 28px;
+      max-width: 80%;
+    }
 
+  }
 
+  .calendrier {
+    flex-direction: column;
+  }
+  .fa-eye , .fa-eye-slash{
+    display: none;
+  }
+  #result {
+    width: 80%;
+  }
+  .listeMonth{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+}
+@media screen and (min-width: 1200px) {
+
+  //.hearderCalendrier{
+  //  width: 50%;
+  //  margin-left: auto;
+  //  margin-right: auto;
+  //  border-radius: 0 0 20px 20px;
+  //  &-texte{
+  //    font-size: 28px;
+  //    max-width: 80%;
+  //  }
+  //}
+//.calendrier {
+//    margin-top: $heightNavbar;
+//    display: flex;
+//    flex-wrap: wrap;
+//    align-items: center;
+//    justify-content: center;
+//  }
+  .listeMonth, .listeMonth.show{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
+  #result {
+    width: 60%;
+  }
+
+}
+
+.hiding{
+  display: none;
 }

@@ -1,8 +1,17 @@
+<section class="hearderCalendrier">
+    <h3 class="hearderCalendrier-texte">Retrouver notre calendrier des fruits et légumes !</h3>
+</section>
+
 
 <section class="calendrier">
-    <div>
-        <input type="text" id="search" placeholder="Recherche">
-<!--        <button id="toast">Rechercher</button>-->
+    <div class="filtre">
+        <input class="filtre-search"type="text" id="search" placeholder="Recherche">
+        <button class="filtre-reset">Reset</button>
+<!--        <div class="filtre-toggle">-->
+<!--            <i class="fa-solid fa-eye"></i>-->
+<!--            <i class="fa-solid fa-eye-slash hiding"></i>-->
+<!--        </div>-->
+
     </div>
     <div class="listeMonth">
         <button class="month" data-month="1">Janvier</button>
@@ -18,9 +27,7 @@
         <button class="month" data-month="11">Novembre</button>
         <button class="month" data-month="12">Décembre</button>
     </div>
-    <div class="reset">
-        <button class="buttonReset">Reset</button>
-    </div>
+
     <div id="result">
 
     </div>

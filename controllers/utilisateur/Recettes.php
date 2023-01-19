@@ -1,10 +1,9 @@
 <?php
 
-class Saisons extends AbstractController
+class Recettes extends AbstractController
 {
     function index(){
-        $this->params=['title'=>"Calendrier des fruits et légumes"];
+        $this->params=['title'=>"Nos recettes à base d'ananas !"];
         $this->render($this->file,$this->page,$this->base,$this->params);
     }
-
 }
