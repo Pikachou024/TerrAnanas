@@ -1,0 +1,63 @@
+.hearderPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 20px;
+  margin-top: $heightNavbarMobile;
+  margin-bottom: 20px;
+  background-color: $firstLightColor;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  &-item {
+    text-align: center;
+    &-title {
+      font-size: 24px;
+      font-weight: bold;
+      //margin-bottom: 10px;
+      color: $firstColor;
+    }
+    &-text{
+      display: none;
+    }
+  }
+}
+
+@media (min-width: 640px){
+  .hearderPage {
+    margin: $heightNavbar+30px auto 20px auto;
+    width: 500px;
+    height: 20vh;
+    border-radius:  20px;
+    &-item{
+      &-title {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 32px;
+      }
+      &-text{
+        display: block;
+        font-size: 16px;
+        //width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+}
+//@media (min-width: 840px){
+//  .hearderPage {
+//    width: 500px;
+//    &-item {
+//      &-title {
+//      }
+//      &-text{
+//        font-size: 14px;
+//        //width: 70%;
+//        margin-left: auto;
+//        margin-right: auto;
+//      }
+//    }
+//  }
+//
+//}

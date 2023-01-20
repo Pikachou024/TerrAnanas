@@ -1,50 +1,46 @@
-<main>
-    <section class="bannière-contact">
-        <div class="bannière-contact-text">
-            <h4 class="bannière-contact-text-titre">
-                Nous contacter
-            </h4>
-            <span class="bannière-contact-text-contenu">
-                Vous n’avez pas trouvé de réponses à vos questions et souhaitez-nous contacter, vous pouvez le faire via le formulaire ci-dessous qui sera directement transmis à la personne concernée pour un rappel plus rapide.
-            </span>
-        </div>
-        <div class="bannière-contact-img">
-            <img src="http://localhost/ProjetCommande/public/images/enveloppe.png" alt="logo enveloppe">
+
+
+    <section class="hearderPage">
+        <div class="hearderPage-item">
+            <h3 class="hearderPage-item-title">Nous contacter</h3>
+            <span class="hearderPage-item-text">
+                Vous n’avez pas trouvé de réponses à vos questions et souhaitez-nous contacter, vous pouvez le faire via le formulaire ci-dessous.
+        </span>
         </div>
     </section>
-
 <?php if(!isset($params['idUser'])): ?>
-    <section class="section-formulaire">
-        <form action="contact" method="POST" class="">
-            <div class="form-group">
-                <label for="">Votre email</label>
-                <input type="email" class="form-control" placeholder="name@example.com" name="email">
+    <section class="formulaire">
+        <form action="contact" method="POST">
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre email</label>
+                <input type="email" class="form-email" placeholder="name@example.com" name="email">
             </div>
-            <div class="form-group">
-                <label for="">Sujet</label><br>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Sujet</label><br>
                 <select class="" name="subject">
                     <option value="null">Votre demande concerne</option>
                     <option value="Mon inscription">Mon inscription</option>
                     <option value="Une question sur nos produits">Une question sur nos produits</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Votre message</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre message</label>
+                <textarea rows="3" name="text"></textarea>
             </div>
 
             <input type="submit" value="ENVOYER" class="button-submit">
         </form>
     </section>
 <?php else: ?>
-    <section class="section-formulaire">
+
+    <section class="formulaire">
         <form action="contact" method="POST" class="">
-            <div class="form-group">
-                <label for="">Votre email</label>
-                <input type="email" class="form-control" value="<?=$params['email'];?>" name="email">
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre email</label>
+                <input type="email" class="form-email" value="<?=$params['email'];?>" name="email">
             </div>
-            <div class="form-group">
-                <label for="">Sujet</label><br>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Sujet</label><br>
                 <select class="" name="subject">
                     <option value="null">Votre demande concerne</option>
                     <option value="Une commande">Une commande</option>
@@ -52,15 +48,14 @@
                     <option value="une erreur de prix">une erreur de prix</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Votre message</label>
-                <textarea class="form-control"  rows="3" name="text"></textarea>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre message</label>
+                <textarea rows="3" name="text"></textarea>
             </div>
 
             <input type="submit" value="ENVOYER" class="button-submit">
         </form>
     </section>
 
-<?php endif;?>
 
-</main>
+<?php endif;?>

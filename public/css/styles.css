@@ -24,6 +24,20 @@
   cursor: pointer;
 }
 
+.flash-error {
+  background-color: #A62103; /* rouge */
+  color: #FDFDFD; /* blanc */
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  text-align: center;
+  width: 100vw;
+  z-index: 20;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
 .hide {
   display: none;
 }
@@ -208,7 +222,7 @@
 .headerNavbar .fa-solid {
   font-size: 20px;
   text-align: center;
-  color: #E2F3CA;
+  color: #FFFAE2;
   padding-right: 10px;
 }
 
@@ -243,6 +257,7 @@
   .headerNavbar-img {
     position: static;
     max-width: 80px;
+    min-width: 60px;
     transform: none;
     margin-left: 20px;
   }
@@ -262,7 +277,7 @@
     align-items: center;
     margin-bottom: 0;
     padding: 0;
-    font-size: 18px;
+    font-size: 16px;
   }
   .headerNavbar-function-list-item {
     padding-right: 15px;
@@ -293,6 +308,13 @@
     transition: transform 0.5s ease-in-out; /* ajout d'une transition sur la propriété transform */
     transform: translateY(0); /* position initiale */
   }
+  .headerNavbar-function-list {
+    font-size: 20px;
+  }
+  .headerNavbar-function-list-item {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   .headerNavbar-info {
     margin-left: 0;
   }
@@ -305,13 +327,125 @@
     margin-right: auto;
   }
 }
-.presentation-texte, .valeurs, .mission-article, .client-article, .inscription-client {
-  width: 90%;
-  margin: 3% auto;
+.hearderPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  padding: 20px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  background-color: #E2F3CA;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.hearderPage-item {
+  text-align: center;
+}
+.hearderPage-item-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #004E0B;
+}
+.hearderPage-item-text {
+  display: none;
 }
 
-h3 {
+@media (min-width: 640px) {
+  .hearderPage {
+    margin: 110px auto 20px auto;
+    width: 500px;
+    height: 20vh;
+    border-radius: 20px;
+  }
+  .hearderPage-item-title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 32px;
+  }
+  .hearderPage-item-text {
+    display: block;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.formulaire {
+  padding: 20px;
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.formulaire-item {
+  font-weight: bold;
+  margin-bottom: 5px;
+  width: 100%;
   color: #F29F05;
+}
+.formulaire-item > input, .formulaire-item > textarea, .formulaire-item > select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.formulaire p.error {
+  color: #A62103;
+  margin: 0;
+}
+
+.formulaire > form {
+  width: 100%;
+}
+
+.button-submit {
+  background-color: #004E0B;
+  border-radius: 0 20px 0 20px;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+  color: #E2F3CA;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  border: none;
+}
+
+.button-submit:hover {
+  border-radius: 0;
+  background-color: #E2F3CA;
+  color: #004E0B;
+}
+
+@media (min-width: 640px) {
+  .formulaire {
+    max-width: 70%;
+  }
+  .formulaire-item > textarea {
+    height: 100px;
+  }
+}
+@media (min-width: 840px) {
+  .formulaire {
+    max-width: 60%;
+  }
+  .formulaire-item > textarea {
+    height: 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .formulaire {
+    max-width: 500px;
+  }
+}
+.presentation-texte, .valeurs, .mission-article, .client-article, .inscription-client {
+  width: 90%;
+  margin: 5% auto;
 }
 
 .headContent {
@@ -341,8 +475,11 @@ h3 {
   padding: 10px 0;
   margin-bottom: 20px;
 }
-.presentation p, .presentation h3 {
+.presentation-texte p, .presentation-texte h3 {
   margin-top: 0;
+}
+.presentation-texte h3 {
+  color: #F29F05;
 }
 
 .valeurs-article {
@@ -350,7 +487,8 @@ h3 {
   margin-bottom: 20px;
 }
 .valeurs-article-texte > h3 {
-  margin-top: 0;
+  margin-top: 10px;
+  color: #F29F05;
 }
 .valeurs-article-image {
   max-width: 250px;
@@ -365,6 +503,9 @@ h3 {
 .mission-article {
   text-align: center;
 }
+.mission-article-presentation > h3 {
+  color: #F29F05;
+}
 
 .client {
   background-color: #E2F3CA;
@@ -372,6 +513,9 @@ h3 {
 }
 .client-article {
   text-align: center;
+}
+.client-article-presentation > h3 {
+  color: #F29F05;
 }
 
 .listeClient-image {
@@ -403,6 +547,9 @@ h3 {
   background-color: #E2F3CA;
   color: #004E0B;
 }
+.inscription-client > h3 {
+  color: #F29F05;
+}
 
 @media screen and (min-width: 640px) {
   .presentation {
@@ -417,6 +564,9 @@ h3 {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     grid-column-gap: 20px;
+  }
+  .valeurs-article .valeurs-article-texte > h3 {
+    margin-top: 0;
   }
   .valeurs-article .valeurs-article-image {
     grid-area: 1/1/2/2;
@@ -462,6 +612,9 @@ h3 {
     width: 80%;
     font-size: 1.1em;
   }
+  h3 {
+    font-size: 1.5em;
+  }
   .valeurs-article-image {
     max-width: none;
   }
@@ -478,7 +631,12 @@ h3 {
 @media screen and (min-width: 1200px) {
   .presentation-texte, .valeurs, .mission-article, .client-article, .inscription-client {
     width: 70%;
-    font-size: 1.2em;
+  }
+  .headContent-box {
+    padding: 50px;
+    background-color: #ffffff; /* Couleur d'arrière-plan blanche */
+    border: 2px solid #FDB813; /* Bordure noire de 10px */
+    font-size: 1.5em;
   }
   .valeurs {
     display: grid;
@@ -520,7 +678,7 @@ h3 {
 .hearderCalendrier {
   margin-top: 50px;
   background-color: #E2F3CA;
-  height: 100vh;
+  height: 25vh;
   width: 100vw;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -686,7 +844,7 @@ h3 {
 .headerRecettes {
   margin-top: 50px;
   background-color: #E2F3CA;
-  height: 100vh;
+  height: 200px;
   width: 100vw;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);

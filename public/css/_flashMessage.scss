@@ -22,3 +22,16 @@
   margin-top: 10px;
   cursor: pointer;
 }
+.flash-error {
+  background-color:$altColor; /* rouge */
+  color: $whiteColor; /* blanc */
+  padding: 20px;
+  position: absolute;
+  top :0;
+  font-size: 14px;
+  text-align: center;
+  width: 100vw;
+  z-index: 20;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}

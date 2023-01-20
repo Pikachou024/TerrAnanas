@@ -35,7 +35,7 @@ class Connexion extends AbstractController
                 }
             }
             else{
-                addFlashMessage("L'email ou le mot de passe est incorrect");
+                addFlashMessage("L'email ou le mot de passe est incorrect",'error');
                 header('location:login');
                 exit;
             }

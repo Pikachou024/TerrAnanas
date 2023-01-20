@@ -35,7 +35,7 @@
                     <a class="headerNavbar-function-list-item-link" href="recettes">Recettes</a>
                 </li>
                 <li class="headerNavbar-function-list-item">
-                    <a class="headerNavbar-function-list-item-link" href="#">Contact</a>
+                    <a class="headerNavbar-function-list-item-link" href="contact">Contact</a>
                 </li>
                 <?php if(!isConnected()):?>
                     <li class="headerNavbar-function-list-item">
@@ -85,6 +85,7 @@
 </header>
 
 <?php //include '../templates/utilisateur/' . $template . '.phtml'; ?>
+<?php displayFlashMessages() ;?>
 <main>
     <?php include $template; ?>
 </main>

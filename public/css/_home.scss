@@ -1,18 +1,15 @@
 .presentation-texte,.valeurs,.mission-article,.client-article,.inscription-client{
   width: 90%;
-  //margin-left: auto;
-  //margin-right: auto;
-  //margin-bottom: 5%;
-  //margin-top: 5%;
-  margin: 3% auto;
+  margin: 5% auto;
 }
-h3{
-  color:$secondColor;
-}
+//h3{
+//  margin-top: 10px;
+//
+//}
 .headContent{
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height:100vh;
   background-image: url(http://localhost/TerrAnanas/public/images/home.png);
   background-size: cover;
   background-position: center;
@@ -36,9 +33,15 @@ h3{
   background-color: $firstLightColor;
   padding: 10px 0;
   margin-bottom: 20px;
-  p,h3{
-    margin-top: 0;
+  &-texte{
+    p,h3{
+      margin-top: 0;
+    }
+    h3{
+      color:$secondColor;
+    }
   }
+
 
 }
 
@@ -48,7 +51,8 @@ h3{
     text-align: center;
     margin-bottom: 20px;
     &-texte > h3 {
-      margin-top: 0;
+      margin-top: 10px;
+      color:$secondColor;
     }
     &-image{
       max-width: 250px;
@@ -65,6 +69,9 @@ h3{
 .mission{
   &-article{
     text-align: center;
+    &-presentation>h3{
+      color:$secondColor;
+    }
   }
 }
 
@@ -73,6 +80,9 @@ h3{
   padding: 10px 0;
   &-article{
     text-align: center;
+    &-presentation>h3{
+      color:$secondColor;
+    }
   }
 }
 .listeClient{
@@ -108,6 +118,9 @@ h3{
       }
     }
   }
+  &-client>h3{
+    color:$secondColor;
+  }
 }
 
 @media screen and (min-width: 640px) {
@@ -127,6 +140,11 @@ h3{
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
     grid-column-gap: 20px;
+
+    .valeurs-article-texte > h3 {
+        margin-top: 0;
+      }
+
     .valeurs-article-image{
       grid-area: 1 / 1 / 2 / 2;
       margin-left: 0;
@@ -188,7 +206,9 @@ h3{
     width: 80%;
     font-size: 1.1em;
   }
-
+  h3{
+    font-size: 1.5em;
+  }
   .valeurs-article-image{
     max-width: none;
   }
@@ -209,7 +229,17 @@ h3{
     width: 70%;
     //margin-left: auto;
     //margin-right: auto;
-    font-size: 1.2em;
+    //font-size: 1.1em;
+  }
+  .headContent{
+
+    &-box{
+
+      padding: 50px;
+      background-color: #ffffff; /* Couleur d'arrière-plan blanche */
+      border: 2px solid #FDB813; /* Bordure noire de 10px */
+      font-size: 1.5em;
+    }
   }
   .valeurs{
     display: grid;
