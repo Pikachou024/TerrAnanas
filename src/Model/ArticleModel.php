@@ -40,12 +40,12 @@ class ArticleModel extends AbstractModel
         return $this->db->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$id]);
     }
 
-    function archiveArticle($id,$statusArticle){
+    function archiveArticle($statusArticle,$id){
         $sql = "UPDATE      article
                 SET         id_statutArticle = ?
                 where       id_article = ?";
 
-        return $this->db->executeQuerry($sql,[$id,$statusArticle]);
+        return $this->db->executeQuerry($sql,[$statusArticle,$id]);
     }
 
 //

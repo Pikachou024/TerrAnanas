@@ -13,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 
-    <script type="text/javascript" src="http://localhost/TerrAnanas/public/js/responsive.js" defer></script>
-
+<!--    <script type="text/javascript" src="http://localhost/TerrAnanas/public/js/responsive.js" defer></script>-->
+    <script type="module" src="http://localhost/TerrAnanas/public/js/admin.js" defer></script>
 
     <title><?=$params['title'];?></title>
 </head>
@@ -22,40 +22,40 @@
 <body>
 <header>
 
-    <nav class="headerNavbar">
-        <div class="headerNavbar-function" >
-            <div class="headerNavbar-function-burger" id="menuresp">
+    <nav class="adminNavbar">
+        <div class="adminNavbar-function" >
+            <div class="adminNavbar-function-burger" id="menuresp">
                 <i class="fa-solid fa-bars" id="burger"></i>
                 <i class="fa-sharp fa-solid fa-xmark hide" id="cross"></i>
             </div>
-            <ul class="headerNavbar-function-list "  >
-                <li class="headerNavbar-function-list-item">
-                    <a class="headerNavbar-function-list-item-link" href="admin">Dashboard</a>
+            <ul class="adminNavbar-function-list "  >
+                <li class="adminNavbar-function-list-item">
+                    <a class="adminNavbar-function-list-item-link" href="admin">Dashboard</a>
                 </li>
-                <li class="headerNavbar-function-list-item">
-                    <a class="headerNavbar-function-list-item-link" href="articles_admin">Articles</a>
+                <li class="adminNavbar-function-list-item">
+                    <a class="adminNavbar-function-list-item-link" href="articles_admin">Articles</a>
                 </li>
-                <li class="headerNavbar-function-list-item">
-                    <a class="headerNavbar-function-list-item-link" href="users_admin">Clients</a>
+                <li class="adminNavbar-function-list-item">
+                    <a class="adminNavbar-function-list-item-link" href="users_admin">Clients</a>
                 </li>
-                <li class="headerNavbar-function-list-item">
-                    <a class="headerNavbar-function-list-item-link" href="commandes_admin">Commandes</a>
+                <li class="adminNavbar-function-list-item">
+                    <a class="adminNavbar-function-list-item-link" href="commandes_admin">Commandes</a>
                 </li>
-                <li class="headerNavbar-function-list-item">
-                    <a class="headerNavbar-function-list-item-link" href="messages">Messages</a>
+                <li class="adminNavbar-function-list-item">
+                    <a class="adminNavbar-function-list-item-link" href="messages">Messages</a>
                 </li>
             </ul>
         </div>
 
 
-        <div class="headerNavbar-info" >
-            <ul class="headerNavbar-info-list">
-                <li class="headerNavbar-info-list-item">
-                    <p class="headerNavbar-info-list-item-dropdown">
+        <div class="adminNavbar-info" >
+            <ul class="adminNavbar-info-list">
+                <li class="adminNavbar-info-list-item">
+                    <p class="adminNavbar-info-list-item-dropdown">
                         <?=getUserName()?>
                         <i class="fa-solid fa-caret-down"></i>
                     </p>
-                    <ul class="headerNavbar-info-list-item-dropdownContent">
+                    <ul class="adminNavbar-info-list-item-dropdownContent">
                         <li><a class="" href="home">Accueil TerrAnanas</a></li>
                         <li><a class="" href="client">Faire un test</a></li>
                         <li><a class="" href="parametre_admin">Paramètre</a></li>
@@ -74,8 +74,8 @@
 </main>
 
 <!--Chargement des scripts pour Bootstrap-->
-<script type="text/javascript" src="http://localhost/TerrAnanas/public/js/jquery-3.3.1.min.js" defer></script>
-<script type="text/javascript" src="http://localhost/TerrAnanas/public/js/bootstrap.js" defer></script>
+<!--<script type="text/javascript" src="http://localhost/TerrAnanas/public/js/jquery-3.3.1.min.js" defer></script>-->
+<!--<script type="text/javascript" src="http://localhost/TerrAnanas/public/js/bootstrap.js" defer></script>-->
 
 <!-- Script pour activation du datepicker -->
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" defer></script>-->

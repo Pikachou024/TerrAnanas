@@ -63,6 +63,27 @@
   padding: 5px;
 }
 
+.headerNavbar-info-list-item-dropdownContent-item-link {
+  padding: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #FFFAE2;
+}
+
+.headerNavbar-info-list-item-dropdownContent-item-link:link {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.headerNavbar-info-list-item-dropdownContent-item-link:visited {
+  color: #FFFAE2;
+}
+
+.headerNavbar-info-list-item-dropdownContent-item-link:hover {
+  border-bottom: 2px solid #FFFAE2;
+  padding: 5px;
+}
+
 .footerNavbar-info-navigation-liste-item-link {
   text-decoration: none;
   font-weight: bold;
@@ -191,7 +212,7 @@
   background-color: #F1BB13;
   position: absolute;
   right: 0;
-  padding: 0;
+  padding: 100px 0 0 0;
   top: 50px;
   width: 100vw;
   height: 100vh;
@@ -200,7 +221,6 @@
   text-align: center;
   transform: translateX(200%);
   transition: all 0.5s;
-  padding-top: 50px;
   font-size: 24px;
 }
 .headerNavbar-info-list-item-dropdownContent > li {
@@ -263,7 +283,6 @@
   }
   .headerNavbar-function {
     order: 1;
-    margin-right: 20px;
   }
   .headerNavbar-function-list {
     position: static;
@@ -289,6 +308,30 @@
   .headerNavbar-info {
     order: 2;
     margin-left: auto;
+  }
+  .headerNavbar-info-list {
+    padding: 0;
+  }
+  .headerNavbar-info-list-item-dropdownContent {
+    background-color: #F1BB13;
+    right: 0;
+    top: 80px;
+    z-index: 3;
+    opacity: 0;
+    text-align: center;
+    transform: translateY(-150%);
+    transition: all 0.5s;
+    padding: 0;
+    height: 20vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .headerNavbar-info-list-item-dropdownContent.active {
+    opacity: 1;
+    transform: translateY(0);
   }
   .footerNavbar-info {
     display: grid;
@@ -317,6 +360,34 @@
   }
   .headerNavbar-info {
     margin-left: 0;
+  }
+  .headerNavbar-info-list-item-dropdownContent {
+    background-color: #F1BB13;
+    text-align: center;
+    width: 70%;
+    height: 80px;
+    right: 15%;
+    top: 0;
+    transform: translateY(-150%);
+    transition: all 0.5s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+  }
+  .headerNavbar-info-list-item-dropdownContent.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .headerNavbar-info-list .logout {
+    background-color: initial;
+  }
+  .headerNavbar-info-list .logout > a {
+    color: #FFFAE2;
+  }
+  .headerNavbar-info-list .logout > a:hover {
+    color: #A62103;
   }
   .headerNavbar.hide {
     transform: translateY(-100%); /* masque le navbar quand il y a une largeur d'écran de 1200px */

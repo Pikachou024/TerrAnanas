@@ -1,3 +1,12 @@
+.headerTitle{
+  color: $secondColor;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  margin: 0;
+}
 .headerArticleAdmin{
   display: flex;
   flex-direction: column;
@@ -10,6 +19,24 @@
 
   &-search{
     text-align: center;
+    &-form-input>input{
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    &-form-input>input:focus {
+      outline: none;
+      //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    &-form-checkbox{
+      margin-top: 10px;
+      label{
+
+      }
+    }
+
   }
   &-add{
     display: flex;
@@ -96,16 +123,23 @@ a.liste-articleAdmin-item-link:hover{
   background: $whiteColor;
 
 }
+
+/*
+ * addArticle
+ */
 .formAddArticle{
   text-align: center;
+  max-width: 90%;
+  margin: 20px auto;
   .article{
     background-color: $whiteColor;
+    width: 100%;
     display: inline-block;
     //flex-direction: column;
-    padding: 20px;
+    //padding: 20px;
     //max-width: 500px;
-    margin-right: auto;
-    margin-left: auto;
+    //margin-right: auto;
+    //margin-left: auto;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     &-item{
       display: flex;
@@ -120,7 +154,22 @@ a.liste-articleAdmin-item-link:hover{
       font-weight: bold;
     }
     &-item>input{
-      margin-top: 5px;
+      background-color: $whiteColor;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid black;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 80%;
+    }
+    &-item>select {
+      background-color: $whiteColor;
+      padding: 5px;
+      //font-size: 1rem;
+      border-radius: 5px;
+      //border: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 1px solid black;
+      width: 80%;
     }
     &-item>button{
       background-color: #004E0B;
@@ -140,15 +189,20 @@ a.liste-articleAdmin-item-link:hover{
     }
   }
 }
+.liste-article-aucun{
+  text-align: center;
+  padding: 10px 0;
+  background-color: $whiteColor;
+}
 
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 640px) {
   .liste-articleAdmin{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 15px;
-    width: 840px;
+    //width: 840px;
     height: auto;
     margin-bottom: 0;
 
@@ -162,16 +216,46 @@ a.liste-articleAdmin-item-link:hover{
       grid-area: 2 / 4 / 3 / 5;
     }
   }
+  .formAddArticle {
+    max-width: 70%;
+      .article{
+
+        &-item>input{
+          width: 70%;
+        }
+        &-item>select {
+          width: 70%;
+        }
+      }
+  }
 }
 
 @media screen and (min-width: 840px) {
+  .headerArticleAdmin{
+
+    &-search{
+      &-form{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        &-input{
+          margin:10px;
+        }
+
+        &-checkbox{
+          margin:10px;
+          align-self: center;
+        }
+      }
+    }
+  }
   .liste-articleAdmin{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    width: 1200px;
+    //width: 1200px;
     height: auto;
     margin-bottom: 0;
 
@@ -183,6 +267,18 @@ a.liste-articleAdmin-item-link:hover{
     }
     &-item.delete{
       grid-area: initial;
+    }
+  }
+  .formAddArticle {
+    max-width: 40%;
+    .article{
+
+      &-item>input{
+        width: 80%;
+      }
+      &-item>select {
+        width: 80%;
+      }
     }
   }
 }

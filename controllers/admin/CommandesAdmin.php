@@ -4,11 +4,11 @@ class CommandesAdmin extends AbstractController
 {
     function commandes(){
         $role = getUserRole();
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            echo("Désolé la page n'existe pas");
+            exit;
+        }
 
 
         $statusModel = new statusModel();

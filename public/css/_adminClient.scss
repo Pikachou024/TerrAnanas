@@ -8,6 +8,33 @@
     text-align: center;
     &-search{
       margin-bottom: 10px;
+      input{
+        background-color: $whiteColor;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      input:focus{
+        outline: none;
+
+      }
+    }
+    &-statut{
+      margin-bottom: 10px;
+      select{
+        background-color: $whiteColor;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        appearance: none;
+      }
+      select:focus {
+        outline: none;
+      }
     }
   }
 }
@@ -44,6 +71,8 @@
 }
 .liste-client-aucun{
   text-align: center;
+  padding: 10px 0;
+  background-color: $whiteColor;
 }
 
 .liste-client.head{
@@ -61,14 +90,17 @@
 
 .formAddClient{
   text-align: center;
+  max-width: 90%;
+  margin: 20px auto;
   .client{
     background-color: $whiteColor;
+    width: 100%;
     display: inline-block;
     //flex-direction: column;
-    padding: 20px;
+    //padding: 20px;
     //max-width: 500px;
-    margin-right: auto;
-    margin-left: auto;
+    //margin-right: auto;
+    //margin-left: auto;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     &-item{
       display: flex;
@@ -84,6 +116,21 @@
     }
     &-item>input{
       margin-top: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid black;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 80%;
+    }
+    &-item>select {
+      background-color: $whiteColor;
+      padding: 5px;
+      //font-size: 1rem;
+      border-radius: 5px;
+      //border: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border: 1px solid black;
+      width: 80%;
     }
     &-item>button{
       background-color: #004E0B;
@@ -103,24 +150,32 @@
     }
   }
 }
-@media screen and (min-width: 540px) {
+@media screen and (min-width: 640px) {
 
-    .liste-client {
-      width: 250px;
-      height: auto;
-      text-align: center;
-      padding: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
+  .liste-client {
+    //height: auto;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+  }
   .liste-client:nth-child(2n+1){
     background: $firstLightColor;
   }
   .liste-client:nth-child(2n){
     background: $firstLightColor;
   }
-
-
+  .formAddClient {
+    max-width: 70%;
+    .client{
+      &-item>input{
+        width: 70%;
+      }
+      &-item>select {
+        width: 70%;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 840px) {
@@ -144,8 +199,8 @@
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    width: 1200px;
-    height: auto;
+    //width: 1200px;
+    //height: auto;
     box-shadow:none;
     margin-bottom: 0;
   }
@@ -155,5 +210,17 @@
   }
   .liste-client:nth-child(2n){
     background: #E2F3CA;
+  }
+  .formAddClient {
+    max-width: 40%;
+    .client{
+
+      &-item>input{
+        width: 80%;
+      }
+      &-item>select {
+        width: 80%;
+      }
+    }
   }
 }

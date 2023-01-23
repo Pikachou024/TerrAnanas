@@ -1,0 +1,40 @@
+    <div class="flash-message">
+        <?php displayFlashMessages() ; ?>
+    </div>
+
+    <h3 class="headerTitle"> LISTES DES ARTICLES</h3>
+
+    <div class="headerArticle">
+        <div class="headerArticle-search">
+            <form method="POST" action ="articles_client" class="headerArticle-search-form" id="form-search" role="search">
+                <div class="headerArticle-search-form-input">
+                    <?php if(empty($_SESSION['articleSearch'])) :?>
+                        <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
+                    <?php else : ?>
+                        <input type="search" class="form-control" name="articleSearch" id="articleSearch" value="<?=$params['articleSearch'];?>">
+                    <?php endif;?>
+                </div>
+            </form>
+        </div>
+        <div class="headerArticle-layout">
+            <div class="headerArticle-layout-grid select">
+                <i class="fa-sharp fa-solid fa-grip"></i>
+            </div>
+            <div class="headerArticle-layout-list">
+                <i class="fa-sharp fa-solid fa-list"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="templateListeArticle">
+        <?php $this->render($this->file, 'liste_articles_client','', $params);?>
+
+    </div>
+
+
+
+
+
+<!--<script src="http://localhost/TerrAnanas/public/js/articles_client.js" defer></script>-->
+<script src="http://localhost/TerrAnanas/public/js/main.js" type="module" defer></script>

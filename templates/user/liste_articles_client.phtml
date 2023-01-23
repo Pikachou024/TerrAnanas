@@ -1,0 +1,98 @@
+<form method="POST" action="<?='add_panier';?>" id="form-article">
+
+<?php if(isset($_SESSION['articleSearch'])) :?>
+    <?php if(empty($_SESSION['articleSearch'])) :?>
+
+<!--                    <div class="">-->
+<!--                        <div class=""> <p>Article</p> </div>-->
+<!--                        <div class=""> <p>Origine</p> </div>-->
+<!--                        <div class=" "> <p>Prix/Unitée</p> </div>-->
+<!--                        <div class=""> <p>Poids</p> </div>-->
+<!--                        <div class=" "> <p>Quantité</p> </div>-->
+<!--                    </div>-->
+
+    <div class="liste bg">
+        <div class="liste-article-aucun"> <p>Aucun article trouvé</p></div>
+    </div>
+    <?php else : ?>
+<!--                <div class="">-->
+<!--                    <div class="col-6 col-md-3 text-center font-weight-bold "> <p>Article</p> </div>-->
+<!--                    <div class="col-6 col-md-3 text-center font-weight-bold "> <p>Origine</p> </div>-->
+<!--                    <div class="col-6 col-md-2 text-center font-weight-bold "> <p>Prix/Unitée</p> </div>-->
+<!--                    <div class="col-6 col-md-2 text-center font-weight-bold "> <p>Poids</p> </div>-->
+<!--                    <div class="col-12 col-md-2 text-center font-weight-bold "> <p>Quantité</p> </div>-->
+<!--                </div>-->
+        <div class="liste bg">
+            <?php foreach ($_SESSION['articleSearch'] as $article): ?>
+
+            <div class="liste-article">
+                <input class="liste-article-item" type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                <input class="liste-article-item" type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                <input class="liste-article-item" type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                <div class="liste-article-item image "> <img src="http://localhost/TerrAnanas/public/images/fruits/pommes.jpg"></div>
+                <div class="liste-article-item"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                <div class="liste-article-item"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>
+                <div class="liste-article-item"> <input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>   </div>
+                <div class="liste-article-item"> <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>  </div>
+                <div class="liste-article-item quantite"> <input type="number" id="<?=$article['id_article'];?>" name="quantite[]" min="0" value="0"></div>
+            </div>
+            <?php endforeach; ?>
+
+        </div>
+    <?php endif;?>
+<?php else : ?>
+
+
+    <p class="rayon">Légumes</p>
+    <div class="liste bg">
+
+        <?php foreach ($params['articles'] as $article): ?>
+            <?php if($article['famille']=="Légume" && $article['id_statutArticle']!=3):?>
+                <div class="liste-article">
+                    <input class="liste-article-item" type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input class="liste-article-item" type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                    <input class="liste-article-item" type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                    <div class="liste-article-item image "> <img src="http://localhost/TerrAnanas/public/images/fruits/pommes.jpg"></div>
+                    <div class="liste-article-item"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                    <div class="liste-article-item"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>
+                    <div class="liste-article-item"> <input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>   </div>
+                    <div class="liste-article-item"> <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>  </div>
+                    <div class="liste-article-item quantite"> <input type="number" id="<?=$article['id_article'];?>" name="quantite[]" min="0" value="0"></div>
+                </div>
+            <?php endif ;?>
+        <?php endforeach; ?>
+    </div>
+
+
+
+<!--        <div class="container p-0 ">-->
+<!--            <div class="row bg-first-lightbackground-color pt-2 pb-2 m-0 d-grid">-->
+<!--                <div class="col-6 col-md-3 text-center font-weight-bold "> <p>Article</p> </div>-->
+<!--                <div class="col-6 col-md-3 text-center font-weight-bold "> <p>Origine</p> </div>-->
+<!--                <div class="col-6 col-md-2 text-center font-weight-bold "> <p>Prix/Unitée</p> </div>-->
+<!--                <div class="col-6 col-md-2 text-center font-weight-bold "> <p>Poids</p> </div>-->
+<!--                <div class="col-12 col-md-2 text-center font-weight-bold "> <p>Quantité</p> </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    <p class="rayon">Fruits</p>
+    <div class="liste bg">
+
+        <?php foreach ($params['articles'] as $article): ?>
+            <?php if($article['famille']=="Fruit" && $article['id_statutArticle']!=3):?>
+                <div class="liste-article">
+                    <input class="liste-article-item" type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input class="liste-article-item" type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+                    <input class="liste-article-item" type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+                    <div class="liste-article-item image"> <img src="http://localhost/TerrAnanas/public/images/fruits/pommes.jpg"></div>
+                    <div class="liste-article-item"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
+                    <div class="liste-article-item"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>
+                    <div class="liste-article-item"> <input type="hidden" name="prix[]" value="<?= $article["prix"]/100;?>"><?= ($article["prix"]/100)." €/".$article['unite'];?>   </div>
+                    <div class="liste-article-item"> <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>  </div>
+                    <div class="liste-article-item quantite"> <input type="number" id="<?=$article['id_article'];?>" name="quantite[]" min="0" value="0"></div>
+                </div>
+            <?php endif ;?>
+        <?php endforeach; ?>
+    </div>
+<?php endif;?>
+    <div class="liste-button"><button type="submit" class="">Valider </button> </div>
+</form>

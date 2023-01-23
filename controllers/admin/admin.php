@@ -53,11 +53,13 @@ class Admin extends AbstractController
             echo("Désolé la page n'existe pas");
             exit;
         }
-
+        $data=[];
         $error=[];
         $id = getUserId();
         $userModel = new UserModel();
         $user = $userModel->getOneUser($id);
+        $francoModel = new FrancoModel();
+        $franco = $francoModel->getFranco(1);
 
         $client = $user['client'];
         $address = $user['address'];
@@ -95,9 +97,12 @@ class Admin extends AbstractController
             }
             if(empty($error)){
                 $userModel->editUser($client,$address,$city,$postal,$contact,$phone,$email,$statut,$id);
-                header('location: parametre_admin');
-
+//                header('location: parametre_admin');
+                $data['message']="Profil Modifié";
+                echo json_encode($data);
+                exit;
             }
+
         }
         $params = [
             'client' => $client,
@@ -107,9 +112,36 @@ class Admin extends AbstractController
             'contact' => $contact,
             'phone' => $phone,
             'email' => $email,
+            'franco'=> $franco['franco'],
             'error'=>$error,
             'title'=>"Paramètre"
         ];
         $this->render($this->file, $this->page, $this->base, $params);
+    }
+
+    function franco()
+    {
+        $role = getUserRole();
+        $data=[];
+        if($role != "admin") {
+            http_response_code(403);
+            echo("Désolé la page n'existe pas");
+            exit;
+        }
+        $francoModel = new FrancoModel();
+
+        if(!empty($_POST)){
+            $franco = strip_tags(trim($_POST['franco']));
+            if (is_numeric($franco) && intval($franco) == $franco) {
+                $francoModel->editFranco($franco,1);
+                $data['message'] = "Le montant minimum de la commande est passée à" .$franco ." €";
+                $data['montant'] = $franco;
+
+            } else {
+                $data['message'] = "Veuillez rentrer un montant";
+            }
+            echo json_encode($data);
+        }
+
     }
 }

@@ -21,6 +21,15 @@ class ArticleAdmin extends AbstractController
         $statutModel = new StatusModel();
         $statut = $statutModel->getAllstatusArticle();
         $params=[];
+
+        /*
+         * liste des articles archivés
+         */
+        if (empty($_POST['archive']) ) {
+            // L'utilisateur a coché la case pour recevoir la newsletter
+            $articles = $this->filterArticles($articles);
+        }
+
         /*
          * Gestion de la soumission de mon formulaire ( rechercher un article )
          */
@@ -28,11 +37,11 @@ class ArticleAdmin extends AbstractController
             $articleSearch = $_POST['articleSearch'];
             $params['articleSearch']=$articleSearch;
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
-//            dump($_SESSION['articleSearch']);
 
         }else{
             unset( $_SESSION['articleSearch']);
         }
+
 
         /*
          * Je stock mes données dans tableau params pour le renvoyer dans ma méthode render
@@ -151,13 +160,13 @@ class ArticleAdmin extends AbstractController
     }
 
     function editArticle(){
-//        $role = getUserRole();
-//
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        $role = getUserRole();
+
+        if($role != "admin") {
+            http_response_code(403);
+            echo("Désolé la page n'existe pas");
+            exit;
+        }
         $idArticle = $_GET['id'];
         $errors=[];
 
@@ -223,10 +232,16 @@ class ArticleAdmin extends AbstractController
         }
         $idArticle = $_GET['id'];
         $articleModel = new ArticleModel();
-        $articleModel->deleteArticle($idArticle);
+        $articleModel->archiveArticle(3,$idArticle);
 
         header('location: articles_admin');
         exit;
     }
 
+    private function filterArticles(array $articles) :array
+    {
+        return array_filter($articles, function ($item) {
+            return $item['id_statutArticle'] !== 3;
+        });
+    }
 }

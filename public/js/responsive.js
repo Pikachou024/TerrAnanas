@@ -2,7 +2,7 @@ const menuBtn = document.getElementById('menuresp');
 const menu = document.querySelector('.headerNavbar-function-list');
 const burger = document.getElementById('burger');
 const cross = document.getElementById('cross');
-let dropDown = document.querySelector('.headerNavbar-info-list-item-dropdown');
+let dropDown = document.querySelector('.fa-caret-down');
 let dropdownContent = document.querySelector('.headerNavbar-info-list-item-dropdownContent');
 
 let flashSuccess = document.querySelector(".flash-success");
@@ -69,13 +69,14 @@ document.addEventListener('click',function(event){
 
 const navbar = document.querySelector('.headerNavbar');
 let previousScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > previousScroll) {
-        navbar.classList.add('hide');
-    } else {
-        navbar.classList.remove('hide');
-    }
-    previousScroll = currentScroll;
-});
+if(navbar){
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > previousScroll) {
+            navbar.classList.add('hide');
+        } else {
+            navbar.classList.remove('hide');
+        }
+        previousScroll = currentScroll;
+    });
+}

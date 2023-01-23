@@ -14,20 +14,24 @@
                     <input type="search" class="form-control" name="articleSearch" id="articleSearch" value="<?=$params['articleSearch'];?>">
                 <?php endif;?>
             </div>
+            <div class="headerArticleAdmin-search-form-checkbox">
+                <label>Articles archivés</label>
+                <input type="checkbox" id="archive" name="archive">
+            </div>
         </form>
     </div>
     <div class="headerArticleAdmin-add">
         <a href="add_article" class="headerArticleAdmin-add-link">
             <i class="fa-solid fa-circle-plus"></i>
-<!--            <div class="hover">Ajouter un article</div>-->
         </a>
     </div>
+
 </div>
 
-<div class="templateListeArticle">
+<div class="templateListe">
         <?php $this->render($this->file, 'liste_articles_admin', '', $params);?>
 </div>
 
-<script src="http://localhost/TerrAnanas/public/js/main.js" type="module" defer></script>
+<!--<script src="http://localhost/TerrAnanas/public/js/main.js" type="module" defer></script>-->
 <!--<script src="http://localhost/TerrAnanas/public/js/articles_admin.js" defer></script>-->
 

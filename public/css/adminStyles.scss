@@ -1,14 +1,13 @@
 @import 'variables';
 @import 'flashMessage';
 
-@import 'responsive';
-@import 'listeArticle';
-@import 'panier';
-@import 'commande';
-
-
+@import 'adminNavbar';
+//@import 'listeArticle';
+//@import 'panier';
+@import 'adminCommande';
 @import 'adminArticle';
 @import 'adminClient';
+@import 'adminParametre';
 
 html,
 body {
@@ -25,6 +24,18 @@ main {
   margin-left: auto;
   margin-right: auto;
 
+}
+
+.templateListe {
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+.liste {
+
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 5%;
 }
 
 footer {

@@ -1,0 +1,61 @@
+
+
+    <section class="hearderPage">
+        <div class="hearderPage-item">
+            <h3 class="hearderPage-item-title">Nous contacter</h3>
+            <span class="hearderPage-item-text">
+                Vous n’avez pas trouvé de réponses à vos questions et souhaitez-nous contacter, vous pouvez le faire via le formulaire ci-dessous.
+        </span>
+        </div>
+    </section>
+<?php if(!isset($params['idUser'])): ?>
+    <section class="formulaire">
+        <form action="contact" method="POST">
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre email</label>
+                <input type="email" class="form-email" placeholder="name@example.com" name="email">
+            </div>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Sujet</label><br>
+                <select class="" name="subject">
+                    <option value="null">Votre demande concerne</option>
+                    <option value="Mon inscription">Mon inscription</option>
+                    <option value="Une question sur nos produits">Une question sur nos produits</option>
+                </select>
+            </div>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre message</label>
+                <textarea rows="3" name="text"></textarea>
+            </div>
+
+            <input type="submit" value="ENVOYER" class="button-submit">
+        </form>
+    </section>
+<?php else: ?>
+
+    <section class="formulaire">
+        <form action="contact" method="POST" class="">
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre email</label>
+                <input type="email" class="form-email" value="<?=$params['email'];?>" name="email">
+            </div>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Sujet</label><br>
+                <select class="" name="subject">
+                    <option value="null">Votre demande concerne</option>
+                    <option value="Une commande">Une commande</option>
+                    <option value="Une livraison reçu">Une livraison reçu</option>
+                    <option value="une erreur de prix">une erreur de prix</option>
+                </select>
+            </div>
+            <div class="formulaire-item">
+                <label class="formulaire-label">Votre message</label>
+                <textarea rows="3" name="text"></textarea>
+            </div>
+
+            <input type="submit" value="ENVOYER" class="button-submit">
+        </form>
+    </section>
+
+
+<?php endif;?>

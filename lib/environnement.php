@@ -11,9 +11,9 @@ function getPathPublicAbsolute($file): string
 /**
  * @throws Exception
  */
-function getPathScript($file,$role,$filename): string
+function getPathScript($file,$filename): string
 {
-    return '<script src="' .getPathPublicAbsolute($file) .'/'.$role.'/'.$filename.'js'.'"></script>';
+    return '<script src="' .getPathPublicAbsolute($file) .'/'.$filename.'.js'.'"></script>';
 }
 
 /**
@@ -50,5 +50,5 @@ function autoloader($className) {
  */
 function autoloadController($class_name,$path): void
 {
-    include '../controllers/'.$path.'/'.ucfirst($class_name) . '.php';
+        include '../controllers/'.$path.'/'.ucfirst($class_name) . '.php';
 }

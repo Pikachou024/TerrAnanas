@@ -1,107 +1,102 @@
 <?php
 
 $routes=[
-    /*
-     * Utilisateur sans être inscrit ( l'admin et les utilisateurs inscrits pourront parcourir ses pages)
-     */
+
     "home"=>[
         "controller"=>"Home",
         "action"=>"index",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
     "saisons"=>[
         "controller"=>"Saisons",
         "action"=>"index",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
     "recettes"=>[
         "controller"=>"Recettes",
         "action"=>"index",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
     "contact"=>[
         "controller"=>"Contact",
         "action"=>"contact",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
 
     "signup"=>[
         "controller"=>"Connexion",
         "action"=>"signup",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
     "login"=>[
         "controller"=>"Connexion",
         "action"=>"login",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
 
     "logout"=>[
         "controller"=>"Connexion",
         "action"=>"logout",
-        'path'=>"utilisateur",
+        'path'=>"user",
         "base_template"=>"base"
     ],
 
-    /*
-     * Clients (utilisateur inscrits et validés par l'admin)
-     */
     "client"=>[
         "controller"=>"Client",
         "action"=>"index",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
 
 
-    "articles_client"=>[
+    "articles_user"=>[
         "controller"=>"Commande",
         "action"=>"articles",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
     "add_panier"=>[
         "controller"=>"Commande",
         "action"=>"addPanier",
-        'path'=>"client",
+        'path'=>"user",
         "base_template"=>""
     ],
     "panier"=>[
         "controller"=>"Commande",
         "action"=>"panier",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
     "validation_commande"=>[
         "controller"=>"Commande",
         "action"=>"validationCommande",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
 
     "historique_commandes"=>[
         "controller"=>"Historique",
         "action"=>"commandes",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
     "one_commande"=>[
         "controller"=>"Historique",
         "action"=>"getOneCommande",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
-    "parametre_client"=>[
-        "controller"=>"Client",
+    "parametre_user"=>[
+        "controller"=>"user",
         "action"=>"parametre",
-        'path'=>"client",
-        "base_template"=>"base_client"
+        'path'=>"user",
+        "base_template"=>"base"
     ],
 
     /*
@@ -202,6 +197,12 @@ $routes=[
     "delete_message"=>[
         "controller"=>"MessageAdmin",
         "action"=>"deleteMessage",
+        'path'=>"admin",
+        "base_template"=>"base_admin"
+    ],
+    "edit_franco"=>[
+        "controller"=>"Admin",
+        "action"=>"franco",
         'path'=>"admin",
         "base_template"=>"base_admin"
     ]

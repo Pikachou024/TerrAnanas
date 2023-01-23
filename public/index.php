@@ -66,5 +66,3 @@ $baseTemplate = $router->getBaseTemplate($page);
 autoloadController($controllerName, $path);
 $controller = new $controllerName($path, $page, $baseTemplate);
 $controller->$actionName();
-
-//unset($_SESSION['panier']);

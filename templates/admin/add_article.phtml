@@ -3,7 +3,6 @@
 <form method="POST" action="add_article" class="formAddArticle">
 
     <div class="article">
-
         <div class="article-item">
             <label  for="label"> Article </label>
             <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
@@ -32,7 +31,6 @@
                     <option value="<?=$unite['id_unite'];?>"><?=$unite['unite'];?></option>
                 <?php endforeach; ?>
             </select>
-
         </div>
         <div class="article-item">
             <label class="" for="famille">Famille</label>
@@ -42,7 +40,6 @@
                     <option value="<?=$famille['id_famille'];?>"><?=$famille['famille'];?></option>
                 <?php endforeach; ?>
             </select>
-
         </div>
         <div class="article-item">
             <label  for="statut">Disponibilité</label>
@@ -57,7 +54,5 @@
             <button type="submit" >Ajouter</button>
         </div>
     </div>
-
-
 
 </form>

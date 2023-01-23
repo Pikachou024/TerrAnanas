@@ -11,36 +11,16 @@
 
 <?php if(isset($_SESSION['articleSearch'])) :?>
     <?php if(empty($_SESSION['articleSearch'])) :?>
-<!--        <div class="liste">-->
-<!--            <div class="liste-articleAdmin head">-->
-<!--                <div class="liste-articleAdmin-item etat"> Etat</div>-->
-<!--                <div class="liste-articleAdmin-item"> Article </div>-->
-<!--                <div class="liste-articleAdmin-item"> Origine</div>-->
-<!--                <div class="liste-articleAdmin-item"> Prix/Unitée</div>-->
-<!--                <div class="liste-articleAdmin-item"> Poids</div>-->
-<!--                <div class="liste-articleAdmin-item edit"> Editer</div>-->
-<!--                <div class="liste-articleAdmin-item delete"> Supprimer</div>-->
-<!--            </div>-->
 
             <div class="liste bg">
                 <div class="liste-article-aucun"> <p>Aucun article trouvé</p></div>
             </div>
-<!--        </div>-->
-
 
     <?php else : ?>
-<!--        <div class="liste">-->
-<!--            <div class="liste-articleAdmin head">-->
-<!--                <div class="liste-articleAdmin-item etat"> Etat</div>-->
-<!--                <div class="liste-articleAdmin-item"> Article </div>-->
-<!--                <div class="liste-articleAdmin-item"> Origine</div>-->
-<!--                <div class="liste-articleAdmin-item"> Prix/Unitée</div>-->
-<!--                <div class="liste-articleAdmin-item"> Poids</div>-->
-<!--                <div class="liste-articleAdmin-item edit"> Editer</div>-->
-<!--                <div class="liste-articleAdmin-item delete"> Supprimer</div>-->
-<!--            </div>-->
+
 
             <?php foreach ($_SESSION['articleSearch']  as $article): ?>
+<!--                --><?php //if($article['id_statutArticle'] != 3): ?>
                 <div class="liste-articleAdmin">
                     <div class="liste-articleAdmin-item etat"> <?= $article["statutArticle"];?> </div>
                     <div class="liste-articleAdmin-item"><?= $article["article"];?> </div>
@@ -54,23 +34,14 @@
                         <a class="liste-articleAdmin-item-link" href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
                     </div>
                 </div>
+<!--                --><?php //endif;?>
             <?php endforeach; ?>
-<!--        </div>-->
     <?php endif;?>
 
 <?php else : ?>
-<!--    <div class="liste">-->
-<!--        <div class="liste-articleAdmin head">-->
-<!--            <div class="liste-articleAdmin-item etat"> Etat</div>-->
-<!--            <div class="liste-articleAdmin-item"> Article </div>-->
-<!--            <div class="liste-articleAdmin-item"> Origine</div>-->
-<!--            <div class="liste-articleAdmin-item"> Prix/Unitée</div>-->
-<!--            <div class="liste-articleAdmin-item"> Poids</div>-->
-<!--            <div class="liste-articleAdmin-item edit"> Editer</div>-->
-<!--            <div class="liste-articleAdmin-item delete"> Supprimer</div>-->
-<!--        </div>-->
 
         <?php foreach ($params['articles'] as $article): ?>
+<!--    --><?php //if($article['id_statutArticle'] != 3): ?>
             <div class="liste-articleAdmin">
                 <div class="liste-articleAdmin-item etat"> <?= $article["statutArticle"];?> </div>
                 <div class="liste-articleAdmin-item"><?= $article["article"];?> </div>
@@ -84,7 +55,7 @@
                     <a class="liste-articleAdmin-item-link" href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
                 </div>
             </div>
-
+<!--        --><?php //endif;?>
         <?php endforeach; ?>
 
 
