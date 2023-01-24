@@ -1,5 +1,5 @@
 
-export class ArticleSearch {
+export class UserArticles {
 
     constructor() {
         this.initProperty();
@@ -14,11 +14,18 @@ export class ArticleSearch {
     initSelector(){
         this.buttonList = document.querySelector('.headerArticle-layout-list')
         this.buttonGrid = document.querySelector('.headerArticle-layout-grid')
-        this.listArticle = document.querySelectorAll('.liste-article');
-        this.pictureArticle = document.querySelectorAll('.liste-article-item.image');
+        this.listArticle = document.querySelectorAll('.article-liste');
+        this.pictureArticle = document.querySelectorAll('.article-liste-item.image');
         this.articleSearch = document.querySelector("#articleSearch");
         this.inputQuantite = document.querySelectorAll(".quantite>input");
         this.form = document.querySelector('#form-search');
+        this.inputField = document.querySelector('.headerArticle-search-form-input');
+        this.glass = document.querySelector('.headerArticle-search-form-glass');
+        this.headerArticle = document.querySelector(".headerArticle");
+        this.navbar = document.querySelector(".headerNavbar");
+        this.buttonMore = document.querySelectorAll(".buttonMore");
+        this.buttonLess = document.querySelectorAll(".buttonLess");
+
         // this.formArticle = document.querySelector('#form-article');
     }
 
@@ -26,18 +33,45 @@ export class ArticleSearch {
         this.inputQuantite.forEach(quantite => {
             quantite.addEventListener('change', event => {
                 this.stockQuantite[event.currentTarget.id] = event.currentTarget.value;
+                console.log("change ")
             });
         });
+        for (const more of this.buttonMore) {
+            more.addEventListener('click',(event) => {
+                this.id = event.currentTarget.dataset.id;
+
+                this.incrementQuantity(this.id)
+            });
+        }
+        for (const less of this.buttonLess) {
+            less.addEventListener('click',(event) => {
+                this.id = event.currentTarget.dataset.id;
+                this.decrementQuantity(this.id)
+            });
+        }
 
         this.articleSearch.addEventListener('keyup', this.search.bind(this));
         this.buttonList.addEventListener('click', this.toggleListView.bind(this, true));
         this.buttonGrid.addEventListener('click', this.toggleListView.bind(this, false));
+        this.glass.addEventListener('click', () => {
+            this.inputField.classList.toggle('visible');
+        });
+
+        window.addEventListener("scroll", (function() {
+            if (this.navbar.classList.contains('hide')) {
+                this.headerArticle.classList.add('changeTop');
+            } else {
+                this.headerArticle.classList.remove('changeTop');
+            }
+        }).bind(this));
+
+
         // this.formArticle.addEventListener('submit',this.addPanier.bind(this));
     }
 
     search(event) {
         event.preventDefault();
-        // let listArticle = document.querySelectorAll('.liste-article');
+        // let listArticle = document.querySelectorAll('.article-liste');
         let formData = new FormData(this.form);
         let container = document.querySelector('.templateListeArticle');
         let isListView = false;
@@ -53,16 +87,21 @@ export class ArticleSearch {
             .then(data => {
                 container.innerHTML = '';
                 container.innerHTML = data;
-                this.setlisteArticle('.liste-article')
+                // this.initSelector();
+                // this.init();
+                this.resetElements();
+                // this.setlisteArticle('.article-liste')
+                // this.listArticle
                 this.toggleListArticle(this.getlisteArticle(), isListView);
-                this.setpictureArticle('.liste-article-item.image');
+                // this.setpictureArticle('.article-liste-item.image');
                 this.togglePicture(this.getpictureArticle(),isListView);
-                this.setinputQuantite('.quantite>input')
-                for (const quantite of this.getinputQuantite()) {
-                    if (this.existId(this.stockQuantite, quantite.id)) {
-                        quantite.value = this.stockQuantite[quantite.id]
-                    }
-                }
+                // this.setinputQuantite('.quantite>input')
+
+                // for (const quantite of this.getinputQuantite()) {
+                //     if (this.existId(this.stockQuantite, quantite.id)) {
+                //         quantite.value = this.stockQuantite[quantite.id]
+                //     }
+                // }
             })
             .catch(error => console.error(error));
     }
@@ -70,9 +109,6 @@ export class ArticleSearch {
     existId(objet, cle) {
         return objet.hasOwnProperty(cle);
     }
-
-
-
 
     toggleListView(isListView) {
         this.buttonList.classList.toggle('select', isListView);
@@ -101,6 +137,19 @@ export class ArticleSearch {
         });
     }
 
+    incrementQuantity(id) {
+        this.input = document.getElementById(id);
+        this.input.value = parseInt(this.input.value) + 1;
+        this.stockQuantite[id] = this.input.value;
+    }
+
+    decrementQuantity(id) {
+        this.input = document.getElementById(id);
+        if (this.input.value > 0) {
+            this.input.value = parseInt(this.input.value) - 1;
+        }
+        this.stockQuantite[id] = this.input.value;
+    }
 
 
     // addPanier(event){
@@ -137,6 +186,49 @@ export class ArticleSearch {
 
     setinputQuantite(value) {
         this.inputQuantite = document.querySelectorAll(value);
+    }
+
+    getButtonMore() {
+        return this.buttonMore;
+    }
+
+    setButtonMore(value) {
+        this.buttonMore = document.querySelectorAll(value);
+    }
+    getButtonLess() {
+        return this.buttonLess;
+    }
+
+    setButtonLess(value) {
+        this.buttonLess = document.querySelectorAll(value);
+    }
+
+    resetElements(){
+        this.setlisteArticle('.article-liste');
+        this.setpictureArticle('.article-liste-item.image');
+        this.setinputQuantite('.quantite>input');
+        this.setButtonMore(".buttonMore");
+        this.setButtonLess(".buttonLess");
+
+
+        for (const more of this.getButtonMore()) {
+            more.addEventListener('click',(event) => {
+                this.id = event.currentTarget.dataset.id;
+
+                this.incrementQuantity(this.id)
+            });
+        }
+        for (const less of this.getButtonLess()) {
+            less.addEventListener('click',(event) => {
+                this.id = event.currentTarget.dataset.id;
+                this.decrementQuantity(this.id)
+            });
+        }
+        for (const quantite of this.getinputQuantite()) {
+            if (this.existId(this.stockQuantite, quantite.id)) {
+                quantite.value = this.stockQuantite[quantite.id]
+            }
+        }
     }
 }
 

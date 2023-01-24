@@ -1,20 +1,10 @@
-import { CustomAlert } from './modules/CustomAlert.js';
-import { ArticleSearch } from './modules/ArticleSearch.js';
-import { AdminArticles } from './modules/AdminArticle.js';
+// import { CustomAlert } from './modules/CustomAlert.js';
+import { UserArticles } from './modules/UserArticles.js';
 import { Navbar } from './modules/Navbar.js';
 
+// const customAlert = new CustomAlert();
+const navbar = new Navbar('headerNavbar')
 
-// const navbar = new Navbar()
-const customAlert = new CustomAlert();
-
-//script pour role client
-
-
-//script pour role admin
-if(window.location.pathname==='/TerrAnanas/articles_admin'){
-    const adminSearch = new AdminArticles();
+if(window.location.pathname==='/TerrAnanas/articles_client'){
+    const articles = new UserArticles();
 }
-else{
-    const articleSearch = new ArticleSearch();
-}
-console.log(window.location.pathname);

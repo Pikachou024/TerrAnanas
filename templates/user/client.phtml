@@ -1,63 +1,98 @@
-
-<div class="headerDate">
-    <div class="headerDate-livraison">
-        <h4 class=""><?=$params['dateDuJour']?></h4>
-        <p>Livraison du jour : Voir</p>
+<section class="hearderPage">
+    <div class="hearderPage-item">
+        <h3 class="hearderPage-item-title">Votre compte</h3>
     </div>
-</div>
-
-<div class="templateListeCommande">
-
-    <div class="liste">
-        <h4 class="headerTitle">COMMANDE EN ATTENTE</h4>
-        <div class="liste-commande head">
-                <div class="liste-commande-item">COMMANDE N°</div>
-                <div class="liste-commande-item">DATE COMMANDE</div>
-                <div class="liste-commande-item">DATE LIVRAISON</div>
-                <div class="liste-commande-item">MONTANT</div>
-                <div class="liste-commande-item detail">DETAILS</div>
-            </div>
-        <?php if($params['commandeEnAttente']) : ?>
-            <?php foreach ($params['commandeEnAttente'] as $commandeAttente): ?>
-                <div class="liste-commande" >
-                    <div class="liste-commande-item" ><?=$commandeAttente['id_commande'];?></div>
-                    <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commandeAttente['date_commande']));?></div>
-                    <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commandeAttente['date_livraison'])) ;?></div>
-                    <div class="liste-commande-item" ><?=($commandeAttente['montant']/100) ." €" ;?></div>
-                    <div class="liste-commande-item detail" ><a href="<?='one_commande?id='.$commandeAttente["id_commande"];?>"><i class="fa-solid fa-eye"></i></a> </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else:?>
-            <div class="emptyCommande">
-                <p>Aucune commande</p>
-            </div>
-        <?php endif;?>
-    </div>
+</section>
 
 
-    <div class="liste">
-        <h4 class="headerTitle">COMMANDE VALIDEE</h4>
-        <div class="liste-commande head">
-            <div class="liste-commande-item">COMMANDE N°</div>
-            <div class="liste-commande-item">DATE COMMANDE</div>
-            <div class="liste-commande-item">DATE LIVRAISON</div>
-            <div class="liste-commande-item">MONTANT</div>
-            <div class="liste-commande-item detail">DETAILS</div>
+
+<section class="liste">
+    <a class="liste-link" href="articles_client">
+        <div class="liste-link-item">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p>Passer une commande</p>
         </div>
-        <?php if($params['commandeValidee']) : ?>
-        <?php foreach ($params['commandeValidee'] as $commandeValidee): ?>
-            <div class="liste-commande" >
-                <div class="liste-commande-item" ><?=$commandeValidee['id_commande'];?></div>
-                <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commandeValidee['date_commande']));?></div>
-                <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commandeValidee['date_livraison'])) ;?></div>
-                <div class="liste-commande-item" ><?=($commandeValidee['montant']/100) ." €" ;?></div>
-                <div class="liste-commande-item detail" ><a href="<?='one_commande?id='.$commandeValidee["id_commande"];?>"><i class="fa-solid fa-eye"></i></a> </div>
-            </div>
-        <?php endforeach; ?>
-        <?php else:?>
-            <div class="emptyCommande">
-                <p>Aucune commande</p>
-            </div>
-        <?php endif;?>
-    </div>
-</div>
+    </a>
+
+    <a class="liste-link" href="historique_commandes">
+        <div class="liste-link-item">
+            <i class="fa-solid fa-clipboard-list"></i>
+<!--            <i class="fa-regular fa-clipboard"></i>-->
+            <p>Mes commandes</p>
+        </div>
+    </a>
+
+    <a class="liste-link" href="parametre_client">
+        <div class="liste-link-item">
+            <i class="fa-solid fa-address-card"></i>
+            <p>Mes informations personnelles</p>
+        </div>
+    </a>
+</section>
+
+
+
+
+<!---->
+<!--<div class="headerDate">-->
+<!--    <div class="headerDate-livraison">-->
+<!--        <h4 class="">--><?//=$params['dateDuJour']?><!--</h4>-->
+<!--        <p>Livraison du jour : Voir</p>-->
+<!--    </div>-->
+<!--</div>-->
+<!---->
+<!--<div class="templateListeCommande">-->
+<!---->
+<!--    <div class="liste">-->
+<!--        <h4 class="headerTitle">COMMANDE EN ATTENTE</h4>-->
+<!--        <div class="liste-commande head">-->
+<!--                <div class="liste-commande-item">COMMANDE N°</div>-->
+<!--                <div class="liste-commande-item">DATE COMMANDE</div>-->
+<!--                <div class="liste-commande-item">DATE LIVRAISON</div>-->
+<!--                <div class="liste-commande-item">MONTANT</div>-->
+<!--                <div class="liste-commande-item detail">DETAILS</div>-->
+<!--            </div>-->
+<!--        --><?php //if($params['commandeEnAttente']) : ?>
+<!--            --><?php //foreach ($params['commandeEnAttente'] as $commandeAttente): ?>
+<!--                <div class="liste-commande" >-->
+<!--                    <div class="liste-commande-item" >--><?//=$commandeAttente['id_commande'];?><!--</div>-->
+<!--                    <div class="liste-commande-item" >--><?//=date('d/m/y', strtotime($commandeAttente['date_commande']));?><!--</div>-->
+<!--                    <div class="liste-commande-item" >--><?//=date('d/m/y', strtotime($commandeAttente['date_livraison'])) ;?><!--</div>-->
+<!--                    <div class="liste-commande-item" >--><?//=($commandeAttente['montant']/100) ." €" ;?><!--</div>-->
+<!--                    <div class="liste-commande-item detail" ><a href="--><?//='one_commande?id='.$commandeAttente["id_commande"];?><!--"><i class="fa-solid fa-eye"></i></a> </div>-->
+<!--                </div>-->
+<!--            --><?php //endforeach; ?>
+<!--        --><?php //else:?>
+<!--            <div class="emptyCommande">-->
+<!--                <p>Aucune commande</p>-->
+<!--            </div>-->
+<!--        --><?php //endif;?>
+<!--    </div>-->
+<!---->
+<!---->
+<!--    <div class="liste">-->
+<!--        <h4 class="headerTitle">COMMANDE VALIDEE</h4>-->
+<!--        <div class="liste-commande head">-->
+<!--            <div class="liste-commande-item">COMMANDE N°</div>-->
+<!--            <div class="liste-commande-item">DATE COMMANDE</div>-->
+<!--            <div class="liste-commande-item">DATE LIVRAISON</div>-->
+<!--            <div class="liste-commande-item">MONTANT</div>-->
+<!--            <div class="liste-commande-item detail">DETAILS</div>-->
+<!--        </div>-->
+<!--        --><?php //if($params['commandeValidee']) : ?>
+<!--        --><?php //foreach ($params['commandeValidee'] as $commandeValidee): ?>
+<!--            <div class="liste-commande" >-->
+<!--                <div class="liste-commande-item" >--><?//=$commandeValidee['id_commande'];?><!--</div>-->
+<!--                <div class="liste-commande-item" >--><?//=date('d/m/y', strtotime($commandeValidee['date_commande']));?><!--</div>-->
+<!--                <div class="liste-commande-item" >--><?//=date('d/m/y', strtotime($commandeValidee['date_livraison'])) ;?><!--</div>-->
+<!--                <div class="liste-commande-item" >--><?//=($commandeValidee['montant']/100) ." €" ;?><!--</div>-->
+<!--                <div class="liste-commande-item detail" ><a href="--><?//='one_commande?id='.$commandeValidee["id_commande"];?><!--"><i class="fa-solid fa-eye"></i></a> </div>-->
+<!--            </div>-->
+<!--        --><?php //endforeach; ?>
+<!--        --><?php //else:?>
+<!--            <div class="emptyCommande">-->
+<!--                <p>Aucune commande</p>-->
+<!--            </div>-->
+<!--        --><?php //endif;?>
+<!--    </div>-->
+<!--</div>-->

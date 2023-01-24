@@ -67,7 +67,7 @@ export class Navbar
         if(this.navbar){
             window.addEventListener('scroll', (function() {
                 const currentScroll = window.pageYOffset;
-                if (currentScroll > previousScroll) {
+                if (currentScroll > this.previousScroll) {
                     this.navbar.classList.add('hide');
                 } else {
                     this.navbar.classList.remove('hide');

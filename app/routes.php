@@ -55,7 +55,7 @@ $routes=[
     ],
 
 
-    "articles_user"=>[
+    "articles_client"=>[
         "controller"=>"Commande",
         "action"=>"articles",
         'path'=>"user",

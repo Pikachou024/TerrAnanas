@@ -1,7 +1,6 @@
 @import 'variables';
 @import 'flashMessage';
 
-
 @import 'navbar';
 @import 'headPage';
 @import 'formulaire';
@@ -9,7 +8,10 @@
 @import 'calendrier';
 @import 'recettes';
 
-//@import 'listeArticle';
+@import 'client';
+
+@import 'listeArticle';
+
 //@import 'panier';
 //@import 'commande';
 
@@ -24,6 +26,17 @@ body {
     padding: 0;
 }
 
+//body {
+//    display: grid;
+//    grid-template-rows: 1fr auto;
+//    min-height: 100vh;
+//    grid-row-gap: 1em;
+//}
+//
+//footer {
+//    grid-row: 2;
+//}
+
 ul {
     list-style-type: none;
 }
@@ -32,4 +45,21 @@ h1,
 h2,
 h3 {
     font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+main {
+    width: 100%;
+    background-color: $whiteColor;
+}
+
+footer {
+    width: 100%;
 }
