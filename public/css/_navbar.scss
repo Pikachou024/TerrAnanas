@@ -104,18 +104,21 @@
     margin: 0;
     position: absolute;
     z-index: 1;
-    padding: 30% 0 0 0;
+    padding: 0;
     top: $heightNavbarMobile;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: $altSecond;
+    background-color: #F1BB13;
     text-align: center;
     opacity: 0;
     transform: translateX(-200%);
     transition: all 0.5s;
     font-size: 24px;
-
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
     &.active {
       transform: translateX(0);
       opacity: 1;
@@ -125,6 +128,7 @@
       padding-top: 10px;
       padding-bottom: 10px;
       border-bottom: black;
+      transform: translateY(-$heightNavbarMobile);
     }
   }
 
@@ -133,7 +137,7 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    margin-left: 20px;
+    margin-left: 10px;
   }
   &-function-burger:hover{
     cursor: pointer;
@@ -145,7 +149,7 @@
 
   }
   &-info-list{
-    margin : 0 20px;
+    margin : 0 10px;
     display: flex;
     flex-direction: row;
     padding-right: 0;
@@ -182,39 +186,48 @@
         cursor: pointer;
       }
       &-dropdownContent{
-        background-color: $altSecond;
+        background-color: #F1BB13;
         position: absolute;
         right: 0;
-        padding: 100px 0 0 0;
+        padding: 0;
         top: $heightNavbarMobile;
         width: 100vw;
         height: 100vh;
         z-index: 1;
         opacity: 0;
         text-align: center;
-
         transform: translateX(200%);
         transition: all 0.5s;
         font-size: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
       }
       &-dropdownContent > li {
         padding: 10px;
-
+        transform: translateY(-35px);
       }
       &-dropdownContent.active{
         opacity: 1;
         transform: translateX(0);
       }
       .logout{
-        background-color: $firstLightColor;
-
+        background-color: $altColor;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50px);
+        //transform: translateY(-50px);
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
       }
       .logout>a{
-        color: $firstColor;
+        color: $whiteColor;
       }
       .logout>a:hover{
-        color: $altColor;
+        border-bottom: none;
       }
     }
   }
@@ -289,6 +302,7 @@
         &-item{
           padding-right: 15px;
           padding-left: 15px;
+          transform: translateY(0);
         }
       }
     }
@@ -301,7 +315,9 @@
 
       &-list {
         padding: 0;
+        margin: 0 20px;
         &-item {
+          //transform: translateY(0);
           &-dropdownContent {
             background-color: $altSecond;
             right: 0;
@@ -319,13 +335,18 @@
             justify-content: center;
             font-size: 16px;
           }
-
+          //&-dropdownContent > li {
+          //  transform: translateY(0);
+          //}
           &-dropdownContent.active{
             opacity: 1;
             transform: translateY(0);
           }
         }
       }
+    }
+    .logout{
+      transform: translateX(-50%) translateY(0);
     }
   }
 
@@ -353,6 +374,7 @@
 
       &-list{
         font-size: 20px;
+        z-index: 5;
 
         &-item{
           padding-right: 15px;
@@ -380,20 +402,28 @@
               font-size: 16px;
 
             }
-
+            &-dropdownContent > li {
+              transform: translateY(0);
+            }
             &-dropdownContent.active{
               opacity: 1;
               transform: translateY(0);
+              z-index: 6;
             }
           }
           .logout{
             background-color: initial;
+            position: static;
+            transform: none;
+            width: initial;
+            padding: 5px;
           }
           .logout>a{
-            color: $secondLightColor;
+            color: $altColor;
           }
           .logout>a:hover{
             color: $altColor;
+            border-bottom: 2px solid $secondLightColor;
           }
       }
     }
@@ -407,4 +437,7 @@
     margin-left: auto;
     margin-right: auto;
   }
+}
+.fa-solid.fa-caret-down.color{
+  color:$altColor
 }

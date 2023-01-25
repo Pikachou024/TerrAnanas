@@ -7,13 +7,10 @@
 @import 'home';
 @import 'calendrier';
 @import 'recettes';
-
 @import 'client';
-
 @import 'listeArticle';
-
-//@import 'panier';
-//@import 'commande';
+@import 'panier';
+@import 'commandes';
 
 
 //font-family: Spiegel, "Arial Narrow", Arial, sans-serif;
@@ -25,17 +22,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
-//body {
-//    display: grid;
-//    grid-template-rows: 1fr auto;
-//    min-height: 100vh;
-//    grid-row-gap: 1em;
-//}
-//
-//footer {
-//    grid-row: 2;
-//}
 
 ul {
     list-style-type: none;

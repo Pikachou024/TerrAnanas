@@ -130,16 +130,18 @@ class Commande extends AbstractController
 
         $params=[];
         $francoModel = new FrancoModel();
-        $franco = $francoModel->getFranco();
-        $franco = $franco[0]['franco'];
+        $franco = $francoModel->getFranco(1);
+        $franco = $franco['franco'];
 
         $params['franco'] = $franco;
 
         if(empty($_SESSION['panier'])){
             $params['message'] = "Votre panier ne contient actuellement aucun article.";
+            $params['montantPanier']=0;
         }
         else{
             $params['articles']=$_SESSION['panier'];
+            $params['montantPanier'] = montantTotal($_SESSION['panier']);
         }
 
         $date = new DateTimeImmutable();
@@ -164,8 +166,8 @@ class Commande extends AbstractController
 
         $commandeModel = new CommandeModel();
         $francoModel = new FrancoModel();
-        $franco = $francoModel->getFranco();
-        $franco = $franco[0]['franco'];
+        $franco = $francoModel->getFranco(1);
+        $franco = $franco['franco'];
 
         /**
          * On récupère l'id de l'utilisateur connecté
@@ -181,14 +183,7 @@ class Commande extends AbstractController
             exit;
         }
 
-        /**
-         * On redirige sur la page "panier" si le montant du panier n'atteint pas le franco
-         */
-        if(montantTotal($_SESSION['panier']) < $franco){
-            addFlashMessage("Le montant du panier doit être supérieur à ".$franco."€",'error');
-            header('location:panier');
-            exit;
-        }
+
 
         /**
          * Validation de la commande
@@ -216,6 +211,17 @@ class Commande extends AbstractController
             for($i=0 ; $i<(count($_SESSION['panier'])) ; $i++) {
                 modifierQTeArticle($idArticle[$i], $quantite[$i]);
             }
+
+
+            /**
+             * On redirige sur la page "panier" si le montant du panier n'atteint pas le franco
+             */
+            if(montantTotal($_SESSION['panier']) < $franco){
+                addFlashMessage("Le montant du panier doit être supérieur à ".$franco."€",'error');
+                header('location:panier');
+                exit;
+            }
+
             $montant = montantTotal($_SESSION['panier'])*100;
 
             /**

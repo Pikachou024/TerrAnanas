@@ -238,9 +238,6 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 50px;
   padding: 10px 0;
   background-color: #FFFAE2;
 }
@@ -263,6 +260,7 @@ a:hover {
   outline: none;
 }
 .headerCommande-statut {
+  text-align: center;
   margin: 5px 5%;
 }
 .headerCommande-statut select {

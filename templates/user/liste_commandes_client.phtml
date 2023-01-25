@@ -1,32 +1,32 @@
-<div class="liste">
-    <div class="liste-commande head">
-        <div class="liste-commande-item"> Commande </div>
-        <div class="liste-commande-item"> Montant </div>
-        <div class="liste-commande-item"> Date commande </div>
-        <div class="liste-commande-item"> Date livraison </div>
-        <div class="liste-commande-item detail"> Détails </div>
+<div class="commande">
+    <div class="commande-liste head">
+        <div class="commande-liste-item"> Commande </div>
+        <div class="commande-liste-item"> Date commande </div>
+        <div class="commande-liste-item"> Date livraison </div>
+        <div class="commande-liste-item"> Montant </div>
+        <div class="commande-liste-item detail"> Détails </div>
     </div>
 
 
     <?php if($params['commandes']):?>
     <?php if(empty($_SESSION['commandeByDate'])) :?>
             <?php foreach ($params['commandes'] as $commande): ?>
-                <div class="liste-commande" >
-                    <div class="liste-commande-item" ><?=$commande['id_commande'];?></div>
-                    <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?> </div>
-                    <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
-                    <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
-                    <div class="liste-commande-item detail"><a href="<?='one_commande?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a></div>
+                <div class="commande-liste" >
+                    <div class="commande-liste-item" ><?=$commande['id_commande'];?></div>
+                    <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
+                    <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
+                    <div class="commande-liste-item" ><?=($commande['montant']/100) ." €" ;?> </div>
+                    <div class="commande-liste-item detail"><a href="<?='one_commande?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a></div>
                 </div>
             <?php endforeach; ?>
     <?php else :?>
             <?php foreach ($_SESSION['commandeByDate'] as $commande): ?>
-                <div class="liste-commande" >
-                    <div class="liste-commande-item" ><?=$commande['id_commande'];?></div>
-                    <div class="liste-commande-item" ><?=$commande['montant'] ." €" ;?> </div>
-                    <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
-                    <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
-                    <div class="liste-commande-item detail"> <a href="<?='one_commande?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a> </div>
+                <div class="commande-liste" >
+                    <div class="commande-liste-item" ><?=$commande['id_commande'];?></div>
+                    <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
+                    <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
+                    <div class="commande-liste-item" ><?=$commande['montant'] ." €" ;?> </div>
+                    <div class="commande-liste-item detail"> <a href="<?='one_commande?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a> </div>
                 </div>
             <?php endforeach; ?>
     <?php endif;?>

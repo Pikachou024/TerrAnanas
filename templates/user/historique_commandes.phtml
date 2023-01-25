@@ -1,6 +1,10 @@
-<h3 class="titleCommande"> Mes commandes </h3>
+<section class="hearderPage">
+    <div class="hearderPage-item">
+        <h3 class="hearderPage-item-title">Mes commandes</h3>
+    </div>
+</section>
 
-<form method="post" action="historique_commandes" id="form-commande">
+<form method="post" action="historique_commandes" id="form-commande" class="formCommande">
     <div class="headerCommande">
         <div class="headerCommande-date">
             <?php if(empty($_SESSION['commandeByDate'])) :?>
@@ -8,6 +12,7 @@
             <?php else : ?>
                 <input type="date" class="form-control" name="searchDate" value="<?= $params['date'];?>"id="reservationDate">
             <?php endif;?>
+            <input type="reset" class="buttonReset" value="Réinitialiser">
         </div>
 
         <div class="headerCommande-statut">
@@ -37,7 +42,7 @@
 
 
 
-        <div class="templateListeCommande">
+        <div class="templateListe">
 
                     <?php $this->render($this->file, 'liste_commandes_client', '', $params);?>
 
@@ -81,5 +86,5 @@
 <!--                --><?php //endif;?>
 
 
-<script src="http://localhost/TerrAnanas/public/js/commandes_client.js" defer></script>
+<!--<script src="http://localhost/TerrAnanas/public/js/commandes_client.js" defer></script>-->
 

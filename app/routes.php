@@ -26,7 +26,6 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-
     "signup"=>[
         "controller"=>"Connexion",
         "action"=>"signup",
@@ -46,15 +45,12 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-
     "client"=>[
         "controller"=>"Client",
         "action"=>"index",
         'path'=>"user",
         "base_template"=>"base"
     ],
-
-
     "articles_client"=>[
         "controller"=>"Commande",
         "action"=>"articles",
@@ -79,7 +75,6 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-
     "historique_commandes"=>[
         "controller"=>"Historique",
         "action"=>"commandes",
@@ -92,8 +87,8 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-    "parametre_user"=>[
-        "controller"=>"user",
+    "parametre_client"=>[
+        "controller"=>"client",
         "action"=>"parametre",
         'path'=>"user",
         "base_template"=>"base"

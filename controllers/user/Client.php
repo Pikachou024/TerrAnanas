@@ -33,21 +33,21 @@ class Client extends AbstractController
     }
 
     function parametre(){
-        $params=[];
+//        $params=[];
         $roleUser = getUserRole();
 
-//        if($roleUser != "client") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($roleUser != "client") {
+            http_response_code(403);
+            echo("Désolé la page n'existe pas");
+            exit;
+        }
 
         $error=[];
         $id=getUserId();
         $userModel = new UserModel();
         $user = $userModel->getOneUser($id);
 
-        $society = $user['society'];
+        $name = $user['client'];
         $address = $user['address'];
         $postal = $user['postal'];
         $city = $user['city'];
@@ -57,7 +57,7 @@ class Client extends AbstractController
 
         if(!empty($_POST)){
 
-            $society = strip_tags(trim($_POST['society']));
+            $name = strip_tags(trim($_POST['client']));
             $address = strip_tags(trim($_POST['address']));
             $postal = strip_tags(trim($_POST['postal']));
             $city = strip_tags(trim($_POST['city']));
@@ -66,7 +66,7 @@ class Client extends AbstractController
             $email = strip_tags(trim($_POST['email']));
             $status = $user['id_status'];
 
-            if(!$society){
+            if(!$name){
                 $error['society']="Veuillez remplir le champ";
             }
             if(!$address){
@@ -82,13 +82,13 @@ class Client extends AbstractController
                 $error['email']="Veuillez remplir le champ";
             }
             if(empty($error)){
-                $userModel->editUser($society,$address,$city,$postal,$contact,$phone,$email,$status,$id);
+                $userModel->editUser($name,$address,$city,$postal,$contact,$phone,$email,$status,$id);
                 header('location: parametre_client');
                 exit;
             }
         }
         $params = [
-            'society' => $society,
+            'client' => $name,
             'address' => $address,
             'city' => $city,
             'postal' => $postal,

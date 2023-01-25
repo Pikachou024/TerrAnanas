@@ -5,22 +5,22 @@ const cross = document.getElementById('cross');
 let dropDown = document.querySelector('.fa-caret-down');
 let dropdownContent = document.querySelector('.headerNavbar-info-list-item-dropdownContent');
 
-let flashSuccess = document.querySelector(".flash-success");
-if (flashSuccess) {
-    setTimeout(function() {
-        flashSuccess.style.opacity = "0";
-        flashSuccess.parentNode.removeChild(flashSuccess);
-
-    }, 3000);
-}
-let flashError = document.querySelector(".flash-error");
-if (flashError) {
-    setTimeout(function() {
-
-        flashError.style.opacity = "0";
-        }, 3000);
-    flashError.parentNode.removeChild(flashError);
-}
+// let flashSuccess = document.querySelector(".flash-success");
+// if (flashSuccess) {
+//     setTimeout(function() {
+//         flashSuccess.style.opacity = "0";
+//         flashSuccess.parentNode.removeChild(flashSuccess);
+//
+//     }, 3000);
+// }
+// let flashError = document.querySelector(".flash-error");
+// if (flashError) {
+//     setTimeout(function() {
+//
+//         flashError.style.opacity = "0";
+//         }, 3000);
+//     flashError.parentNode.removeChild(flashError);
+// }
 menuBtn.addEventListener('click', () => {
     if (menu.classList.contains('active')) {
         menu.classList.remove('active');

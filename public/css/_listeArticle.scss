@@ -80,9 +80,12 @@
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
-    padding: 10px 0 10px 0;
+    padding: 10px 5px;
+    text-align: center;
     &-item{
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     &-item.image {
       display: none;
@@ -90,6 +93,25 @@
     &-item.quantite{
       grid-area: 3 / 1 / 4 / 3;
       text-align: center;
+
+      .buttonLess, .buttonMore {
+        color: $whiteColor;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .buttonLess{
+        background-color: $altColor;
+      }
+      .buttonMore{
+        background-color: $firstColor;
+      }
+      //.buttonLess:active, .buttonMore:active {
+      //  background-color: #3e8e41;
+      //}
     }
     &-item.quantite>input{
       width: 20%;
@@ -115,7 +137,6 @@
     }
 
   }
-
 }
 .liste-button{
   display: flex;
@@ -123,11 +144,8 @@
   position: sticky;
   bottom: 0;
   background-color: $whiteColor;
-
 }
-
 .liste-button>button{
-
   background-color: $firstColor;
   border-radius: 0 20px 0 20px;
   padding: 10px 20px;
@@ -149,7 +167,6 @@
   box-shadow: none;
 }
 
-
 .article-liste:nth-child(2n){
   background: $whiteColor;
 }
@@ -158,17 +175,21 @@
 }
 .article-liste.head{
   max-height: 100px;
+  background: $whiteColor;
+  border-bottom: 2px solid $secondColor;
+  font-weight: bold;
   .article-liste-item p{
     margin: 0;
   }
 }
+
 .emptyPanier{
   padding-bottom: 30px;
   padding-top: 30px;
   text-align: center;
   font-size: 20px;
 }
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 640px) {
   .article-liste-item {
     display: block;
   }
@@ -255,6 +276,10 @@
     &-article>div{
       margin-bottom: auto;
     }
+    .article-liste.head{
+      background: $whiteColor;
+
+    }
   }
   .headerArticle-layout-grid,.headerArticle-layout-list{
     margin-left: 10px;
@@ -301,9 +326,9 @@
   .article-liste-item.image.hide {
     display: none;
   }
-  .article-liste.head{
-    background-color: #F29F05;
-  }
+  //.article-liste.head{
+  //  background-color: #F29F05;
+  //}
 }
 
 .visible{

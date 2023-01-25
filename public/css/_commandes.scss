@@ -1,29 +1,12 @@
-/*
-  Commande
- */
-.titleCommande{
-  color: $secondColor;
-  font-size: 24px;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-weight: bold;
-  margin: 0;
-}
-.formCommande{
-  position: sticky;
-  top: 50px;
-  background-color: #FFFAE2;
-  padding-top: 15px;
-}
+
+
 .headerCommande{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  //position: sticky;
-  //top: 50px;
+
   padding: 10px 0;
-  background-color: $secondLightColor;
+  background-color: $whiteColor;
 
   &-date{
     text-align: center;
@@ -45,32 +28,33 @@
   }
 
   &-statut{
-    //display: flex;
-    //align-items: center;
     text-align: center;
-    //justify-content: center;
     margin: 5px 5%;
 
-      select{
-        background-color: $whiteColor;
-        padding: 10px;
-        font-size: 1rem;
-        border-radius: 5px;
-        border: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        appearance: none;
-      }
-      select:focus {
-        outline: none;
-      }
+    select{
+      background-color: $whiteColor;
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      appearance: none;
+    }
+    select:focus {
+      outline: none;
+    }
 
   }
 }
 
-.liste{
-  //margin-bottom: 30px;
 
-  &-commande{
+.commande{
+  //margin-bottom: 30px;
+  max-width: 1200px;
+  margin: 20px auto;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  &-liste{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -82,21 +66,23 @@
       margin-top: auto;
       margin-bottom: auto;
     }
-    &-item.detail, {
+    &-item.detail {
       grid-area: 3 / 1 / 4 / 3;
       text-align: center;
+      a{
+        text-decoration: none;
+        .fa-eye{
+          display: block;
+          margin: 0;
+        }
+      }
+      a:link{
+
+      }
     }
-    &-item.action{
-      grid-area: 3 / 1 / 4 / 3;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr;
-      grid-column-gap: 10px;
-      //grid-row-gap: 0px;
-      text-align: center;
-    }
+
   }
-  &-commande.head{
+  &-liste.head{
     background-color: $whiteColor;
     font-weight: bold;
     max-height: 120px;
@@ -113,14 +99,14 @@
   padding: 10px 0;
   background-color: $whiteColor;
 }
-.liste-commande:nth-child(2n){
+.commande-liste:nth-child(2n){
   background: $firstLightColor;
 }
-.liste-commande:nth-child(2n+1){
+.commande-liste:nth-child(2n+1){
   background: $whiteColor;
 }
 
-.liste-commande-item a > .fa-solid {
+.commande-liste-item a > .fa-solid {
   font-size: 18px;
   text-align: center;
   color: $secondColor;
@@ -263,8 +249,8 @@
     //background-color: $secondLightColor;
 
   }
-  .liste{
-    &-commande{
+  .commande{
+    &-liste{
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-template-rows: 1fr;
@@ -279,17 +265,18 @@
       }
       &-item.detail{
         grid-area: initial;
-      }
-      &-item.action{
-        grid-area: initial;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 10px;
         text-align: center;
-
       }
+      //&-item.detail{
+      //  grid-area: initial;
+      //  display: grid;
+      //  grid-template-columns: 1fr;
+      //  grid-template-rows: repeat(2, 1fr);
+      //  grid-column-gap: 0px;
+      //  grid-row-gap: 10px;
+      //  text-align: center;
+      //
+      //}
     }
 
   }
@@ -363,13 +350,13 @@
 }
 
 @media screen and (min-width: 840px) {
-  .liste-commande-item.action{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-  }
+  //.commande-liste-item.detail{
+  //  display: grid;
+  //  grid-template-columns: repeat(2, 1fr);
+  //  grid-template-rows: 1fr;
+  //  grid-column-gap: 0px;
+  //  grid-row-gap: 0px;
+  //}
 
 
 }
@@ -386,26 +373,3 @@
 
   }
 }
-
-//.headerDate{
-//  display: flex;
-//  flex-direction: column;
-//  align-items: center;
-//  text-align: center;
-//  &-commande, &-livraison, &-inscription{
-//    display: inline-block;
-//    margin-top: 10px;
-//    margin-bottom: 15px;
-//    padding: 0 10px;
-//    background-color: $whiteColor;
-//    box-shadow: 0 5px 4px rgba(0,0,0,0.2);
-//  }
-//  &-commande>h4, &-livraison>h4, &-inscription>h4{
-//    font-size: 20px;
-//    color: $secondColor;
-//    margin: 10px 0;
-//  }
-//  &-commande>p, &-livraison>p,&-inscription>p{
-//    margin: 10px 0;
-//  }
-//}

@@ -1,41 +1,68 @@
-.headerPanier{
-  background-color: $secondLightColor;
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-item{
+    text-align: center;
+    margin: 10px ;
+    &-title{
+      color: $secondColor;
+      margin: 0;
+    }
+    &-texte{
+      margin: 5px 0;
+    }
+  }
+}
+
+.validation{
+  background-color: $whiteColor;
   position: sticky;
-  top: 50px;
+  bottom: 0;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 5px;
-  &-label{
-    font-size: 14px;
-  }
-  &-select{
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 12px;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
-    appearance: none;
-    background-color: #FDFDFD;
-  }
-  &-select:hover{
-    cursor: pointer;
-  }
-  &-select option{
-    font-size: 14px;
-    padding: 5px;
+  &-date{
+    &-label{
+      font-size: 14px;
+    }
+    &-select{
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 12px;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+      appearance: none;
+      background-color: #FDFDFD;
+    }
+    &-select:hover{
+      cursor: pointer;
+    }
+    &-select option{
+      font-size: 14px;
+      padding: 5px;
+    }
+
   }
   &-button>button{
-    background-color: $firstColor;
-    color: $firstLightColor;
+    background-color: #004E0B;
+    border-radius: 0 20px 0 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    display: inline-block;
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    padding: 10px;
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    text-align: center;
+    color: #E2F3CA;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+  }
+
+  &-button>button:hover{
+    cursor: pointer;
+    border-radius: 0 ;
+    background-color: $firstLightColor;
+    color: $firstColor;
   }
 }
 .buttonPanier{
@@ -43,20 +70,68 @@
   flex-direction: row;
   justify-content: center;
   margin: 10px 0;
-  &-retour>button , &-vider>button{
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    padding: 10px;
-    font-size: 14px;
-    margin : 5px 20px ;
+  &-retour-link , &-vider-link{
     text-align: center;
+    border-radius: 0 20px 0 20px;
+    margin: 0 10px;
+    padding: 10px;
+    display: inline-block;
+    text-decoration: none;
+    color: #E2F3CA;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-radius 0.3s ease-in-out;
   }
-  &-retour>button{
+  &-retour-link{
     background-color: $firstColor;
+    text-decoration: none;
+    color: $firstLightColor;
   }
-  &-vider>button{
+  &-retour-link:link{
+    color: $firstLightColor;
+  }
+  &-retour-link:visited{
+    color: $firstLightColor;
+  }
+  &-retour-link:hover{
+    background-color: $firstLightColor;
+    color:$firstColor;
+    border: 0;
+  }
+
+  &-retour-link:hover{
+    cursor: pointer;
+    border-radius: 0 ;
+    background-color: $firstLightColor;
+    color: $firstColor;
+  }
+
+  &-vider-link{
     background-color: $altColor;
-    color: #1b1e21;
+    text-decoration: none;
+    color: $whiteColor;
+  }
+  &-vider-link:link{
+    color: $whiteColor;
+  }
+  &-vider-link:visited{
+    color: $whiteColor;
+  }
+  &-vider-link:hover{
+    background-color: $altColor;
+    color:$whiteColor;
+    border-radius: 0;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .info {
+    flex-direction: row;
+    width: 500px;
+    margin: auto;
+    &-item{
+      margin: 30px;
+    }
+    //justify-content: center;
+    //align-items: center;
   }
 }

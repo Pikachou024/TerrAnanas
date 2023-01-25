@@ -41,8 +41,10 @@ export class Navbar
 
                 if (this.dropdownContent.classList.contains('active')) {
                     this.dropdownContent.classList.remove('active');
+                    this.dropDown.classList.remove('color');
                 }else {
                     this.dropdownContent.classList.add('active');
+                    this.dropDown.classList.add('color');
                     this.menu.classList.remove('active');
 
                     if(this.burger.classList.contains('hide')){

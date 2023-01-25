@@ -1,77 +1,90 @@
-<main class="p-0 pt-md-4 pb-md-4">
-    <div class="container border-custom bg-second-background-color ">
-        <div class="row">
-            <div class="col-12 p-0">
-                <h3 class="text-center text-red mt-2 mb-3"> PARAMETRE </h3>
-                <form method="POST" action="<?='parametre_client';?>">
-                    <div class="container">
-                        <div class="row mt-2">
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="society">Nom de la société</label>
-                                <input type="text" class="form-control" id="society" name="society" value="<?=$params['society'];?>">
-                                <?php if (isset($params['error']['society'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['society']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="address">Adresse</label>
-                                <input type="text" class="form-control" id="address" name="address" value="<?=$params['address'];?>">
-                                <?php if (isset($params['error']['address'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['address']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="city">Ville</label>
-                                <input type="text" class="form-control" id="city" name="city" value="<?=$params['city'];?>">
-                                <?php if (isset($params['error']['city'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['city']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="postal">Code postal</label>
-                                <input type="text" class="form-control" id="postal" name="postal" value="<?=$params['postal'];?>">
-                                <?php if (isset($params['error']['postal'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['postal']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="contact">Personne à contacter</label>
-                                <input type="text" class="form-control" id="quantité" name="contact" value="<?=$params['contact'];?>">
-                                <?php if (isset($params['error']['contact'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['contact']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="phone">Téléphone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" value="<?=$params['phone'];?>">
-                                <?php if (isset($params['error']['phone'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['phone']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
-                                <?php if (isset($params['error']['email'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
-                                <?php endif; ?>
-                            </div>
-                            <div class="col-12 col-md-6 text-center mb-3 mb-md-4 ">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
-                                <?php if (isset($params['error']['email'])): ?>
-                                    <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
-                                <?php endif; ?>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="text-center justify-content-end">
-                        <button type="submit" class="btn bg-alt-background-color mb-2  ">Valider</button>
-                    </div>
-                </form>
-            </div>
+<section class="hearderPage">
+    <div class="hearderPage-item">
+        <h3 class="hearderPage-item-title">Mes informations personnelles</h3>
+        <span class="hearderPage-item-text">
+            Modifier votre profil
+        </span>
     </div>
-    </div>
-</main>
+</section>
 
-</main>
+
+<form method="POST" action="parametre_client" class="formParamAdmin profil">
+    <div class="formulaire">
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['client'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['client']);?></p>
+            <?php endif; ?>
+            <label >Nom de la société</label>
+            <input type="text" class="form-control" id="client" name="client" value="<?=$params['client'];?>">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['address'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['address']);?></p>
+            <?php endif; ?>
+            <label >Adresse</label>
+            <input type="text" class="form-control" id="address" name="address" value="<?=$params['address'];?>">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['city'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['city']);?></p>
+            <?php endif; ?>
+            <label >Ville</label>
+            <input type="text" class="form-control" id="city" name="city" value="<?=$params['city'];?>">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['postal'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['postal']);?></p>
+            <?php endif; ?>
+            <label>Code postal</label>
+            <input type="text" class="form-control" id="postal" name="postal" value="<?=$params['postal'];?>">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['contact'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['contact']);?></p>
+            <?php endif; ?>
+            <label>Personne à contacter</label>
+            <input type="text" class="form-control" id="quantité" name="contact" value="<?=$params['contact'];?>">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['phone'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['phone']);?></p>
+            <?php endif; ?>
+            <label>Téléphone</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="<?=$params['phone'];?>">
+
+        </div>
+
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['email'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['email']);?></p>
+            <?php endif; ?>
+            <label>Email</label>
+            <input type="text" class="form-control" id="email" name="email" value="<?=$params['email'];?>">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['password'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['password']);?></p>
+            <?php endif; ?>
+            <label>Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password">
+
+        </div>
+        <div class="formulaire-item">
+            <?php if (isset($params['error']['confirmPassword'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['confirmPassword']);?></p>
+            <?php endif; ?>
+            <label>Mot de passe à confirmer</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+
+        </div>
+        <input type="submit" value="Modifier" class="button-submit">
+
+    </div>
+
+</form>
