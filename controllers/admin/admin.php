@@ -8,7 +8,7 @@ class Admin extends AbstractController
 
         if($role != "admin") {
             http_response_code(403);
-            echo("accès refusé");
+            header("location:page_403");
             exit;
         }
 
@@ -50,7 +50,7 @@ class Admin extends AbstractController
 
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
         $data=[];
@@ -125,7 +125,7 @@ class Admin extends AbstractController
         $data=[];
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
         $francoModel = new FrancoModel();

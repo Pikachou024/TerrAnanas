@@ -54,7 +54,7 @@ if (!$page) {
 }
 if (!array_key_exists($page, $routes)) {
     http_response_code(404);
-    echo("404 NOT FOUND");
+    header("location:page_404");
     exit;
 }
 

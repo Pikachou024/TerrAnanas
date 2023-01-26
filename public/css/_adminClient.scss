@@ -58,6 +58,10 @@
     grid-column-gap: 0px;
     grid-row-gap: 10px;
 
+    .action-edit a >.fa-solid, .action-delete a >.fa-solid{
+      font-size: 20px;
+    }
+
     .action-edit a:link,.action-delete a:link{
       color: $secondColor;
     }

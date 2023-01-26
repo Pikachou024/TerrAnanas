@@ -3,6 +3,14 @@
 class UsersAdmin extends AbstractController
 {
     function users(){
+
+        $role = getUserRole();
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
+
         if(isset($_SESSION['flash'])){
             $params['flash']=$_SESSION['flash'];
             unset($_SESSION['flash']);
@@ -42,11 +50,11 @@ class UsersAdmin extends AbstractController
 
         $role=getUserRole();
 
-        //if($role != "admin") {
-        //    http_response_code(403);
-        //    echo("Désolé la page n'existe pas");
-        //    exit;
-        //}
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $idUser=$_GET['id'];
         $error=[];
@@ -124,11 +132,11 @@ class UsersAdmin extends AbstractController
 
         $role=getUserRole();
 
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $idUser = $_GET['id'];
 

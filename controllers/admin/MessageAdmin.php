@@ -5,11 +5,11 @@ class MessageAdmin extends AbstractController
     function messages(){
         $role = getUserRole();
 
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $messageModel = new MessageModel();
         $messages = $messageModel->getAllMessages();
@@ -23,11 +23,11 @@ class MessageAdmin extends AbstractController
 
     function messageDetails(){
         $role = getUserRole();
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $idMessage = intval($_GET['id']);
         $messageModel = new MessageModel();
@@ -43,11 +43,11 @@ class MessageAdmin extends AbstractController
 
     function deleteMessage(){
         $role = getUserRole();
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $idmessage = intval($_GET['id']);
         $messageModel = new MessageModel();

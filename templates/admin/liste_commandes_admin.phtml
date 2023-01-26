@@ -21,7 +21,7 @@
                 <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
                 <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
                 <div class="liste-commande-item action">
-                    <div class="action-edit" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="action-edit" ><a href="<?='commande_details_admin?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
                     <div class="action-delete"><a href="<?='delete_commande?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-trash-can"></i></a></div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
                 <div class="liste-commande-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
                 <div class="liste-commande-item action">
-                    <div class="action-edit" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="action-edit" ><a href="<?='commande_details_admin?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-pen-to-square"></i></a></div>
                     <div class="action-delete"><a href="<?='delete_commande?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-trash-can"></i></a></div>
                 </div>
             </div>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="<?= getPathCSS('css','error');?>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Satisfy&display=swap" rel="stylesheet">
+
+    <title><?=$params['title'];?></title>
+
+</head>
+
+<body>
+
+<main>
+    <?php include $template; ?>
+</main>
+
+<?php if(getUserRole()=='admin') : ?>
+    <a class="buttonRetour" href="admin"> Dashboard</a>
+<?php elseif(getUserRole()=='client') : ?>
+    <a class="buttonRetour" href="client"> Mon compte</a>
+<?php else: ?>
+    <a class="buttonRetour" href="home"> Retour sur la page d'accueil</a>
+<?php endif;?>
+
+</body>

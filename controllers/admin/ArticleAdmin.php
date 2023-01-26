@@ -9,7 +9,7 @@ class ArticleAdmin extends AbstractController
          */
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
 
@@ -67,7 +67,7 @@ class ArticleAdmin extends AbstractController
         $role = getUserRole();
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
 
@@ -164,7 +164,7 @@ class ArticleAdmin extends AbstractController
 
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
         $idArticle = $_GET['id'];
@@ -227,7 +227,7 @@ class ArticleAdmin extends AbstractController
         $role = getUserRole();
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
         $idArticle = $_GET['id'];

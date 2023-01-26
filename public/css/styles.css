@@ -429,7 +429,7 @@
     margin-right: auto;
   }
 }
-.color {
+.fa-solid.fa-caret-down.color {
   color: #A62103;
 }
 
@@ -1147,12 +1147,10 @@
   justify-content: center;
   position: -webkit-sticky;
   position: sticky;
-  top: 50px;
+  top: 80px;
   padding-top: 15px;
   padding-bottom: 10px;
-  background-color: #FDFDFD;
   z-index: 30;
-  transition: top 0.5s ease-in-out;
 }
 .headerArticle-search {
   display: flex;
@@ -1163,8 +1161,22 @@
   flex-direction: row;
   align-items: center;
 }
+.headerArticle-search-form-glass {
+  position: relative;
+  transform: translateX(-50%);
+  left: 50%;
+  transition: left 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.headerArticle-search-form-glass > .fa-solid {
+  font-size: 20px;
+  background-color: #FDFDFD;
+  border-radius: 20px;
+  padding: 10px;
+  border: 1px solid #F29F05;
+}
 .headerArticle-search-form-input {
-  display: none;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100vw);
 }
 .headerArticle-layout {
   display: none;
@@ -1174,7 +1186,7 @@
   background-color: #F6F6F6;
   border: none;
   border-radius: 10px;
-  padding: 10px 50px 10px 50px;
+  padding: 10px 40px 10px 40px;
   font-size: 14px;
   color: #333;
   transition: 0.3s;
@@ -1345,12 +1357,17 @@
 @media screen and (min-width: 640px) {
   .headerArticle {
     top: 80px;
+    background-color: #FDFDFD;
+  }
+  .headerArticle-search-form-input {
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100vw);
   }
   .headerArticle-search-form-glass {
     display: none;
   }
   .headerArticle-search-form-input {
-    display: block;
+    transform: translateX(0);
   }
   .headerArticle-layout {
     display: flex;
@@ -1455,7 +1472,8 @@
   }
 }
 .visible {
-  display: block;
+  transform: translateX(0);
+  left: initial;
 }
 
 @media screen and (min-width: 1200px) {
@@ -1812,6 +1830,24 @@
   color: #F29F05;
 }
 
+.headerDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 100px;
+  max-width: 980px;
+}
+.headerDate-commande, .headerDate-livraison, .headerDate-montant {
+  background-color: #FDFDFD;
+  width: 300px;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.headerDate-commande h4, .headerDate-livraison h4, .headerDate-montant h4 {
+  color: #F29F05;
+}
+
 @media screen and (max-width: 640px) {
   .liste-article.head {
     display: none;
@@ -1848,60 +1884,63 @@
   .headerDate {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
-    margin: 70px auto 20px auto;
+    margin: 100px auto 20px auto;
     text-align: center;
-  }
-  /*
-   * Détail commande
-   */
-  .infos {
-    text-align: center;
-    max-width: 70%;
-    margin: 0 auto;
-  }
-  .formDetailsCommande {
-    max-width: 90%;
-  }
-  .formDetailsCommande .articleCommande {
-    background-color: #FDFDFD;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    text-align: center;
-    padding: 10px 0;
-  }
-  .formDetailsCommande .articleCommande-item.prix > input {
-    width: 30%;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .formDetailsCommande .articleCommande-item.quantite {
-    grid-area: 1/5/2/6;
-  }
-  .formDetailsCommande .articleCommande-item.quantite input {
-    width: 30%;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .formDetailsCommande .articleCommande.head {
-    display: grid;
-    border-bottom: 2px solid #F29F05;
-  }
-  .formDetailsCommande .selectCommande {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .formDetailsCommande .selectCommande select {
-    margin: 10px;
-    width: 200px;
-  }
-  .formDetailsCommande .selectCommande button {
-    margin: 10px;
   }
 }
+/*
+ * Détail commande
+ */
+.infos {
+  text-align: center;
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+.formDetailsCommande {
+  max-width: 90%;
+}
+.formDetailsCommande .articleCommande {
+  background-color: #FDFDFD;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  text-align: center;
+  padding: 10px 0;
+}
+.formDetailsCommande .articleCommande-item.prix > input {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+.formDetailsCommande .articleCommande-item.quantite {
+  grid-area: 1/5/2/6;
+}
+.formDetailsCommande .articleCommande-item.quantite input {
+  width: 30%;
+  margin: 0 auto;
+  text-align: center;
+}
+.formDetailsCommande .articleCommande.head {
+  display: grid;
+  border-bottom: 2px solid #F29F05;
+}
+.formDetailsCommande .selectCommande {
+  flex-direction: row;
+  justify-content: center;
+}
+.formDetailsCommande .selectCommande select {
+  margin: 10px;
+  width: 200px;
+}
+.formDetailsCommande .selectCommande button {
+  margin: 10px;
+}
+
 @media screen and (min-width: 1200px) {
   /*
   * Détail commande
@@ -1940,6 +1979,7 @@ body {
 main {
   width: 100%;
   background-color: #FDFDFD;
+  margin-bottom: auto;
 }
 
 footer {

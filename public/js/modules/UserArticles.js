@@ -56,6 +56,7 @@ export class UserArticles {
         this.buttonList.addEventListener('click', this.toggleListView.bind(this, true));
         this.buttonGrid.addEventListener('click', this.toggleListView.bind(this, false));
         this.glass.addEventListener('click', () => {
+            this.glass.classList.toggle('visible');
             this.inputField.classList.toggle('visible');
         });
 

@@ -7,6 +7,13 @@ class Historique extends AbstractController
 
         $idUser = getUserId();
 
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
+
         $statusModel = new StatusModel();
         $statut = $statusModel->getAllStatus();
         $statutCommande = (!empty($_POST['statut'])) ? strip_tags(trim($_POST['statut'])) : 1;
@@ -42,6 +49,14 @@ class Historique extends AbstractController
     }
 
     function getOneCommande(){
+
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
+
         $idCommande = intval($_GET['id']);
 
         $statusModel = new StatusModel();

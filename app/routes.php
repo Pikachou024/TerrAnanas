@@ -81,7 +81,7 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-    "one_commande"=>[
+    "commande_details"=>[
         "controller"=>"Historique",
         "action"=>"getOneCommande",
         'path'=>"user",
@@ -159,7 +159,7 @@ $routes=[
         'path'=>"admin",
         "base_template"=>"base_admin"
     ],
-    "commande_details" =>[
+    "commande_details_admin" =>[
         "controller"=>"CommandesAdmin",
         "action"=>"commandeDetails",
         'path'=>"admin",
@@ -200,6 +200,22 @@ $routes=[
         "action"=>"franco",
         'path'=>"admin",
         "base_template"=>"base_admin"
+    ],
+
+    /*
+     * Error redirection page
+     */
+    "page_404"=>[
+        "controller"=>"ErrorPage",
+        "action"=>"page404",
+        'path'=>"error",
+        "base_template"=>"base_error"
+    ],
+    "page_403"=>[
+        "controller"=>"ErrorPage",
+        "action"=>"page403",
+        'path'=>"error",
+        "base_template"=>"base_error"
     ]
 ];
 return $routes ;

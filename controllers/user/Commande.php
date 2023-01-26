@@ -124,7 +124,7 @@ class Commande extends AbstractController
         $role = getUserRole();
         if(!$role) {
             http_response_code(403);
-            echo("accès refusé");
+            header("location:page_403");
             exit;
         }
 
@@ -160,7 +160,7 @@ class Commande extends AbstractController
         $role = getUserRole();
         if(!$role) {
             http_response_code(403);
-            echo("accès refusé");
+            header("location:page_403");
             exit;
         }
 

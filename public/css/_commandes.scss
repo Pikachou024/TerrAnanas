@@ -116,6 +116,8 @@
 /*
   Commande details
  */
+
+
 .infos{
   text-align: center;
   max-width: 90%;
@@ -225,6 +227,26 @@
 
 }
 
+.headerDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: $heightNavbar+20;
+  max-width: 980px;
+  &-commande,
+  &-livraison,
+  &-montant{
+    background-color: $whiteColor;
+    width: 300px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    h4 {
+      color: $secondColor;
+    }
+  }
+}
 @media screen and (max-width: 640px) {
   //.liste-article-item {
   //  display: block;
@@ -239,7 +261,7 @@
   /*
   Historique commande
  */
-  .headerCommande{
+  .headerCommande {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -249,8 +271,8 @@
     //background-color: $secondLightColor;
 
   }
-  .commande{
-    &-liste{
+  .commande {
+    &-liste {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-template-rows: 1fr;
@@ -259,14 +281,17 @@
       //width: 1200px;
       //height: auto;
       margin-bottom: 0;
-      &-item{
+
+      &-item {
         text-align: center;
         padding: 10px 0;
       }
-      &-item.detail{
+
+      &-item.detail {
         grid-area: initial;
         text-align: center;
       }
+
       //&-item.detail{
       //  grid-area: initial;
       //  display: grid;
@@ -284,13 +309,13 @@
   .headerDate {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
-    //max-width: 600px;
-    //margin-right: auto;
-    //margin-left: auto;
-    margin: 70px auto 20px auto;
+
+    margin: 100px auto 20px auto;
     text-align: center;
   }
+}
 
   /*
    * Détail commande
@@ -347,7 +372,7 @@
       }
     }
   }
-}
+
 
 @media screen and (min-width: 840px) {
   //.commande-liste-item.detail{

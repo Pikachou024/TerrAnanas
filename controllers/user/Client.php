@@ -7,7 +7,7 @@ class Client extends AbstractController
         $role = getUserRole();
         if(!$role) {
             http_response_code(403);
-            echo("accès refusé");
+            header("location:page_403");
             exit;
         }
 
@@ -36,9 +36,9 @@ class Client extends AbstractController
 //        $params=[];
         $roleUser = getUserRole();
 
-        if($roleUser != "client") {
+        if(!$roleUser) {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
 

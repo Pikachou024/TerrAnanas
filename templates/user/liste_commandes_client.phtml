@@ -16,7 +16,7 @@
                     <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
                     <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
                     <div class="commande-liste-item" ><?=($commande['montant']/100) ." €" ;?> </div>
-                    <div class="commande-liste-item detail"><a href="<?='one_commande?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a></div>
+                    <div class="commande-liste-item detail"><a href="<?='commande_details?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a></div>
                 </div>
             <?php endforeach; ?>
     <?php else :?>
@@ -26,7 +26,7 @@
                     <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_commande'])) ;?> </div>
                     <div class="commande-liste-item" ><?= date('d/m/y', strtotime($commande['date_livraison'])) ;?> </div>
                     <div class="commande-liste-item" ><?=$commande['montant'] ." €" ;?> </div>
-                    <div class="commande-liste-item detail"> <a href="<?='one_commande?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a> </div>
+                    <div class="commande-liste-item detail"> <a href="<?='commande_details?id='.$commande["id_commande"];?>"><i class="fa-solid fa-eye"></i></a> </div>
                 </div>
             <?php endforeach; ?>
     <?php endif;?>

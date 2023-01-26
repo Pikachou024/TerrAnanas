@@ -328,7 +328,7 @@ a:hover {
 }
 
 .liste-commande-item a > .fa-solid {
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
   color: #F29F05;
   padding-right: 20px;
@@ -446,9 +446,6 @@ a:hover {
   }
 }
 @media screen and (min-width: 640px) {
-  /*
-   Historique commande
-  */
   .headerCommande {
     display: flex;
     flex-direction: row;
@@ -479,13 +476,6 @@ a:hover {
     grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 10px;
-    text-align: center;
-  }
-  .headerDate {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 70px auto 20px auto;
     text-align: center;
   }
   /*
@@ -557,16 +547,6 @@ a:hover {
     margin: 0 auto;
   }
 }
-.headerTitle {
-  color: #F29F05;
-  font-size: 24px;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-weight: bold;
-  margin: 0;
-}
-
 .headerArticleAdmin {
   display: flex;
   flex-direction: column;
@@ -858,6 +838,9 @@ a.liste-articleAdmin-item-link:hover {
   grid-column-gap: 0px;
   grid-row-gap: 10px;
 }
+.liste-client-item.action .action-edit a > .fa-solid, .liste-client-item.action .action-delete a > .fa-solid {
+  font-size: 20px;
+}
 .liste-client-item.action .action-edit a:link, .liste-client-item.action .action-delete a:link {
   color: #F29F05;
 }
@@ -1094,15 +1077,8 @@ body {
   height: 100%;
 }
 
-main {
-  max-width: 1440px;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .templateListe {
-  max-width: 90%;
+  max-width: 100%;
   margin: 20px auto;
 }
 
@@ -1112,10 +1088,24 @@ main {
   margin-bottom: 5%;
 }
 
-footer {
-  background-color: #1b1e21;
+body {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+main {
   width: 100%;
-  height: 100px;
+  margin-bottom: auto;
+}
+
+footer {
+  width: 100%;
+  background-color: #004E0B;
+  color: #E2F3CA;
+  text-align: center;
 }
 
 .hide {
@@ -1124,4 +1114,44 @@ footer {
 
 .show {
   display: block;
+}
+
+.headerTitle {
+  color: #F29F05;
+  font-size: 24px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  margin: 80px 0 20px 0;
+}
+
+.headerDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.headerDate-date, .headerDate-inscription {
+  background-color: #FDFDFD;
+  width: 300px;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.headerDate-date h4, .headerDate-inscription h4 {
+  color: #F29F05;
+}
+
+@media screen and (min-width: 640px) {
+  .headerDate {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 70px auto 20px auto;
+    text-align: center;
+  }
+  .templateListe {
+    max-width: 90%;
+  }
 }/*# sourceMappingURL=adminStyles.css.map */

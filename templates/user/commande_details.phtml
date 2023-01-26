@@ -1,0 +1,37 @@
+
+<div class="headerDate">
+    <div class="headerDate-commande">
+        <h4 class=""> COMMANDE</h4>
+        <p><?=$params['dateCommande']?></p>
+    </div>
+    <div class="headerDate-livraison">
+        <h4 class=""> LIVRAISON </h4>
+        <p><?=$params['dateLivraison']?></p>
+    </div>
+    <div class="headerDate-montant">
+        <h4 class=""> MONTANT </h4>
+        <p><?=$params['montantCommande']/100 ." €"?></p>
+    </div>
+</div>
+
+<div class="article">
+    <div class="article-liste head list">
+        <div class="article-liste-item"> <p>ARTICLE</p> </div>
+        <div class="article-liste-item"> <p>ORIGINE</p> </div>
+        <div class="article-liste-item"> <p>PRIX</p> </div>
+        <div class="article-liste-item"> <p>POIDS</p> </div>
+        <div class="article-liste-item quantite"> <p>QUANTITEE</p> </div>
+    </div>
+
+<?php foreach ($params['articlesCommande'] as $article): ?>
+    <div class="article-liste list">
+        <div class="article-liste-item"><?= $article["article"];?> </div>
+        <div class="article-liste-item"><?= $article["origine"];?></div>
+        <div class="article-liste-item"><?= ($article["prix"] / 100).'€/'.$article['unite'];?>  </div>
+        <div class="article-liste-item"><?= $article["poids"] ." " .$article['unite'];?> </div>
+        <div class="article-liste-item quantite"><?=$article['quantite'];?></div>
+    </div>
+<?php endforeach; ?>
+                </div>
+        </div>
+</div>

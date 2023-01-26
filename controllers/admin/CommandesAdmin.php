@@ -6,7 +6,7 @@ class CommandesAdmin extends AbstractController
         $role = getUserRole();
         if($role != "admin") {
             http_response_code(403);
-            echo("Désolé la page n'existe pas");
+            header("location:page_403");
             exit;
         }
 
@@ -48,11 +48,11 @@ class CommandesAdmin extends AbstractController
 
     function commandeDetails(){
         $role = getUserRole();
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $idCommande = intval($_GET['id']);
 
@@ -99,11 +99,11 @@ class CommandesAdmin extends AbstractController
 
     function deleteCommande(){
         $role = getUserRole();
-//        if($role != "admin") {
-//            http_response_code(403);
-//            echo("Désolé la page n'existe pas");
-//            exit;
-//        }
+        if($role != "admin") {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
 
         $idCommande = intval($_GET['id']);
         $commandeModel = new CommandeModel();

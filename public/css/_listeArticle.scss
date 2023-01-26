@@ -12,13 +12,13 @@
   flex-direction: row;
   justify-content: center;
   position: sticky;
-  top: 50px;
+  top: 80px;
   padding-top: 15px;
   padding-bottom: 10px;
-  background-color: $whiteColor;
+  //background-color: $whiteColor;
   z-index: 30;
 
-  transition: top 0.5s ease-in-out;
+
   &-search{
     display: flex;
     align-items: center;
@@ -26,8 +26,22 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+      &-glass{
+        position: relative;
+        transform: translateX(-50%);
+        left: 50%;
+        transition: left 0.3s ease-in-out ,transform 0.3s ease-in-out;
+      }
+      &-glass>.fa-solid{
+        font-size: 20px;
+        background-color: $whiteColor;
+        border-radius: 20px;
+        padding: 10px;
+        border: 1px solid $secondColor;
+      }
       &-input{
-        display: none;
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100vw);
       }
     }
   }
@@ -41,7 +55,7 @@
   background-color: #F6F6F6;
   border: none;
   border-radius: 10px;
-  padding: 10px 50px 10px 50px;
+  padding: 10px 40px 10px 40px;
   font-size: 14px;
   color: #333;
   transition: 0.3s;
@@ -202,14 +216,33 @@
 @media screen and (min-width: 640px) {
   .headerArticle{
     top: $heightNavbar;
+    background-color: $whiteColor;
     &-search{
 
       &-form{
+        //&-glass{
+        //  position: static;
+        //  //transform: translateX(-50%);
+        //  //left: 50%;
+        //  //transition: left 0.3s ease-in-out ,transform 0.3s ease-in-out;
+        //}
+        //&-glass>.fa-solid{
+        //  font-size: 20px;
+        //  background-color: $whiteColor;
+        //  border-radius: 20px;
+        //  padding: 10px;
+        //  border: 1px solid $secondColor;
+        //}
+        &-input{
+          transition: transform 0.3s ease-in-out;
+          transform: translateX(-100vw);
+        }
         &-glass{
           display: none;
         }
         &-input{
-          display: block;
+          //display: block;
+          transform: translateX(0);
         }
       }
     }
@@ -332,7 +365,9 @@
 }
 
 .visible{
-  display: block;
+  //transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+  left: initial;
 }
 
 @media screen and (min-width: 840px) {
