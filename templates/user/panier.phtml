@@ -21,73 +21,71 @@
 <form method="POST" action="<?='validation_commande';?>" id="form-commande">
 
 
+<?php //endif;?>
+
+    <?php if(isset($params['articles'])): ?>
 
 
-
-<?php endif;?>
-
-<?php if(isset($params['articles'])): ?>
-
-
-<div class="article">
-    <div class="article-liste head list">
-        <div class="article-liste-item"> <p>ARTICLE</p> </div>
-        <div class="article-liste-item"> <p>ORIGINE</p> </div>
-        <div class="article-liste-item"> <p>PRIX</p> </div>
-        <div class="article-liste-item"> <p>POIDS</p> </div>
-<!--        <div> </div>-->
-    </div>
-
-<?php foreach ($params['articles'] as $article): ?>
-    <div class="article-liste list">
-        <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
-        <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
-        <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
-        <div class="article-liste-item"><input type="hidden" name="article[]" value="<?= $article["article"];?>">
-            <?= $article["article"];?>
-        </div>
-        <div class="article-liste-item"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>">
-            <?= $article["origine"];?>
-        </div>
-        <div class="article-liste-item"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>">
-            <?= $article["prix"]." €/".$article['unite'];?>
-        </div>
-        <div class="article-liste-item">
-            <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>
+    <div class="article">
+        <div class="article-liste head list">
+            <div class="article-liste-item"> <p>ARTICLE</p> </div>
+            <div class="article-liste-item"> <p>ORIGINE</p> </div>
+            <div class="article-liste-item"> <p>PRIX</p> </div>
+            <div class="article-liste-item"> <p>POIDS</p> </div>
+    <!--        <div> </div>-->
         </div>
 
-        <div class="article-liste-item quantite">
-            <button class="buttonLess" type="button" data-id=<?=$article['id_article'];?> >-</button>
-            <input type="number" id="<?=$article['id_article'];?>" name="quantite[]" min="0" value="<?=$article['quantite'];?>">
-            <button class="buttonMore" type="button" data-id=<?=$article['id_article'];?> >+</button>
-        </div>
-    </div>
-<?php endforeach; ?>
+    <?php foreach ($params['articles'] as $article): ?>
+        <div class="article-liste list">
+            <input type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+            <input type="hidden" name="unite[]" value="<?=$article['unite'];?>">
+            <input type="hidden" name="famille[]" value="<?=$article['famille'];?>">
+            <div class="article-liste-item"><input type="hidden" name="article[]" value="<?= $article["article"];?>">
+                <?= $article["article"];?>
+            </div>
+            <div class="article-liste-item"><input type="hidden" name="origine[]" value=" <?= $article["origine"];?>">
+                <?= $article["origine"];?>
+            </div>
+            <div class="article-liste-item"><input type="hidden" name="prix[]" value="<?= $article["prix"];?>">
+                <?= $article["prix"]." €/".$article['unite'];?>
+            </div>
+            <div class="article-liste-item">
+                <input type="hidden" name="poids[]" value="<?= $article["poids"];?>"><?= $article["poids"] ." " .$article['unite'];?>
+            </div>
 
-    </div>
-    <div class="validation">
-        <div class="validation-date">
-            <label class="validation-date-label">Sélectionner une date de livraison</label>
-            <select class="validation-date-select" name="dateLivraison" id="dateLivraison">
-                <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')). ' + 1 days'))  ?>">
-                    <?= $params['dateLivraison1'] ;?>
-                </option>
-                <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>">
-                    <?= $params['dateLivraison2'] ;?>
-                </option>
-            </select>
-            <div class="validation-button">
-                <button type="submit">Valider la commande</button>
+            <div class="article-liste-item quantite">
+                <button class="buttonLess" type="button" data-id=<?=$article['id_article'];?> >-</button>
+                <input type="number" id="<?=$article['id_article'];?>" name="quantite[]" min="0" value="<?=$article['quantite'];?>">
+                <button class="buttonMore" type="button" data-id=<?=$article['id_article'];?> >+</button>
             </div>
         </div>
-    </div>
-</form>
+    <?php endforeach; ?>
 
-<?php else:?>
+        </div>
+        <div class="validation">
+            <div class="validation-date">
+                <label class="validation-date-label">Sélectionner une date de livraison</label>
+                <select class="validation-date-select" name="dateLivraison" id="dateLivraison">
+                    <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')). ' + 1 days'))  ?>">
+                        <?= $params['dateLivraison1'] ;?>
+                    </option>
+                    <option value="<?= date('y-m-d', strtotime(($params['date']->format('y-m-d')) . ' + 2 days')) ?>">
+                        <?= $params['dateLivraison2'] ;?>
+                    </option>
+                </select>
+                <div class="validation-button">
+                    <button type="submit">Valider la commande</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
-<div class="emptyPanier"><h4><?=$params['message'];?></h4> </div>
+    <?php else:?>
+
+    <div class="emptyPanier"><h4><?=$params['message'];?></h4> </div>
 
 
+    <?php endif ;?>
 <?php endif ;?>
 <div class="buttonPanier">
     <div class="buttonPanier-retour">

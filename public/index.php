@@ -67,3 +67,6 @@ autoloadController($controllerName, $path);
 $controller = new $controllerName($path, $page, $baseTemplate);
 $controller->$actionName();
 
+//dump(getPathPublicAbsolute('images')."/upload/");
+
+

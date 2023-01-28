@@ -69,6 +69,12 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
+    "empty_basket"=>[
+        "controller"=>"Commande",
+        "action"=>"emptyBasket",
+        'path'=>"user",
+        "base_template"=>""
+    ],
     "validation_commande"=>[
         "controller"=>"Commande",
         "action"=>"validationCommande",

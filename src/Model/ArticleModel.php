@@ -25,11 +25,11 @@ class ArticleModel extends AbstractModel
     }
 
 
-    function addArticle($label,$poids,$unite,$prix,$origine,$famille,$statusArticle){
-        $sql ="INSERT INTO article(article,poids,id_unite,prix,origine,id_famille,id_statutArticle)
-               VALUES (?,?,?,?,?,?,?)";
+    function addArticle($label,$poids,$unite,$prix,$origine,$famille,$statusArticle,$image){
+        $sql ="INSERT INTO article(article,poids,id_unite,prix,origine,id_famille,id_statutArticle,image)
+               VALUES (?,?,?,?,?,?,?,?)";
 
-        return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$statusArticle]);
+        return $this-> db ->executeQuerry($sql,[$label,$poids,$unite,$prix,$origine,$famille,$statusArticle,$image]);
     }
 
     function editArticle($label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$id){

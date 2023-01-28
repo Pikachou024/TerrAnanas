@@ -2,9 +2,9 @@
 
 function getPathPublicAbsolute($file): string
 {
-    if(!defined('PATH_ROOT') || !defined('PATH_PUBLIC')){
-
-    }
+//    if(!defined('PATH_ROOT') || !defined('PATH_PUBLIC')){
+//
+//    }
     return PATH_ROOT . PATH_PUBLIC . '/'. $file;
 }
 
@@ -13,7 +13,13 @@ function getPathPublicAbsolute($file): string
  */
 function getPathScript($file,$filename): string
 {
-    return '<script src="' .getPathPublicAbsolute($file) .'/'.$filename.'.js'.'"></script>';
+    if($filename == 'main' || 'admin'){
+        return '<script type="module" src="' .getPathPublicAbsolute($file) .'/'.$filename.'.js'.'" defer></script>';
+        }
+    else{
+        return '<script type="text/javascript" src="' .getPathPublicAbsolute($file) .'/'.$filename.'.js'.'" defer></script>';
+    }
+
 }
 
 /**
@@ -26,6 +32,15 @@ function getPathCSS($file,$filename): string
 function getPathTemplate($file,$template){
 
     return $_SERVER['DOCUMENT_ROOT'].PATH_TEMPLATES.'/'.$file.'/'.$template.".phtml";
+}
+
+function getPathImage($file,$image,$upload=false){
+    if(!$upload){
+        return getPathPublicAbsolute($file).'/'.$image ;
+    }
+
+    return getPathPublicAbsolute($file).'/upload/'.$image ;
+
 }
 
 function autoloader($className) {

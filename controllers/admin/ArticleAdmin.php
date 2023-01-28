@@ -60,12 +60,13 @@ class ArticleAdmin extends AbstractController
         }
     }
 
-    function addArticle(){
+    function addArticle()
+    {
         /*
          * Je vérifie le role de l'utilisateur
          */
         $role = getUserRole();
-        if($role != "admin") {
+        if ($role != "admin") {
             http_response_code(403);
             header("location:page_403");
             exit;
@@ -75,10 +76,11 @@ class ArticleAdmin extends AbstractController
          * J'initialise mes variables avec un string vide me permettant (en cas d'erreur)
          * de conserver ce que l'utilisateur aura noté dans le champ
          */
-        $label='';
-        $origine='';
-        $prix='';
-        $poids='';
+        $label = '';
+        $origine = '';
+        $prix = '';
+        $poids = '';
+        $image='';
 
         /*
          * J'instancie mes Modeles familles, unitées et status
@@ -90,6 +92,8 @@ class ArticleAdmin extends AbstractController
         $unites = $uniteModel->getAllUnite();
         $statutModel = new StatusModel();
         $statuts = $statutModel->getAllstatusArticle();
+
+
 
         if(!empty($_POST)){
             /*
@@ -130,17 +134,45 @@ class ArticleAdmin extends AbstractController
             }
 
             /*
+             * Upload d'image
+             */
+            if (!empty($_FILES['image'])) {
+                $tmpName = $_FILES['image']['tmp_name'];
+                $name = $_FILES['image']['name'];
+                $size = $_FILES['image']['size'];
+                $error = $_FILES['image']['error'];
+                move_uploaded_file($tmpName, './images/upload/'.$name);
+
+                $tabExtension = explode('.', $name);
+                $extension = strtolower(end($tabExtension));
+                $extensions = ['jpg', 'png', 'jpeg'];
+                $maxSize = 400000;
+
+                    if(in_array($extension, $extensions) && $size <= $maxSize){
+                        if($error==0){
+                            $image=$name;
+                            move_uploaded_file($tmpName, './upload/'.$name);
+                        }else{
+                            dump($error);
+                            addFlashMessage("Une erreur est survenue lors de l'upload",'error');
+                        }
+                    }
+                    else{
+                        addFlashMessage('Fichier non autorisé : extension non accepté ou taille grande','error');
+                    }
+            }
+            /*
              * Si mes vérifications sont validées en ne renvoyant aucun message d’erreur,
              * J'ajouter les données pour mon article dans ma BDD.
              */
             if(canProceed()) {
                 $articleModel = new ArticleModel();
-                $articleModel ->addArticle($label,$poids,$unite,($prix*100),$origine,$famille,$statut);
+                $articleModel ->addArticle($label,$poids,$unite,($prix*100),$origine,$famille,$statut,$image);
 
                 header('location: articles_admin');
                 exit;
             }
-        }
+    }
 
         /*
          * J'initialise un tableau $params afin de renvoyer toutes mes données sur mon template.
@@ -154,6 +186,7 @@ class ArticleAdmin extends AbstractController
             'unites'=>$unites,
             'familles'=>$familles,
             'statut'=>$statuts,
+
             'title'=>"Ajouter un article"
         ];
         $this->render($this->file, $this->page, $this->base, $params);

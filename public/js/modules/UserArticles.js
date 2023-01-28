@@ -3,13 +3,14 @@ import {Quantity} from "./Quantity.js";
 export class UserArticles {
 
     constructor() {
-        // super();
-        // this.initProperty();
+        this.initProperty();
         this.initSelector();
         this.init();
-        this.quantityClass = new Quantity();
     }
 
+    initProperty(){
+        this.quantityClass = new Quantity();
+    }
     // initProperty(){
     //     this.stockQuantite = {};
     // }
@@ -19,9 +20,13 @@ export class UserArticles {
         this.buttonGrid = document.querySelector('.headerArticle-layout-grid')
         this.listArticle = document.querySelectorAll('.article-liste');
         this.pictureArticle = document.querySelectorAll('.article-liste-item.image');
+
+
         this.articleSearch = document.querySelector("#articleSearch");
-        // this.inputQuantite = document.querySelectorAll(".quantite>input");
         this.form = document.querySelector('#form-search');
+
+
+        // this.inputQuantite = document.querySelectorAll(".quantite>input");
         this.inputField = document.querySelector('.headerArticle-search-form-input');
         this.glass = document.querySelector('.headerArticle-search-form-glass');
         this.headerArticle = document.querySelector(".headerArticle");
@@ -52,7 +57,10 @@ export class UserArticles {
         //     });
         // }
 
+
         this.articleSearch.addEventListener('keyup', this.search.bind(this));
+
+
         this.buttonList.addEventListener('click', this.toggleListView.bind(this, true));
         this.buttonGrid.addEventListener('click', this.toggleListView.bind(this, false));
         this.glass.addEventListener('click', () => {
@@ -68,13 +76,12 @@ export class UserArticles {
             }
         }).bind(this));
 
-
         // this.formArticle.addEventListener('submit',this.addPanier.bind(this));
     }
+    // articles_client
 
     search(event) {
         event.preventDefault();
-        // let listArticle = document.querySelectorAll('.article-liste');
         let formData = new FormData(this.form);
         let container = document.querySelector('.templateListeArticle');
         let isListView = false;
@@ -84,30 +91,18 @@ export class UserArticles {
                 break;
             }
         }
-
-        fetch('articles_client?ajax=true', {method: 'POST', body: formData})
+        fetch(this.form.action+'?ajax=true', {method: 'POST', body: formData})
             .then(response => response.text())
             .then(data => {
                 container.innerHTML = '';
                 container.innerHTML = data;
-                // this.initSelector();
-                // this.init();
                 this.resetElements();
-                // this.setlisteArticle('.article-liste')
-                // this.listArticle
                 this.toggleListArticle(this.getlisteArticle(), isListView);
-                // this.setpictureArticle('.article-liste-item.image');
                 this.togglePicture(this.getpictureArticle(),isListView);
-                // this.setinputQuantite('.quantite>input')
-
-                // for (const quantite of this.getinputQuantite()) {
-                //     if (this.existId(this.stockQuantite, quantite.id)) {
-                //         quantite.value = this.stockQuantite[quantite.id]
-                //     }
-                // }
             })
             .catch(error => console.error(error));
     }
+
 
     // existId(objet, cle) {
     //     return objet.hasOwnProperty(cle);
@@ -198,6 +193,7 @@ export class UserArticles {
         this.setlisteArticle('.article-liste');
         this.setpictureArticle('.article-liste-item.image');
         this.quantityClass.resetQuantity();
+    }
 
         // this.setinputQuantite('.quantite>input');
         // this.setButtonMore(".buttonMore");
@@ -222,6 +218,6 @@ export class UserArticles {
         //         quantite.value = this.stockQuantite[quantite.id]
         //     }
         // }
-    }
+
 }
 

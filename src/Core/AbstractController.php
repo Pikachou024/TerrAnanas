@@ -16,11 +16,16 @@ abstract class AbstractController{
     public function render(string $file, string $page,string $base, array $params): void
     {
         $template = getPathTemplate($file,$page);
+
         if(!$base){
             require_once $template;
         }
         else{
             require_once (getPathTemplate($file,$base));
         }
+    }
+
+    public function loadTemplate(string $file, string $page, array $params){
+        return file_get_contents(getPathTemplate($file,$page));
     }
 }

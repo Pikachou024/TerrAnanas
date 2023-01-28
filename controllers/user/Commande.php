@@ -18,27 +18,33 @@ class Commande extends AbstractController
             $statusModel = new StatusModel();
             $statutArticle = $statusModel->getAllStatusArticle();
 
-            if(!empty($_POST['articleSearch'])){
-                $articleSearch = $_POST['articleSearch'];
-                $params["articleSearch"]=$articleSearch;
-                $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+//            if(!empty($_POST['articleSearch'])){
+//                $articleSearch = $_POST['articleSearch'];
+//                $params["articleSearch"]=$articleSearch;
+//                $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+//            }
+//            else {
+//                unset($_SESSION['articleSearch']);
+//            }
 
-            }
-            else {
-                unset($_SESSION['articleSearch']);
-            }
 
             $params["articles"]=$articles;
             $params['title']="TerrAnanas - Passer une commande";
 
-            if(!empty($_GET['ajax'])){
-                $this->render($this->file, 'liste_articles_client', '', $params);
-//                echo json_encode($_SESSION['articleSearch']);
 
-            }else{
-                $this->render($this->file, $this->page, $this->base, $params);
+            if(!empty($_GET['ajax'])){
+                $articleSearch = $_POST['articleSearch'];
+                $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+                if(!$articleSearch){
+                    unset($_SESSION['articleSearch']);
+                }
+                $this->render($this->file, 'liste_articles_client', '', $params);
             }
 
+            else{
+                $this->render($this->file, $this->page, $this->base, $params);
+            }
+//                $params["articleSearch"]=$articleSearch;
         }
 
     function addPanier(){
@@ -257,6 +263,12 @@ class Commande extends AbstractController
 
         }
         header('location: articles_client');
+        exit;
+    }
+
+    function emptyBasket(){
+        unset($_SESSION['panier']);
+        header('location: panier');
         exit;
     }
 
