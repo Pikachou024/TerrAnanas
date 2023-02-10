@@ -14,22 +14,24 @@ class Connexion extends AbstractController
              */
             $user = checkUser($email,$password);
             if($user){
-                registerUser($user['id_user'],$user['client'],$user['email'],$user['role']);
                 if($user['id_role'] == 2){
                     if($user['id_statut']== 2){
+                        registerUser($user['id_user'],$user['client'],$user['email'],$user['role']);
                         header('location:client');
+                        exit;
                     }
                     elseif($user['id_statut'] == 1){
-                        addFlashMessage("Votre demande d'inscription est en cours de traitement");
+                        addFlashMessage("Votre demande d'inscription est en cours de traitement",'error');
                         header('location:login');
                     }
                     else{
-                        addFlashMessage("Votre demande d'inscription a été réfusé, pour plus de renseignement n'hésitez pas à nous contacter.");
+                        addFlashMessage("Votre demande d'inscription a été réfusé, pour plus de renseignement n'hésitez pas à nous contacter.",'error');
                         header('location:login');
                     }
                     exit;
                 }
                 elseif ($user['id_role'] == 1){
+                    registerUser($user['id_user'],$user['client'],$user['email'],$user['role']);
                     header('location:admin');
                     exit;
                 }
@@ -78,6 +80,7 @@ class Connexion extends AbstractController
             $email = strip_tags(htmlspecialchars(trim($_POST['email'])));
             $password = strip_tags(htmlspecialchars(trim($_POST['password'])));
             $confirmPassword = strip_tags(htmlspecialchars(trim($_POST['confirmPassword'])));
+
 
             if (!$client) {
                 $error['client'] = "Veuillez remplir le champ";

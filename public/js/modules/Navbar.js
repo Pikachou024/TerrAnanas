@@ -20,6 +20,11 @@ export class Navbar
         this.previousScroll = 0;
     }
     init(){
+
+        /*
+         * menu burger
+         * affiche/masque le menu de navigation du site et masque la liste nav lié à l'utilisateur
+         */
         this.menuBtn.addEventListener('click', (function ()  {
             if (this.menu.classList.contains('active')) {
                 this.menu.classList.remove('active');
@@ -30,12 +35,17 @@ export class Navbar
                 this.menu.classList.add('active');
                 if(this.dropDown) {
                     this.dropdownContent.classList.remove('active');
+                    this.dropDown.classList.remove('color');
                 }
                 this.burger.classList.add('hide');
                 this.cross.classList.remove('hide');
             }
         }).bind(this));
 
+        /*
+         * menu lié à l'utilisateur
+         * affiche/masque la liste nav utilisateur et masque le menu navigation
+         */
         if(this.dropDown){
             this.dropDown.addEventListener('click', (function(){
 
@@ -55,6 +65,9 @@ export class Navbar
             }).bind(this));
         }
 
+        /*
+         * Masque les listes navigation
+         */
         document.addEventListener('click',(function(event){
             if (event.target !== this.menuBtn && event.target !== this.menu && event.target !== this.burger && event.target !== this.cross && event.target !== this.dropDown && event.target !== this.dropdownContent) {
                 this.burger.classList.remove('hide');
@@ -66,6 +79,9 @@ export class Navbar
             }
         }).bind(this));
 
+        /*
+         * masque le menu navigation du site lors d'un scroll vers le bas
+         */
         if(this.navbar){
             window.addEventListener('scroll', (function() {
                 const currentScroll = window.pageYOffset;
@@ -79,6 +95,4 @@ export class Navbar
         }
 
     }
-
-
 }

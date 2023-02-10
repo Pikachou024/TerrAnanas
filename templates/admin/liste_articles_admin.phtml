@@ -9,18 +9,13 @@
         <div class="liste-articleAdmin-item delete"> Supprimer</div>
     </div>
 
-<?php if(isset($_SESSION['articleSearch'])) :?>
-    <?php if(empty($_SESSION['articleSearch'])) :?>
-
-            <div class="liste bg">
-                <div class="liste-article-aucun"> <p>Aucun article trouvé</p></div>
-            </div>
-
-    <?php else : ?>
-
-
+    <?php if(isset($_SESSION['articleSearch'])) :?>
+        <?php if(empty($_SESSION['articleSearch'])) :?>
+                <div class="liste bg">
+                    <div class="liste-article-aucun"> <p>Aucun article trouvé</p></div>
+                </div>
+        <?php else : ?>
             <?php foreach ($_SESSION['articleSearch']  as $article): ?>
-<!--                --><?php //if($article['id_statutArticle'] != 3): ?>
                 <div class="liste-articleAdmin">
                     <div class="liste-articleAdmin-item etat"> <?= $article["statutArticle"];?> </div>
                     <div class="liste-articleAdmin-item"><?= $article["article"];?> </div>
@@ -28,20 +23,21 @@
                     <div class="liste-articleAdmin-item"> <?= ($article["prix"]/100)." €/".$article['unite'];?></div>
                     <div class="liste-articleAdmin-item"> <?= $article["poids"] ." " .$article['unite'];?></div>
                     <div class="liste-articleAdmin-item edit">
-                        <a class="liste-articleAdmin-item-link" href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square text-darkgreen"></i></a>
+                        <a class="liste-articleAdmin-item-link" href="<?='edit_article?id='.$article["id_article"];?>">
+                            <i class="fa-solid fa-pen-to-square text-darkgreen"></i>
+                        </a>
                     </div>
                     <div class="liste-articleAdmin-item delete">
-                        <a class="liste-articleAdmin-item-link" href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
+                        <a class="liste-articleAdmin-item-link" href="<?='delete_article?id='.$article["id_article"];?>">
+                            <i class="fa-solid fa-trash-can text-red"></i>
+                        </a>
                     </div>
                 </div>
-<!--                --><?php //endif;?>
             <?php endforeach; ?>
-    <?php endif;?>
+        <?php endif;?>
 
-<?php else : ?>
-
+    <?php else : ?>
         <?php foreach ($params['articles'] as $article): ?>
-<!--    --><?php //if($article['id_statutArticle'] != 3): ?>
             <div class="liste-articleAdmin">
                 <div class="liste-articleAdmin-item etat"> <?= $article["statutArticle"];?> </div>
                 <div class="liste-articleAdmin-item"><?= $article["article"];?> </div>
@@ -49,16 +45,18 @@
                 <div class="liste-articleAdmin-item"> <?= ($article["prix"]/100)." €/".$article['unite'];?></div>
                 <div class="liste-articleAdmin-item"> <?= $article["poids"] ." " .$article['unite'];?></div>
                 <div class="liste-articleAdmin-item edit">
-                    <a class="liste-articleAdmin-item-link" href="<?='edit_article?id='.$article["id_article"];?>"><i class="fa-solid fa-pen-to-square text-darkgreen"></i></a>
+                    <a class="liste-articleAdmin-item-link" href="<?='edit_article?id='.$article["id_article"];?>">
+                        <i class="fa-solid fa-pen-to-square text-darkgreen"></i>
+                    </a>
                 </div>
                 <div class="liste-articleAdmin-item delete">
-                    <a class="liste-articleAdmin-item-link" href="<?='delete_article?id='.$article["id_article"];?>"><i class="fa-solid fa-trash-can text-red"></i></a>
+                    <a class="liste-articleAdmin-item-link" href="<?='delete_article?id='.$article["id_article"];?>">
+                        <i class="fa-solid fa-trash-can text-red"></i>
+                    </a>
                 </div>
             </div>
-<!--        --><?php //endif;?>
         <?php endforeach; ?>
-
-
-<?php endif;?>
+    <?php endif;?>
 
 </div>
+

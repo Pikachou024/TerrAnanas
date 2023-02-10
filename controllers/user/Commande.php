@@ -15,22 +15,9 @@ class Commande extends AbstractController
             $params=[];
             $articleModel = new ArticleModel();
             $articles = $articleModel->getAllArticles();
-            $statusModel = new StatusModel();
-            $statutArticle = $statusModel->getAllStatusArticle();
-
-//            if(!empty($_POST['articleSearch'])){
-//                $articleSearch = $_POST['articleSearch'];
-//                $params["articleSearch"]=$articleSearch;
-//                $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
-//            }
-//            else {
-//                unset($_SESSION['articleSearch']);
-//            }
-
 
             $params["articles"]=$articles;
             $params['title']="TerrAnanas - Passer une commande";
-
 
             if(!empty($_GET['ajax'])){
                 $articleSearch = $_POST['articleSearch'];
@@ -44,7 +31,7 @@ class Commande extends AbstractController
             else{
                 $this->render($this->file, $this->page, $this->base, $params);
             }
-//                $params["articleSearch"]=$articleSearch;
+
         }
 
     function addPanier(){
@@ -56,6 +43,8 @@ class Commande extends AbstractController
             exit;
         }
 
+        $ruptures=[];
+
         if(!empty($_POST)){
 
             $idArticle = array_map(function($value) {
@@ -63,6 +52,12 @@ class Commande extends AbstractController
                 $value = strip_tags($value);
                 return $value;
             }, $_POST['id_article']);
+
+            $statutArticle = array_map(function($value) {
+                $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+                $value = strip_tags($value);
+                return $value;
+            }, $_POST['id_statutArticle']);
 
             $famille = array_map(function($value) {
                 $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
@@ -106,18 +101,35 @@ class Commande extends AbstractController
                     header("location:articles_client");
                     exit;
                 }
+                elseif ($value < 0){
+                    addFlashMessage("Erreur : Veuillez rentrer une quantitée supérieur à 0",'error');
+                    header("location:articles_client");
+                    exit;
+                }
                 $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
                 $value = strip_tags($value);
                 return $value;
             }, $_POST['quantite']);
 
             for($i=0 ; $i<(count($article)) ; $i++){
-                addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+//                if($statutArticle[$i]== 1){
+                    addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+//                }
+//                else{
+//                    $ruptures[$idArticle[$i]] = $article[$i];
+//                }
+
+
             }
+//            if(!empty($ruptures)){
+//                foreach($ruptures as $rupture){
+//                    addFlashMessage($rupture ." est en rupture",'error');
+//                }
+//
+//            }
             if(!empty($_SESSION['panier'])){
                 addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
 
-//                echo json_encode(['message'=>"Vos articles ont bien été ajouté dans votre panier"]);
             }
 
         }

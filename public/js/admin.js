@@ -1,12 +1,12 @@
 import { Navbar } from './modules/Navbar.js';
-import { CustomAlert } from './modules/CustomAlert.js';
+import { MessageFlash } from './modules/MessageFlash.js';
 import { AdminArticles } from './modules/AdminArticles.js';
 import { AdminUsers } from './modules/AdminUsers.js';
 import { AdminCommandes } from './modules/AdminCommandes.js';
 
 
 const navbar = new Navbar('adminNavbar');
-const customAlert = new CustomAlert();
+const messageFlash = new MessageFlash();
 
 if(window.location.pathname==='/TerrAnanas/articles_admin'){
     const articles = new AdminArticles();

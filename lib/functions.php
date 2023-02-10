@@ -110,37 +110,40 @@ function checkArticle($idArticle,$quantite) :bool {
     return false;
 }
 
-function addArticle($idArticle,$article,$origine,$poids,$prix,$quantite,$famille,$unite): void
-{
-    /*
-     * Si le panier existe
-     */
-    if (creationPanier()) {
 
-      /* On vérifie si l'article est présent dans le panier
-       si oui, je rajoute le nombre de quantite */
-        $articleOnPanier = checkArticle($idArticle,$quantite);
 
-        /*
-         * si non, je le rajoute dans le panier
-         */
-        if($articleOnPanier === false){
-            //Sinon on ajoute le produit
-            $_SESSION['produit'] = ['id_article' => $idArticle,
-                'article' => $article,
-                'origine'=>$origine,
-                'poids' => $poids,
-                'unite'=>$unite,
-                'prix' => $prix,
-                'famille'=>$famille,
-                'quantite' => $quantite];
-            $_SESSION['panier'][] = $_SESSION['produit'];
+        function addArticle($idArticle,$article,$origine,$poids,$prix,$quantite,$famille,$unite): void
+        {
+            /*
+             * Si le panier existe
+             */
+            if (creationPanier()) {
+              /* On vérifie si l'article est présent dans le panier
+               si oui, je rajoute le nombre de quantite */
+                $articleOnPanier = checkArticle($idArticle,$quantite);
+
+                /*
+                 * si non, je le rajoute dans le panier
+                 */
+                if($articleOnPanier === false){
+                    //Sinon on ajoute le produit
+                    $_SESSION['produit'] = ['id_article' => $idArticle,
+                        'article' => $article,
+                        'origine'=>$origine,
+                        'poids' => $poids,
+                        'unite'=>$unite,
+                        'prix' => $prix,
+                        'famille'=>$famille,
+                        'quantite' => $quantite];
+                    $_SESSION['panier'][] = $_SESSION['produit'];
+                }
+            }
+            else{
+                addFlashMessage("Un problème est survenu veuillez contacter l'administrateur du site.","error");
+            }
         }
-    }
-    else{
-        echo "Un problème est survenu veuillez contacter l'administrateur du site.";
-    }
-}
+
+
 
 function deleteArticle($idArticle){
     //Si le panier existe

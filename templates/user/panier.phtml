@@ -20,11 +20,7 @@
 
 <form method="POST" action="<?='validation_commande';?>" id="form-commande">
 
-
-<?php //endif;?>
-
-    <?php if(isset($params['articles'])): ?>
-
+<!--    --><?php //if(isset($params['articles'])): ?>
 
     <div class="article">
         <div class="article-liste head list">
@@ -32,7 +28,6 @@
             <div class="article-liste-item"> <p>ORIGINE</p> </div>
             <div class="article-liste-item"> <p>PRIX</p> </div>
             <div class="article-liste-item"> <p>POIDS</p> </div>
-    <!--        <div> </div>-->
         </div>
 
     <?php foreach ($params['articles'] as $article): ?>
@@ -79,13 +74,10 @@
             </div>
         </div>
     </form>
-
     <?php else:?>
 
     <div class="emptyPanier"><h4><?=$params['message'];?></h4> </div>
 
-
-    <?php endif ;?>
 <?php endif ;?>
 <div class="buttonPanier">
     <div class="buttonPanier-retour">

@@ -8,14 +8,15 @@
     </div>
     <?php else : ?>
 
+
+
         <div class="article">
             <?php foreach ($_SESSION['articleSearch'] as $article): ?>
-
-            <div class="article-liste">
+            <div class="article-liste <?=$article['statutArticle'];?> ">
                 <input class="article-liste-item" type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                <input class="article-liste-item" type="hidden" name="id_statutArticle[]" value="<?=$article['id_statutArticle'];?>">
                 <input class="article-liste-item" type="hidden" name="unite[]" value="<?=$article['unite'];?>">
                 <input class="article-liste-item" type="hidden" name="famille[]" value="<?=$article['famille'];?>">
-<!--                <div class="article-liste-item image "> <img src="http://localhost/TerrAnanas/public/images/fruits/pommes.jpg"></div>-->
                 <div class="article-liste-item image "> <img src="<?=getPathImage('images',$article['image'],true) ;?>"></div>
                 <div class="article-liste-item"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                 <div class="article-liste-item"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>
@@ -29,6 +30,8 @@
             </div>
             <?php endforeach; ?>
 
+
+
         </div>
     <?php endif;?>
 <?php else : ?>
@@ -39,11 +42,11 @@
 
         <?php foreach ($params['articles'] as $article): ?>
             <?php if($article['famille']=="Légume" && $article['id_statutArticle']!=3):?>
-                <div class="article-liste">
+                <div class="article-liste <?=$article['statutArticle'];?> ">
                     <input class="article-liste-item" type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input class="article-liste-item" type="hidden" name="id_statutArticle[]" value="<?=$article['id_statutArticle'];?>">
                     <input class="article-liste-item" type="hidden" name="unite[]" value="<?=$article['unite'];?>">
                     <input class="article-liste-item" type="hidden" name="famille[]" value="<?=$article['famille'];?>">
-                    <!--                <div class="article-liste-item image "> <img src="http://localhost/TerrAnanas/public/images/fruits/pommes.jpg"></div>-->
                     <div class="article-liste-item image "> <img src="<?=getPathImage('images',$article['image'],true) ;?>"></div>
                     <div class="article-liste-item"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                     <div class="article-liste-item"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>
@@ -63,11 +66,11 @@
 
         <?php foreach ($params['articles'] as $article): ?>
             <?php if($article['famille']=="Fruit" && $article['id_statutArticle']!=3):?>
-                <div class="article-liste">
+                <div class="article-liste <?=$article['statutArticle'];?> ">
                     <input class="article-liste-item" type="hidden" name="id_article[]" value="<?=$article['id_article'];?>">
+                    <input class="article-liste-item" type="hidden" name="id_statutArticle[]" value="<?=$article['id_statutArticle'];?>">
                     <input class="article-liste-item" type="hidden" name="unite[]" value="<?=$article['unite'];?>">
                     <input class="article-liste-item" type="hidden" name="famille[]" value="<?=$article['famille'];?>">
-                    <!--                <div class="article-liste-item image "> <img src="http://localhost/TerrAnanas/public/images/fruits/pommes.jpg"></div>-->
                     <div class="article-liste-item image "> <img src="<?=getPathImage('images',$article['image'],true) ;?>"></div>
                     <div class="article-liste-item"> <input type="hidden" name="article[]" value="<?= $article["article"];?>"><?= $article["article"];?> </div>
                     <div class="article-liste-item"> <input type="hidden" name="origine[]" value=" <?= $article["origine"];?>"> <?= $article["origine"];?> </div>

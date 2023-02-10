@@ -8,6 +8,7 @@
         </div>
     </section>
     <section class="formulaire">
+
         <form method="POST" action="signup">
             <div class="formulaire-item">
                 <?php if (isset($params['error']['client'])): ?>
@@ -55,7 +56,6 @@
                 <?php endif; ?>
                 <label>Téléphone</label>
                 <input type="text" class="form-control" id="phone" name="phone" value="<?=$params['phone'];?>">
-
             </div>
 
             <div class="formulaire-item">

@@ -51,6 +51,7 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
+
     "articles_client"=>[
         "controller"=>"Commande",
         "action"=>"articles",
@@ -69,17 +70,18 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-    "empty_basket"=>[
-        "controller"=>"Commande",
-        "action"=>"emptyBasket",
-        'path'=>"user",
-        "base_template"=>""
-    ],
     "validation_commande"=>[
         "controller"=>"Commande",
         "action"=>"validationCommande",
         'path'=>"user",
         "base_template"=>"base"
+    ],
+
+    "empty_basket"=>[
+        "controller"=>"Commande",
+        "action"=>"emptyBasket",
+        'path'=>"user",
+        "base_template"=>""
     ],
     "historique_commandes"=>[
         "controller"=>"Historique",

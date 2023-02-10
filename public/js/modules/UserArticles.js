@@ -85,12 +85,11 @@ export class UserArticles {
         let formData = new FormData(this.form);
         let container = document.querySelector('.templateListeArticle');
         let isListView = false;
-        for (const element of this.getlisteArticle()) {
-            if (element.classList.contains("list")) {
-                isListView = true;
-                break;
-            }
+
+        if(this.buttonList.classList.contains('select')){
+            isListView = true;
         }
+
         fetch(this.form.action+'?ajax=true', {method: 'POST', body: formData})
             .then(response => response.text())
             .then(data => {

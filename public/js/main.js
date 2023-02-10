@@ -5,7 +5,7 @@ import { Panier } from './modules/Panier.js';
 import {Commande} from "./modules/Commande.js";
 
 const navbar = new Navbar('headerNavbar')
-const customAlert = new MessageFlash();
+const messageFlash = new MessageFlash();
 
 if(window.location.pathname==='/TerrAnanas/articles_client'){
     const articles = new UserArticles();

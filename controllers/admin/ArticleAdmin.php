@@ -3,6 +3,7 @@
 class ArticleAdmin extends AbstractController
 {
     function index(){
+
         $role = getUserRole();
         /*
          * Je vérifie que l'utilisateur a le role admin
@@ -23,10 +24,10 @@ class ArticleAdmin extends AbstractController
         $params=[];
 
         /*
-         * liste des articles archivés
+         * L'utilisateur a coché la case pour voir les articles archivés
          */
         if (empty($_POST['archive']) ) {
-            // L'utilisateur a coché la case pour recevoir la newsletter
+
             $articles = $this->filterArticles($articles);
         }
 
@@ -58,6 +59,7 @@ class ArticleAdmin extends AbstractController
         }else{
             $this->render($this->file, $this->page, $this->base, $params);
         }
+
     }
 
     function addArticle()
@@ -126,6 +128,12 @@ class ArticleAdmin extends AbstractController
             if($famille == 0){
                 addFlashMessage('Veuillez sélectionner une famille','error');
             }
+            elseif ($famille == 1){
+                $image = ' fruit.png';
+            }
+            else{
+                $image = 'legume.png';
+            }
             if($unite == 0){
                 addFlashMessage('Veuillez sélectionner une unitée','error');
             }
@@ -137,29 +145,9 @@ class ArticleAdmin extends AbstractController
              * Upload d'image
              */
             if (!empty($_FILES['image'])) {
-                $tmpName = $_FILES['image']['tmp_name'];
-                $name = $_FILES['image']['name'];
-                $size = $_FILES['image']['size'];
-                $error = $_FILES['image']['error'];
-                move_uploaded_file($tmpName, './images/upload/'.$name);
+                uploadImage($_FILES['image']);
+                $image=$_FILES['image']['name'];
 
-                $tabExtension = explode('.', $name);
-                $extension = strtolower(end($tabExtension));
-                $extensions = ['jpg', 'png', 'jpeg'];
-                $maxSize = 400000;
-
-                    if(in_array($extension, $extensions) && $size <= $maxSize){
-                        if($error==0){
-                            $image=$name;
-                            move_uploaded_file($tmpName, './upload/'.$name);
-                        }else{
-                            dump($error);
-                            addFlashMessage("Une erreur est survenue lors de l'upload",'error');
-                        }
-                    }
-                    else{
-                        addFlashMessage('Fichier non autorisé : extension non accepté ou taille grande','error');
-                    }
             }
             /*
              * Si mes vérifications sont validées en ne renvoyant aucun message d’erreur,
@@ -225,18 +213,24 @@ class ArticleAdmin extends AbstractController
         $origine = $article['origine'];
         $prix = $article['prix'];
         $poids = $article['poids'];
+        $image = $article['image'];
 
         if(!empty($_POST)){
-            $label = $_POST['label'];
-            $origine = $_POST['origine'];
-            $prix = $_POST['prix']*100;
-            $poids = $_POST['poids'];
-            $unite = $_POST['unite'];
-            $famille = $_POST['famille'];
-            $statutArticle = $_POST['statutArticle'];
+            $label = strip_tags(htmlspecialchars(trim($_POST['label'])));
+            $origine =strip_tags(htmlspecialchars(trim($_POST['origine'])));
+            $prix = strip_tags(htmlspecialchars(trim($_POST['prix']*100)));
+            $poids = strip_tags(htmlspecialchars(trim($_POST['poids'])));
+            $unite = strip_tags(htmlspecialchars(trim($_POST['unite'])));
+            $famille = strip_tags(htmlspecialchars(trim($_POST['famille'])));
+            $statutArticle = strip_tags(htmlspecialchars(trim($_POST['statutArticle'])));
+
+            if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                uploadImage($_FILES['image']);
+                $image=$_FILES['image']['name'];
+            }
 
             if(empty($errors)){
-                $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$idArticle);
+                $articleModel->editArticle($label,$poids,$unite,$prix,$origine,$famille,$statutArticle,$image,$idArticle);
                 header('location: articles_admin');
                 exit;
             }
@@ -247,6 +241,7 @@ class ArticleAdmin extends AbstractController
             'origine'=>$origine,
             'prix'=>$prix,
             'poids'=>$poids,
+            'image'=>$image,
             'statut'=>$statut,
             'unites'=>$unites,
             'familles'=>$familles,

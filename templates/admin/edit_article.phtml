@@ -1,6 +1,7 @@
 <h3 class="headerTitle">Modification : <?=$params['label'];?></h3>
 
-<form method="POST" action="<?='edit_article?id='.$params['article']['id_article'];?>" class="formAddArticle">
+
+<form method="POST" action="<?='edit_article?id='.$params['article']['id_article'];?>" enctype="multipart/form-data" class="formAddArticle">
 
     <div class="article">
         <div class="article-item">
@@ -20,8 +21,14 @@
 
         <div class="article-item">
             <label class="mb-1 font-weight-bold" for="poids">Poids</label>
-            <input type="text" class="form-control" id="quantité" name="poids" value="<?=$params['poids'];?>">
+            <input type="text" class="form-control" id="poids" name="poids" value="<?=$params['poids'];?>">
         </div>
+
+        <div class="article-item">
+            <label for="image">Image</label>
+            <input type="file" class="form-control" id="image" name="image">
+        </div>
+
         <div class="article-item">
             <label class="mb-1 font-weight-bold" for="unite">Unite</label>
             <select class="form-control" name="unite" id="unite">

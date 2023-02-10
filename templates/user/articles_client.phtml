@@ -1,6 +1,3 @@
-    <div class="flash-message">
-        <?php displayFlashMessages() ; ?>
-    </div>
 
     <section class="hearderPage">
         <div class="hearderPage-item">
@@ -15,11 +12,7 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <div class="headerArticle-search-form-input">
-<!--                    --><?php //if(empty($_SESSION['articleSearch'])) :?>
-                        <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
-<!--                    --><?php //else : ?>
-<!--                        <input type="search" class="form-control" name="articleSearch" id="articleSearch" value="--><?//=$params['articleSearch'];?><!--">-->
-<!--                    --><?php //endif;?>
+                    <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
                 </div>
             </form>
         </div>
@@ -33,15 +26,20 @@
         </div>
     </div>
 
+    <div class="infoStatut">
+        <div class="infoStatut-item">
+            <div class="infoStatut-item-case Stock"></div>
+            <p class="infoStatut-item-text">Stock</p>
+        </div>
+        <div class="infoStatut-item">
+            <div class="infoStatut-item-case Rupture"></div>
+            <p class="infoStatut-item-text">Rupture</p>
+        </div>
+    </div>
 
     <div class="templateListeArticle">
         <?php $this->render($this->file, 'liste_articles_client','', $params);?>
-
     </div>
 
 
 
-
-
-<!--<script src="http://localhost/TerrAnanas/public/js/articles_client.js" defer></script>-->
-<!--<script src="http://localhost/TerrAnanas/public/js/main.js" type="module" defer></script>-->
