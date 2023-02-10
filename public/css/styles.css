@@ -38,6 +38,20 @@
   opacity: 1;
 }
 
+.flash-success {
+  background-color: #E2F3CA; /* rouge */
+  color: #004E0B; /* blanc */
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  text-align: center;
+  width: 100vw;
+  z-index: 20;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
 .hide {
   display: none;
 }
@@ -369,8 +383,10 @@
     width: 70%;
     border-radius: 0 0 20px 20px;
     justify-content: space-between;
-    transition: transform 0.5s ease-in-out; /* ajout d'une transition sur la propriété transform */
-    transform: translateY(0); /* position initiale */
+    transition: transform 0.5s ease-in-out;
+    /* ajout d'une transition sur la propriété transform */
+    transform: translateY(0);
+    /* position initiale */
   }
   .headerNavbar-function-list {
     font-size: 20px;
@@ -421,7 +437,8 @@
     border-bottom: 2px solid #FFFAE2;
   }
   .headerNavbar.hide {
-    transform: translateY(-100%); /* masque le navbar quand il y a une largeur d'écran de 1200px */
+    transform: translateY(-100%);
+    /* masque le navbar quand il y a une largeur d'écran de 1200px */
   }
   .footerNavbar-info {
     width: 70%;
@@ -1145,7 +1162,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  position: -webkit-sticky;
   position: sticky;
   top: 80px;
   padding-top: 15px;
@@ -1218,12 +1234,6 @@
 }
 
 .form-control::-moz-placeholder {
-  text-align: center;
-  color: #999;
-  opacity: 1;
-}
-
-.form-control:-ms-input-placeholder {
   text-align: center;
   color: #999;
   opacity: 1;
@@ -1310,7 +1320,6 @@
 .liste-button {
   display: flex;
   justify-content: center;
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
   background-color: #FDFDFD;
@@ -1446,7 +1455,7 @@
     background: #FDFDFD;
   }
   .headerArticle-layout-grid,
-.headerArticle-layout-list {
+  .headerArticle-layout-list {
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -1538,7 +1547,6 @@
 
 .validation {
   background-color: #FDFDFD;
-  position: -webkit-sticky;
   position: sticky;
   bottom: 0;
   text-align: center;
@@ -1893,7 +1901,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    position: -webkit-sticky;
     position: sticky;
     top: 50px;
   }

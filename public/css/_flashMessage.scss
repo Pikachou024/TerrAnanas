@@ -35,3 +35,16 @@
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
+.flash-success{
+  background-color:$firstLightColor; /* rouge */
+  color: $firstColor; /* blanc */
+  padding: 20px;
+  position: absolute;
+  top :0;
+  font-size: 14px;
+  text-align: center;
+  width: 100vw;
+  z-index: 20;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
