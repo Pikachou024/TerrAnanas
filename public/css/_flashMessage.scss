@@ -22,10 +22,10 @@
   margin-top: 10px;
   cursor: pointer;
 }
-.flash-error {
+.flash-error{
   background-color:$altColor; /* rouge */
   color: $whiteColor; /* blanc */
-  padding: 20px;
+  padding: 20px 0;
   position: absolute;
   top :0;
   font-size: 14px;
@@ -38,7 +38,7 @@
 .flash-success{
   background-color:$firstLightColor; /* rouge */
   color: $firstColor; /* blanc */
-  padding: 20px;
+  padding: 20px 0;
   position: absolute;
   top :0;
   font-size: 14px;
@@ -47,4 +47,11 @@
   z-index: 20;
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
+}
+.flash-error>p , .flash-success>p{
+  margin: 0;
+}
+.error{
+  margin: 5px 0;
+  color: $altColor;
 }

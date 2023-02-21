@@ -3,28 +3,45 @@
 <form method="POST" action="add_article" enctype="multipart/form-data" class="formAddArticle">
     <div class="article">
         <div class="article-item">
+            <?php if (isset($params['error']['label'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['label']);?></p>
+            <?php endif; ?>
             <label  for="label"> Article </label>
             <input type="text" class="form-control" id="label" name="label" value="<?=$params['label'];?>">
         </div>
         <div class="article-item">
+            <?php if (isset($params['error']['origine'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['origine']);?></p>
+            <?php endif; ?>
             <label  for="origine">Origine</label>
             <input type="text" class="form-control" id="origine" name="origine" value="<?=$params['origine'];?>">
         </div>
         <div class="article-item">
+            <?php if (isset($params['error']['prix'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['prix']);?></p>
+            <?php endif; ?>
             <label  for="prix">Prix</label>
             <input type="text" class="form-control" id="prix" name="prix" value="<?=$params['prix'];?>">
         </div>
         <div class="article-item">
+            <?php if (isset($params['error']['poids'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['poids']);?></p>
+            <?php endif; ?>
             <label for="poids">Poids</label>
             <input type="text" class="form-control" id="poids" name="poids" value="<?=$params['poids'];?>">
         </div>
         <div class="article-item">
+            <?php if (isset($params['error']['image'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['image']);?></p>
+            <?php endif; ?>
             <label for="image">Image</label>
             <input type="file" class="form-control" id="image" name="image">
         </div>
 
-
         <div class="article-item">
+            <?php if (isset($params['error']['unite'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['unite']);?></p>
+            <?php endif; ?>
             <label class="" for="unite">Unite</label>
             <select class="form-control" name="unite" id="unite">
                 <option value="0">Sélectionner une unitée</option>
@@ -34,6 +51,9 @@
             </select>
         </div>
         <div class="article-item">
+            <?php if (isset($params['error']['famille'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['famille']);?></p>
+            <?php endif; ?>
             <label class="" for="famille">Famille</label>
             <select class="form-control" name="famille" id="famille">
                 <option value="0">Sélectionner une famille</option>
@@ -43,6 +63,9 @@
             </select>
         </div>
         <div class="article-item">
+            <?php if (isset($params['error']['statut'])): ?>
+                <p class="error"><?=htmlspecialchars($params['error']['statut']);?></p>
+            <?php endif; ?>
             <label  for="statut">Disponibilité</label>
             <select class="form-control" name="statut" id="statut">
                 <option value="0">Sélectionner une unitée</option>

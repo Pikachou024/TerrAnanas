@@ -27,7 +27,7 @@
 .flash-error {
   background-color: #A62103; /* rouge */
   color: #FDFDFD; /* blanc */
-  padding: 20px;
+  padding: 20px 0;
   position: absolute;
   top: 0;
   font-size: 14px;
@@ -41,7 +41,7 @@
 .flash-success {
   background-color: #E2F3CA; /* rouge */
   color: #004E0B; /* blanc */
-  padding: 20px;
+  padding: 20px 0;
   position: absolute;
   top: 0;
   font-size: 14px;
@@ -50,6 +50,15 @@
   z-index: 20;
   transition: opacity 0.5s ease-in-out;
   opacity: 1;
+}
+
+.flash-error > p, .flash-success > p {
+  margin: 0;
+}
+
+.error {
+  margin: 5px 0;
+  color: #A62103;
 }
 
 ul {
@@ -1141,6 +1150,7 @@ footer {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: 70px auto 20px auto;
 }
 .headerDate-date, .headerDate-inscription {
   background-color: #FDFDFD;

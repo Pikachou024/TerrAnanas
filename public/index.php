@@ -36,4 +36,4 @@ $controller = new $controllerName($path, $page, $baseTemplate);
 $controller->$actionName();
 
 
-
+//dump($_SESSION['panier']);

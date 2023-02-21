@@ -73,7 +73,7 @@ class ArticleAdmin extends AbstractController
             header("location:page_403");
             exit;
         }
-
+        $error=[];
         /*
          * J'initialise mes variables avec un string vide me permettant (en cas d'erreur)
          * de conserver ce que l'utilisateur aura noté dans le champ
@@ -114,46 +114,53 @@ class ArticleAdmin extends AbstractController
              * Je vérifie si tous les champs ont bien été remplis sinon je renvoie un message d'erreur.
              */
             if(!$label){
-                addFlashMessage('Veuillez remplir le champ article','error');
+                $error['label']='Veuillez remplir le champ article';
+//                addFlashMessage('Veuillez remplir le champ article','error');
             }
             if(!$origine){
-                addFlashMessage('Veuillez remplir le champ origine','error');
+                $error['origine']='Veuillez remplir le champ origine';
+//                addFlashMessage('Veuillez remplir le champ origine','error');
             }
             if(!$prix){
-                addFlashMessage('Veuillez remplir le champ prix','error');
+                $error['prix']='Veuillez remplir le champ prix';
+//                addFlashMessage('Veuillez remplir le champ prix','error');
             }
             if(!$poids){
-                addFlashMessage('Veuillez remplir le champ poids','error');
+                $error['poids']='Veuillez remplir le champ poids';
+//                addFlashMessage('Veuillez remplir le champ poids','error');
             }
             if($famille == 0){
-                addFlashMessage('Veuillez sélectionner une famille','error');
+                $error['famille']='Veuillez sélectionner une famille';
+//                addFlashMessage('Veuillez sélectionner une famille','error');
             }
             elseif ($famille == 1){
-                $image = ' fruit.png';
+                $image = 'fruit.png';
             }
             else{
                 $image = 'legume.png';
             }
             if($unite == 0){
-                addFlashMessage('Veuillez sélectionner une unitée','error');
+                $error['unite']='Veuillez sélectionner une unitée';
+//                addFlashMessage('Veuillez sélectionner une unitée','error');
             }
             if($statut == 0){
-                addFlashMessage('Veuillez sélectionner un statut','error');
+                $error['statut']='Veuillez sélectionner une statut';
+//                addFlashMessage('Veuillez sélectionner un statut','error');
             }
 
             /*
              * Upload d'image
              */
-            if (!empty($_FILES['image'])) {
+            if ($_FILES['image']['size']>0) {
                 uploadImage($_FILES['image']);
                 $image=$_FILES['image']['name'];
-
             }
             /*
              * Si mes vérifications sont validées en ne renvoyant aucun message d’erreur,
              * J'ajouter les données pour mon article dans ma BDD.
              */
-            if(canProceed()) {
+//            if(canProceed()) {
+            if(empty($error)) {
                 $articleModel = new ArticleModel();
                 $articleModel ->addArticle($label,$poids,$unite,($prix*100),$origine,$famille,$statut,$image);
 
@@ -174,7 +181,7 @@ class ArticleAdmin extends AbstractController
             'unites'=>$unites,
             'familles'=>$familles,
             'statut'=>$statuts,
-
+            'error'=>$error,
             'title'=>"Ajouter un article"
         ];
         $this->render($this->file, $this->page, $this->base, $params);

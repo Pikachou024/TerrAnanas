@@ -15,7 +15,7 @@ function addFlashMessage(string $message, string $type = 'success') {
 function displayFlashMessages() {
     if (isset($_SESSION['flash_messages'])) {
         foreach ($_SESSION['flash_messages'] as $message) {
-            echo '<div class="flash-' . $message['type'] . '">' . $message['message'] . '</div>';
+            echo '<div class="flash-' . $message['type'] . '"><p>' . $message['message'] . '</p></div>';
         }
         unset($_SESSION['flash_messages']);
     }

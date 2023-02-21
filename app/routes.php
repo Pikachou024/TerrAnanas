@@ -51,7 +51,6 @@ $routes=[
         'path'=>"user",
         "base_template"=>"base"
     ],
-
     "articles_client"=>[
         "controller"=>"Commande",
         "action"=>"articles",
@@ -69,6 +68,12 @@ $routes=[
         "action"=>"panier",
         'path'=>"user",
         "base_template"=>"base"
+    ],
+    "montant_panier"=>[
+        "controller"=>"Commande",
+        "action"=>"montantPanier",
+        'path'=>"user",
+        "base_template"=>""
     ],
     "validation_commande"=>[
         "controller"=>"Commande",

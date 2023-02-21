@@ -60,7 +60,6 @@ export class UserArticles {
 
         this.articleSearch.addEventListener('keyup', this.search.bind(this));
 
-
         this.buttonList.addEventListener('click', this.toggleListView.bind(this, true));
         this.buttonGrid.addEventListener('click', this.toggleListView.bind(this, false));
         this.glass.addEventListener('click', () => {

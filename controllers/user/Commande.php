@@ -20,7 +20,7 @@ class Commande extends AbstractController
             $params['title']="TerrAnanas - Passer une commande";
 
             if(!empty($_GET['ajax'])){
-                $articleSearch = $_POST['articleSearch'];
+                $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
                 $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
                 if(!$articleSearch){
                     unset($_SESSION['articleSearch']);
@@ -112,21 +112,22 @@ class Commande extends AbstractController
             }, $_POST['quantite']);
 
             for($i=0 ; $i<(count($article)) ; $i++){
-//                if($statutArticle[$i]== 1){
+                if($statutArticle[$i]== 1){
                     addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
-//                }
-//                else{
-//                    $ruptures[$idArticle[$i]] = $article[$i];
-//                }
+                }
+                elseif($statutArticle[$i]== 2 && $quantite[$i] != 0){
+                    $ruptures[$idArticle[$i]] = $article[$i];
+                }
 
 
             }
-//            if(!empty($ruptures)){
-//                foreach($ruptures as $rupture){
-//                    addFlashMessage($rupture ." est en rupture",'error');
-//                }
-//
-//            }
+
+            if(!empty($ruptures)){
+                foreach($ruptures as $rupture){
+                    addFlashMessage($rupture ." est en rupture",'error');
+                }
+
+            }
             if(!empty($_SESSION['panier'])){
                 addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
 
@@ -174,7 +175,6 @@ class Commande extends AbstractController
     }
 
     function validationCommande(){
-
         $role = getUserRole();
         if(!$role) {
             http_response_code(403);
@@ -200,8 +200,6 @@ class Commande extends AbstractController
             header('location: panier');
             exit;
         }
-
-
 
         /**
          * Validation de la commande
@@ -230,7 +228,7 @@ class Commande extends AbstractController
                 modifierQTeArticle($idArticle[$i], $quantite[$i]);
             }
 
-
+//            $this->montantPanier();
             /**
              * On redirige sur la page "panier" si le montant du panier n'atteint pas le franco
              */
@@ -279,9 +277,68 @@ class Commande extends AbstractController
     }
 
     function emptyBasket(){
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
         unset($_SESSION['panier']);
         header('location: panier');
         exit;
+    }
+
+    function montantPanier(){
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            header("location:page_403");
+            exit;
+        }
+
+        $idArticle = array_map(function($value) {
+            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+            $value = strip_tags($value);
+            return $value;
+        }, $_POST['id_article']);
+
+        $prix = array_map(function($value) {
+            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+            $value = strip_tags($value);
+            return $value;
+        }, $_POST['prix']);
+
+        $poids = array_map(function($value) {
+            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+            $value = strip_tags($value);
+            return $value;
+        }, $_POST['poids']);
+
+        $quantite = array_map(function($value) {
+            if (!is_numeric($value)) {
+                addFlashMessage("Erreur : Veuillez rentrer un nombre",'error');
+                header("location:panier");
+                exit;
+            }
+            $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+            $value = strip_tags($value);
+            return $value;
+        }, $_POST['quantite']);
+
+        for($i=0 ; $i<(count($idArticle)) ; $i++) {
+            $array[] = [
+                "id_article" => $idArticle[$i],
+                "prix" => $prix[$i],
+                "poids" => $poids[$i],
+                "quantite" => $quantite[$i]
+            ];
+        }
+        $montantPanier = montantTotal($array);
+
+        if(!empty($_GET['ajax'])) {
+            echo json_encode($montantPanier);
+        }
+
     }
 
 }

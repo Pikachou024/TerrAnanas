@@ -6,8 +6,8 @@ class Connexion extends AbstractController
         $email = '';
 
         if(!empty($_POST)){
-            $email = strip_tags(trim($_POST['email']));
-            $password = strip_tags(trim($_POST['password']));
+            $email = strip_tags(htmlspecialchars(trim($_POST['email'])));
+            $password = strip_tags(htmlspecialchars(trim($_POST['password'])));
 
             /*
              * Vérification du user et son mdp

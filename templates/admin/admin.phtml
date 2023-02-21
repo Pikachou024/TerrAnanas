@@ -27,7 +27,7 @@
             <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_commande']));?></div>
             <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_livraison'])) ;?></div>
             <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?></div>
-            <div class="liste-commande-item detail" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-eye"></i></a> </div>
+            <div class="liste-commande-item detail" ><a href="<?='commande_details_admin?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-eye"></i></a> </div>
         </div>
     <?php endforeach; ?>
 <?php else:?>
@@ -54,7 +54,7 @@
                 <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_commande']));?></div>
                 <div class="liste-commande-item" ><?=date('d/m/y', strtotime($commande['date_livraison'])) ;?></div>
                 <div class="liste-commande-item" ><?=($commande['montant']/100) ." €" ;?></div>
-                <div class="liste-commande-item detail" ><a href="<?='commande_details?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-eye"></i></a> </div>
+                <div class="liste-commande-item detail" ><a href="<?='commande_details_admin?id='.$commande['id_commande'] ;?>"><i class="fa-solid fa-eye"></i></a> </div>
             </div>
         <?php endforeach; ?>
     <?php else:?>
@@ -65,5 +65,3 @@
 </div>
 </div>
 
-<!--Chargement des scripts pour le dashboard admin-->
-<!--<script type="text/javascript" src="http://localhost/ProjetCommande/public/js/admin/ajax_admin.js" defer></script>-->

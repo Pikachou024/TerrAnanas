@@ -16,8 +16,8 @@
   padding-top: 15px;
   padding-bottom: 10px;
   //background-color: $whiteColor;
-  z-index: 30;
-
+  //z-index: 30;
+  z-index: 1;
 
   &-search {
     display: flex;
@@ -243,6 +243,16 @@
   font-size: 20px;
 }
 
+
+.Stock,.Rupture  {
+  border: none;
+
+}
+
+.list.Stock , .list.Rupture{
+  border: none;
+}
+
 @media screen and (max-width: 640px) {
   .article-liste-item {
     display: block;
@@ -412,9 +422,13 @@
     display: none;
   }
 
-  //.article-liste.head{
-  //  background-color: #F29F05;
-  //}
+  .Stock {
+    border: 2px solid $firstColor;
+  }
+
+  .Rupture {
+    border: 2px solid $altColor;
+  }
 }
 
 .visible {
@@ -440,16 +454,4 @@
   .headerArticle.changeTop {
     top: 0;
   }
-}
-
-.Stock {
-  border: 2px solid $firstColor;
-}
-
-.Rupture {
-  border: 2px solid $altColor;
-}
-
-.list.Stock , .list.Rupture{
-  border: none;
 }

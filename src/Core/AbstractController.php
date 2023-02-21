@@ -19,6 +19,7 @@ abstract class AbstractController{
 
         if(!$base){
             require_once $template;
+//            echo file_get_contents($template);
         }
         else{
             require_once (getPathTemplate($file,$base));

@@ -80,6 +80,16 @@ class CommandesAdmin extends AbstractController
             $newPriceArticles = $commandeModel -> getOneCommandeDetails($idCommande);
             $commandeModel->editMontantCommande(montantTotal($newPriceArticles),$idCommande);
             $commandeModel->validCommande($statutCommande,$idCommande);
+
+            if($statutCommande==2){
+                $message="Votre commande a été validé";
+            }
+            elseif($statutCommande==3){
+                $message="Votre commande a été refusé. Pour plus d'information veuillez contacter notre service";
+            }
+            if(isset($message)){
+                sendMail(getUserEmail(),$commande['email'],'Commande n°'.$commande['id_commande'],$message,true);
+            }
             header('location:commandes_admin');
         }
         $params=[

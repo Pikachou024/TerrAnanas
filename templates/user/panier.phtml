@@ -13,12 +13,12 @@
 
     <div class="info-item">
         <h4 class="info-item-title">Montant du panier</h4>
-        <p class="info-item-texte"><?=$params['montantPanier'].' €';?></p>
+        <p class="info-item-texte montantPanier"><?=$params['montantPanier'].' €';?></p>
     </div>
 </section>
 <?php if(!empty($_SESSION['panier'])) :?>
 
-<form method="POST" action="<?='validation_commande';?>" id="form-commande">
+<form method="POST" action="<?='validation_commande';?>" id="form-panier">
 
 <!--    --><?php //if(isset($params['articles'])): ?>
 
