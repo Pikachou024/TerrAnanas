@@ -90,10 +90,11 @@ export class UserArticles {
         }
 
         fetch(this.form.action+'?ajax=true', {method: 'POST', body: formData})
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
+                // console.log(data)
                 container.innerHTML = '';
-                container.innerHTML = data;
+                container.innerHTML = data.view;
                 this.resetElements();
                 this.toggleListArticle(this.getlisteArticle(), isListView);
                 this.togglePicture(this.getpictureArticle(),isListView);

@@ -2,37 +2,48 @@
 
 class Commande extends AbstractController
 {
-
-        function articles(){
-
-            $role = getUserRole();
-            if(!$role) {
-                http_response_code(403);
-                echo("accès refusé");
-                exit;
-            }
-
-            $params=[];
-            $articleModel = new ArticleModel();
-            $articles = $articleModel->getAllArticles();
-
-            $params["articles"]=$articles;
-            $params['title']="TerrAnanas - Passer une commande";
-
-            if(!empty($_GET['ajax'])){
-                $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
-                $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
-                if(!$articleSearch){
-                    unset($_SESSION['articleSearch']);
-                }
-                $this->render($this->file, 'liste_articles_client', '', $params);
-            }
-
-            else{
-                $this->render($this->file, $this->page, $this->base, $params);
-            }
-
+    function articles(){
+        $role = getUserRole();
+        if(!$role) {
+            http_response_code(403);
+            echo("accès refusé");
+            exit;
         }
+        $params=[];
+        $articleModel = new ArticleModel();
+        $articles = $articleModel->getAllArticles();
+        $params["articles"]=$articles;
+        $params['title']="TerrAnanas - Passer une commande";
+
+        if(!empty($_POST['articleSearch'])){
+            $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
+            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+        }
+        elseif(isset($_SESSION['articleSearch'])){
+            unset($_SESSION['articleSearch']);
+        }
+
+        // Début de la mise en tampon de sortie
+        ob_start();
+        $this->render($this->file, 'liste_articles_client', '', $params);
+        // Récupérer le contenu généré et le stocker dans $params['view']
+        $params['view'] = ob_get_clean();
+
+        if(!empty($_GET['ajax'])){
+//            $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
+//            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+//            if(!$articleSearch){
+//                unset($_SESSION['articleSearch']);
+//            }
+
+            echo json_encode(['view'=>$params['view']]);
+            return ;
+        }
+//        else{
+            $this->render($this->file, $this->page, $this->base, $params);
+//        }
+
+    }
 
     function addPanier(){
 
@@ -118,19 +129,15 @@ class Commande extends AbstractController
                 elseif($statutArticle[$i]== 2 && $quantite[$i] != 0){
                     $ruptures[$idArticle[$i]] = $article[$i];
                 }
-
-
             }
 
             if(!empty($ruptures)){
                 foreach($ruptures as $rupture){
                     addFlashMessage($rupture ." est en rupture",'error');
                 }
-
             }
             if(!empty($_SESSION['panier'])){
                 addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
-
             }
 
         }
@@ -164,7 +171,6 @@ class Commande extends AbstractController
         }
 
         $date = new DateTimeImmutable();
-//        $dateLivraison = dateFr($date->format('D d M Y'));
         $dateLivraison1 = addDayDate(2);
         $dateLivraison2 = addDayDate(3);
         $params['date']=$date;
@@ -228,7 +234,6 @@ class Commande extends AbstractController
                 modifierQTeArticle($idArticle[$i], $quantite[$i]);
             }
 
-//            $this->montantPanier();
             /**
              * On redirige sur la page "panier" si le montant du panier n'atteint pas le franco
              */

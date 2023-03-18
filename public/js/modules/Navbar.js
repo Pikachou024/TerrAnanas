@@ -75,7 +75,11 @@ export class Navbar
                 this.menu.classList.remove('active');
                 if(this.dropDown) {
                     this.dropdownContent.classList.remove('active');
+                    this.dropDown.classList.remove('color');
                 }
+                // if(this.dropDown.classList.contains('color')){
+                //
+                // }
             }
         }).bind(this));
 

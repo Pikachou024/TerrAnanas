@@ -55,7 +55,12 @@ class ArticleAdmin extends AbstractController
          * J'utilise ma méthode render pour renvoyer mon template
          */
         if(!empty($_GET['ajax'])){
+
+            ob_start(); // Début de la mise en tampon de sortie
             $this->render($this->file, 'liste_articles_admin', '', $params);
+            $params['view'] = ob_get_clean(); // Récupérer le contenu généré et le stocker dans $params['view']
+            echo json_encode(['view'=>$params['view']]);
+
         }else{
             $this->render($this->file, $this->page, $this->base, $params);
         }

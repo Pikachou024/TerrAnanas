@@ -1,6 +1,7 @@
 .presentation-texte,.valeurs,.mission-article,.client-article,.inscription-client{
   width: 90%;
-  margin: 5% auto;
+  margin: 0 auto;
+  padding: 2% 0;
 }
 //h3{
 //  margin-top: 10px;
@@ -8,7 +9,7 @@
 //}
 .headContent{
   position: relative;
-  width: 100vw;
+  //width: 100vw;
   height:100vh;
   background-image: url(http://localhost/TerrAnanas/public/images/home.png);
   background-size: cover;
@@ -30,7 +31,9 @@
 }
 .presentation{
   text-align: center;
-  background-color: $firstLightColor;
+  //background-color: $firstLightColor;
+  background-image: linear-gradient(to bottom, $firstLightColor,$firstLightColor, $whiteColor);
+  background-repeat: no-repeat;
   padding: 10px 0;
   margin-bottom: 20px;
   &-texte{
@@ -41,8 +44,6 @@
       color:$secondColor;
     }
   }
-
-
 }
 
 .valeurs{
@@ -76,7 +77,9 @@
 }
 
 .client{
-  background-color: $firstLightColor;
+  //background-color: $firstLightColor;
+  background-image: linear-gradient(to bottom, $whiteColor,$firstLightColor, $whiteColor);
+  background-repeat: no-repeat;
   padding: 10px 0;
   &-article{
     text-align: center;
@@ -95,6 +98,9 @@
   }
 }
 .inscription{
+  background-image: linear-gradient(to bottom, $whiteColor,$firstLightColor, $firstLightColor);
+  background-repeat: no-repeat;
+  padding-bottom: 20px;
   &-client{
     text-align: center;
     &-lien{
@@ -232,9 +238,7 @@
     //font-size: 1.1em;
   }
   .headContent{
-
     &-box{
-
       padding: 50px;
       background-color: #ffffff; /* Couleur d'arrière-plan blanche */
       border: 2px solid #FDB813; /* Bordure noire de 10px */
@@ -281,6 +285,9 @@
     .valeurs-article-texte{
       grid-area: 2 / 1 / 3 / 2;
       text-align: center;
+    }
+    .valeurs-article-texte > h3 {
+      height: 100px;
     }
   }
 }

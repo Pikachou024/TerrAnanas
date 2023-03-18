@@ -24,10 +24,10 @@ export class AdminArticles
         let container = document.querySelector('.templateListe');
         // fetch('commandes_admin?ajax=true', {method: 'POST', body: formData})
         fetch('articles_admin?ajax=true', {method: 'POST', body: formData})
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
                 container.innerHTML='';
-                container.innerHTML=data;
+                container.innerHTML=data.view;
             })
             .catch(error => console.error(error));
     }

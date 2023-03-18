@@ -289,7 +289,6 @@
   background-color: #F1BB13;
   text-align: center;
   padding: 10px 0;
-  margin-top: 20px;
 }
 .footerNavbar h3 {
   color: #A62103;
@@ -596,12 +595,12 @@
 }
 .presentation-texte, .valeurs, .mission-article, .client-article, .inscription-client {
   width: 90%;
-  margin: 5% auto;
+  margin: 0 auto;
+  padding: 2% 0;
 }
 
 .headContent {
   position: relative;
-  width: 100vw;
   height: 100vh;
   background-image: url(http://localhost/TerrAnanas/public/images/home.png);
   background-size: cover;
@@ -622,7 +621,8 @@
 
 .presentation {
   text-align: center;
-  background-color: #E2F3CA;
+  background-image: linear-gradient(to bottom, #E2F3CA, #E2F3CA, #FDFDFD);
+  background-repeat: no-repeat;
   padding: 10px 0;
   margin-bottom: 20px;
 }
@@ -659,7 +659,8 @@
 }
 
 .client {
-  background-color: #E2F3CA;
+  background-image: linear-gradient(to bottom, #FDFDFD, #E2F3CA, #FDFDFD);
+  background-repeat: no-repeat;
   padding: 10px 0;
 }
 .client-article {
@@ -677,6 +678,11 @@
   width: 100%;
 }
 
+.inscription {
+  background-image: linear-gradient(to bottom, #FDFDFD, #E2F3CA, #E2F3CA);
+  background-repeat: no-repeat;
+  padding-bottom: 20px;
+}
 .inscription-client {
   text-align: center;
 }
@@ -824,6 +830,9 @@
   .valeurs-article:nth-child(2n) .valeurs-article-texte {
     grid-area: 2/1/3/2;
     text-align: center;
+  }
+  .valeurs-article:nth-child(2n) .valeurs-article-texte > h3 {
+    height: 100px;
   }
 }
 .hearderCalendrier {
@@ -1272,7 +1281,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-row-gap: 10px;
   padding: 10px 5px;
   text-align: center;
 }
@@ -1320,6 +1329,12 @@
 .article-liste-item.quantite > input::-o-inner-spin-button {
   -o-appearance: none;
   margin: 0;
+}
+.article-liste-item.quantite > input.Stock {
+  border: 2px solid #004E0B;
+}
+.article-liste-item.quantite > input.Rupture {
+  border: 2px solid #A62103;
 }
 .article-liste-aucun {
   text-align: center;
@@ -1383,8 +1398,12 @@
   font-size: 20px;
 }
 
-.Stock, .Rupture {
-  border: none;
+.Stock {
+  border: 2px solid #004E0B;
+}
+
+.Rupture {
+  border: 2px solid #A62103;
 }
 
 .list.Stock, .list.Rupture {
@@ -1392,6 +1411,9 @@
 }
 
 @media screen and (max-width: 640px) {
+  .article-liste.Stock, .article-liste.Rupture {
+    border: none;
+  }
   .article-liste-item {
     display: block;
   }
@@ -1430,8 +1452,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 250px;
-    height: 350px;
+    width: 200px;
+    height: 300px;
     margin-bottom: 20px;
     box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -1440,8 +1462,8 @@
   }
   .article-liste-item.image {
     display: block;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
     transition: transform 0.2s;
@@ -1514,12 +1536,6 @@
   }
   .article-liste-item.image.hide {
     display: none;
-  }
-  .Stock {
-    border: 2px solid #004E0B;
-  }
-  .Rupture {
-    border: 2px solid #A62103;
   }
 }
 .visible {

@@ -349,4 +349,23 @@ function hasRole(string $role):bool{
     return getUserRole() == $role;
 }
 
+//          $username = $_POST['username'];
+//          $password = $_POST['password'];
+//
+//          $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+//          $pdoStatement = $pdo->query($sql);
+//
+//        Un attaquant malveillant peut exploiter cette requête SQL en entrant une chaîne de caractères
+//        qui modifie la requête SQL, comme ceci :
+//
+//        Username : ' or 1=1;--
+//        Password :
+//
+//          La requête SQL résultante sera :
+//          SELECT * FROM users WHERE username = '' or 1=1;--' AND password = '';
 
+//          Cette requête SQL retournera tous les enregistrements de la table "users" car "or 1=1" est toujours vrai.
+//          Le double trait d'union "--" indique à MySQL d'ignorer tout le reste de la requête,
+//          ce qui empêche la clause "AND password" de s'exécuter
+//          L'attaquant peut ainsi se connecter sans connaître le mot de passe et
+//          avoir accès à toutes les informations de la base de données.
