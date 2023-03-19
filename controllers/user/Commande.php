@@ -15,6 +15,7 @@ class Commande extends AbstractController
         $params["articles"]=$articles;
         $params['title']="TerrAnanas - Passer une commande";
 
+
         if(!empty($_POST['articleSearch'])){
             $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
@@ -22,7 +23,6 @@ class Commande extends AbstractController
         elseif(isset($_SESSION['articleSearch'])){
             unset($_SESSION['articleSearch']);
         }
-
         // Début de la mise en tampon de sortie
         ob_start();
         $this->render($this->file, 'liste_articles_client', '', $params);
@@ -30,19 +30,11 @@ class Commande extends AbstractController
         $params['view'] = ob_get_clean();
 
         if(!empty($_GET['ajax'])){
-//            $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
-//            $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
-//            if(!$articleSearch){
-//                unset($_SESSION['articleSearch']);
-//            }
-
             echo json_encode(['view'=>$params['view']]);
             return ;
         }
-//        else{
-            $this->render($this->file, $this->page, $this->base, $params);
-//        }
 
+        $this->render($this->file, $this->page, $this->base, $params);
     }
 
     function addPanier(){
@@ -123,12 +115,15 @@ class Commande extends AbstractController
             }, $_POST['quantite']);
 
             for($i=0 ; $i<(count($article)) ; $i++){
-                if($statutArticle[$i]== 1){
-                    addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+                if($quantite[$i] != 0){
+                    if($statutArticle[$i]== 1){
+                        addArticle($idArticle[$i],$article[$i],$origine[$i],$poids[$i],$prix[$i],$quantite[$i],$famille[$i],$unite[$i]);
+                    }
+                    elseif($statutArticle[$i]== 2){
+                        $ruptures[$idArticle[$i]] = $article[$i];
+                    }
                 }
-                elseif($statutArticle[$i]== 2 && $quantite[$i] != 0){
-                    $ruptures[$idArticle[$i]] = $article[$i];
-                }
+
             }
 
             if(!empty($ruptures)){
@@ -136,9 +131,12 @@ class Commande extends AbstractController
                     addFlashMessage($rupture ." est en rupture",'error');
                 }
             }
-            if(!empty($_SESSION['panier'])){
+            else{
                 addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
             }
+//            if(!empty($_SESSION['panier'])){
+//                addFlashMessage("Vos articles ont bien été ajouté dans votre panier");
+//            }
 
         }
         header("location:articles_client");

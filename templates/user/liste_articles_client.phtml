@@ -31,6 +31,7 @@
     <?php endif;?>
 <?php else : ?>
     <p class="rayon">Légumes</p>
+
     <div class="article">
         <?php foreach ($params['articles'] as $article): ?>
             <?php if($article['famille']=="Légume" && $article['id_statutArticle']!=3):?>
@@ -53,6 +54,7 @@
             <?php endif ;?>
         <?php endforeach; ?>
     </div>
+
     <p class="rayon">Fruits</p>
     <div class="article">
         <?php foreach ($params['articles'] as $article): ?>
