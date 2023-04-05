@@ -1,6 +1,5 @@
 <?php
 
-
 //Création d'une classe abstract parente
 abstract class AbstractModel{
 

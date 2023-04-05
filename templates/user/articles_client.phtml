@@ -1,40 +1,39 @@
-
-    <section class="hearderPage">
-        <div class="hearderPage-item">
-            <h3 class="hearderPage-item-title">Passer une commande</h3>
-        </div>
-    </section>
-    <div class="headerArticle">
-        <div class="headerArticle-search">
-            <form method="POST" action ="articles_client" class="headerArticle-search-form" id="form-search" role="search">
-                <div class="headerArticle-search-form-glass">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <div class="headerArticle-search-form-input">
-                    <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
-                </div>
-            </form>
-        </div>
-        <div class="headerArticle-layout">
-            <div class="headerArticle-layout-grid select">
-                <i class="fa-sharp fa-solid fa-grip"></i>
+<section class="hearderPage">
+    <div class="hearderPage-item">
+        <h3 class="hearderPage-item-title">Passer une commande</h3>
+    </div>
+</section>
+<div class="headerArticle">
+    <div class="headerArticle-search">
+        <form method="POST" action ="articles_client" class="headerArticle-search-form" id="form-search" role="search">
+            <div class="headerArticle-search-form-glass">
+                <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <div class="headerArticle-layout-list">
-                <i class="fa-sharp fa-solid fa-list"></i>
+            <div class="headerArticle-search-form-input">
+                <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article">
             </div>
+        </form>
+    </div>
+    <div class="headerArticle-layout">
+        <div class="headerArticle-layout-grid select">
+            <i class="fa-sharp fa-solid fa-grip"></i>
+        </div>
+        <div class="headerArticle-layout-list">
+            <i class="fa-sharp fa-solid fa-list"></i>
         </div>
     </div>
-    <div class="infoStatut">
-        <div class="infoStatut-item">
-            <div class="infoStatut-item-case Stock"></div>
-            <p class="infoStatut-item-text">Stock</p>
-        </div>
-        <div class="infoStatut-item">
-            <div class="infoStatut-item-case Rupture"></div>
-            <p class="infoStatut-item-text">Rupture</p>
-        </div>
+</div>
+<div class="infoStatut">
+    <div class="infoStatut-item">
+        <div class="infoStatut-item-case Stock"></div>
+        <p class="infoStatut-item-text">Stock</p>
     </div>
-    <div class="templateListeArticle">
-        <?= $params['view'] ; ?>
+    <div class="infoStatut-item">
+        <div class="infoStatut-item-case Rupture"></div>
+        <p class="infoStatut-item-text">Rupture</p>
     </div>
+</div>
+<div class="templateListeArticle">
+    <?= $params['view'] ; ?>
+</div>
 

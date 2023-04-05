@@ -10,7 +10,6 @@ class CommandesAdmin extends AbstractController
             exit;
         }
 
-
         $statusModel = new statusModel();
         $statut = $statusModel->getAllstatus();
 

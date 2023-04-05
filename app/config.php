@@ -4,8 +4,6 @@
  */
 const DB_NAME='terrananas';
 const DB_HOST='localhost';
-//const DB_USER='root';
-//const DB_PASS='';
 const DB_USER='admin_terrananas';
 const DB_PASS='PASSWORD';
 

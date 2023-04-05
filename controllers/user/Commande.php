@@ -15,18 +15,23 @@ class Commande extends AbstractController
         $params["articles"]=$articles;
         $params['title']="TerrAnanas - Passer une commande";
 
-
+        /*
+ * Gestion de la soumission de mon formulaire ( rechercher un article )
+ */
         if(!empty($_POST['articleSearch'])){
-            $articleSearch = strip_tags(htmlspecialchars(trim($_POST['articleSearch'])));
+            $articleSearch = $_POST['articleSearch'];
+            $params['articleSearch']=$articleSearch;
             $_SESSION['articleSearch'] = searchArticle($articleSearch,$articles);
+
+        }else{
+            unset( $_SESSION['articleSearch']);
         }
-        elseif(isset($_SESSION['articleSearch'])){
-            unset($_SESSION['articleSearch']);
-        }
-        // Début de la mise en tampon de sortie
+
         ob_start();
+        /*
+        * J'utilise ma méthode render pour renvoyer mon template
+        */
         $this->render($this->file, 'liste_articles_client', '', $params);
-        // Récupérer le contenu généré et le stocker dans $params['view']
         $params['view'] = ob_get_clean();
 
         if(!empty($_GET['ajax'])){

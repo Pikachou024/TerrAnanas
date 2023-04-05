@@ -24,7 +24,6 @@ class ArticleModel extends AbstractModel
         return $this-> db -> getOneResult($sql,[$id]);
     }
 
-
     function addArticle($label,$poids,$unite,$prix,$origine,$famille,$statusArticle,$image){
         $sql ="INSERT INTO article(article,poids,id_unite,prix,origine,id_famille,id_statutArticle,image)
                VALUES (?,?,?,?,?,?,?,?)";
@@ -48,13 +47,19 @@ class ArticleModel extends AbstractModel
         return $this->db->executeQuerry($sql,[$statusArticle,$id]);
     }
 
-//
-//    function deleteArticle($id){
-//        $sql="DELETE FROM article
-//              WHERE id_article=?";
-//
-//        return $this-> db->executeQuerry($sql,[$id]);
-//    }
 
+    function deleteArticle($id){
+        $sql="DELETE FROM article
+              WHERE id_article=?";
 
+        return $this-> db->executeQuerry($sql,[$id]);
+    }
+
+    function addCommentary(string $message, int $idUser,int $idHouse){
+
+        $sql ="INSERT INTO article(message,user,housse)
+               VALUES (?,?,?,?,?,?,?,?)";
+
+        return $this-> db ->executeQuerry($sql,[$message,$idUser,$idHouse]);
+    }
 }

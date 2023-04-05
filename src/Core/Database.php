@@ -14,7 +14,6 @@ class Database{
      * Connexion PDO à la base de données
      */
     function getPdoConnection(){
-
         $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8';
         $username = DB_USER;
         $password = DB_PASS;
@@ -42,7 +41,5 @@ class Database{
         $pdoStatement=$this -> executeQuerry($sql,$params);
         return $pdoStatement->fetch();
     }
-
-
 
 }

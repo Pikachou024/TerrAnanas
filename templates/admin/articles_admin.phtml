@@ -1,27 +1,24 @@
+<h3 class="headerTitle"> LISTES DES ARTICLES</h3>
 
-    <h3 class="headerTitle"> LISTES DES ARTICLES</h3>
-
-    <div class="headerArticleAdmin">
-        <div class="headerArticleAdmin-search">
-            <form method="POST" action ="articles_admin" class="headerArticleAdmin-search-form" id="form-commande" role="search">
-                <div class="headerArticleAdmin-search-form-input">
-                    <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article" >
-                </div>
-                <div class="headerArticleAdmin-search-form-checkbox">
-                    <label>Articles archivés</label>
-                    <input type="checkbox" id="archive" name="archive">
-                </div>
-            </form>
-        </div>
-        <div class="headerArticleAdmin-add">
-            <a href="add_article" class="headerArticleAdmin-add-link">
-                <i class="fa-solid fa-circle-plus"></i>
-            </a>
-        </div>
+<div class="headerArticleAdmin">
+    <div class="headerArticleAdmin-search">
+        <form method="POST" action ="articles_admin" class="headerArticleAdmin-search-form" id="form-commande" role="search">
+            <div class="headerArticleAdmin-search-form-input">
+                <input type="search" class="form-control" name="articleSearch" id="articleSearch" placeholder="Rechercher un article" >
+            </div>
+            <div class="headerArticleAdmin-search-form-checkbox">
+                <label>Articles archivés</label>
+                <input type="checkbox" id="archive" name="archive">
+            </div>
+        </form>
     </div>
-
-    <div class="templateListe">
-        <?= $params['view'] ; ?>
+    <div class="headerArticleAdmin-add">
+        <a href="add_article" class="headerArticleAdmin-add-link">
+            <i class="fa-solid fa-circle-plus"></i>
+        </a>
     </div>
+</div>
 
-
+<div class="templateListe">
+    <?= $params['view'] ; ?>
+</div>

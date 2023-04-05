@@ -97,8 +97,6 @@ class ArticleAdmin extends AbstractController
         $statutModel = new StatusModel();
         $statuts = $statutModel->getAllstatusArticle();
 
-
-
         if(!empty($_POST)){
             /*
              * Je récupère ensuite les données validées par l’utilisateur dans des variables avec
@@ -117,23 +115,18 @@ class ArticleAdmin extends AbstractController
              */
             if(!$label){
                 $error['label']='Veuillez remplir le champ article';
-//                addFlashMessage('Veuillez remplir le champ article','error');
             }
             if(!$origine){
                 $error['origine']='Veuillez remplir le champ origine';
-//                addFlashMessage('Veuillez remplir le champ origine','error');
             }
             if(!$prix){
                 $error['prix']='Veuillez remplir le champ prix';
-//                addFlashMessage('Veuillez remplir le champ prix','error');
             }
             if(!$poids){
                 $error['poids']='Veuillez remplir le champ poids';
-//                addFlashMessage('Veuillez remplir le champ poids','error');
             }
             if($famille == 0){
                 $error['famille']='Veuillez sélectionner une famille';
-//                addFlashMessage('Veuillez sélectionner une famille','error');
             }
             elseif ($famille == 1){
                 $image = 'fruit.png';
@@ -143,11 +136,9 @@ class ArticleAdmin extends AbstractController
             }
             if($unite == 0){
                 $error['unite']='Veuillez sélectionner une unitée';
-//                addFlashMessage('Veuillez sélectionner une unitée','error');
             }
             if($statut == 0){
                 $error['statut']='Veuillez sélectionner une statut';
-//                addFlashMessage('Veuillez sélectionner un statut','error');
             }
 
             /*
@@ -161,7 +152,6 @@ class ArticleAdmin extends AbstractController
              * Si mes vérifications sont validées en ne renvoyant aucun message d’erreur,
              * J'ajouter les données pour mon article dans ma BDD.
              */
-//            if(canProceed()) {
             if(empty($error)) {
                 $articleModel = new ArticleModel();
                 $articleModel ->addArticle($label,$poids,$unite,($prix*100),$origine,$famille,$statut,$image);
@@ -207,7 +197,7 @@ class ArticleAdmin extends AbstractController
 
         if(!$article){
             http_response_code(404);
-            echo("Article introuvable");
+            header("location:page_404");
             exit;
         }
 

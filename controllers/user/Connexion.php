@@ -81,7 +81,6 @@ class Connexion extends AbstractController
             $password = strip_tags(htmlspecialchars(trim($_POST['password'])));
             $confirmPassword = strip_tags(htmlspecialchars(trim($_POST['confirmPassword'])));
 
-
             if (!$client) {
                 $error['client'] = "Veuillez remplir le champ";
             }
